@@ -25,8 +25,7 @@ python -m mkdocs build -f 操作系统概论/笔记网站/mkdocs.yml --strict
 
 ## 部署
 
-推送到 `main` 分支后由 GitHub Actions 自动构建并发布，工作流见仓库根目录 `.github/workflows/pages.yml`：
-安装 `操作系统概论/笔记网站/requirements.txt`，以 `--strict` 构建，产物目录 `操作系统概论/笔记网站/dist` 上传为 Pages 制品。
+推送到 `main` 分支后由 GitHub Actions 自动构建并发布。工作流见仓库根目录 `.github/workflows/pages.yml`，它安装 `操作系统概论/笔记网站/requirements.txt`，以 `--strict` 构建，再把 `操作系统概论/笔记网站/dist` 上传为 Pages 制品。
 
 Pages 源需设为 “GitHub Actions”，首次启用可执行：
 

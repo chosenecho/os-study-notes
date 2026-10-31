@@ -201,7 +201,7 @@ progress[data-study-progress]::-moz-progress-bar { background: var(--note-accent
 .chapter-number { color: var(--note-muted); }
 
 :root { --md-primary-fg-color: #2859c5; --md-accent-fg-color: #2859c5; }
-[data-md-color-scheme="slate"] { --md-default-bg-color: #18191d; --md-default-fg-color: #e8e9ed; --md-default-fg-color--light: #b4b7c2; --md-primary-fg-color: #202126; --md-accent-fg-color: #a9c2ff; }
+[data-md-color-scheme="slate"] { --md-default-bg-color: #18191d; --md-default-fg-color: #e8e9ed; --md-default-fg-color--light: #b4b7c2; --md-primary-fg-color: #202126; --md-accent-fg-color: #a9c2ff; --md-typeset-a-color: #a9c2ff; }
 .md-header { background: var(--note-surface); color: var(--note-text); border-bottom: 1px solid var(--note-border); box-shadow: none; }
 .md-typeset { font-size: 16px; line-height: 1.9; }
 .md-grid { max-width: 1480px; }

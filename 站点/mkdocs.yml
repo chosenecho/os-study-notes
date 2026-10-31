@@ -29,7 +29,7 @@ theme:
     - content.code.copy
 nav:
   - 学习首页: index.md
-  - 章节笔记:
+  - 操作系统概论:
       - 第一章 操作系统简介: chapters/chapter-1.md
       - 第二章 进程管理: chapters/chapter-2.md
       - 第三章 进程调度与死锁: chapters/chapter-3.md

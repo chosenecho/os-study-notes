@@ -3,21 +3,21 @@
   --sl-font: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --sl-content-width: 56rem;
   --sl-text-body: 1rem;
-  --sl-color-accent-low: #163d38;
-  --sl-color-accent: #55bcaa;
-  --sl-color-accent-high: #afe5d8;
-  --note-bg: #151c21;
-  --note-surface: #1c252b;
-  --note-muted-surface: #192228;
-  --note-border: #344149;
-  --note-text: #e4e9ec;
-  --note-muted: #acbac3;
-  --note-accent: #98dfcd;
-  --note-accent-soft: #1b3935;
-  --note-button: #a8e4d4;
-  --note-on-button: #143a32;
-  --note-field-border: #73848d;
-  --note-focus: #8fe2d1;
+  --sl-color-accent-low: #1c2b48;
+  --sl-color-accent: #668ff0;
+  --sl-color-accent-high: #b8ccff;
+  --note-bg: #18191d;
+  --note-surface: #202126;
+  --note-muted-surface: #24252b;
+  --note-border: #383a43;
+  --note-text: #e8e9ed;
+  --note-muted: #b4b7c2;
+  --note-accent: #a9c2ff;
+  --note-accent-soft: #242e46;
+  --note-button: #a9c2ff;
+  --note-on-button: #142344;
+  --note-field-border: #7a8091;
+  --note-focus: #a9c2ff;
   --sl-color-bg: var(--note-bg);
   --sl-color-bg-sidebar: var(--note-surface);
   --sl-color-hairline: var(--note-border);
@@ -25,21 +25,21 @@
   --note-font-size: 16px;
 }
 :root[data-theme='light'] {
-  --sl-color-accent-low: #e5f2ed;
-  --sl-color-accent: #187564;
-  --sl-color-accent-high: #145d50;
-  --note-bg: #fafbf9;
+  --sl-color-accent-low: #edf2ff;
+  --sl-color-accent: #3564d5;
+  --sl-color-accent-high: #244fba;
+  --note-bg: #fafafa;
   --note-surface: #fff;
-  --note-muted-surface: #f1f4f1;
-  --note-border: #dce3df;
-  --note-text: #22332e;
-  --note-muted: #56685f;
-  --note-accent: #176451;
-  --note-accent-soft: #eaf3ed;
-  --note-button: #176451;
+  --note-muted-surface: #f3f4f6;
+  --note-border: #dfe2e8;
+  --note-text: #242833;
+  --note-muted: #555e70;
+  --note-accent: #2859c5;
+  --note-accent-soft: #edf2ff;
+  --note-button: #2859c5;
   --note-on-button: #fff;
-  --note-field-border: #7a8b81;
-  --note-focus: #176451;
+  --note-field-border: #7c8495;
+  --note-focus: #2859c5;
 }
 body { line-height: 1.85; }
 :where(button, a, select, input, summary) { touch-action: manipulation; }
@@ -74,7 +74,7 @@ input[type='checkbox'] { accent-color: var(--note-button); width: 1.1rem; height
 .exercise-answer[open] summary { border-bottom: 1px solid var(--note-border); margin-bottom: 1rem; }
 .figure-zoom { position: relative; display: block; width: 100%; border: 1px solid var(--note-border); padding: 1rem; border-radius: .6rem; background: white; cursor: zoom-in; margin-block: 1.75rem; overflow: hidden; }
 .figure-zoom img { display: block; width: 100%; height: auto; margin: 0; }
-.zoom-hint { position: absolute; right: .5rem; bottom: .5rem; padding: .15rem .5rem; background: #edf3ef; color: #3f574c; font: 500 .75rem/1.6 var(--sl-font); border-radius: .25rem; }
+.zoom-hint { position: absolute; right: .5rem; bottom: .5rem; padding: .15rem .5rem; background: #f1f4fa; color: #4c586f; font: 500 .75rem/1.6 var(--sl-font); border-radius: .25rem; }
 .image-dialog { width: min(94vw, 1400px); max-width: 96vw; max-height: 94dvh; border: 1px solid var(--note-border); border-radius: var(--note-radius); padding: 1rem; background: var(--note-bg); color: var(--note-text); }
 .image-dialog::backdrop { background: #071719d9; }
 .image-dialog img { width: 100%; max-height: 76dvh; object-fit: contain; background: white; margin-top: .75rem; }
@@ -195,3 +195,7 @@ progress[data-study-progress]::-moz-progress-bar { background: var(--note-accent
 .sl-markdown-content .exercise-item .exercise-answer > p:first-of-type { margin-top: .5rem; }
 .sl-markdown-content .exercise-item .exercise-answer > :last-child { margin-bottom: .5rem; }
 @media (max-width: 40rem) { .sl-markdown-content .exercise-item { padding: 1rem 1rem 0; } }
+
+/* Keep navigation and section numbering neutral; reserve blue for actions. */
+.site-title { color: var(--note-text); }
+.chapter-number { color: var(--note-muted); }

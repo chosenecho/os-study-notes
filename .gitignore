@@ -1,6 +1,7 @@
 /*
 !/.gitignore
 !/README.md
+!/edgeone.json
 !/第1章_操作系统简介_笔记.md
 !/第2章_进程管理_笔记.md
 !/第3章_进程调度与死锁_笔记.md

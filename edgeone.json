@@ -1,0 +1,6 @@
+{
+  "installCommand": "npx --yes --package=node@24.16.0 --call \"npm --prefix 笔记网站 ci --no-audit --no-fund\"",
+  "buildCommand": "npx --yes --package=node@24.16.0 --call \"npm --prefix 笔记网站 run build\"",
+  "outputDirectory": "笔记网站/dist",
+  "nodeVersion": "22.11.0"
+}

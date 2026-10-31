@@ -24,6 +24,8 @@ npm run preview
 
 部署平台的项目根目录设置为 `笔记网站`，构建命令为 `npm run build`，产物目录为 `dist`。正式部署时通过 `SITE_URL` 设置域名，使用子路径时另外设置 `SITE_BASE`。
 
+EdgeOne 的 GitHub 项目可直接以仓库根目录构建：根目录的 `edgeone.json` 会配置依赖安装、构建命令和产物位置。平台默认 Node 22.11.0 低于当前 Astro 的要求，因此安装及构建命令通过 npm 的 Node 分发包使用 Node 24.16.0。
+
 三章原始 Markdown 放在仓库根目录，插图位于 `图/` 和 `笔记插图/`。启动和构建时会自动同步至网站内容目录。详细说明见 [网站维护说明](笔记网站/README.md)。
 
 ## 检查

@@ -4,7 +4,9 @@ import re
 import shutil
 
 ROOT = Path(__file__).resolve().parent
-SOURCE = ROOT.parent
+REPO = ROOT.parent
+COURSES = REPO / '课程'
+SOURCE = COURSES / '操作系统概论'
 
 
 def exercise(match):
@@ -58,7 +60,7 @@ def on_pre_build(config):
         dialog = '<dialog class="image-dialog" aria-label="插图预览"><button type="button" class="close-dialog" autofocus>关闭 · Esc</button><img alt=""><p></p></dialog>'
         (docs / f'chapters/chapter-{n}.md').write_text(title + '\n\n' + toolbar + '\n\n' + format_exercises(body) + '\n\n' + dialog, encoding='utf-8')
 
-    composition_source = SOURCE.parent / '计算机组成原理'
+    composition_source = COURSES / '计算机组成原理'
     composition_docs = docs / 'computer-organization'
     composition_docs.mkdir(parents=True, exist_ok=True)
     for n in range(1, 7):

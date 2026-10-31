@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="390" viewBox="0 0 900 390">
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0L10 4L0 8Z" fill="#334155"/></marker></defs><rect width="900" height="390" fill="#fff"/>
+<g font-family="Microsoft YaHei, sans-serif" text-anchor="middle" fill="#172033"><text x="450" y="40" font-size="23" font-weight="700">有界缓冲区中的生产者与消费者</text>
+<rect x="70" y="140" width="190" height="88" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/><text x="165" y="177" font-size="20">生产者</text><text x="165" y="205" font-size="14">等待 empty，放入消息</text>
+<rect x="350" y="118" width="220" height="132" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/><text x="460" y="146" font-size="18">共享缓冲池</text>
+<g stroke="#64748b" fill="#fff"><rect x="376" y="164" width="48" height="52"/><rect x="436" y="164" width="48" height="52"/><rect x="496" y="164" width="48" height="52"/></g><text x="400" y="198" font-size="16">空</text><text x="460" y="198" font-size="16">消息</text><text x="520" y="198" font-size="16">空</text>
+<rect x="640" y="140" width="190" height="88" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="735" y="177" font-size="20">消费者</text><text x="735" y="205" font-size="14">等待 full，取出消息</text>
+<path d="M260 174H345" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/><path d="M570 196H635" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/>
+<rect x="350" y="290" width="220" height="54" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/><text x="460" y="324" font-size="17">mutex：互斥访问缓冲池</text>
+<text x="450" y="372" font-size="15" fill="#475569">empty 初值 N　｜　full 初值 0　｜　mutex 初值 1</text></g></svg>

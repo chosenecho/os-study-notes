@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="420" viewBox="0 0 700 420" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <defs>
+    <marker id="e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect x="25" y="20" width="650" height="212" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="7 4"/>
+  <text x="45" y="44" font-size="13" fill="#64748b">用户态</text>
+
+  <rect x="45" y="56" width="160" height="60" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+  <text x="125" y="82" font-size="14" fill="#1e293b" text-anchor="middle">客户</text>
+  <text x="125" y="102" font-size="14" fill="#1e293b" text-anchor="middle">应用程序</text>
+
+  <rect x="255" y="56" width="150" height="52" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.4"/>
+  <text x="330" y="88" font-size="14" fill="#1e293b" text-anchor="middle">文件服务</text>
+
+  <rect x="465" y="56" width="150" height="52" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.4"/>
+  <text x="540" y="88" font-size="14" fill="#1e293b" text-anchor="middle">网络服务</text>
+
+  <rect x="255" y="150" width="150" height="52" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.4"/>
+  <text x="330" y="182" font-size="14" fill="#1e293b" text-anchor="middle">内存服务</text>
+
+  <rect x="465" y="150" width="150" height="52" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.4"/>
+  <text x="540" y="182" font-size="14" fill="#1e293b" text-anchor="middle">显示服务</text>
+
+  <text x="125" y="140" font-size="12" fill="#64748b" text-anchor="middle">消息传递</text>
+
+  <rect x="25" y="248" width="650" height="76" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.6"/>
+  <text x="45" y="272" font-size="13" fill="#92400e">核心态</text>
+  <rect x="240" y="262" width="220" height="48" rx="6" fill="#fde68a" stroke="#d97706" stroke-width="1.6"/>
+  <text x="350" y="292" font-size="15" fill="#1e293b" text-anchor="middle">微内核</text>
+
+  <line x1="125" y1="116" x2="262" y2="258" stroke="#64748b" stroke-width="1.3" marker-end="url(#e)"/>
+  <line x1="262" y1="262" x2="205" y2="118" stroke="#64748b" stroke-width="1.3" marker-end="url(#e)" stroke-dasharray="5 3"/>
+  <line x1="330" y1="108" x2="340" y2="258" stroke="#64748b" stroke-width="1.3" marker-end="url(#e)"/>
+  <line x1="540" y1="108" x2="430" y2="258" stroke="#64748b" stroke-width="1.3" marker-end="url(#e)"/>
+  <line x1="330" y1="202" x2="350" y2="258" stroke="#64748b" stroke-width="1.3" marker-end="url(#e)"/>
+  <line x1="540" y1="202" x2="430" y2="258" stroke="#64748b" stroke-width="1.3" marker-end="url(#e)" stroke-dasharray="5 3"/>
+
+  <line x1="350" y1="324" x2="350" y2="352" stroke="#64748b" stroke-width="1.4" marker-end="url(#e)"/>
+
+  <rect x="25" y="356" width="650" height="44" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.4"/>
+  <text x="350" y="384" font-size="14" fill="#334155" text-anchor="middle">硬件</text>
+</svg>

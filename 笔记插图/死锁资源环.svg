@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="390" viewBox="0 0 900 390">
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0L10 4L0 8Z" fill="#334155"/></marker></defs><rect width="900" height="390" fill="#fff"/>
+<g font-family="Microsoft YaHei, sans-serif" text-anchor="middle" fill="#172033"><text x="450" y="40" font-size="23" font-weight="700">两个进程、两类资源形成的等待环</text>
+<circle cx="210" cy="190" r="52" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/><text x="210" y="197" font-size="20">P1</text>
+<circle cx="690" cy="190" r="52" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="690" y="197" font-size="20">P2</text>
+<rect x="410" y="90" width="80" height="70" fill="#fef3c7" stroke="#d97706" stroke-width="2"/><text x="450" y="132" font-size="20">A</text>
+<rect x="410" y="240" width="80" height="70" fill="#fce7f3" stroke="#db2777" stroke-width="2"/><text x="450" y="282" font-size="20">B</text>
+<path d="M262 176L405 135" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/><text x="330" y="135" font-size="14">P1 请求 A</text>
+<path d="M490 125L638 174" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/><text x="570" y="138" font-size="14">A 分配给 P2</text>
+<path d="M638 210L490 264" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/><text x="567" y="259" font-size="14">P2 请求 B</text>
+<path d="M410 275L261 207" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"/><text x="326" y="257" font-size="14">B 分配给 P1</text>
+<text x="450" y="350" font-size="15" fill="#475569">P1 持有 B 等 A；P2 持有 A 等 B。若资源各为单实例且不可剥夺，则形成死锁</text>
+</g></svg>

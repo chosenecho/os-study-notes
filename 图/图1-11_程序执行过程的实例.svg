@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="740" height="330" viewBox="0 0 740 330" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+
+  <text x="370" y="22" font-size="13" fill="#64748b" text-anchor="middle">执行 a(941) ＝ a(941) ＋ b(940)</text>
+
+  <text x="120" y="56" font-size="13" fill="#2563eb" text-anchor="middle">① 完成 1940</text>
+  <text x="360" y="56" font-size="13" fill="#2563eb" text-anchor="middle">② 完成 5941</text>
+  <text x="600" y="56" font-size="13" fill="#2563eb" text-anchor="middle">③ 完成 2941</text>
+
+  <g>
+    <rect x="30" y="66" width="112" height="196" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="1.4"/>
+    <text x="86" y="86" font-size="12" fill="#64748b" text-anchor="middle">存储器</text>
+    <line x1="30" y1="94" x2="142" y2="94" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="44" y="114" font-size="12" fill="#94a3b8">300</text><text x="128" y="114" font-size="12" fill="#1e293b" text-anchor="end">1940</text>
+    <text x="44" y="140" font-size="12" fill="#94a3b8">301</text><text x="128" y="140" font-size="12" fill="#1e293b" text-anchor="end">5941</text>
+    <text x="44" y="166" font-size="12" fill="#94a3b8">302</text><text x="128" y="166" font-size="12" fill="#1e293b" text-anchor="end">2941</text>
+    <text x="44" y="206" font-size="12" fill="#94a3b8">940</text><text x="128" y="206" font-size="12" fill="#1e293b" text-anchor="end">0003</text>
+    <text x="44" y="234" font-size="12" fill="#94a3b8">941</text><text x="128" y="234" font-size="12" fill="#1e293b" text-anchor="end">0002</text>
+
+    <rect x="146" y="66" width="96" height="196" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.2"/>
+    <text x="194" y="86" font-size="12" fill="#64748b" text-anchor="middle">寄存器</text>
+    <line x1="146" y1="94" x2="242" y2="94" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="158" y="122" font-size="12" fill="#94a3b8">PC</text><text x="230" y="122" font-size="12" fill="#1e293b" text-anchor="end">301</text>
+    <text x="158" y="154" font-size="12" fill="#94a3b8">IR</text><text x="230" y="154" font-size="12" fill="#1e293b" text-anchor="end">1940</text>
+    <text x="158" y="186" font-size="12" fill="#94a3b8">AC</text><text x="230" y="186" font-size="12" fill="#2563eb" text-anchor="end">0003</text>
+  </g>
+
+  <g>
+    <rect x="270" y="66" width="112" height="196" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="1.4"/>
+    <text x="326" y="86" font-size="12" fill="#64748b" text-anchor="middle">存储器</text>
+    <line x1="270" y1="94" x2="382" y2="94" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="284" y="114" font-size="12" fill="#94a3b8">300</text><text x="368" y="114" font-size="12" fill="#1e293b" text-anchor="end">1940</text>
+    <text x="284" y="140" font-size="12" fill="#94a3b8">301</text><text x="368" y="140" font-size="12" fill="#1e293b" text-anchor="end">5941</text>
+    <text x="284" y="166" font-size="12" fill="#94a3b8">302</text><text x="368" y="166" font-size="12" fill="#1e293b" text-anchor="end">2941</text>
+    <text x="284" y="206" font-size="12" fill="#94a3b8">940</text><text x="368" y="206" font-size="12" fill="#1e293b" text-anchor="end">0003</text>
+    <text x="284" y="234" font-size="12" fill="#94a3b8">941</text><text x="368" y="234" font-size="12" fill="#1e293b" text-anchor="end">0002</text>
+
+    <rect x="386" y="66" width="96" height="196" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.2"/>
+    <text x="434" y="86" font-size="12" fill="#64748b" text-anchor="middle">寄存器</text>
+    <line x1="386" y1="94" x2="482" y2="94" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="398" y="122" font-size="12" fill="#94a3b8">PC</text><text x="470" y="122" font-size="12" fill="#1e293b" text-anchor="end">302</text>
+    <text x="398" y="154" font-size="12" fill="#94a3b8">IR</text><text x="470" y="154" font-size="12" fill="#1e293b" text-anchor="end">5941</text>
+    <text x="398" y="186" font-size="12" fill="#94a3b8">AC</text><text x="470" y="186" font-size="12" fill="#d97706" text-anchor="end">0005</text>
+  </g>
+
+  <g>
+    <rect x="510" y="66" width="112" height="196" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="1.4"/>
+    <text x="566" y="86" font-size="12" fill="#64748b" text-anchor="middle">存储器</text>
+    <line x1="510" y1="94" x2="622" y2="94" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="524" y="114" font-size="12" fill="#94a3b8">300</text><text x="608" y="114" font-size="12" fill="#1e293b" text-anchor="end">1940</text>
+    <text x="524" y="140" font-size="12" fill="#94a3b8">301</text><text x="608" y="140" font-size="12" fill="#1e293b" text-anchor="end">5941</text>
+    <text x="524" y="166" font-size="12" fill="#94a3b8">302</text><text x="608" y="166" font-size="12" fill="#1e293b" text-anchor="end">2941</text>
+    <text x="524" y="206" font-size="12" fill="#94a3b8">940</text><text x="608" y="206" font-size="12" fill="#1e293b" text-anchor="end">0003</text>
+    <text x="524" y="234" font-size="12" fill="#94a3b8">941</text><text x="608" y="234" font-size="12" fill="#d97706" text-anchor="end">0005</text>
+
+    <rect x="626" y="66" width="96" height="196" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.2"/>
+    <text x="674" y="86" font-size="12" fill="#64748b" text-anchor="middle">寄存器</text>
+    <line x1="626" y1="94" x2="722" y2="94" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="638" y="122" font-size="12" fill="#94a3b8">PC</text><text x="710" y="122" font-size="12" fill="#1e293b" text-anchor="end">303</text>
+    <text x="638" y="154" font-size="12" fill="#94a3b8">IR</text><text x="710" y="154" font-size="12" fill="#1e293b" text-anchor="end">2941</text>
+    <text x="638" y="186" font-size="12" fill="#94a3b8">AC</text><text x="710" y="186" font-size="12" fill="#1e293b" text-anchor="end">0005</text>
+  </g>
+
+  <text x="120" y="296" font-size="12" fill="#64748b" text-anchor="middle">AC 得 3</text>
+  <text x="360" y="296" font-size="12" fill="#64748b" text-anchor="middle">3＋2＝5 存 AC</text>
+  <text x="600" y="296" font-size="12" fill="#64748b" text-anchor="middle">5 写入 941</text>
+</svg>

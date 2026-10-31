@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="480" viewBox="0 0 900 480">
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0L10 4L0 8Z" fill="#334155"/></marker></defs><rect width="900" height="480" fill="#fff"/>
+<g font-family="Microsoft YaHei, sans-serif" text-anchor="middle" fill="#172033">
+<text x="450" y="38" font-size="23" font-weight="700">单重中断处理流程</text>
+<g stroke="#0284c7" stroke-width="2" fill="#e0f2fe">
+<rect x="330" y="65" width="240" height="54" rx="8"/><rect x="330" y="145" width="240" height="54" rx="8"/><rect x="330" y="225" width="240" height="54" rx="8"/><rect x="330" y="305" width="240" height="54" rx="8"/><rect x="330" y="385" width="240" height="54" rx="8"/>
+</g>
+<g font-size="18"><text x="450" y="99">执行现行程序</text><text x="450" y="179">关中断，保存断点</text><text x="450" y="259">保护现场，查中断向量</text><text x="450" y="339">执行中断服务程序</text><text x="450" y="419">恢复现场，开中断并返回</text></g>
+<g stroke="#334155" stroke-width="2.5" marker-end="url(#a)"><path d="M450 119V140"/><path d="M450 199V220"/><path d="M450 279V300"/><path d="M450 359V380"/></g>
+<text x="700" y="246" font-size="15" fill="#475569">向量定位对应的服务入口</text>
+<text x="450" y="465" font-size="14" fill="#64748b">单重中断模型假设：中断服务期间不响应新的中断</text>
+</g></svg>

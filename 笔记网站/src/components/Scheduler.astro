@@ -1,0 +1,16 @@
+---
+const defaults = [[0, 5], [1, 3], [2, 1], [4, 2]];
+---
+<div class="scheduler" data-scheduler>
+  <form>
+    <div class="lab-controls"><label>调度算法<select name="algorithm"><option value="fcfs">FCFS · 先来先服务</option><option value="spf">SPF · 短进程优先</option><option value="rr">RR · 时间片轮转</option></select></label><label>时间片<input name="quantum" type="number" min="1" max="100" value="2" required /></label></div>
+    <table class="input-table"><thead><tr><th>进程</th><th>到达时刻</th><th>服务时间</th></tr></thead><tbody>{defaults.map(([arrival, burst], i) => <tr><th>P{i + 1}</th><td><input name={`arrival-${i}`} aria-label={`P${i + 1} 到达时刻`} type="number" min="0" max="100" value={arrival} required /></td><td><input name={`burst-${i}`} aria-label={`P${i + 1} 服务时间`} type="number" min="1" max="100" value={burst} required /></td></tr>)}</tbody></table>
+    <div class="lab-buttons"><button type="submit" class="primary-link">运行</button><button type="reset">恢复示例</button></div>
+  </form>
+  <div class="lab-results" aria-live="polite" aria-atomic="true"></div>
+</div>
+<script>
+  import { initScheduler } from '../scripts/scheduler';
+  initScheduler();
+  document.addEventListener('astro:page-load', initScheduler);
+</script>

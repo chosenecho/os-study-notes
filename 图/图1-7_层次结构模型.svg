@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="360" viewBox="0 0 560 360" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <defs>
+    <marker id="d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#047857"/>
+    </marker>
+  </defs>
+
+  <text x="280" y="22" font-size="13" fill="#64748b" text-anchor="middle">单向调用：每层只依赖下层，不能访问上层</text>
+
+  <rect x="55" y="34" width="380" height="50" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.4"/>
+  <text x="245" y="65" font-size="14" fill="#1e293b" text-anchor="middle">第 5 层　用户接口</text>
+
+  <rect x="55" y="96" width="380" height="50" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.4"/>
+  <text x="245" y="127" font-size="14" fill="#1e293b" text-anchor="middle">第 4 层　文件管理</text>
+
+  <rect x="55" y="158" width="380" height="50" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.4"/>
+  <text x="245" y="189" font-size="14" fill="#1e293b" text-anchor="middle">第 3 层　设备管理</text>
+
+  <rect x="55" y="220" width="380" height="50" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.4"/>
+  <text x="245" y="251" font-size="14" fill="#1e293b" text-anchor="middle">第 2 层　内存管理</text>
+
+  <rect x="55" y="282" width="380" height="50" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.4"/>
+  <text x="245" y="313" font-size="14" fill="#1e293b" text-anchor="middle">第 1 层　处理机管理</text>
+
+  <line x1="245" y1="84" x2="245" y2="92" stroke="#047857" stroke-width="1.5" marker-end="url(#d)"/>
+  <line x1="245" y1="146" x2="245" y2="154" stroke="#047857" stroke-width="1.5" marker-end="url(#d)"/>
+  <line x1="245" y1="208" x2="245" y2="216" stroke="#047857" stroke-width="1.5" marker-end="url(#d)"/>
+  <line x1="245" y1="270" x2="245" y2="278" stroke="#047857" stroke-width="1.5" marker-end="url(#d)"/>
+
+  <line x1="470" y1="60" x2="470" y2="308" stroke="#047857" stroke-width="1.4" marker-end="url(#d)"/>
+  <text x="502" y="188" font-size="12" fill="#047857" text-anchor="middle">只能向下</text>
+
+  <text x="280" y="352" font-size="13" fill="#64748b" text-anchor="middle">代表：Dijkstra 的 THE 系统</text>
+</svg>

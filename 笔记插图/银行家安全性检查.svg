@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
+<title id="title">银行家算法安全性检查</title><desc id="desc">初始化 Work 和 Finish，反复寻找可完成的进程并释放其已分配资源；全部进程完成则安全，否则不安全。</desc>
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0L10 4L0 8Z" fill="#334155"/></marker></defs>
+<rect width="1000" height="650" fill="#fff"/>
+<g font-family="Microsoft YaHei, sans-serif" text-anchor="middle" fill="#172033">
+<text x="500" y="38" font-size="23" font-weight="700">银行家算法：安全性检查</text>
+<g fill="#e0f2fe" stroke="#0284c7" stroke-width="2"><rect x="285" y="65" width="430" height="64" rx="8"/><rect x="285" y="305" width="430" height="65" rx="8"/></g>
+<g fill="#fef3c7" stroke="#d97706" stroke-width="2"><path d="M500 160L690 210L500 260L310 210Z"/><path d="M500 407L690 457L500 507L310 457Z"/></g>
+<rect x="370" y="550" width="260" height="50" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+<rect x="755" y="185" width="210" height="50" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+<g font-size="17"><text x="500" y="91">Work = Available</text><text x="500" y="115">所有 Finish[i] = false</text><text x="500" y="205">能否找到未完成且</text><text x="500" y="229">Need[i] ≤ Work 的进程？</text><text x="500" y="332">Work = Work + Allocation[i]</text><text x="500" y="356">Finish[i] = true，记入安全序列</text><text x="500" y="464">所有进程均已完成？</text><text x="500" y="581">安全：存在安全序列</text><text x="860" y="216">不安全</text></g>
+<g fill="none" stroke="#334155" stroke-width="2.5" marker-end="url(#a)"><path d="M500 129V155"/><path d="M500 260V300"/><path d="M500 370V402"/><path d="M500 507V545"/><path d="M690 210H750"/><path d="M310 457H180V210H305"/></g>
+<g font-size="15" fill="#475569"><text x="524" y="286">是</text><text x="720" y="196">否</text><text x="524" y="532">是</text><text x="220" y="445">否，继续查找</text></g>
+<text x="500" y="632" font-size="15" fill="#64748b">Need 与 Work 逐资源比较；假设进程完成时归还 Allocation，而非 Need</text>
+</g></svg>

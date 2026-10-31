@@ -1,5 +1,0 @@
-{
-  "installCommand": "python3 -m pip install -r 笔记网站/requirements.txt",
-  "buildCommand": "python3 -m mkdocs build -f 笔记网站/mkdocs.yml --strict",
-  "outputDirectory": "笔记网站/dist"
-}

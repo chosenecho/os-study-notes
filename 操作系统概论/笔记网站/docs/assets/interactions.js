@@ -163,13 +163,16 @@ ${segment.start}\u2013${segment.end}`;
       badge.textContent = completed ? "\u5DF2\u590D\u4E60" : "\u5F85\u590D\u4E60";
       badge.dataset.completed = String(completed);
     });
-    const count = document.querySelector("[data-progress-count]");
-    if (count) count.textContent = String(["1", "2", "3"].filter((id) => progress.includes(id)).length);
-    const progressBar = document.querySelector("[data-study-progress]");
-    if (progressBar) progressBar.value = Number(count?.textContent || 0);
+    for (const course of ["os", "co"]) {
+      const prefix = course === "os" ? "" : "co-";
+      const count = document.querySelector(`[data-progress-count="${course}"]`);
+      if (count) count.textContent = String([1, 2, 3, 4, 5, 6].filter((n) => progress.includes(`${prefix}${n}`)).length);
+      const progressBar = document.querySelector(`[data-study-progress="${course}"]`);
+      if (progressBar) progressBar.value = Number(count?.textContent || 0);
+    }
     const nextLink = document.querySelector("[data-next-chapter]");
     if (nextLink) {
-      const next = ["1", "2", "3"].find((id) => !progress.includes(id));
+      const next = ["1", "2", "3", "4", "5", "6"].find((id) => !progress.includes(id));
       if (next) {
         nextLink.href = nextLink.href.replace(/chapter-\d/, `chapter-${next}`);
         nextLink.querySelector("[data-next-label]").textContent = progress.length ? `\u7EE7\u7EED\u590D\u4E60 \xB7 \u7B2C ${next} \u7AE0` : "\u5F00\u59CB\u7B2C\u4E00\u7AE0";

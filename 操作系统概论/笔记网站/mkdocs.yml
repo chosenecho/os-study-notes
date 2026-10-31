@@ -1,4 +1,4 @@
-site_name: 操作系统概论
+site_name: 课程笔记
 site_description: 依据教材与考试大纲整理的课程笔记
 site_url: !ENV [SITE_URL, 'https://chosenecho.github.io/os-study-notes/']
 site_dir: dist
@@ -33,6 +33,16 @@ nav:
       - 第一章 操作系统简介: chapters/chapter-1.md
       - 第二章 进程管理: chapters/chapter-2.md
       - 第三章 进程调度与死锁: chapters/chapter-3.md
+      - 第四章 内存管理: chapters/chapter-4.md
+      - 第五章 文件系统: chapters/chapter-5.md
+      - 第六章 I/O 设备管理: chapters/chapter-6.md
+  - 计算机组成原理:
+      - 第一章 计算机系统概述: computer-organization/chapter-1.md
+      - 第二章 数据的表示和运算: computer-organization/chapter-2.md
+      - 第三章 指令系统: computer-organization/chapter-3.md
+      - 第四章 中央处理器: computer-organization/chapter-4.md
+      - 第五章 存储器层次结构: computer-organization/chapter-5.md
+      - 第六章 互连及输入输出组织: computer-organization/chapter-6.md
   - 交互练习:
       - 进程调度实验: lab/scheduling.md
 plugins:

@@ -37,7 +37,7 @@ def on_pre_build(config):
     (docs / 'chapters').mkdir(parents=True, exist_ok=True)
     images = docs / 'assets/figures'
     images.mkdir(parents=True, exist_ok=True)
-    for n in range(1, 4):
+    for n in range(1, 7):
         file = next(SOURCE.glob(f'第{n}章*_笔记.md'))
         text = file.read_text(encoding='utf-8')
         def image(m):
@@ -57,3 +57,15 @@ def on_pre_build(config):
         title, body = text.split('\n', 1)
         dialog = '<dialog class="image-dialog" aria-label="插图预览"><button type="button" class="close-dialog" autofocus>关闭 · Esc</button><img alt=""><p></p></dialog>'
         (docs / f'chapters/chapter-{n}.md').write_text(title + '\n\n' + toolbar + '\n\n' + format_exercises(body) + '\n\n' + dialog, encoding='utf-8')
+
+    composition_source = SOURCE.parent / '计算机组成原理'
+    composition_docs = docs / 'computer-organization'
+    composition_docs.mkdir(parents=True, exist_ok=True)
+    for n in range(1, 7):
+        file = next(composition_source.glob(f'第{n}章*_笔记.md'))
+        text = file.read_text(encoding='utf-8')
+        text = re.sub(r'\[([^\]]+)\]\(教材/chapters/[^)]+\)', r'\1', text)
+        title, body = text.split('\n', 1)
+        toolbar = f'<div class="study-toolbar" data-chapter="co-{n}"><label><input type="checkbox" data-complete> 本章已复习</label><label class="reading-size">字号<select data-reading-size aria-label="正文字号"><option value="16">标准</option><option value="18">较大</option><option value="20">大号</option></select></label><span class="save-status" role="status"></span></div>'
+        dialog = '<dialog class="image-dialog" aria-label="插图预览"><button type="button" class="close-dialog" autofocus>关闭 · Esc</button><img alt=""><p></p></dialog>'
+        (composition_docs / f'chapter-{n}.md').write_text(title + '\n\n' + toolbar + '\n\n' + format_exercises(body.strip()) + '\n\n' + dialog, encoding='utf-8')

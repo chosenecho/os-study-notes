@@ -1,8 +1,8 @@
 {
   "name": "os-study-notes",
   "description": "操作系统概论学习笔记",
-  "installCommand": "npx --yes --package=node@24.16.0 --call \"npm --prefix 笔记网站 ci --no-audit --no-fund\"",
-  "buildCommand": "npx --yes --package=node@24.16.0 --call \"npm --prefix 笔记网站 run build\"",
+  "installCommand": "python3 -m pip install -r 笔记网站/requirements.txt",
+  "buildCommand": "python3 -m mkdocs build -f 笔记网站/mkdocs.yml --strict",
   "assets": {
     "directory": "./笔记网站/dist",
     "notFoundStrategy": "404Page"

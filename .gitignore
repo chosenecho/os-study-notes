@@ -13,11 +13,10 @@
 !/笔记网站/
 /笔记网站/*
 !/笔记网站/.gitignore
-!/笔记网站/astro.config.mjs
-!/笔记网站/package.json
-!/笔记网站/package-lock.json
-!/笔记网站/tsconfig.json
 !/笔记网站/README.md
-!/笔记网站/src/
 !/笔记网站/scripts/
-!/笔记网站/public/
+
+!/笔记网站/mkdocs.yml
+!/笔记网站/requirements.txt
+!/笔记网站/hooks.py
+!/笔记网站/docs/

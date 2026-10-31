@@ -1,40 +1,36 @@
-# 操作系统概论学习笔记
+# 操作系统概论笔记网站
 
-依据《操作系统概论（2017 年版）》与自学考试大纲整理的前三章笔记，使用 Astro Starlight 展示。
-
-网站提供中文搜索、章节目录、逐题答案折叠、插图放大、浏览器内复习进度与字号设置，以及 FCFS、SPF、时间片轮转调度实验。
+使用 Material for MkDocs，包含前三章笔记、中文搜索、逐题答案折叠、插图放大、字号与复习记录、调度实验。
 
 ## 本地运行
 
-需要 Node.js 22.23.4 或更高版本。
+需要 Python 3.10 或更高版本。在仓库根目录执行：
 
 ```sh
-cd 笔记网站
-npm ci
-npm run dev
+python -m pip install -r 笔记网站/requirements.txt
+python -m mkdocs serve -f 笔记网站/mkdocs.yml
 ```
 
-## 构建
+默认预览地址为 `http://127.0.0.1:8000/`。
+
+## 构建与部署
 
 ```sh
-cd 笔记网站
-npm run build
-npm run preview
+python -m mkdocs build -f 笔记网站/mkdocs.yml --strict
 ```
 
-部署平台的项目根目录设置为 `笔记网站`，构建命令为 `npm run build`，产物目录为 `dist`。正式部署时通过 `SITE_URL` 设置域名，使用子路径时另外设置 `SITE_BASE`。
+产物在 `笔记网站/dist/`。托管平台设置：根目录为仓库根目录；安装命令 `python3 -m pip install -r 笔记网站/requirements.txt`；构建命令 `python3 -m mkdocs build -f 笔记网站/mkdocs.yml --strict`；产物目录 `笔记网站/dist`。平台构建环境需要 Python；只有 Node 的环境需要另选构建环境或上传本地构建产物。
 
-EdgeOne 的 GitHub 项目可直接以仓库根目录构建：根目录的 `edgeone.json` 会配置依赖安装、构建命令和产物位置。平台默认 Node 22.11.0 低于当前 Astro 的要求，因此安装及构建命令通过 npm 的 Node 分发包使用 Node 24.16.0。
+设置环境变量 `SITE_URL` 为正式访问地址（含站点子路径与末尾斜杠）。默认地址为 `https://chosenecho.github.io/os-study-notes/`，此配置不会自动发布 GitHub Pages。
 
-阿里云 ESA CLI 使用根目录的 `esa.jsonc`，静态资源目录为 `笔记网站/dist`。进入 `笔记网站` 构建后，可执行 `esa deploy --name os-study-notes --environment production` 发布。
+## 更新笔记
 
-三章原始 Markdown 放在仓库根目录，插图位于 `图/` 和 `笔记插图/`。启动和构建时会自动同步至网站内容目录。详细说明见 [网站维护说明](笔记网站/README.md)。
+继续编辑仓库根目录的三份 `第N章_…_笔记.md`。插图放在 `图/` 和 `笔记插图/`。构建钩子 `笔记网站/hooks.py` 自动同步正文、组织逐题答案并复制插图。更新源文件后重新构建；本地 serve 运行中可重启以同步。
 
-## 检查
+网页源文件位于 `笔记网站/docs/`；样式在 `docs/assets/notes.css`，交互逻辑在 `docs/assets/interactions.js`。进度与字号保存在当前浏览器，不跨设备同步。调度实验假设单 CPU、无 I/O、忽略切换开销。
+
+可选调度核算（需要 Node，仅用于测试，不参与网站构建）：
 
 ```sh
-cd 笔记网站
-npm test
+node 笔记网站/scripts/test-scheduling.mjs
 ```
-
-题目和教材结论按笔记中的依据说明理解。仓库只包含整理的笔记与网站所需插图。

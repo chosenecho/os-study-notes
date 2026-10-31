@@ -1,0 +1,61 @@
+site_name: 操作系统概论
+site_description: 依据教材与考试大纲整理的课程笔记
+site_url: !ENV [SITE_URL, 'https://chosenecho.github.io/os-study-notes/']
+site_dir: dist
+theme:
+  name: material
+  language: zh
+  font: false
+  favicon: assets/favicon.svg
+  palette:
+    - scheme: default
+      primary: custom
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: 切换深色主题
+    - scheme: slate
+      primary: custom
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: 切换浅色主题
+  features:
+    - navigation.sections
+    - navigation.footer
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+nav:
+  - 学习首页: index.md
+  - 章节笔记:
+      - 第一章 操作系统简介: chapters/chapter-1.md
+      - 第二章 进程管理: chapters/chapter-2.md
+      - 第三章 进程调度与死锁: chapters/chapter-3.md
+  - 交互练习:
+      - 进程调度实验: lab/scheduling.md
+plugins:
+  - search:
+      lang: [zh, en]
+hooks:
+  - hooks.py
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.arithmatex:
+      generic: true
+extra_css:
+  - assets/notes.css
+extra_javascript:
+  - assets/interactions.js
+extra:
+  generator: false

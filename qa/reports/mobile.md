@@ -1,0 +1,542 @@
+# 移动端体验审计报告（qa-mobile）
+
+- 被测环境：`http://127.0.0.1:8123`（对照线上 `https://studynote.chosenecho.dpdns.org`）
+- 设备档位：Android 360×800 (Pixel 7 缩放) / iPhone SE 375×667 / iPhone 14 390×844
+- 主题：light / dark（点 label[for="__palette_1"] 切换，站点不跟随系统）
+- 覆盖页面：/、/chapters/chapter-2/、/chapters/chapter-3/、/computer-organization/chapter-2/、/lab/scheduling/
+- 方法：Playwright + qa/lib/audit.mjs：三档设备 × light/dark × 5 个页面全量扫描（layout/tapTargets/contrast/a11y/firstScreen），再对抽屉、插图弹窗、习题折叠、复习工具条、字号选择、实验页表单/甘特图/结果表做交互探针；关键结论用 elementFromPoint 逐像素命中、scrollLeft 实测、getComputedStyle 复核，并与线上站做一次抽查比对。
+- 生成：`node qa/scripts/mobile.mjs`（原始数据 `qa/artifacts/mobile/raw.json`），2026-11-01T03:43:22.688Z
+
+## 汇总
+
+共 **12** 条：P0 0 · P1 2 · P2 6 · P3 4。
+其中自有缺陷 9 条、Material 上游默认行为 3 条、纯审美 0 条；后两类标了 `scope`，不计入主线修复优先级。
+
+| ID | 级别 | 标题 | 影响面 | 根因位置 |
+|---|---|---|---|---|
+| MOB-01 | P1 | 宽表在手机上藏掉近一半列，却没有任何「可以横向滑动」的提示 | 全部三档（360 / 375 / 390）；chapter-3（7 列时间表）、lab/scheduling（结果表）、computer-organization/chapter-2（4 列表） | notes.css:111 |
+| MOB-02 | P1 | 插图「点击放大」实际只放大 3%，图内标注依然看不清 | 全部三档（375 实测；360 / 390 同向） | notes.css:77 |
+| MOB-03 | P2 | 表格正文只有 12.8px（正文的 80%），中文表格在小屏上难读 | 全部三档（360 / 375 / 390），light + dark 一致 | notes.css:55 |
+| MOB-04 | P2 | rem 被当 px 用：工具条 17.5px、保存提示 16px、甘特块 16.25px，全都 ≥ 正文 | 全部三档，light + dark 一致 | notes.css:61 |
+| MOB-05 | P2 | 勾选「本章已复习」后工具条从 72px 撑到 112px，正文整体下移 41px | iPhone SE 375×667（360 同样，状态文字换行由宽度决定） | notes.css:61 |
+| MOB-06 | P2 | 「字号」选择器只放大正文，标题/表格/图注不跟，20px 时层级被压平 | 全部三档（light + dark 一致） | interactions.js:131 |
+| MOB-07 | P2 | 放大图弹窗打开时背景页面仍能滚动，关掉后已经不在原位 | 全部三档，light + dark | interactions.js:201-207 |
+| MOB-08 | P2 | 标题锚点 ¶ 真实命中宽度只有 18px，代码复制按钮 24×24，都低于 24px 下限 | 全部三档（触屏） | Material 默认 |
+| MOB-09 | P3 | 甘特图 4 块塞不进 296px 容器，最后一块的结束时刻被裁掉一半 | Android 360×800（375 藏 18px，390 藏 3px） | notes.css:103 |
+| MOB-10 | P3 | 实验页「调度算法」下拉框文字被截断，选项名看不全 | Android 360×800（375 略好但仍贴边） | notes.css:116 |
+| MOB-11 | P3 | 搜索框 placeholder 对比度 4.49:1、侧栏「目录」标题 4.42:1，均略低于 4.5:1 | 全部三档浅色主题（深色主题达标） | notes.css:164 |
+| MOB-12 | P3 | 抽屉导航打开时背景页面仍能滚动（Material 默认，未在 notes.css 覆盖） | Android 360×800 / iPhone SE 375×667 | Material 默认 |
+
+## 缺陷详情（P0 → P3）
+
+### MOB-01 · P1 · 宽表在手机上藏掉近一半列，却没有任何「可以横向滑动」的提示
+
+- **类别**：responsive
+- **影响设备/宽度**：全部三档（360 / 375 / 390）；chapter-3（7 列时间表）、lab/scheduling（结果表）、computer-organization/chapter-2（4 列表）
+- **URL**：`http://127.0.0.1:8123/chapters/chapter-3/`
+
+**现象**
+
+chapter-3 的 7 列表实测 702px 宽，滚动容器只有 375px，首屏藏起来 359px（49%）。实验页结果表 402px 宽、滚动容器 343px，藏 91px；实测可横向滚动（scrollLeft 0 → 91px），滚到底后最后一列右边缘回到 342px，说明数据没丢，但静止时滚动条占位只有 0px（触屏上完全不可见），首列 position 是 static——滑到右边看数值时已经不知道对应哪个进程。
+
+**复现步骤**
+
+1. 用 375 宽视口打开 /chapters/chapter-3/，找到表头「进程 / 到达 / 开始 / 完成 / 服务 / 周转 / 带权周转」的表格
+2. 静止观察：只能看到前 3 列，右侧没有滚动条、渐隐或箭头
+3. 横向滑动表格：内容确实会动（可以滑到最右），但滑动前没有任何提示
+4. 同样现象在 /lab/scheduling/ 的结果表（第 4 列「带权周转时间」）和 /computer-organization/chapter-2/ 的 4 列表上重复
+
+**量化证据**
+
+| 指标 | 实测 |
+|---|---|
+| chapter-3 表格宽 / 容器宽 | 702px / 375px |
+| chapter-3 隐藏像素 / 占比 | 359px / 49% |
+| 实验页结果表宽 / 容器宽 | 402px / 343px |
+| 实验页隐藏像素 / 可滚动 | 91px / true |
+| 滚动条占位高度 | 0px |
+| 首列 position | static |
+| 每列最小宽（th min-width） | 100px |
+| html 根字号 | 20px |
+
+**证据图**：`qa/artifacts/mobile/mob-03-table-wide-375.png`、`qa/artifacts/mobile/mob-03-table-wide-scrolled-375.png`、`qa/artifacts/mobile/mob-01-lab-results-375.png`、`qa/artifacts/mobile/mob-01-lab-results-375-scrolled.png`
+
+**预期**
+
+宽表要么在窄屏重排成卡片/两行，要么给出明确的横向滚动提示（右缘渐隐或常显滚动条），并固定首列让用户始终知道在看哪一行
+
+**根因定位**
+
+Material 的 `.md-typeset table:not([class]) th{min-width:5rem}` 在 html 根字号 20px 下等于 100px/列，7 列就是 700px；横向滚动能力来自 Material 的 `.md-typeset__scrollwrap{overflow-x:auto;margin:1em -.8rem}`。notes.css:111 那条给表格加 `display:block;overflow-x:auto` 的窄屏规则是死代码（优先级 0,1,1 低于 Material 的 0,2,1），notes.css 也没给滚动容器加任何可发现性提示或首列固定。
+
+**建议改法**
+
+给 `.md-typeset__scrollwrap` 加右缘渐隐（`mask-image:linear-gradient(to right,#000 88%,transparent)`）与 `scrollbar-width:thin`；给宽表加 `th:first-child,td:first-child{position:sticky;left:0;z-index:1;background:var(--note-surface)}`；更彻底的做法是在 `@media (max-width:40rem)` 把 7 列表改成「一行一张卡」的堆叠布局。
+
+### MOB-02 · P1 · 插图「点击放大」实际只放大 3%，图内标注依然看不清
+
+- **类别**：interaction
+- **影响设备/宽度**：全部三档（375 实测；360 / 390 同向）
+- **URL**：`http://127.0.0.1:8123/chapters/chapter-3/`
+
+**现象**
+
+正文插图渲染宽 301px，弹窗里同一张图 311px，放大倍数只有 1.03×；原图 1000px 宽被压到 0.3×，图内约 10px 的标注实际只剩 3px 左右。弹窗宽 353px（max-width 360px），图片 CSS 宽 310.5px，实测不可平移（canPan=false）。本章 3 张插图都是这个行为。
+
+**复现步骤**
+
+1. 打开 /chapters/chapter-3/，滚动到任意插图（卡片右下角有「点击放大」角标）
+2. 点击插图，弹窗打开
+3. 对比弹窗里图片的渲染宽度与正文里的宽度，再看图内原本约 10px 的标注
+
+**量化证据**
+
+| 指标 | 实测 |
+|---|---|
+| 正文插图宽 | 301px |
+| 弹窗图片宽 | 311px |
+| 放大倍数 | 1.03× |
+| 原图宽 / 正文缩放比 | 1000px / 0.3× |
+| 弹窗宽 / max-width | 353px / 360px |
+| 弹窗内可平移 | false |
+| 插图数量（chapter-3） | 3 |
+
+**证据图**：`qa/artifacts/mobile/mob-02-figure-inline-375.png`、`qa/artifacts/mobile/mob-02-dialog-375.png`
+
+**预期**
+
+「点击放大」应把插图放大到能读清图内标注（接近 1:1 或至少 2 倍），并允许平移查看
+
+**根因定位**
+
+notes.css:77 `.image-dialog{width:min(94vw,1400px);padding:1rem}` 与 notes.css:79 `.image-dialog img{width:100%}` 一起把弹窗里的图限制成「视口宽 - 内边距」，手机上只比正文里宽十几像素；interactions.js:201-207 打开弹窗时只换了 src，没有任何缩放/平移逻辑。
+
+**建议改法**
+
+弹窗里改成 `.image-dialog{overflow:auto}` + `.image-dialog img{width:auto;max-width:none;min-width:min(1000px,150%)}`（可横向拖动看细节），或放行 `touch-action:pinch-zoom` 并加双指缩放；最省事也要按原图 1:1 渲染。
+
+### MOB-03 · P2 · 表格正文只有 12.8px（正文的 80%），中文表格在小屏上难读
+
+- **类别**：typography
+- **影响设备/宽度**：全部三档（360 / 375 / 390），light + dark 一致
+- **URL**：`http://127.0.0.1:8123/chapters/chapter-2/`
+
+**现象**
+
+表格与表头实测都是 12.8px，正文段落 16px——只有 80%。行高 23.04px，最高单元格被撑到 118px（约 5 行），中文在 12.8px 下几乎一字一行。
+
+**复现步骤**
+
+1. 打开任意章节页
+2. 量表格内文字、表头与正文段落的计算字号
+3. 观察 3 列表格在 375 宽下逐字换行、单元格被拉高
+
+**量化证据**
+
+| 指标 | 实测 |
+|---|---|
+| 表格字号 | 12.8px |
+| 表头字号 | 12.8px |
+| 正文字号 | 16px |
+| 表格 / 正文 | 80% |
+| 行高 | 23.04px |
+| 最高单元格高度 | 118px |
+| 表格宽度 | 343px |
+
+**证据图**：`qa/artifacts/mobile/mob-04-table-font-375.png`
+
+**预期**
+
+表格字号应不小于正文的 0.9 倍（notes.css 作者的意图是 .9em ≈ 14.4px）
+
+**根因定位**
+
+notes.css:55 `.md-typeset table{font-size:.9em}`（优先级 0,1,1）被 Material 的 `.md-typeset table:not([class]){font-size:.64rem}`（0,2,1）覆盖；`.64rem` × 20px 根字号 = 12.8px，作者想要的 14.4px 从未生效。
+
+**建议改法**
+
+把选择器权重提上去：`.md-typeset table:not([class]){font-size:.72rem}`（=14.4px）或直接写 `font-size:14.4px`；窄屏再配 `.md-typeset :is(th,td){padding:.5rem .6rem}`。
+
+### MOB-04 · P2 · rem 被当 px 用：工具条 17.5px、保存提示 16px、甘特块 16.25px，全都 ≥ 正文
+
+- **类别**：typography
+- **影响设备/宽度**：全部三档，light + dark 一致
+- **URL**：`http://127.0.0.1:8123/chapters/chapter-2/`
+
+**现象**
+
+工具条 17.5px（比正文大 9%）、字号下拉 17.5px、保存提示 16px（和正文一样大）、甘特块 16.25px、lab 指标行 18.8px、图片角标 15px。最该弱化的「保存提示」和正文同号，工具条反而最大，层级倒挂。
+
+**复现步骤**
+
+1. 打开章节页
+2. 量工具条文字、字号下拉、保存提示、甘特块、图片角标的计算字号
+3. 与正文 16px 对比层级
+
+**量化证据**
+
+| 指标 | 实测 |
+|---|---|
+| 工具条字号 | 17.5px |
+| 字号下拉 | 17.5px |
+| 保存提示 | 16px |
+| 甘特块 | 16.25px |
+| lab 指标行 | 18.8px |
+| 图片角标 | 15px |
+| 正文 | 16px |
+| html 根字号 | 20px |
+
+**证据图**：`qa/artifacts/mobile/mob-06-toolbar-before-375.png`、`qa/artifacts/mobile/mob-10-gantt-375.png`
+
+**预期**
+
+工具条、提示、角标这类辅助文字应明显小于正文（作者写的 .875rem/.8rem/.75rem 显然想表达 14px/12.8px/12px）
+
+**根因定位**
+
+notes.css 里大量用 rem 当 px 写，而 html 根字号是 Material 的 20px（不是 16px）：notes.css:61 `.study-toolbar{font-size:.875rem}`=17.5px、:68 `.save-status{.8rem}`=16px、:76 `.zoom-hint{.75rem}`=15px、:103 `.gantt-block{.8125rem}`=16.25px、:108 `.lab-metrics{.9375rem}`≈18.8px。
+
+**建议改法**
+
+这些尺寸全部改成 px（14px / 12px / 13px）或相对正文字号的 em；根因是根字号 20px 与作者假设的 16px 不一致，改完要复核所有 rem 声明。
+
+### MOB-05 · P2 · 勾选「本章已复习」后工具条从 72px 撑到 112px，正文整体下移 41px
+
+- **类别**：interaction
+- **影响设备/宽度**：iPhone SE 375×667（360 同样，状态文字换行由宽度决定）
+- **URL**：`http://127.0.0.1:8123/chapters/chapter-2/`
+
+**现象**
+
+勾选前工具条 72px 高、状态为空；勾选后 112px 高，「进度已保存在此浏览器」占 160px×30px 被挤到第三行，正文首段从 y=2028 下移到 y=2069，位移 41px；h2 顶从 503 移到 543。这是站内使用频率最高的交互之一，每勾一次都会跳一下。
+
+**复现步骤**
+
+1. 打开章节页，记下正文首段位置
+2. 点「本章已复习」复选框
+3. 观察工具条高度、状态文字位置与正文位移
+
+**量化证据**
+
+| 指标 | 实测 |
+|---|---|
+| 勾选前工具条高 | 72px |
+| 勾选后工具条高 | 112px |
+| 正文位移 | 41px |
+| h2 顶部位移 | 40px |
+| 状态文字尺寸 | 160px × 30px |
+| 工具条宽 / 正文宽 | 343px / 343px |
+
+**证据图**：`qa/artifacts/mobile/mob-06-toolbar-before-375.png`、`qa/artifacts/mobile/mob-06-toolbar-after-375.png`
+
+**预期**
+
+状态提示应就地显示或作为浮动 toast 出现，不改变工具条高度、不推动正文
+
+**根因定位**
+
+notes.css:61 工具条是 `display:flex;flex-wrap:wrap`，`.save-status` 只是普通 span（interactions.js:154/156 往里写文字），notes.css:64 的 `.reading-size{margin-left:auto}` 把它挤到新一行，工具条高度从 72px 变 112px。
+
+**建议改法**
+
+把状态文字改成绝对定位或 fixed toast：`.study-toolbar{position:relative}` + `.save-status{position:absolute;right:1rem;bottom:.5rem}`；或用 `position:fixed;bottom:1rem;left:1rem;right:1rem` 的提示条，2 秒后淡出。
+
+### MOB-06 · P2 · 「字号」选择器只放大正文，标题/表格/图注不跟，20px 时层级被压平
+
+- **类别**：typography
+- **影响设备/宽度**：全部三档（light + dark 一致）
+- **URL**：`http://127.0.0.1:8123/chapters/chapter-2/`
+
+**现象**
+
+正文 16px → 20px（生效，刷新后从 localStorage 恢复），但 h2 始终 31px、h3 始终 24px、表格始终 12.8px、图片角标始终 15px。h3 与正文的比值从 150% 掉到 120%，表格从 80% 掉到 64%——「大号」反而让正文和标题几乎一样大。
+
+**复现步骤**
+
+1. 打开章节页
+2. 把工具条里的「字号」从「标准」切到「大号」
+3. 对比正文、h2、h3、表格、图注的字号变化
+
+**量化证据**
+
+| 指标 | 实测 |
+|---|---|
+| 正文 16→20 | 16px → 20px |
+| h2 | 31px → 31px |
+| h3 | 24px → 24px |
+| 表格 | 12.8px → 12.8px |
+| h3 / 正文 | 150% → 120% |
+| 表格 / 正文 | 80% → 64% |
+
+**证据图**：`qa/artifacts/mobile/mob-07-fontsize20-375.png`
+
+**预期**
+
+选「大号」后整页排版层级应等比放大，至少标题与表格要同步，保持原有比例
+
+**根因定位**
+
+interactions.js:131 与 :139 只改 `document.documentElement.style` 上的 `--note-font-size`；notes.css:123-124 的 h2/h3 写死 `1.55rem/1.2rem`（跟 20px 根字号走，不跟这个变量），表格字号来自 Material 的 `.64rem`，图注来自 notes.css:76 的 `.75rem`。
+
+**建议改法**
+
+把 h2/h3/表格/图注都改成相对 `--note-font-size` 的 em（容器 `font-size:var(--note-font-size)`，标题 `font-size:1.55em`），或在 JS 里同步改一个 `--note-scale` 并让所有排版尺寸乘上它。
+
+### MOB-07 · P2 · 放大图弹窗打开时背景页面仍能滚动，关掉后已经不在原位
+
+- **类别**：interaction
+- **影响设备/宽度**：全部三档，light + dark
+- **URL**：`http://127.0.0.1:8123/chapters/chapter-3/`
+
+**现象**
+
+弹窗打开时滚轮 700px，背景页面真的滚了 700px（window.scrollY 5312 → 6012），body 的 overflow 仍是 visible。关闭后用户落在别的段落，需要重新找位置。
+
+**复现步骤**
+
+1. 打开 /chapters/chapter-3/，点开任意插图放大
+2. 在弹窗上向上滑
+3. 看背景正文是否跟着滚；再点「关闭 · Esc」看落点
+
+**量化证据**
+
+| 指标 | 实测 |
+|---|---|
+| 弹窗打开时背景滚动量 | 700px |
+| scrollY 变化 | 5312 → 6012 |
+| body overflow | visible |
+| 弹窗内可平移 | false |
+
+**证据图**：`qa/artifacts/mobile/mob-02-dialog-375.png`、`qa/artifacts/mobile/mob-08-dialog-scrolled-375.png`
+
+**预期**
+
+模态弹窗打开时应锁住背景滚动，关闭后回到原来的阅读位置
+
+**根因定位**
+
+interactions.js:201-207 只用 `dialog.showModal()`，打开/关闭时没有给 body 或 html 加滚动锁；notes.css 里也没有 `html:has(dialog[open]){overflow:hidden}` 之类的规则。
+
+**建议改法**
+
+在打开/关闭回调里 `document.documentElement.classList.toggle("dialog-open", …)`，CSS 写 `html.dialog-open{overflow:hidden}`；同时给 `.image-dialog` 加 `overscroll-behavior:contain`。
+
+### MOB-08 · P2 · 标题锚点 ¶ 真实命中宽度只有 18px，代码复制按钮 24×24，都低于 24px 下限
+
+- **类别**：a11y（scope: `upstream`）
+- **影响设备/宽度**：全部三档（触屏）
+- **URL**：`http://127.0.0.1:8123/chapters/chapter-2/`
+
+**现象**
+
+¶ 盒子 17px×48px，逐像素扫描的真实命中宽度 18px（再往外 1px 就落到 h2 文本上，点上去是选字而不是跳转），每页 29 个；代码复制按钮 24px×24px。
+
+**复现步骤**
+
+1. 打开章节页
+2. 用 elementFromPoint 逐像素扫 h2 后面 ¶ 的命中宽度
+3. 量代码块右上角复制按钮的尺寸
+
+**量化证据**
+
+| 指标 | 实测 |
+|---|---|
+| ¶ 盒子 | 17px × 48px |
+| ¶ 真实命中宽度 | 18px |
+| ¶ 每页数量 | 29 |
+| 代码复制按钮 | 24px × 24px |
+| WCAG 2.5.8 下限 | 24 × 24 |
+
+**证据图**：`qa/artifacts/mobile/mob-09-anchor-375.png`
+
+**预期**
+
+可点元素至少 24×24 CSS px（WCAG 2.5.8 AA），触屏上理想 44×44
+
+**根因定位**
+
+¶ 是 Material 的 `.headerlink`（宽度只等于字形宽，notes.css 未扩 padding），复制按钮是 Material 的 `.md-code__button`；两者都是上游默认尺寸，notes.css 没有覆盖。
+
+**建议改法**
+
+notes.css 加 `.headerlink{padding:.6rem;margin:-.6rem}`（视觉位置不变、命中区撑到 44×44）与 `.md-code__button{width:44px;height:44px}`。
+
+### MOB-09 · P3 · 甘特图 4 块塞不进 296px 容器，最后一块的结束时刻被裁掉一半
+
+- **类别**：responsive
+- **影响设备/宽度**：Android 360×800（375 藏 18px，390 藏 3px）
+- **URL**：`http://127.0.0.1:8123/lab/scheduling/`
+
+**现象**
+
+容器 296px，内容 329px，藏起来 33px；4 块每块 80px（min-width 80px）。最后一块的文本节点本身是完整的「P4 9–11」，但容器右缘把它的 33px 像素裁在屏幕外，截图里只能看到「9–1」。滚动条占位高度 0px，触屏上不可见，用户不会知道还能滑。
+
+**复现步骤**
+
+1. 打开 /lab/scheduling/（默认参数自动算一次）
+2. 看「执行时间轴」的 4 个色块
+3. 注意第 4 块 P4 的结束时刻「9–11」在屏幕上只看到「9–1」
+
+**量化证据**
+
+| 指标 | 实测 |
+|---|---|
+| 容器 / 内容宽 | 296px / 329px |
+| 隐藏像素 | 33px |
+| 每块宽度 | 80px |
+| min-width | 80px |
+| 最后一块文字 | P4 9–11 |
+| 滚动条占位 | 0px |
+
+**证据图**：`qa/artifacts/mobile/mob-10-gantt-360-dark.png`、`qa/artifacts/mobile/mob-10-gantt-context-360-dark.png`
+
+**预期**
+
+时间轴应完整显示每个片段的起止时刻，或明显可横向滚动
+
+**根因定位**
+
+notes.css:103 `.gantt-block{min-width:4rem}`（=80px，根字号 20px）→ 4 块最少 320px，而卡片内可用宽只有 296px（360 视口），`.gantt{overflow-x:auto}` 又没有提示。
+
+**建议改法**
+
+窄屏把 `min-width` 降到 2.5rem/40px 并把块内字号降到 12px，或块内只显示起止时刻、给 `.gantt` 加右缘渐隐提示。
+
+### MOB-10 · P3 · 实验页「调度算法」下拉框文字被截断，选项名看不全
+
+- **类别**：content
+- **影响设备/宽度**：Android 360×800（375 略好但仍贴边）
+- **URL**：`http://127.0.0.1:8123/lab/scheduling/`
+
+**现象**
+
+下拉框外宽 171px，去掉内边距后可用 155px；「FCFS · 先来先服务」按同字号量出需要 170px，被截掉 15px，末尾的「务」看不到（截图可见文字止于「先来先服」）。
+
+**复现步骤**
+
+1. 打开 /lab/scheduling/
+2. 看表单第一行左侧的「调度算法」下拉框
+3. 对比完整选项文字与可见文字
+
+**量化证据**
+
+| 指标 | 实测 |
+|---|---|
+| 下拉框外宽 / 可用内宽 | 171px / 155px |
+| 文字所需宽度 | 170px |
+| 被截像素 | 15px |
+| 字号 | 20px |
+| grid 列宽 | 171px 110px |
+
+**证据图**：`qa/artifacts/mobile/mob-11-lab-select-360-dark.png`、`qa/artifacts/mobile/mob-11-lab-select-375.png`
+
+**预期**
+
+下拉框应完整显示算法名（FCFS · 先来先服务 / SPF · 短进程优先 / RR · 时间片轮转）
+
+**根因定位**
+
+notes.css:116 的窄屏规则把 `.lab-controls` 固定成 `minmax(0,1fr) 5.5rem`，第一列要同时放「调度算法」标签和长选项文字；notes.css:93 `.scheduler :is(input,select){font-size:1rem}` 在 20px 根字号下等于 20px，文字更宽。
+
+**建议改法**
+
+窄屏把 `.lab-controls` 改成单列（`grid-template-columns:1fr`），或把 select 字号降到 `.875rem` 并缩短选项文案（如「FCFS 先来先服务」去掉中点）。
+
+### MOB-11 · P3 · 搜索框 placeholder 对比度 4.49:1、侧栏「目录」标题 4.42:1，均略低于 4.5:1
+
+- **类别**：a11y（scope: `upstream`）
+- **影响设备/宽度**：全部三档浅色主题（深色主题达标）
+- **URL**：`http://127.0.0.1:8123/chapters/chapter-2/`
+
+**现象**
+
+placeholder「搜索」计算色 rgba(0, 0, 0, 0.54)、背景 rgb(255, 255, 255)，对比度 4.49:1；导航标题「目录」rgba(0,0,0,.54) on rgb(237,237,237) = 4.42:1。截图上 placeholder 是清晰可读的中灰（不是白底白字），深色主题下对应文字 rgb(180,183,194) on rgb(24,25,29)，实测达标。
+
+**复现步骤**
+
+1. 打开章节页
+2. 点右上角放大镜打开搜索面板，量 placeholder「搜索」与背景的对比度
+3. 另量左侧导航「目录」标题
+
+**量化证据**
+
+| 指标 | 实测 |
+|---|---|
+| 搜索 placeholder 对比度 | 4.49 : 1（要求 4.5） |
+| placeholder 计算色 / 背景 | rgba(0, 0, 0, 0.54) / rgb(255, 255, 255) |
+| 导航标题对比度 | 4.42 : 1（要求 4.5） |
+| 受影响主题 | light |
+| 深色主题 | 未发现不达标文字 |
+
+**证据图**：`qa/artifacts/mobile/mob-12-search-375.png`
+
+**预期**
+
+正文与占位文字对比度 ≥ 4.5:1（WCAG 1.4.3 AA）
+
+**根因定位**
+
+两者都是 Material 默认色（`.md-search__input::placeholder` 与 `.md-nav__title` 用 rgba(0,0,0,.54)）；notes.css:164 把 `.md-search__form` 背景改成 --note-muted-surface(#f3f4f6)，把原本刚好达标的对比度压到临界值以下。
+
+**建议改法**
+
+notes.css 加 `.md-search__input::placeholder{color:#5b6472}`（提到约 5.2:1）与 `[data-md-color-scheme=default] .md-nav__title{color:var(--note-muted)}`。
+
+### MOB-12 · P3 · 抽屉导航打开时背景页面仍能滚动（Material 默认，未在 notes.css 覆盖）
+
+- **类别**：navigation（scope: `upstream`）
+- **影响设备/宽度**：Android 360×800 / iPhone SE 375×667
+- **URL**：`http://127.0.0.1:8123/`
+
+**现象**
+
+抽屉宽 242px（占视口 65%），打开时 body overflow 仍是 visible，滑动 600pxpx 后背景确实位移。抽屉本身功能正常：23 个可见链接、行高 48px，汉堡按钮 40px×40px，实测可以展开分组并成功进入 /chapters/chapter-2/（是）。
+
+**复现步骤**
+
+1. 首页点左上角汉堡按钮打开抽屉
+2. 在抽屉外的遮罩上向上滑
+3. 看背景页面是否跟着滚
+
+**量化证据**
+
+| 指标 | 实测 |
+|---|---|
+| 抽屉宽 / 视口 | 242px / 375px |
+| 抽屉内可见链接数 | 23 |
+| 链接行高 | 48px |
+| 汉堡按钮 | 40px × 40px |
+| 背景滚动量 | 600px |
+| 能否进入章节页 | true |
+
+**证据图**：`qa/artifacts/mobile/mob-13-drawer-375.png`、`qa/artifacts/mobile/mob-13-drawer-360-dark.png`
+
+**预期**
+
+抽屉打开时背景应锁定，关闭后回到原位
+
+**根因定位**
+
+Material 的抽屉只切换 `#__drawer` checkbox 与遮罩，不加 body 滚动锁；notes.css 未覆盖这一行为。
+
+**建议改法**
+
+notes.css 加 `body:has(#__drawer:checked){overflow:hidden}`（现代浏览器均支持），或给 `.md-container` 加 `overscroll-behavior:contain`。
+
+## 已验证正常（不计入缺陷）
+
+- 抽屉导航可用：汉堡按钮 40px×40px，抽屉 242px 宽，导航链接行高 48px，二级分组可展开并成功进入 /chapters/chapter-2/（实测通过），点遮罩可关闭
+- 字号选择器确实生效：16→20px，正文 +4px，刷新后从 localStorage 恢复（问题只在标题/表格不跟，见 MOB-06）
+- 教材习题折叠 summary 触控面积达标：高 59px × 宽 301px（≥44px），展开后无横向溢出
+- 复习工具条与正文同宽（实测宽度差 0px），360 下不换行
+- 插图、代码块、表格都没有把整页撑出横向滚动（三档设备 documentElement.scrollWidth === innerWidth）
+- 深色主题下未发现 <4.5:1 的文字（浅色两处临界值见 MOB-11）
+- 线上 studynote.chosenecho.dpdns.org 抽查与本地一致：表格 12.8px、工具条 17.5px、正文 16px
+
+## 缺口 / 未覆盖
+
+- **Safari 真机**：本轮为 Chromium（Playwright）移动仿真，未在 iOS Safari 真机验证；iOS 的橡皮筋滚动、双指缩放与 -webkit 前缀行为可能与 Chromium 有差异。
+- **读屏实测**：仅做静态 a11y 扫描（标题层级/landmark/alt/字号/命中区），未跑 VoiceOver/TalkBack 实测。
+- **性能指标**：未测 LCP/CLS 等运行时指标；只量化了勾选复习框造成的 41px 布局位移（MOB-05）。
+- **窄屏下限**：未覆盖 320px（小屏安卓/一代 SE）与横屏；本轮结论适用于 360–390px 竖屏。
+- **与 Lead 复核结论不一致的两处（保留本轮实测值，供交叉核对）**：① 实验页结果表：Lead 复核为「58px 在视口外且无滚动容器」。本轮实测第 4 列右边缘确实到 433px（375 视口外 58px），但该表被 Material 包在 `.md-typeset__table`（overflow-x:visible）里，其父级 `.md-typeset__scrollwrap` 是 overflow-x:auto 且实测可滚（scrollLeft 0→91，滚到底后最后一列右边缘回到 342px）——只查直接父级会漏掉这一层。因此本条按「可滚但无提示」定级 P1，而非内容丢失 P0。 ② 搜索框 placeholder：Lead 复核为「计算色 rgba(255,255,255,.7)、对比度约 1.06:1、应升 P1」。本轮在同一 build 上 getComputedStyle(input,"::placeholder").color 读数为 rgba(0,0,0,0.54)，搜索表单背景 rgb(255,255,255)，对比度 4.49:1；深色主题为 rgb(180,183,194) on rgb(24,25,29)。截图 qa/artifacts/mobile/mob-12-search-375.png 里「搜索」是清晰的中灰、并非白底白字。故本条维持 P3（临界值），若 Lead 手上另有 rgba(255,255,255,.7) 的证据请回传截图，我按新证据改判。

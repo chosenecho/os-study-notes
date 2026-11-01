@@ -1,0 +1,456 @@
+{
+  "member": "qa-tablet",
+  "env": "local",
+  "auditedAt": "2026-11-01T11:30+08:00",
+  "base": "http://127.0.0.1:8123",
+  "liveSpotCheck": {
+    "base": "https://studynote.chosenecho.dpdns.org",
+    "url": "/chapters/chapter-2/",
+    "viewport": "1024x768",
+    "result": "与本地一致：正文 750px、h1 32px、h2 31px、工具条 17.5px、目录常驻；无 console/pageerror/4xx",
+    "screenshot": "artifacts/tablet/tbl-live-1024-os2.png"
+  },
+  "devices": [
+    "ipad-portrait 768x1024 (light/dark)",
+    "ipad-air 820x1180 (light/dark)",
+    "surface-pro 912x1368 (light/dark)",
+    "ipad-landscape 1024x768 (light/dark)",
+    "custom 960x800 (light)",
+    "custom 1219x800 (light)",
+    "custom 1220x800 (light)",
+    "断点切回 719/720/959/960/1219/1220 (light)"
+  ],
+  "breakpointMatrix": {
+    "note": "Material 断点（16px 基准）：44.984375em=719.75px、59.984375em=959.75px、76.234375em=1219.75px、76.25em=1220px。notes.css 只有 40rem=640px 一个断点（notes.css:109、notes.css:139）。",
+    "rows": [
+      { "vw": 719, "content": 719, "inner": 687, "chars": 49, "toc": false, "primaryNav": false, "hamburger": 40 },
+      { "vw": 720, "content": 720, "inner": 688, "chars": 49, "toc": false, "primaryNav": false, "hamburger": 40 },
+      { "vw": 768, "content": 768, "inner": 736, "chars": 53, "toc": false, "primaryNav": false, "hamburger": 40 },
+      { "vw": 820, "content": 820, "inner": 788, "chars": 56, "toc": false, "primaryNav": false, "hamburger": 40 },
+      { "vw": 912, "content": 912, "inner": 880, "chars": 63, "toc": false, "primaryNav": false, "hamburger": 40 },
+      { "vw": 959, "content": 959, "inner": 927, "chars": 66, "toc": false, "primaryNav": false, "hamburger": 40 },
+      { "vw": 960, "content": 718, "inner": 686, "chars": 49, "toc": true, "primaryNav": false, "hamburger": 40 },
+      { "vw": 1024, "content": 782, "inner": 750, "chars": 54, "toc": true, "primaryNav": false, "hamburger": 40 },
+      { "vw": 1219, "content": 977, "inner": 945, "chars": 68, "toc": true, "primaryNav": false, "hamburger": 40 },
+      { "vw": 1220, "content": 736, "inner": 688, "chars": 49, "toc": true, "primaryNav": true, "hamburger": 0 }
+    ],
+    "observations": [
+      "719→720 无任何可见变化（本站该断点不承载布局切换）",
+      "959→960 正文列 −241px，右侧突然出现 242px 目录",
+      "1219→1220 正文列 −241px，左侧突然出现 242px 常驻导航与 logo",
+      "720–959 之间：左导航是抽屉、目录完全不存在（只能从抽屉里看）",
+      "960–1219 之间：左导航仍是抽屉（汉堡 40px）、目录常驻 242px",
+      "所有宽度均无页面级横向溢出（docOverflow=0），无图片加载失败，h1 唯一、标题层级无跳级"
+    ]
+  },
+  "findings": [
+    {
+      "id": "TBL-01",
+      "title": "断点空档正文列宽非单调塌陷：959→960 少 241px、1219→1220 再少 241px，iPad 横屏比竖屏还窄",
+      "severity": "P2",
+      "category": "responsive",
+      "device": "全部档位：768 / 820 / 912 / 960 / 1024 / 1219 / 1220",
+      "widthRange": "641–1219px（notes.css 40rem 断点之上、Material 76.25em 断点之下）",
+      "url": "http://127.0.0.1:8123/chapters/chapter-2/",
+      "steps": [
+        "打开 /chapters/chapter-2/，page.setViewportSize({width:959,height:900})，读 .md-content / .md-content__inner 宽度",
+        "只把宽度改成 960，再读同样的元素：正文列从 959→718（inner 927→686），右侧多出 242px 目录",
+        "改成 1219：正文列 977（inner 945，68 汉字/行）；再改成 1220：正文列 736（inner 688，49 汉字/行）",
+        "iPad 竖屏 820 与横屏 1024 对照：正文 inner 788 vs 750，同表高度 540 vs 679"
+      ],
+      "expected": "平板各宽度下正文行宽稳定在中文舒适区（约 30–45 汉字/行），旋转屏幕不应让正文变窄",
+      "actual": "正文 inner 在 686–945px 之间跳变（49–68 汉字/行），出现两处 −241px 断崖；912 竖屏反而最宽（880px / 63 字），1024 横屏只有 750px / 54 字（比 820 竖屏窄 38px）；768–1219px 左边距始终只有 16px，960–1219 右侧却空出 258px",
+      "measurements": {
+        "inner_959": 927,
+        "inner_960": 686,
+        "delta_959_960": -241,
+        "inner_1219": 945,
+        "inner_1220": 688,
+        "delta_1219_1220": -257,
+        "content_1219": 977,
+        "content_1220": 736,
+        "charsPerLine_912": 63,
+        "charsPerLine_1219": 68,
+        "charsPerLine_1220": 49,
+        "inner_820": 788,
+        "inner_1024": 750,
+        "tableHeight_820": 540,
+        "tableHeight_1024": 679,
+        "gutter_768": "左16 / 右16",
+        "gutter_960": "左16 / 右258",
+        "gutter_1220": "左266 / 右266",
+        "horizontalPageOverflow": 0
+      },
+      "evidence": [
+        "artifacts/tablet/tbl-content-820-os2.png",
+        "artifacts/tablet/tbl-ipad-landscape-light-os2.png",
+        "artifacts/tablet/tbl-content-912-os2.png",
+        "artifacts/tablet/tbl-ipad-portrait-light-os2.png"
+      ],
+      "source": "notes.css:109 / notes.css:139 只有 40rem(=640px) 一个断点，641–1219px 之间没有任何宽度约束；notes.css:4 的 --sl-content-width:56rem 是 Starlight 残留变量，Material 不读取；notes.css:147 的 .md-grid{max-width:1480px} 在 ≤1480px 时不生效。正文宽度实际完全由 Material 决定：.md-content{max-width:61rem} + 侧栏 12.1rem(=242px)，960px 起加右侧目录、1220px 起加左侧导航",
+      "fix": "补 960–1219 的补偿规则，例如 @media (min-width:60em) and (max-width:76.234375em){ .md-sidebar--secondary{width:10rem} .md-content__inner{max-width:44rem;margin-inline:auto} }；并把正文宽度写成 Material 认的 .md-content{max-width:...} 而不是 --sl-content-width，让 912 的 63 字/行、1219 的 68 字/行都收进 45 字以内，同时消掉 1220 处的 −241px 断崖"
+    },
+    {
+      "id": "TBL-02",
+      "title": "甘特图片段多时把 236–284px（最多 3 段）藏在横向滚动里且无提示，图上看着时间轴 8 就结束（实际到 11）",
+      "severity": "P1",
+      "category": "interaction",
+      "device": "ipad-portrait 768 / ipad-landscape 1024 / 1220（1220 最严重）",
+      "widthRange": "768–1220px",
+      "url": "http://127.0.0.1:8123/lab/scheduling/",
+      "steps": [
+        "768 打开 /lab/scheduling/（默认 FCFS，4 段，宽度刚好）",
+        "算法切「轮转 RR」、时间片填 1，点「运行」→ 时间轴变成 11 段",
+        "读 .gantt 的 scrollWidth / clientWidth：910 vs 674；截图里只画到 P2 7–8，后面 P1 8–9、P2 9–10、P4 10–11 完全看不见",
+        "把宽度改成 1220 再看：容器只有 626px，隐藏 284px（比 768 更糟）"
+      ],
+      "expected": "时间轴完整可见，或至少有明显的「可横向滑动」提示；平均周转时间面板里的数字应与图上可见的段一致",
+      "actual": "11 段 ×(min-width 4rem=80px + 3px 间隔)=910px；容器 674/688/626px → 隐藏 236/222/284px；scrollbar-width:thin 且触摸屏无常驻滚动条（offsetHeight==clientHeight），无渐隐遮罩、无箭头，只有色块被硬切",
+      "measurements": {
+        "blocks": 11,
+        "neededWidth": 910,
+        "container_768": 674,
+        "container_1024": 688,
+        "container_1220": 626,
+        "hidden_768": 236,
+        "hidden_1024": 222,
+        "hidden_1220": 284,
+        "scrollbarVisible": false,
+        "blockMinWidth": 80,
+        "blockFontSize": 16.25,
+        "fcfsBlocks": 4,
+        "fcfsBlockWidths": "288 / 177 / 80 / 121（总和 674，刚好铺满）"
+      },
+      "evidence": [
+        "artifacts/tablet/tbl-gantt-rr1-768.png",
+        "artifacts/tablet/tbl-gantt-rr1-1220.png",
+        "artifacts/tablet/tbl-gantt-fcfs-768.png"
+      ],
+      "source": "notes.css:102 .gantt{display:flex;overflow-x:auto;gap:3px;scrollbar-width:thin}；notes.css:103 .gantt-block{flex-basis:0;min-width:4rem}（4rem=80px），没有任何溢出提示、换行或吸附",
+      "fix": "@media (max-width:76.234375em){ .gantt{flex-wrap:wrap} .gantt-block{min-width:3rem} }，或给 .gantt 加右侧渐隐 + 「← 横向滑动查看更多」文本，并把 scrollbar-width 改成 auto；若要保留单行时间轴，把 80px 的下限降到 2.5rem 并在块内用更小字号"
+    },
+    {
+      "id": "TBL-03",
+      "title": "表格列被 Material 的 th{min-width:5rem} 钉在 100px，1024px 下出现 5 处中文末行单字，notes.css 的 display/字号覆盖全部失效",
+      "severity": "P2",
+      "category": "typography",
+      "device": "ipad-portrait 768 / 960 / ipad-landscape 1024 / 1220（820、912、1219 正常）",
+      "widthRange": "701–1220px（正文 inner < 约 790px 时最明显）",
+      "url": "http://127.0.0.1:8123/computer-organization/chapter-2/",
+      "steps": [
+        "768 打开 /computer-organization/chapter-2/，滚到「复习导航：大纲要求与笔记位置」表",
+        "量首列宽 139px：单元格「4 非数值数据的编码」折成两行、末行只剩「码」；「5 数据的宽度和存储」末行只剩「储」",
+        "同表在 820 / 912 / 1219 下无孤字（列宽 145–160px）；在 1024 反而有 5 处、960 有 2 处",
+        "DevTools 看计算值：table display=inline-block、font-size=12.8px（notes.css 写的 display:table 与 .9em 都没生效）"
+      ],
+      "expected": "中文单元格换行不出现单字行；表格正文字号接近正文；列宽按内容自适应",
+      "actual": "列宽 100–141px；表格字号 12.8px（正文 16px）；孤字单元格 768:3、960:2、1024:5、1220:2；同一张 11 行表高度 540px（820/912/1219）→ 748px（960/1220），撑高 208px（+38.5%）",
+      "measurements": {
+        "thMinWidthFromMaterial": "5rem = 100px（根字号 20px）",
+        "colWidths_1024": [141, 155, 100, 352],
+        "colWidths_820": [145, 160, 100, 378],
+        "orphanCells_768": 3,
+        "orphanCells_960": 2,
+        "orphanCells_1024": 5,
+        "orphanCells_1220": 2,
+        "orphanCells_820_912_1219": 0,
+        "tableFontSize": 12.8,
+        "bodyFontSize": 16,
+        "cellPadding": "0.8rem 0.9rem = 16px 18px（横向 34px/列）",
+        "tableHeight_820": 540,
+        "tableHeight_960": 748,
+        "tableHeight_1024": 679,
+        "tableHeight_1220": 748,
+        "maxColumns": "os3 有一张 7 列表格，7×100px=702px；960 时正文只有 686px，表格比正文列宽 16px（由 Material 的 .md-typeset__scrollwrap 吸收为表格内部滚动）"
+      },
+      "evidence": [
+        "artifacts/tablet/tbl-table-co2-768.png",
+        "artifacts/tablet/tbl-table-co2-1024.png",
+        "artifacts/tablet/tbl-table-co2-1219.png"
+      ],
+      "source": "notes.css:55 .md-typeset table{display:table;width:100%;font-size:.9em} 与 notes.css:111 {display:block;overflow-x:auto} 都被 Material 的 .md-typeset table:not([class])（特异性 0,2,1）覆盖 → 实测 display=inline-block、font-size=.64rem=12.8px；100px 列宽来自 Material .md-typeset table:not([class]) th{min-width:5rem}；notes.css:57 只改了 padding",
+      "fix": "把这些规则提到与 Material 相同的特异性：.md-typeset table:not([class]){font-size:.9em} 与 .md-typeset table:not([class]) th{min-width:7rem}、td{min-width:5rem}；再在 @media (max-width:76.234375em) 内允许表格横向滚动（.md-typeset__scrollwrap{overflow-x:auto}），避免把列压到 100px 逼出孤字"
+    },
+    {
+      "id": "TBL-04",
+      "title": "h1 32px 与 h2 31px 几乎同字号，章节页标题层级塌陷（h1#_top 选择器不命中）",
+      "severity": "P2",
+      "category": "typography",
+      "device": "全部档位（768/820/912/1024/1219/1220，light+dark）",
+      "widthRange": "全宽度",
+      "url": "http://127.0.0.1:8123/chapters/chapter-2/",
+      "steps": [
+        "打开任意章节页，量 h1（第 2 章 进程管理）与 h2（复习导航）的 computed font-size",
+        "查看构建产物 chapters/chapter-2/index.html：h1 是 <h1 id=\"2\">，不是 notes.css:49 假设的 #_top",
+        "滚动页面，h1 与 h2 在视觉上同权，读者无法靠字号区分层级"
+      ],
+      "expected": "h1 明显大于 h2（≥1.3 倍），形成 h1 > h2 > h3 > 正文 的清晰层级",
+      "actual": "h1 32px / h2 31px（比值 1.03）/ h3 24px / 正文 16px；首页 h2 25px，比章节页 h2 还小",
+      "measurements": {
+        "h1": 32,
+        "h2": 31,
+        "h3": 24,
+        "body": 16,
+        "ratio_h1_h2": 1.03,
+        "home_h2": 25,
+        "live_h1": "32px",
+        "live_h2": "31px"
+      },
+      "evidence": [
+        "artifacts/tablet/tbl-ipad-portrait-light-os2.png",
+        "artifacts/tablet/tbl-ipad-landscape-light-co2.png"
+      ],
+      "source": "notes.css:49 h1#_top{font-size:clamp(1.85rem,3vw,2.65rem)} —— 构建出的 h1 id 是章节序号（如 id=\"2\"），选择器永不命中，h1 落到 Material 默认 2em=32px；notes.css:123 .md-typeset.chapter-prose h2{font-size:1.55rem}（1.55×20=31px）把 h2 顶到与 h1 齐平",
+      "fix": "notes.css:49 改成 .md-typeset h1（或 h1[id]），把 h1 拉到 1.85–2.65rem；notes.css:123 的 h2 降到 1.3rem（26px）左右，使 h1:h2:h3 ≈ 1.6:1.3:1.1"
+    },
+    {
+      "id": "TBL-05",
+      "title": "首页主 CTA 触控目标只有 84×17px，站点自己定义的 .primary-link（46px）只用在实验页",
+      "severity": "P2",
+      "category": "interaction",
+      "device": "ipad-portrait 768（平板触屏）",
+      "widthRange": "全宽度（首页）",
+      "url": "http://127.0.0.1:8123/",
+      "steps": [
+        "768 打开首页，量两张课程卡里的「进入课程 →」与下方「进入进程调度实验 →」链接盒",
+        "同样量 /lab/scheduling/ 的「运行」按钮：使用 .primary-link，min-height 46px",
+        "在触屏上点卡片里 17px 高的文字链接，命中率低"
+      ],
+      "expected": "平板上主入口触控目标 ≥44px 高（notes.css 自己就定义了 46px 的 .primary-link）",
+      "actual": "「进入课程 →」84×17px、「进入进程调度实验 →」148×17px、章节列表链接 126–174×17px；全站只有 /lab/scheduling/ 一个页面用到 .primary-link",
+      "measurements": {
+        "ctaCourseW": 84,
+        "ctaCourseH": 17,
+        "ctaLabW": 148,
+        "ctaLabH": 17,
+        "chapterLinkH": 17,
+        "primaryLinkMinHeight": 46,
+        "primaryLinkUsedOn": ["lab/scheduling/index.html"],
+        "wcag2518Minimum": "24x24（AA）",
+        "appleGuideline": "44x44"
+      },
+      "evidence": ["artifacts/tablet/tbl-home-cta-768.png"],
+      "source": "notes.css:82 .primary-link{min-height:46px} 只在 站点/dist/lab/scheduling/index.html 出现（全站 15 个 HTML 里唯一一处）；首页 站点/docs/index.md 的 CTA 是普通 markdown 链接，没有加 {.primary-link}（mkdocs.yml 已启用 attr_list）",
+      "fix": "给首页三处 CTA 加 {.primary-link}，或补 .grid.cards a{display:inline-flex;align-items:center;min-height:44px}；章节列表可只保证行高 ≥44px 的整行可点"
+    },
+    {
+      "id": "TBL-06",
+      "title": "rem 当 px 写：根字号 20px 让「小字」比正文还大，工具条 17.5px > 正文 16px",
+      "severity": "P3",
+      "category": "typography",
+      "device": "全部档位（与宽度无关，全站一致）",
+      "widthRange": "全宽度",
+      "url": "http://127.0.0.1:8123/chapters/chapter-2/",
+      "steps": [
+        "768 打开章节页，量 .study-toolbar、.save-status、.zoom-hint、.gantt-block 的 computed font-size",
+        "与 .md-typeset p（正文 16px）对比；截图里「本章已复习」明显比正文大一号",
+        "线上 https://studynote.chosenecho.dpdns.org 1024 复测：工具条同样 17.5px"
+      ],
+      "expected": "工具条说明、状态文字、图片角标等辅助文字应小于正文",
+      "actual": "html 根字号 20px，作者按 16px 换算的 rem 全部放大 1.25 倍：工具条 17.5px、save-status 16px、zoom-hint 15px、甘特色块 16.25px，均 ≥ 或接近正文 16px",
+      "measurements": {
+        "rootFontSize": 20,
+        "toolbar": 17.5,
+        "saveStatus": 16,
+        "zoomHint": 15,
+        "ganttBlock": 16.25,
+        "body": 16,
+        "table": 12.8,
+        "intendedByAuthor": "toolbar 14 / save 12.8 / hint 12 / gantt 13"
+      },
+      "evidence": ["artifacts/tablet/tbl-toolbar-768.png", "artifacts/tablet/tbl-gantt-fcfs-768.png"],
+      "source": "notes.css:61 .study-toolbar{font-size:.875rem}、notes.css:68 .save-status{.8rem}、notes.css:76 .zoom-hint{.75rem}、notes.css:103 .gantt-block{.8125rem} —— 都按 16px 根字号写的 rem，但 Material 的 html{font-size:125%} 让 1rem=20px",
+      "fix": "辅助字号改用 em（相对 16px 正文）或直接 px，或在 :root 里统一 --note-small: 14px 之类的 token；同时把 notes.css:4 的 rem 变量一并核对"
+    },
+    {
+      "id": "TBL-07",
+      "title": "960–1219px 空档内左导航仍是抽屉、右侧目录常驻，布局左右失衡（左 16px / 右 258px）",
+      "severity": "P3",
+      "category": "responsive",
+      "device": "ipad-landscape 1024 / w960 / w1219",
+      "widthRange": "960–1219px",
+      "url": "http://127.0.0.1:8123/chapters/chapter-2/",
+      "steps": [
+        "1024 打开章节页，量 .md-content__inner 的左右留白：左 16px、右 258px",
+        "同一屏：左侧没有任何导航，只有右上角 40×40 汉堡；右侧目录占 242px 且 56 个条目要内部滚动（wrap 944px / 可视 641px）",
+        "与 1220px 对照：左右对称 266/266，左导航出现"
+      ],
+      "expected": "中等宽度下布局平衡，导航模型前后一致（要么抽屉+无目录，要么常驻导航+目录）",
+      "actual": "960–1219px 是「半个桌面」：目录已常驻吃 242px，导航却还锁在抽屉里；正文被挤到左边 16px 起，右侧空 258px",
+      "measurements": {
+        "gutterLeft_1024": 16,
+        "gutterRight_1024": 258,
+        "tocWidth": 242,
+        "tocLinks_chapter2": 28,
+        "tocScrollHeight": 944,
+        "tocVisibleHeight_1024x768": 641,
+        "gutter_1220": "266 / 266",
+        "hamburgerVisible": true,
+        "primaryNavVisible": false
+      },
+      "evidence": [
+        "artifacts/tablet/tbl-ipad-landscape-light-os2.png",
+        "artifacts/tablet/tbl-toc-1024.png",
+        "artifacts/tablet/tbl-toc-sticky-1024.png"
+      ],
+      "source": "Material 在 60em(960px) 起显示 .md-sidebar--secondary，但 .md-sidebar--primary 要到 76.25em(1220px) 才常驻；notes.css 没有为该区间做任何补偿（notes.css:109/139 只有 640px 断点）",
+      "fix": "@media (min-width:60em) and (max-width:76.234375em){ .md-content__inner{max-width:44rem;margin-inline:auto} .md-sidebar--secondary{width:10rem} } —— 让正文居中、目录收窄，缓解左右失衡；或在该区间把 TOC 改成可浮层"
+    },
+    {
+      "id": "TBL-08",
+      "title": "深色主题下 8 张插图仍是 736×400 纯白卡片（占视口 96%），夜间阅读出现整屏白块",
+      "severity": "P3",
+      "category": "content",
+      "scope": "taste",
+      "device": "ipad-portrait 768 dark（全档位同样，与宽度无关）",
+      "widthRange": "全宽度（深色主题）",
+      "url": "http://127.0.0.1:8123/chapters/chapter-1/",
+      "steps": [
+        "768 打开任意页，点右上角月亮（label[for=\"__palette_1\"]）切深色",
+        "打开 /chapters/chapter-1/，滚到第一张插图：.figure-zoom 计算背景是 rgb(255,255,255)，盒 736×400",
+        "点图放大：.image-dialog 背景是 rgb(24,25,29)，但里面 img 仍白底 rgb(255,255,255)"
+      ],
+      "expected": "深色主题下插图的容器与页面同色系，只让图片本身保持白底",
+      "actual": "8 处插图容器硬编码纯白（占视口宽 96%），卡片 1rem 内边距与边框也是白的，整块白在 #18191d 页面上非常跳；放大对话框里同样出现白底大图",
+      "measurements": {
+        "figureZoomCount": 8,
+        "figureZoomBg": "rgb(255, 255, 255)",
+        "figureZoomSize": "736 x 400",
+        "viewportW": 768,
+        "screenRatio": 96,
+        "bodyBg": "rgb(24, 25, 29)",
+        "dialogBg": "rgb(24, 25, 29)",
+        "dialogImgBg": "rgb(255, 255, 255)",
+        "dialogW": 722
+      },
+      "evidence": ["artifacts/tablet/tbl-figure-zoom-dark-768.png", "artifacts/tablet/tbl-image-dialog-dark-768.png"],
+      "source": "notes.css:74 .figure-zoom{background:white}、notes.css:79 .image-dialog img{background:white} 硬编码白色，没有 [data-md-color-scheme=\"slate\"] 分支",
+      "fix": "[data-md-color-scheme=\"slate\"] .figure-zoom{background:var(--note-surface);border-color:var(--note-border)}，白底只留给 img 本身并加 8px 圆角；放大对话框同理。图片本身是白底 SVG，无法纯靠 CSS 消除，但可以把容器留白与边框压到最小"
+    },
+    {
+      "id": "TBL-09",
+      "title": "768 打开抽屉后旋转到 1024，抽屉保持打开并把正文盖住、遮罩覆盖全屏，需要再点一次才恢复（不必刷新）",
+      "severity": "P3",
+      "category": "navigation",
+      "scope": "upstream",
+      "device": "ipad-portrait 768 → ipad-landscape 1024 → 768 → 1220",
+      "widthRange": "720–1219px（抽屉模式）跨到任意宽度",
+      "url": "http://127.0.0.1:8123/chapters/chapter-2/",
+      "steps": [
+        "768 竖屏点汉堡打开抽屉（overlay opacity 1）",
+        "不关抽屉，直接 setViewportSize 1024×768（模拟横竖屏切换）",
+        "document.elementFromPoint(512,384) 返回 label.md-overlay：整页被遮罩接管；h1 被 242px 抽屉压住只剩一条边",
+        "点遮罩可关闭；768→1024→1220→768 反复切换后仍能恢复，未出现需要刷新才恢复的状态"
+      ],
+      "expected": "断点切换时抽屉状态被重置，或至少不遮挡正文",
+      "actual": "抽屉 checkbox 状态跨断点保留，1024 下遮罩铺满 1024×768 且 pointer-events:auto；恢复只需再点一次遮罩，无需刷新；1220 时遮罩不再拦截（elementFromPoint 命中 blockquote），视觉上无残留",
+      "measurements": {
+        "drawerCheckedAfterRotate": true,
+        "overlayOpacity": 1,
+        "overlayWidth": 1024,
+        "centerHit": "label.md-overlay",
+        "sidebarLeft": 0,
+        "refreshNeeded": false,
+        "recoveredBy": "再点一次遮罩/汉堡"
+      },
+      "evidence": [
+        "artifacts/tablet/tbl-drawer-open-768.png",
+        "artifacts/tablet/tbl-drawer-rotate-1024.png",
+        "artifacts/tablet/tbl-drawer-1220.png"
+      ],
+      "source": "Material 抽屉是 #__drawer checkbox 驱动，断点切换不会重置 checkbox（upstream 默认行为）；本站 interactions.js 未监听 matchMedia 变化",
+      "fix": "若要消除：在 interactions.js 里监听 matchMedia('(min-width:60em)') 的 change，回调里把 #__drawer 置为未勾选；否则按 Material 默认交互接受，并在文档中不做承诺"
+    },
+    {
+      "id": "TBL-10",
+      "title": "平板触控目标：右侧目录链接只有 18–36px 高（19 个低于 24px）、页头三按钮 40×40、标题 permalink ¶ 仅 17px 宽",
+      "severity": "P2",
+      "category": "a11y",
+      "scope": "upstream",
+      "device": "ipad-landscape 1024x768（目录）/ ipad-portrait 768（页头）",
+      "widthRange": "960px 起目录出现；页头按钮全宽度",
+      "url": "http://127.0.0.1:8123/chapters/chapter-2/",
+      "steps": [
+        "1024 打开章节页，量右侧目录 .md-sidebar--secondary a.md-nav__link 的盒高：28 个链接里 19 个只有 18px、9 个 36px",
+        "768（hasTouch:true）量页头：汉堡、主题、搜索三个 label 都是 40×40；.md-top 144×40；标题旁 permalink ¶ 17×42 / 17×48",
+        "对照站点自有控件：工具条 label 129×44 / 124×44、习题摘要 678×59、页脚翻页 257×81 —— 均达标"
+      ],
+      "expected": "触屏目标 ≥24×24（WCAG 2.5.8 AA）、建议 ≥44×44（Apple HIG）；1024 横屏下目录是唯一的页内导航，更应好点",
+      "actual": "目录 28 个链接中 19 个高 18px（低于 WCAG 2.5.8 AA 的 24px）、全部 28 个低于 44px；页头三按钮 40×40、回到顶部 40px 高、permalink ¶ 17px 宽",
+      "measurements": {
+        "tocLinks": 28,
+        "tocLinkHeightMin": 18,
+        "tocLinkHeightMax": 36,
+        "tocLinksBelow24": 19,
+        "tocLinksBelow44": 28,
+        "hamburger": "40x40",
+        "palette": "40x40",
+        "searchIcon": "40x40",
+        "mdTop": "144x40",
+        "headerlink": "17x42 / 17x48",
+        "codeCopyButton": "24x24",
+        "toolbarLabel": "129x44 / 124x44",
+        "toolbarCheckbox": "22x22（label 44 高，可点区达标）",
+        "exerciseSummary": "678x59",
+        "footerLink": "257x81",
+        "wcag2518": "24x24（AA）",
+        "appleHIG": "44x44"
+      },
+      "evidence": [
+        "artifacts/tablet/tbl-toc-1024.png",
+        "artifacts/tablet/tbl-header-768.png",
+        "artifacts/tablet/tbl-header-1024.png"
+      ],
+      "source": "Material 的 .md-nav__link（行高 18px）、.md-header__button(40×40)、.md-code__button(24×24) 与 .headerlink 默认尺寸（upstream）；notes.css 只给自有控件（.study-toolbar label、.exercise-answer summary、.primary-link、.lab-buttons）设了 44–48px，没管目录与页头",
+      "fix": "如果要达标：@media (hover:none){ .md-nav--secondary .md-nav__link{display:flex;align-items:center;min-height:32px} .md-header__button{padding:.6rem} .md-header__inner{min-height:52px} .md-top{height:44px} .headerlink{display:none} }；目录行高至少 32px 可兼顾密度与命中率"
+    },
+    {
+      "id": "TBL-11",
+      "title": "浅色主题下 3 处文字对比度 4.42–4.49:1 略低于 4.5（目录标题、搜索提示、搜索 placeholder），深色主题 0 违规",
+      "severity": "P3",
+      "category": "a11y",
+      "scope": "upstream",
+      "device": "全档位 light（768/820/912/1024）",
+      "widthRange": "全宽度（light）",
+      "url": "http://127.0.0.1:8123/chapters/chapter-2/",
+      "steps": [
+        "浅色下扫全页文字对比度：.md-nav__title（「操作系统概论」/「目录」）16px，rgba(0,0,0,.54) on #ededed → 4.42:1",
+        "搜索提示 .md-search-result__meta 13px → 4.42:1；搜索框 placeholder 18px → 4.49:1（bg #f3f4f6）",
+        "深色主题同样扫描：0 项低于阈值"
+      ],
+      "expected": "正文级文字对比度 ≥4.5:1（WCAG 1.4.3）",
+      "actual": "3 处差 0.01–0.08；其余正文、表格、目录条目、代码块均达标；深色主题全部达标",
+      "measurements": {
+        "navTitle": "16px / 4.42:1（需 4.5）",
+        "searchMeta": "13px / 4.42:1",
+        "searchPlaceholder": "18px / 4.49:1（需 4.5）",
+        "darkThemeViolations": 0,
+        "lightViolations": 3
+      },
+      "evidence": ["artifacts/tablet/tbl-toc-1024.png", "artifacts/tablet/tbl-ipad-portrait-light-os2.png"],
+      "source": "Material --md-default-fg-color--light: rgba(0,0,0,.54) 落在 #ededed 上；notes.css:36 只覆盖了 --note-muted（#555e70），没有覆盖 --md-default-fg-color--light",
+      "fix": "[data-md-color-scheme=\"default\"]{ --md-default-fg-color--light: rgba(0,0,0,.66) } —— 目录标题与搜索提示即可到 4.5:1 以上"
+    }
+  ],
+  "coverage": {
+    "checked": [
+      "断点行为矩阵（719/720/959/960/1219/1220 来回切换 + 960↔1219↔1220 循环）",
+      "正文列宽 / 行字数 / 左右内边距（7 个档位）",
+      "表格：列宽、字号、孤字、行高、7 列表格在 960 的溢出",
+      "甘特图：FCFS 4 段 / RR 时间片 1 共 11 段，768/1024/1220 的隐藏宽度",
+      "页头：搜索框 234px、按钮 40×40、标题省略、无横向溢出",
+      "触控目标全量扫描（a[href]/button/select/input/summary）4 档 × light/dark",
+      "对比度扫描 4 档 × light/dark（含 placeholder）",
+      "a11y 结构：h1 唯一、标题无跳级、landmark 齐全、图片 alt 与加载（brokenImages=0）",
+      "深色主题：figure-zoom 白卡、放大对话框、目录、表格",
+      "首页：课程卡、章节列表、CTA、进度条",
+      "线上抽查 /chapters/chapter-2/ @1024（与本地逐项一致，无 console/pageerror/4xx）"
+    ],
+    "notReproducedOrSkipped": [
+      "搜索结果面板：在 960/1024/1219/1220 下点击搜索图标并输入「进程」均未触发结果面板（#__search 未勾选、output opacity 0），只量到隐藏面板 .md-search-result 宽 468px、右缘超出视口 230px（1220 下 450px）。真实结果列表是否被裁无法确认，故不计入缺陷。",
+      "hover-only 交互：未发现。Material 自带的 (hover:none)/(pointer:coarse) 分支正常，.figure-zoom 的「点击放大」提示常驻显示，不依赖 hover。",
+      "719/720 断点：本站该断点不承载任何布局切换，量到的正文/导航状态完全一致，不算缺陷。",
+      "PDF/打印、键盘 Tab 顺序、屏幕阅读器实测未覆盖（不在 tablet 审计范围）。"
+    ]
+  }
+}

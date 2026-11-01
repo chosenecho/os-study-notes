@@ -1,0 +1,5082 @@
+{
+  "member": "qa-functional",
+  "env": "local",
+  "devices": [
+    "desktop-1280 1280x800",
+    "iPhone SE 375x667"
+  ],
+  "ranAt": "2026-11-01T03:52:44.707Z",
+  "checks": {
+    "search": {
+      "runs": {
+        "进程调度": {
+          "meta": "8 个符合条件的结果",
+          "count": 8,
+          "hrefs": [
+            "http://127.0.0.1:8123/lab/scheduling/?h=%E8%BF%9B%E7%A8%8B",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E8%BF%9B%E7%A8%8B",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E8%BF%9B%E7%A8%8B#4-23",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E8%BF%9B%E7%A8%8B#1-1112",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E8%BF%9B%E7%A8%8B#121",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E8%BF%9B%E7%A8%8B#123",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E8%BF%9B%E7%A8%8B#102",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E8%BF%9B%E7%A8%8B#124",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E8%BF%9B%E7%A8%8B#10-42",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E8%BF%9B%E7%A8%8B#_1",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E8%BF%9B%E7%A8%8B#8-41",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E8%BF%9B%E7%A8%8B#13",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E8%BF%9B%E7%A8%8B#_2",
+            "http://127.0.0.1:8123/chapters/chapter-2/?h=%E8%BF%9B%E7%A8%8B",
+            "http://127.0.0.1:8123/chapters/chapter-2/?h=%E8%BF%9B%E7%A8%8B#2-2122",
+            "http://127.0.0.1:8123/chapters/chapter-2/?h=%E8%BF%9B%E7%A8%8B#4-3134",
+            "http://127.0.0.1:8123/chapters/chapter-2/?h=%E8%BF%9B%E7%A8%8B#13-66",
+            "http://127.0.0.1:8123/chapters/chapter-2/?h=%E8%BF%9B%E7%A8%8B#_1",
+            "http://127.0.0.1:8123/chapters/chapter-2/?h=%E8%BF%9B%E7%A8%8B#143",
+            "http://127.0.0.1:8123/chapters/chapter-2/?h=%E8%BF%9B%E7%A8%8B#142",
+            "http://127.0.0.1:8123/chapters/chapter-2/?h=%E8%BF%9B%E7%A8%8B#8-5152",
+            "http://127.0.0.1:8123/chapters/chapter-2/?h=%E8%BF%9B%E7%A8%8B#12-65",
+            "http://127.0.0.1:8123/chapters/chapter-2/?h=%E8%BF%9B%E7%A8%8B#9-61",
+            "http://127.0.0.1:8123/chapters/chapter-2/?h=%E8%BF%9B%E7%A8%8B#7-4647",
+            "http://127.0.0.1:8123/chapters/chapter-6/?h=",
+            "http://127.0.0.1:8123/chapters/chapter-6/?h=%E8%BF%9B%E7%A8%8B#32",
+            "http://127.0.0.1:8123/chapters/chapter-6/?h=%E8%BF%9B%E7%A8%8B#31",
+            "http://127.0.0.1:8123/chapters/chapter-6/?h=%E8%BF%9B%E7%A8%8B#7-io-45",
+            "http://127.0.0.1:8123/chapters/chapter-6/?h=%E8%BF%9B%E7%A8%8B#13",
+            "http://127.0.0.1:8123/chapters/chapter-1/?h=",
+            "http://127.0.0.1:8123/chapters/chapter-1/?h=%E8%BF%9B%E7%A8%8B#4-26",
+            "http://127.0.0.1:8123/chapters/chapter-1/?h=%E8%BF%9B%E7%A8%8B#83",
+            "http://127.0.0.1:8123/?h=",
+            "http://127.0.0.1:8123/?h=%E8%BF%9B%E7%A8%8B#_4",
+            "http://127.0.0.1:8123/?h=%E8%BF%9B%E7%A8%8B#_2",
+            "http://127.0.0.1:8123/chapters/chapter-4/?h=",
+            "http://127.0.0.1:8123/chapters/chapter-4/?h=%E8%BF%9B%E7%A8%8B#142",
+            "http://127.0.0.1:8123/chapters/chapter-4/?h=%E8%BF%9B%E7%A8%8B#4-4142",
+            "http://127.0.0.1:8123/chapters/chapter-4/?h=%E8%BF%9B%E7%A8%8B#5-tlb-43",
+            "http://127.0.0.1:8123/chapters/chapter-4/?h=%E8%BF%9B%E7%A8%8B#141",
+            "http://127.0.0.1:8123/chapters/chapter-5/?h=",
+            "http://127.0.0.1:8123/chapters/chapter-5/?h=%E8%BF%9B%E7%A8%8B#11"
+          ],
+          "marksInPanel": 64,
+          "panel": {
+            "h": 600,
+            "top": 42
+          }
+        },
+        "内存管理": {
+          "meta": "5 个符合条件的结果",
+          "count": 5,
+          "hrefs": [
+            "http://127.0.0.1:8123/chapters/chapter-4/?h=%E5%86%85%E5%AD%98",
+            "http://127.0.0.1:8123/chapters/chapter-4/?h=%E5%86%85%E5%AD%98#5-tlb-43",
+            "http://127.0.0.1:8123/chapters/chapter-4/?h=%E5%86%85%E5%AD%98#141",
+            "http://127.0.0.1:8123/chapters/chapter-4/?h=%E5%86%85%E5%AD%98#_1",
+            "http://127.0.0.1:8123/chapters/chapter-1/?h=",
+            "http://127.0.0.1:8123/chapters/chapter-1/?h=%E5%86%85%E5%AD%98#2-2124",
+            "http://127.0.0.1:8123/chapters/chapter-1/?h=%E5%86%85%E5%AD%98#83",
+            "http://127.0.0.1:8123/chapters/chapter-1/?h=%E5%86%85%E5%AD%98#4-26",
+            "http://127.0.0.1:8123/chapters/chapter-1/?h=%E5%86%85%E5%AD%98#1-1112",
+            "http://127.0.0.1:8123/chapters/chapter-1/?h=%E5%86%85%E5%AD%98#5-27",
+            "http://127.0.0.1:8123/chapters/chapter-1/?h=%E5%86%85%E5%AD%98#_1",
+            "http://127.0.0.1:8123/chapters/chapter-1/?h=%E5%86%85%E5%AD%98#10",
+            "http://127.0.0.1:8123/computer-organization/chapter-5/?h=",
+            "http://127.0.0.1:8123/computer-organization/chapter-5/?h=%E5%86%85%E5%AD%98#7",
+            "http://127.0.0.1:8123/chapters/chapter-6/?h=",
+            "http://127.0.0.1:8123/chapters/chapter-6/?h=%E5%86%85%E5%AD%98#22-dma",
+            "http://127.0.0.1:8123/chapters/chapter-6/?h=%E5%86%85%E5%AD%98#123",
+            "http://127.0.0.1:8123/?h=",
+            "http://127.0.0.1:8123/?h=%E5%86%85%E5%AD%98#_2",
+            "http://127.0.0.1:8123/?h=%E5%86%85%E5%AD%98#_4"
+          ],
+          "marksInPanel": 25,
+          "panel": {
+            "h": 600,
+            "top": 42
+          }
+        },
+        "死锁": {
+          "meta": "找到 1 个符合条件的结果",
+          "count": 1,
+          "hrefs": [
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E6%AD%BB%E9%94%81#8-41",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E6%AD%BB%E9%94%81#11-43",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E6%AD%BB%E9%94%81#7-3133",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E6%AD%BB%E9%94%81#_1"
+          ],
+          "marksInPanel": 12,
+          "panel": {
+            "h": 574,
+            "top": 42
+          }
+        },
+        "先来先服务": {
+          "meta": "2 个符合条件的结果",
+          "count": 2,
+          "hrefs": [
+            "http://127.0.0.1:8123/lab/scheduling/?h=%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1#4-23"
+          ],
+          "marksInPanel": 2,
+          "panel": {
+            "h": 428,
+            "top": 42
+          }
+        },
+        "FCFS": {
+          "meta": "没有找到符合条件的结果",
+          "count": 0,
+          "hrefs": [],
+          "marksInPanel": 0,
+          "panel": {
+            "h": 36,
+            "top": 42
+          }
+        },
+        "CFS": {
+          "meta": "没有找到符合条件的结果",
+          "count": 0,
+          "hrefs": [],
+          "marksInPanel": 0,
+          "panel": {
+            "h": 36,
+            "top": 42
+          }
+        },
+        "FCF": {
+          "meta": "3 个符合条件的结果",
+          "count": 3,
+          "hrefs": [
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=fcf#4-23",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=fcf#_2",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=fcf#5-24",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=fcf#122",
+            "http://127.0.0.1:8123/chapters/chapter-6/?h=",
+            "http://127.0.0.1:8123/chapters/chapter-6/?h=fcf#9-47",
+            "http://127.0.0.1:8123/chapters/chapter-6/?h=fcf#91",
+            "http://127.0.0.1:8123/?h=",
+            "http://127.0.0.1:8123/?h=fcf#_5"
+          ],
+          "marksInPanel": 10,
+          "panel": {
+            "h": 600,
+            "top": 42
+          }
+        },
+        "FIFO": {
+          "meta": "3 个符合条件的结果",
+          "count": 3,
+          "hrefs": [
+            "http://127.0.0.1:8123/computer-organization/chapter-5/?h=",
+            "http://127.0.0.1:8123/computer-organization/chapter-5/?h=fifo#53",
+            "http://127.0.0.1:8123/computer-organization/chapter-5/?h=fifo#8",
+            "http://127.0.0.1:8123/chapters/chapter-4/?h=",
+            "http://127.0.0.1:8123/chapters/chapter-4/?h=fifo#101-fifo-lru",
+            "http://127.0.0.1:8123/chapters/chapter-4/?h=fifo#10-55",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=",
+            "http://127.0.0.1:8123/chapters/chapter-3/?h=fifo#4-23"
+          ],
+          "marksInPanel": 9,
+          "panel": {
+            "h": 600,
+            "top": 42
+          }
+        },
+        "CPI": {
+          "meta": "3 个符合条件的结果",
+          "count": 3,
+          "hrefs": [
+            "http://127.0.0.1:8123/computer-organization/chapter-1/?h=",
+            "http://127.0.0.1:8123/computer-organization/chapter-1/?h=cpi#5-5",
+            "http://127.0.0.1:8123/computer-organization/chapter-1/?h=cpi#7",
+            "http://127.0.0.1:8123/computer-organization/chapter-1/?h=cpi#8",
+            "http://127.0.0.1:8123/computer-organization/chapter-4/?h=",
+            "http://127.0.0.1:8123/computer-organization/chapter-4/?h=cpi#7-7",
+            "http://127.0.0.1:8123/computer-organization/chapter-4/?h=cpi#_1",
+            "http://127.0.0.1:8123/computer-organization/chapter-5/?h=",
+            "http://127.0.0.1:8123/computer-organization/chapter-5/?h=cpi#9"
+          ],
+          "marksInPanel": 10,
+          "panel": {
+            "h": 568,
+            "top": 42
+          }
+        },
+        "zjq没有这个词": {
+          "meta": "没有找到符合条件的结果",
+          "count": 0,
+          "hrefs": [],
+          "marksInPanel": 0,
+          "panel": {
+            "h": 36,
+            "top": 42
+          }
+        }
+      },
+      "landing": {
+        "url": "http://127.0.0.1:8123/chapters/chapter-3/?h=%E6%AD%BB%E9%94%81#8-41",
+        "hash": "#8-41",
+        "targetFound": true,
+        "targetTop": 68,
+        "headerBottom": 49,
+        "covered": false,
+        "marksInContent": 43,
+        "firstMark": "死锁"
+      },
+      "pageLevel": {
+        "href": "http://127.0.0.1:8123/chapters/chapter-3/?h=",
+        "marks": 0,
+        "url": "http://127.0.0.1:8123/chapters/chapter-3/?h="
+      },
+      "keyboard": {
+        "focusedResult": 1,
+        "afterEnter": "http://127.0.0.1:8123/chapters/chapter-3/?h=%E6%AD%BB%E9%94%81#8-41"
+      }
+    },
+    "progress": {
+      "before": {
+        "checked": false,
+        "ls": null,
+        "toolbarTop": 181
+      },
+      "afterCheck": {
+        "ls": "[\"2\"]",
+        "status": "进度已保存在此浏览器",
+        "checked": true
+      },
+      "afterReload": {
+        "checked": true,
+        "status": "",
+        "ls": "[\"2\"]"
+      },
+      "os1": {
+        "checked": false
+      },
+      "co1Before": {
+        "checked": false,
+        "chapter": "co-1"
+      },
+      "home": {
+        "ls": "[\"2\",\"co-1\"]",
+        "counts": [
+          {
+            "k": "os",
+            "v": "1"
+          },
+          {
+            "k": "co",
+            "v": "1"
+          }
+        ],
+        "bars": [
+          {
+            "k": "os",
+            "v": 1,
+            "max": 6
+          },
+          {
+            "k": "co",
+            "v": 1,
+            "max": 6
+          }
+        ],
+        "badges": 0,
+        "nextChapter": false,
+        "progressText": [
+          "操作系统概论已复习 1 / 6 章。",
+          "计算机组成原理已复习 1 / 6 章。",
+          "在章节页勾选“本章已复习”即可记录。字号与复习记录仅保存在当前浏览器。"
+        ],
+        "chapterOrderMarked": []
+      },
+      "cleared": [
+        "0",
+        "0"
+      ]
+    },
+    "font": {
+      "runs": [
+        {
+          "sel": "16",
+          "varValue": "16px",
+          "bodyParagraph": "16px",
+          "listItem": "16px",
+          "code": "14.4px",
+          "blockquote": "14px",
+          "exerciseSummary": "14px",
+          "tableCell": "12.8px",
+          "tableHead": "12.8px",
+          "h2": "31px",
+          "h3": "24px",
+          "toolbar": "17.5px",
+          "toolbarSelect": "17.5px",
+          "docOverflow": false
+        },
+        {
+          "sel": "18",
+          "varValue": "18px",
+          "bodyParagraph": "18px",
+          "listItem": "18px",
+          "code": "16.2px",
+          "blockquote": "15.75px",
+          "exerciseSummary": "15.75px",
+          "tableCell": "12.8px",
+          "tableHead": "12.8px",
+          "h2": "31px",
+          "h3": "24px",
+          "toolbar": "17.5px",
+          "toolbarSelect": "17.5px",
+          "docOverflow": false
+        },
+        {
+          "sel": "20",
+          "varValue": "20px",
+          "bodyParagraph": "20px",
+          "listItem": "20px",
+          "code": "18px",
+          "blockquote": "17.5px",
+          "exerciseSummary": "17.5px",
+          "tableCell": "12.8px",
+          "tableHead": "12.8px",
+          "h2": "31px",
+          "h3": "24px",
+          "toolbar": "17.5px",
+          "toolbarSelect": "17.5px",
+          "docOverflow": false
+        }
+      ],
+      "across": {
+        "sel": "20",
+        "body": "20px"
+      },
+      "persisted": {
+        "sel": "20",
+        "body": "20px",
+        "ls": "20"
+      },
+      "homePage": {
+        "body": "16px",
+        "varValue": "20px"
+      }
+    },
+    "figures": {
+      "info": {
+        "figures": 8,
+        "dialog": true,
+        "altCount": 8,
+        "broken": [
+          ""
+        ],
+        "hint": "点击放大",
+        "sizes": [
+          {
+            "nat": [
+              640,
+              330
+            ],
+            "rendered": [
+              706,
+              364
+            ]
+          },
+          {
+            "nat": [
+              620,
+              330
+            ],
+            "rendered": [
+              706,
+              376
+            ]
+          },
+          {
+            "nat": [
+              600,
+              330
+            ],
+            "rendered": [
+              706,
+              388
+            ]
+          }
+        ]
+      },
+      "openState": {
+        "open": true,
+        "src": "图1-1_操作系统在计算机系统中的位置.svg",
+        "alt": "图1-1_操作系统在计算机系统中的位置",
+        "caption": "图1-1_操作系统在计算机系统中的位置",
+        "rendered": [
+          1161,
+          599
+        ],
+        "active": "close-dialog",
+        "bodyScroll": "visible"
+      },
+      "secondSrc": "图1-3_内存中的多道作业.svg",
+      "thirdSrc": "图1-7_层次结构模型.svg",
+      "close": {
+        "byButton": false,
+        "byEsc": {
+          "open": false,
+          "focus": "figure-zoom focus-visible"
+        },
+        "byBackdrop": false
+      },
+      "noCrosstalk": true
+    },
+    "exercises": {
+      "dom": [
+        {
+          "url": "/chapters/chapter-1/",
+          "exerciseHeading": "8 教材本章习题¶",
+          "intro": "题目取自教材第一章习题，答案依据教材附录与本章正文。",
+          "items": 13,
+          "details": 13,
+          "openDetails": 0,
+          "emptyAnswers": 0,
+          "summaryLabels": [
+            "答案与解析"
+          ],
+          "liCounts": {
+            "0": 10,
+            "4": 3
+          },
+          "visibleAnswerTables": [],
+          "tableInPrompt": [],
+          "rawPipeLength": []
+        },
+        {
+          "url": "/chapters/chapter-2/",
+          "exerciseHeading": "14 教材本章习题¶",
+          "intro": "题目取自教材第二章习题，答案依据教材附录。",
+          "items": 16,
+          "details": 16,
+          "openDetails": 0,
+          "emptyAnswers": 0,
+          "summaryLabels": [
+            "答案与解析"
+          ],
+          "liCounts": {
+            "0": 12,
+            "4": 4
+          },
+          "visibleAnswerTables": [],
+          "tableInPrompt": [],
+          "rawPipeLength": []
+        },
+        {
+          "url": "/chapters/chapter-3/",
+          "exerciseHeading": "12 教材本章习题¶",
+          "intro": "题目取自教材第三章习题，答案依据教材附录。",
+          "items": 13,
+          "details": 13,
+          "openDetails": 0,
+          "emptyAnswers": 0,
+          "summaryLabels": [
+            "答案与解析"
+          ],
+          "liCounts": {
+            "0": 10,
+            "4": 3
+          },
+          "visibleAnswerTables": [],
+          "tableInPrompt": [
+            "题目： 考虑系统某一时刻的状态，资源列顺序为 A、B、C、D。\n| 进程 | Allocation | Max | Available |\n|---|---|---|---|\n| p0 | (0,0,1,2) | (0,0,1,2) | ("
+          ],
+          "rawPipeLength": [
+            262
+          ]
+        },
+        {
+          "url": "/chapters/chapter-4/",
+          "exerciseHeading": "14 教材本章习题¶",
+          "intro": "题目取自教材第四章“思考题与练习题”，答案依据教材附录“部分习题参考答案”第四章。",
+          "items": 15,
+          "details": 15,
+          "openDetails": 0,
+          "emptyAnswers": 0,
+          "summaryLabels": [
+            "答案与解析"
+          ],
+          "liCounts": {
+            "0": 10,
+            "4": 5
+          },
+          "visibleAnswerTables": [],
+          "tableInPrompt": [],
+          "rawPipeLength": []
+        },
+        {
+          "url": "/chapters/chapter-5/",
+          "exerciseHeading": "10 教材本章习题¶",
+          "intro": "题目取自教材第五章“思考题与练习题”，答案依据教材附录“部分习题参考答案”第五章。",
+          "items": 9,
+          "details": 9,
+          "openDetails": 0,
+          "emptyAnswers": 0,
+          "summaryLabels": [
+            "答案与解析"
+          ],
+          "liCounts": {
+            "0": 6,
+            "4": 3
+          },
+          "visibleAnswerTables": [],
+          "tableInPrompt": [],
+          "rawPipeLength": []
+        },
+        {
+          "url": "/chapters/chapter-6/",
+          "exerciseHeading": "12 教材本章习题¶",
+          "intro": "题目取自教材第六章“思考题与练习题”，答案依据教材附录“部分习题参考答案”第六章。",
+          "items": 9,
+          "details": 9,
+          "openDetails": 0,
+          "emptyAnswers": 0,
+          "summaryLabels": [
+            "答案与解析"
+          ],
+          "liCounts": {
+            "0": 6,
+            "4": 3
+          },
+          "visibleAnswerTables": [],
+          "tableInPrompt": [],
+          "rawPipeLength": []
+        },
+        {
+          "url": "/computer-organization/chapter-1/",
+          "exerciseHeading": "7 教材本章习题¶",
+          "intro": "本节按“单项选择题／填空题／简答题”分节，答案依据教材附录。",
+          "items": 0,
+          "details": 0,
+          "openDetails": 0,
+          "emptyAnswers": 0,
+          "summaryLabels": [],
+          "liCounts": {},
+          "visibleAnswerTables": [
+            {
+              "rows": 6,
+              "header": [
+                "自测题（自编）",
+                "参考答案与辨析"
+              ],
+              "firstAnswer": "PC 给出地址，IR 保存指令内容。",
+              "firstAnswerVisible": true
+            }
+          ],
+          "tableInPrompt": [],
+          "rawPipeLength": []
+        },
+        {
+          "url": "/computer-organization/chapter-2/",
+          "exerciseHeading": "12 教材本章习题¶",
+          "intro": "本节按“单项选择题／填空题／简答题”分节，答案依据教材附录。",
+          "items": 0,
+          "details": 0,
+          "openDetails": 0,
+          "emptyAnswers": 0,
+          "summaryLabels": [],
+          "liCounts": {},
+          "visibleAnswerTables": [
+            {
+              "rows": 7,
+              "header": [
+                "自测题（自编）",
+                "参考答案与辨析"
+              ],
+              "firstAnswer": "128、−128。",
+              "firstAnswerVisible": true
+            }
+          ],
+          "tableInPrompt": [],
+          "rawPipeLength": []
+        },
+        {
+          "url": "/computer-organization/chapter-3/",
+          "exerciseHeading": "6 教材本章习题¶",
+          "intro": "本节按“单项选择题／填空题／简答题”分节，答案依据教材附录。",
+          "items": 0,
+          "details": 0,
+          "openDetails": 0,
+          "emptyAnswers": 0,
+          "summaryLabels": [],
+          "liCounts": {},
+          "visibleAnswerTables": [
+            {
+              "rows": 6,
+              "header": [
+                "自测题（自编）",
+                "参考答案与辨析"
+              ],
+              "firstAnswer": "5 位，2⁵＝32。",
+              "firstAnswerVisible": true
+            }
+          ],
+          "tableInPrompt": [],
+          "rawPipeLength": []
+        },
+        {
+          "url": "/computer-organization/chapter-4/",
+          "exerciseHeading": "10 教材本章习题¶",
+          "intro": "本节按“单项选择题／填空题／简答题”分节，答案依据教材附录。",
+          "items": 0,
+          "details": 0,
+          "openDetails": 0,
+          "emptyAnswers": 0,
+          "summaryLabels": [],
+          "liCounts": {},
+          "visibleAnswerTables": [
+            {
+              "rows": 6,
+              "header": [
+                "自测题（自编）",
+                "参考答案与辨析"
+              ],
+              "firstAnswer": "5＋100−1＋6＝110。",
+              "firstAnswerVisible": true
+            }
+          ],
+          "tableInPrompt": [],
+          "rawPipeLength": []
+        },
+        {
+          "url": "/computer-organization/chapter-5/",
+          "exerciseHeading": "8 教材本章习题¶",
+          "intro": "本节按“单项选择题／填空题／简答题”分节，答案依据教材附录。",
+          "items": 0,
+          "details": 0,
+          "openDetails": 0,
+          "emptyAnswers": 0,
+          "summaryLabels": [],
+          "liCounts": {},
+          "visibleAnswerTables": [
+            {
+              "rows": 7,
+              "header": [
+                "自测题（自编）",
+                "参考答案与辨析"
+              ],
+              "firstAnswer": "字扩展 4 组 × 位扩展 4 片＝16 片。",
+              "firstAnswerVisible": true
+            }
+          ],
+          "tableInPrompt": [],
+          "rawPipeLength": []
+        },
+        {
+          "url": "/computer-organization/chapter-6/",
+          "exerciseHeading": "7 教材本章习题¶",
+          "intro": "本节按“单项选择题／填空题／简答题”分节，答案依据教材附录。",
+          "items": 0,
+          "details": 0,
+          "openDetails": 0,
+          "emptyAnswers": 0,
+          "summaryLabels": [],
+          "liCounts": {},
+          "visibleAnswerTables": [
+            {
+              "rows": 7,
+              "header": [
+                "自测题（自编）",
+                "参考答案与辨析"
+              ],
+              "firstAnswer": "30000/10000＝3 ms。",
+              "firstAnswerVisible": true
+            }
+          ],
+          "tableInPrompt": [],
+          "rawPipeLength": []
+        }
+      ],
+      "sources": {
+        "os": [
+          {
+            "file": "第1章_操作系统简介_笔记.md",
+            "markdownQuestions": 13,
+            "answerMarkers": 13,
+            "tableRows": 0,
+            "hasExercisesSection": true
+          },
+          {
+            "file": "第2章_进程管理_笔记.md",
+            "markdownQuestions": 16,
+            "answerMarkers": 16,
+            "tableRows": 0,
+            "hasExercisesSection": true
+          },
+          {
+            "file": "第3章_进程调度与死锁_笔记.md",
+            "markdownQuestions": 13,
+            "answerMarkers": 12,
+            "tableRows": 28,
+            "hasExercisesSection": true
+          },
+          {
+            "file": "第4章_内存管理_笔记.md",
+            "markdownQuestions": 15,
+            "answerMarkers": 16,
+            "tableRows": 0,
+            "hasExercisesSection": true
+          },
+          {
+            "file": "第5章_文件系统_笔记.md",
+            "markdownQuestions": 9,
+            "answerMarkers": 10,
+            "tableRows": 6,
+            "hasExercisesSection": true
+          },
+          {
+            "file": "第6章_IO设备管理_笔记.md",
+            "markdownQuestions": 9,
+            "answerMarkers": 9,
+            "tableRows": 0,
+            "hasExercisesSection": true
+          }
+        ],
+        "co": [
+          {
+            "file": "第1章_计算机系统概述_笔记.md",
+            "markdownQuestions": 0,
+            "answerMarkers": 0,
+            "tableRows": 7,
+            "hasExercisesSection": true
+          },
+          {
+            "file": "第2章_数据的表示和运算_笔记.md",
+            "markdownQuestions": 0,
+            "answerMarkers": 0,
+            "tableRows": 8,
+            "hasExercisesSection": true
+          },
+          {
+            "file": "第3章_指令系统_笔记.md",
+            "markdownQuestions": 0,
+            "answerMarkers": 0,
+            "tableRows": 7,
+            "hasExercisesSection": true
+          },
+          {
+            "file": "第4章_中央处理器_笔记.md",
+            "markdownQuestions": 0,
+            "answerMarkers": 0,
+            "tableRows": 7,
+            "hasExercisesSection": true
+          },
+          {
+            "file": "第5章_存储器层次结构_笔记.md",
+            "markdownQuestions": 0,
+            "answerMarkers": 0,
+            "tableRows": 8,
+            "hasExercisesSection": true
+          },
+          {
+            "file": "第6章_互连及输入输出组织_笔记.md",
+            "markdownQuestions": 0,
+            "answerMarkers": 0,
+            "tableRows": 8,
+            "hasExercisesSection": true
+          }
+        ]
+      }
+    },
+    "links": {
+      "perPage": [
+        {
+          "url": "/",
+          "contentLinks": 15,
+          "external": 0,
+          "crossChapter": 15,
+          "breadcrumb": 0,
+          "toc": [
+            "#_2",
+            "#_3",
+            "#_4",
+            "#_5",
+            "#_6",
+            "#_7",
+            "#_2",
+            "#_3",
+            "#_4",
+            "#_5",
+            "#_6",
+            "#_7"
+          ],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#_1"
+            },
+            {
+              "t": "¶",
+              "h": "#_2"
+            },
+            {
+              "t": "进入课程 →",
+              "h": "chapters/chapter-1/"
+            },
+            {
+              "t": "进入课程 →",
+              "h": "computer-organization/chapter-1/"
+            },
+            {
+              "t": "¶",
+              "h": "#_3"
+            },
+            {
+              "t": "¶",
+              "h": "#_4"
+            },
+            {
+              "t": "第一章 · 操作系统简介",
+              "h": "chapters/chapter-1/"
+            },
+            {
+              "t": "第二章 · 进程管理",
+              "h": "chapters/chapter-2/"
+            },
+            {
+              "t": "第三章 · 进程调度与死锁",
+              "h": "chapters/chapter-3/"
+            },
+            {
+              "t": "第四章 · 内存管理",
+              "h": "chapters/chapter-4/"
+            },
+            {
+              "t": "第五章 · 文件系统",
+              "h": "chapters/chapter-5/"
+            },
+            {
+              "t": "第六章 · I/O 设备管理",
+              "h": "chapters/chapter-6/"
+            },
+            {
+              "t": "¶",
+              "h": "#_5"
+            },
+            {
+              "t": "进入进程调度实验 →",
+              "h": "lab/scheduling/"
+            },
+            {
+              "t": "¶",
+              "h": "#_6"
+            },
+            {
+              "t": "¶",
+              "h": "#_7"
+            },
+            {
+              "t": "第一章 · 计算机系统概述",
+              "h": "computer-organization/chapter-1/"
+            },
+            {
+              "t": "第二章 · 数据的表示和运算",
+              "h": "computer-organization/chapter-2/"
+            },
+            {
+              "t": "第三章 · 指令系统",
+              "h": "computer-organization/chapter-3/"
+            },
+            {
+              "t": "第四章 · 中央处理器",
+              "h": "computer-organization/chapter-4/"
+            },
+            {
+              "t": "第五章 · 存储器层次结构",
+              "h": "computer-organization/chapter-5/"
+            },
+            {
+              "t": "第六章 · 互连及输入输出组织",
+              "h": "computer-organization/chapter-6/"
+            }
+          ]
+        },
+        {
+          "url": "/lab/scheduling/",
+          "contentLinks": 0,
+          "external": 0,
+          "crossChapter": 0,
+          "breadcrumb": 0,
+          "toc": [],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#_1"
+            }
+          ]
+        },
+        {
+          "url": "/chapters/chapter-1/",
+          "contentLinks": 0,
+          "external": 0,
+          "crossChapter": 0,
+          "breadcrumb": 0,
+          "toc": [
+            "#_1",
+            "#1-1112",
+            "#2-2124",
+            "#3-25",
+            "#4-26",
+            "#5-27",
+            "#6-cpu-3132",
+            "#7",
+            "#8",
+            "#81",
+            "#82",
+            "#83",
+            "#9-2016-4",
+            "#91",
+            "#92",
+            "#93-1",
+            "#94-2",
+            "#95",
+            "#10",
+            "#_1",
+            "#1-1112",
+            "#2-2124",
+            "#3-25",
+            "#4-26",
+            "#5-27",
+            "#6-cpu-3132",
+            "#7",
+            "#8",
+            "#81",
+            "#82",
+            "#83",
+            "#9-2016-4",
+            "#91",
+            "#92",
+            "#93-1",
+            "#94-2",
+            "#95",
+            "#10"
+          ],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#1"
+            },
+            {
+              "t": "¶",
+              "h": "#_1"
+            },
+            {
+              "t": "¶",
+              "h": "#1-1112"
+            },
+            {
+              "t": "¶",
+              "h": "#2-2124"
+            },
+            {
+              "t": "¶",
+              "h": "#3-25"
+            },
+            {
+              "t": "¶",
+              "h": "#4-26"
+            },
+            {
+              "t": "¶",
+              "h": "#5-27"
+            },
+            {
+              "t": "¶",
+              "h": "#6-cpu-3132"
+            },
+            {
+              "t": "¶",
+              "h": "#7"
+            },
+            {
+              "t": "¶",
+              "h": "#8"
+            },
+            {
+              "t": "¶",
+              "h": "#81"
+            },
+            {
+              "t": "¶",
+              "h": "#82"
+            },
+            {
+              "t": "¶",
+              "h": "#83"
+            },
+            {
+              "t": "¶",
+              "h": "#9-2016-4"
+            },
+            {
+              "t": "¶",
+              "h": "#91"
+            },
+            {
+              "t": "¶",
+              "h": "#92"
+            },
+            {
+              "t": "¶",
+              "h": "#93-1"
+            },
+            {
+              "t": "¶",
+              "h": "#94-2"
+            },
+            {
+              "t": "¶",
+              "h": "#95"
+            },
+            {
+              "t": "¶",
+              "h": "#10"
+            }
+          ]
+        },
+        {
+          "url": "/chapters/chapter-2/",
+          "contentLinks": 0,
+          "external": 0,
+          "crossChapter": 0,
+          "breadcrumb": 0,
+          "toc": [
+            "#_1",
+            "#1-1112",
+            "#2-2122",
+            "#3-2324",
+            "#4-3134",
+            "#5-4143",
+            "#6-4445",
+            "#7-4647",
+            "#8-5152",
+            "#9-61",
+            "#10-pv-6263",
+            "#101",
+            "#102",
+            "#103",
+            "#11-64",
+            "#111",
+            "#112",
+            "#113",
+            "#12-65",
+            "#121",
+            "#122",
+            "#13-66",
+            "#14",
+            "#141",
+            "#142",
+            "#143",
+            "#144",
+            "#15-pv",
+            "#_1",
+            "#1-1112",
+            "#2-2122",
+            "#3-2324",
+            "#4-3134",
+            "#5-4143",
+            "#6-4445",
+            "#7-4647",
+            "#8-5152",
+            "#9-61",
+            "#10-pv-6263",
+            "#101",
+            "#102",
+            "#103",
+            "#11-64",
+            "#111",
+            "#112",
+            "#113",
+            "#12-65",
+            "#121",
+            "#122",
+            "#13-66",
+            "#14",
+            "#141",
+            "#142",
+            "#143",
+            "#144",
+            "#15-pv"
+          ],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#2"
+            },
+            {
+              "t": "¶",
+              "h": "#_1"
+            },
+            {
+              "t": "¶",
+              "h": "#1-1112"
+            },
+            {
+              "t": "¶",
+              "h": "#2-2122"
+            },
+            {
+              "t": "¶",
+              "h": "#3-2324"
+            },
+            {
+              "t": "¶",
+              "h": "#4-3134"
+            },
+            {
+              "t": "¶",
+              "h": "#5-4143"
+            },
+            {
+              "t": "¶",
+              "h": "#6-4445"
+            },
+            {
+              "t": "¶",
+              "h": "#7-4647"
+            },
+            {
+              "t": "¶",
+              "h": "#8-5152"
+            },
+            {
+              "t": "¶",
+              "h": "#9-61"
+            },
+            {
+              "t": "¶",
+              "h": "#10-pv-6263"
+            },
+            {
+              "t": "¶",
+              "h": "#101"
+            },
+            {
+              "t": "¶",
+              "h": "#102"
+            },
+            {
+              "t": "¶",
+              "h": "#103"
+            },
+            {
+              "t": "¶",
+              "h": "#11-64"
+            },
+            {
+              "t": "¶",
+              "h": "#111"
+            },
+            {
+              "t": "¶",
+              "h": "#112"
+            },
+            {
+              "t": "¶",
+              "h": "#113"
+            },
+            {
+              "t": "¶",
+              "h": "#12-65"
+            },
+            {
+              "t": "¶",
+              "h": "#121"
+            },
+            {
+              "t": "¶",
+              "h": "#122"
+            },
+            {
+              "t": "¶",
+              "h": "#13-66"
+            },
+            {
+              "t": "¶",
+              "h": "#14"
+            },
+            {
+              "t": "¶",
+              "h": "#141"
+            },
+            {
+              "t": "¶",
+              "h": "#142"
+            },
+            {
+              "t": "¶",
+              "h": "#143"
+            },
+            {
+              "t": "¶",
+              "h": "#144"
+            },
+            {
+              "t": "¶",
+              "h": "#15-pv"
+            }
+          ]
+        },
+        {
+          "url": "/chapters/chapter-3/",
+          "contentLinks": 0,
+          "external": 0,
+          "crossChapter": 0,
+          "breadcrumb": 0,
+          "toc": [
+            "#_1",
+            "#1-1112",
+            "#2-21",
+            "#3-22",
+            "#_2",
+            "#4-23",
+            "#_3",
+            "#5-24",
+            "#6-25",
+            "#7-3133",
+            "#8-41",
+            "#9-42",
+            "#10-42",
+            "#101",
+            "#102",
+            "#103",
+            "#11-43",
+            "#12",
+            "#121",
+            "#122",
+            "#123",
+            "#124",
+            "#13",
+            "#_1",
+            "#1-1112",
+            "#2-21",
+            "#3-22",
+            "#_2",
+            "#4-23",
+            "#_3",
+            "#5-24",
+            "#6-25",
+            "#7-3133",
+            "#8-41",
+            "#9-42",
+            "#10-42",
+            "#101",
+            "#102",
+            "#103",
+            "#11-43",
+            "#12",
+            "#121",
+            "#122",
+            "#123",
+            "#124",
+            "#13"
+          ],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#3"
+            },
+            {
+              "t": "¶",
+              "h": "#_1"
+            },
+            {
+              "t": "¶",
+              "h": "#1-1112"
+            },
+            {
+              "t": "¶",
+              "h": "#2-21"
+            },
+            {
+              "t": "¶",
+              "h": "#3-22"
+            },
+            {
+              "t": "¶",
+              "h": "#_2"
+            },
+            {
+              "t": "¶",
+              "h": "#4-23"
+            },
+            {
+              "t": "¶",
+              "h": "#_3"
+            },
+            {
+              "t": "¶",
+              "h": "#5-24"
+            },
+            {
+              "t": "¶",
+              "h": "#6-25"
+            },
+            {
+              "t": "¶",
+              "h": "#7-3133"
+            },
+            {
+              "t": "¶",
+              "h": "#8-41"
+            },
+            {
+              "t": "¶",
+              "h": "#9-42"
+            },
+            {
+              "t": "¶",
+              "h": "#10-42"
+            },
+            {
+              "t": "¶",
+              "h": "#101"
+            },
+            {
+              "t": "¶",
+              "h": "#102"
+            },
+            {
+              "t": "¶",
+              "h": "#103"
+            },
+            {
+              "t": "¶",
+              "h": "#11-43"
+            },
+            {
+              "t": "¶",
+              "h": "#12"
+            },
+            {
+              "t": "¶",
+              "h": "#121"
+            },
+            {
+              "t": "¶",
+              "h": "#122"
+            },
+            {
+              "t": "¶",
+              "h": "#123"
+            },
+            {
+              "t": "¶",
+              "h": "#124"
+            },
+            {
+              "t": "¶",
+              "h": "#13"
+            }
+          ]
+        },
+        {
+          "url": "/chapters/chapter-4/",
+          "contentLinks": 0,
+          "external": 0,
+          "crossChapter": 0,
+          "breadcrumb": 0,
+          "toc": [
+            "#_1",
+            "#1-1112",
+            "#2-2123",
+            "#3-3133",
+            "#31-ffnfbf",
+            "#32",
+            "#4-4142",
+            "#5-tlb-43",
+            "#6-44",
+            "#7-4546",
+            "#8-5152",
+            "#9-5354",
+            "#10-55",
+            "#101-fifo-lru",
+            "#11-5657",
+            "#12-6163",
+            "#13",
+            "#14",
+            "#141",
+            "#142",
+            "#143",
+            "#144",
+            "#15",
+            "#_1",
+            "#1-1112",
+            "#2-2123",
+            "#3-3133",
+            "#31-ffnfbf",
+            "#32",
+            "#4-4142",
+            "#5-tlb-43",
+            "#6-44",
+            "#7-4546",
+            "#8-5152",
+            "#9-5354",
+            "#10-55",
+            "#101-fifo-lru",
+            "#11-5657",
+            "#12-6163",
+            "#13",
+            "#14",
+            "#141",
+            "#142",
+            "#143",
+            "#144",
+            "#15"
+          ],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#4"
+            },
+            {
+              "t": "¶",
+              "h": "#_1"
+            },
+            {
+              "t": "¶",
+              "h": "#1-1112"
+            },
+            {
+              "t": "¶",
+              "h": "#2-2123"
+            },
+            {
+              "t": "¶",
+              "h": "#3-3133"
+            },
+            {
+              "t": "¶",
+              "h": "#31-ffnfbf"
+            },
+            {
+              "t": "¶",
+              "h": "#32"
+            },
+            {
+              "t": "¶",
+              "h": "#4-4142"
+            },
+            {
+              "t": "¶",
+              "h": "#5-tlb-43"
+            },
+            {
+              "t": "¶",
+              "h": "#6-44"
+            },
+            {
+              "t": "¶",
+              "h": "#7-4546"
+            },
+            {
+              "t": "¶",
+              "h": "#8-5152"
+            },
+            {
+              "t": "¶",
+              "h": "#9-5354"
+            },
+            {
+              "t": "¶",
+              "h": "#10-55"
+            },
+            {
+              "t": "¶",
+              "h": "#101-fifo-lru"
+            },
+            {
+              "t": "¶",
+              "h": "#11-5657"
+            },
+            {
+              "t": "¶",
+              "h": "#12-6163"
+            },
+            {
+              "t": "¶",
+              "h": "#13"
+            },
+            {
+              "t": "¶",
+              "h": "#14"
+            },
+            {
+              "t": "¶",
+              "h": "#141"
+            },
+            {
+              "t": "¶",
+              "h": "#142"
+            },
+            {
+              "t": "¶",
+              "h": "#143"
+            },
+            {
+              "t": "¶",
+              "h": "#144"
+            },
+            {
+              "t": "¶",
+              "h": "#15"
+            }
+          ]
+        },
+        {
+          "url": "/chapters/chapter-5/",
+          "contentLinks": 0,
+          "external": 0,
+          "crossChapter": 0,
+          "breadcrumb": 0,
+          "toc": [
+            "#_1",
+            "#1-1",
+            "#2-1",
+            "#3-2123",
+            "#4-31",
+            "#41",
+            "#42",
+            "#43-fat",
+            "#5-fat-32",
+            "#6-cpmms-dosunix-32",
+            "#7-i-32",
+            "#71-4-kb-ext2",
+            "#72",
+            "#8-33",
+            "#9",
+            "#10",
+            "#101",
+            "#102",
+            "#103",
+            "#104",
+            "#11",
+            "#_1",
+            "#1-1",
+            "#2-1",
+            "#3-2123",
+            "#4-31",
+            "#41",
+            "#42",
+            "#43-fat",
+            "#5-fat-32",
+            "#6-cpmms-dosunix-32",
+            "#7-i-32",
+            "#71-4-kb-ext2",
+            "#72",
+            "#8-33",
+            "#9",
+            "#10",
+            "#101",
+            "#102",
+            "#103",
+            "#104",
+            "#11"
+          ],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#5"
+            },
+            {
+              "t": "¶",
+              "h": "#_1"
+            },
+            {
+              "t": "¶",
+              "h": "#1-1"
+            },
+            {
+              "t": "¶",
+              "h": "#2-1"
+            },
+            {
+              "t": "¶",
+              "h": "#3-2123"
+            },
+            {
+              "t": "¶",
+              "h": "#4-31"
+            },
+            {
+              "t": "¶",
+              "h": "#41"
+            },
+            {
+              "t": "¶",
+              "h": "#42"
+            },
+            {
+              "t": "¶",
+              "h": "#43-fat"
+            },
+            {
+              "t": "¶",
+              "h": "#5-fat-32"
+            },
+            {
+              "t": "¶",
+              "h": "#6-cpmms-dosunix-32"
+            },
+            {
+              "t": "¶",
+              "h": "#7-i-32"
+            },
+            {
+              "t": "¶",
+              "h": "#71-4-kb-ext2"
+            },
+            {
+              "t": "¶",
+              "h": "#72"
+            },
+            {
+              "t": "¶",
+              "h": "#8-33"
+            },
+            {
+              "t": "¶",
+              "h": "#9"
+            },
+            {
+              "t": "¶",
+              "h": "#10"
+            },
+            {
+              "t": "¶",
+              "h": "#101"
+            },
+            {
+              "t": "¶",
+              "h": "#102"
+            },
+            {
+              "t": "¶",
+              "h": "#103"
+            },
+            {
+              "t": "¶",
+              "h": "#104"
+            },
+            {
+              "t": "¶",
+              "h": "#11"
+            }
+          ]
+        },
+        {
+          "url": "/chapters/chapter-6/",
+          "contentLinks": 0,
+          "external": 0,
+          "crossChapter": 0,
+          "breadcrumb": 0,
+          "toc": [
+            "#_1",
+            "#1-io-1113",
+            "#2-io-2123",
+            "#21",
+            "#22-dma",
+            "#3-3132",
+            "#31",
+            "#32",
+            "#4-4142",
+            "#5-43",
+            "#6-spooling-44",
+            "#7-io-45",
+            "#8-46",
+            "#9-47",
+            "#91",
+            "#92",
+            "#10-48",
+            "#11",
+            "#12",
+            "#121",
+            "#122",
+            "#123",
+            "#13",
+            "#_1",
+            "#1-io-1113",
+            "#2-io-2123",
+            "#21",
+            "#22-dma",
+            "#3-3132",
+            "#31",
+            "#32",
+            "#4-4142",
+            "#5-43",
+            "#6-spooling-44",
+            "#7-io-45",
+            "#8-46",
+            "#9-47",
+            "#91",
+            "#92",
+            "#10-48",
+            "#11",
+            "#12",
+            "#121",
+            "#122",
+            "#123",
+            "#13"
+          ],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#6-io"
+            },
+            {
+              "t": "¶",
+              "h": "#_1"
+            },
+            {
+              "t": "¶",
+              "h": "#1-io-1113"
+            },
+            {
+              "t": "¶",
+              "h": "#2-io-2123"
+            },
+            {
+              "t": "¶",
+              "h": "#21"
+            },
+            {
+              "t": "¶",
+              "h": "#22-dma"
+            },
+            {
+              "t": "¶",
+              "h": "#3-3132"
+            },
+            {
+              "t": "¶",
+              "h": "#31"
+            },
+            {
+              "t": "¶",
+              "h": "#32"
+            },
+            {
+              "t": "¶",
+              "h": "#4-4142"
+            },
+            {
+              "t": "¶",
+              "h": "#5-43"
+            },
+            {
+              "t": "¶",
+              "h": "#6-spooling-44"
+            },
+            {
+              "t": "¶",
+              "h": "#7-io-45"
+            },
+            {
+              "t": "¶",
+              "h": "#8-46"
+            },
+            {
+              "t": "¶",
+              "h": "#9-47"
+            },
+            {
+              "t": "¶",
+              "h": "#91"
+            },
+            {
+              "t": "¶",
+              "h": "#92"
+            },
+            {
+              "t": "¶",
+              "h": "#10-48"
+            },
+            {
+              "t": "¶",
+              "h": "#11"
+            },
+            {
+              "t": "¶",
+              "h": "#12"
+            },
+            {
+              "t": "¶",
+              "h": "#121"
+            },
+            {
+              "t": "¶",
+              "h": "#122"
+            },
+            {
+              "t": "¶",
+              "h": "#123"
+            },
+            {
+              "t": "¶",
+              "h": "#13"
+            }
+          ]
+        },
+        {
+          "url": "/computer-organization/chapter-1/",
+          "contentLinks": 0,
+          "external": 0,
+          "crossChapter": 0,
+          "breadcrumb": 0,
+          "toc": [
+            "#_1",
+            "#_2",
+            "#1-1",
+            "#2-2",
+            "#3-3",
+            "#4-4",
+            "#5-5",
+            "#6",
+            "#7",
+            "#8",
+            "#_1",
+            "#_2",
+            "#1-1",
+            "#2-2",
+            "#3-3",
+            "#4-4",
+            "#5-5",
+            "#6",
+            "#7",
+            "#8"
+          ],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#1"
+            },
+            {
+              "t": "¶",
+              "h": "#_1"
+            },
+            {
+              "t": "¶",
+              "h": "#_2"
+            },
+            {
+              "t": "¶",
+              "h": "#1-1"
+            },
+            {
+              "t": "¶",
+              "h": "#2-2"
+            },
+            {
+              "t": "¶",
+              "h": "#3-3"
+            },
+            {
+              "t": "¶",
+              "h": "#4-4"
+            },
+            {
+              "t": "¶",
+              "h": "#5-5"
+            },
+            {
+              "t": "¶",
+              "h": "#6"
+            },
+            {
+              "t": "¶",
+              "h": "#7"
+            },
+            {
+              "t": "¶",
+              "h": "#8"
+            }
+          ]
+        },
+        {
+          "url": "/computer-organization/chapter-2/",
+          "contentLinks": 0,
+          "external": 0,
+          "crossChapter": 0,
+          "breadcrumb": 0,
+          "toc": [
+            "#_1",
+            "#_2",
+            "#1-1",
+            "#2-2",
+            "#3-ieee-7543",
+            "#4-4",
+            "#5-5",
+            "#6-6",
+            "#7-alu7",
+            "#8-8",
+            "#9-9",
+            "#10-10",
+            "#11",
+            "#12",
+            "#13",
+            "#_1",
+            "#_2",
+            "#1-1",
+            "#2-2",
+            "#3-ieee-7543",
+            "#4-4",
+            "#5-5",
+            "#6-6",
+            "#7-alu7",
+            "#8-8",
+            "#9-9",
+            "#10-10",
+            "#11",
+            "#12",
+            "#13"
+          ],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#2"
+            },
+            {
+              "t": "¶",
+              "h": "#_1"
+            },
+            {
+              "t": "¶",
+              "h": "#_2"
+            },
+            {
+              "t": "¶",
+              "h": "#1-1"
+            },
+            {
+              "t": "¶",
+              "h": "#2-2"
+            },
+            {
+              "t": "¶",
+              "h": "#3-ieee-7543"
+            },
+            {
+              "t": "¶",
+              "h": "#4-4"
+            },
+            {
+              "t": "¶",
+              "h": "#5-5"
+            },
+            {
+              "t": "¶",
+              "h": "#6-6"
+            },
+            {
+              "t": "¶",
+              "h": "#7-alu7"
+            },
+            {
+              "t": "¶",
+              "h": "#8-8"
+            },
+            {
+              "t": "¶",
+              "h": "#9-9"
+            },
+            {
+              "t": "¶",
+              "h": "#10-10"
+            },
+            {
+              "t": "¶",
+              "h": "#11"
+            },
+            {
+              "t": "¶",
+              "h": "#12"
+            },
+            {
+              "t": "¶",
+              "h": "#13"
+            }
+          ]
+        },
+        {
+          "url": "/computer-organization/chapter-3/",
+          "contentLinks": 0,
+          "external": 0,
+          "crossChapter": 0,
+          "breadcrumb": 0,
+          "toc": [
+            "#_1",
+            "#_2",
+            "#1-1",
+            "#2-2",
+            "#21",
+            "#22",
+            "#23",
+            "#24",
+            "#3-mips-3",
+            "#4-4",
+            "#5",
+            "#6",
+            "#7",
+            "#_1",
+            "#_2",
+            "#1-1",
+            "#2-2",
+            "#21",
+            "#22",
+            "#23",
+            "#24",
+            "#3-mips-3",
+            "#4-4",
+            "#5",
+            "#6",
+            "#7"
+          ],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#3"
+            },
+            {
+              "t": "¶",
+              "h": "#_1"
+            },
+            {
+              "t": "¶",
+              "h": "#_2"
+            },
+            {
+              "t": "¶",
+              "h": "#1-1"
+            },
+            {
+              "t": "¶",
+              "h": "#2-2"
+            },
+            {
+              "t": "¶",
+              "h": "#21"
+            },
+            {
+              "t": "¶",
+              "h": "#22"
+            },
+            {
+              "t": "¶",
+              "h": "#23"
+            },
+            {
+              "t": "¶",
+              "h": "#24"
+            },
+            {
+              "t": "¶",
+              "h": "#3-mips-3"
+            },
+            {
+              "t": "¶",
+              "h": "#4-4"
+            },
+            {
+              "t": "¶",
+              "h": "#5"
+            },
+            {
+              "t": "¶",
+              "h": "#6"
+            },
+            {
+              "t": "¶",
+              "h": "#7"
+            }
+          ]
+        },
+        {
+          "url": "/computer-organization/chapter-4/",
+          "contentLinks": 0,
+          "external": 0,
+          "crossChapter": 0,
+          "breadcrumb": 0,
+          "toc": [
+            "#_1",
+            "#_2",
+            "#1-1",
+            "#2-2",
+            "#3-3",
+            "#4-4",
+            "#5-5",
+            "#6-6",
+            "#7-7",
+            "#8-8",
+            "#9",
+            "#10",
+            "#11",
+            "#_1",
+            "#_2",
+            "#1-1",
+            "#2-2",
+            "#3-3",
+            "#4-4",
+            "#5-5",
+            "#6-6",
+            "#7-7",
+            "#8-8",
+            "#9",
+            "#10",
+            "#11"
+          ],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#4"
+            },
+            {
+              "t": "¶",
+              "h": "#_1"
+            },
+            {
+              "t": "¶",
+              "h": "#_2"
+            },
+            {
+              "t": "¶",
+              "h": "#1-1"
+            },
+            {
+              "t": "¶",
+              "h": "#2-2"
+            },
+            {
+              "t": "¶",
+              "h": "#3-3"
+            },
+            {
+              "t": "¶",
+              "h": "#4-4"
+            },
+            {
+              "t": "¶",
+              "h": "#5-5"
+            },
+            {
+              "t": "¶",
+              "h": "#6-6"
+            },
+            {
+              "t": "¶",
+              "h": "#7-7"
+            },
+            {
+              "t": "¶",
+              "h": "#8-8"
+            },
+            {
+              "t": "¶",
+              "h": "#9"
+            },
+            {
+              "t": "¶",
+              "h": "#10"
+            },
+            {
+              "t": "¶",
+              "h": "#11"
+            }
+          ]
+        },
+        {
+          "url": "/computer-organization/chapter-5/",
+          "contentLinks": 0,
+          "external": 0,
+          "crossChapter": 0,
+          "breadcrumb": 0,
+          "toc": [
+            "#_1",
+            "#_2",
+            "#1-1",
+            "#2-2",
+            "#3-cpu-3",
+            "#4-rom-flash4",
+            "#5-cache5",
+            "#51",
+            "#52",
+            "#53",
+            "#54",
+            "#6-6",
+            "#7",
+            "#8",
+            "#9",
+            "#_1",
+            "#_2",
+            "#1-1",
+            "#2-2",
+            "#3-cpu-3",
+            "#4-rom-flash4",
+            "#5-cache5",
+            "#51",
+            "#52",
+            "#53",
+            "#54",
+            "#6-6",
+            "#7",
+            "#8",
+            "#9"
+          ],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#5"
+            },
+            {
+              "t": "¶",
+              "h": "#_1"
+            },
+            {
+              "t": "¶",
+              "h": "#_2"
+            },
+            {
+              "t": "¶",
+              "h": "#1-1"
+            },
+            {
+              "t": "¶",
+              "h": "#2-2"
+            },
+            {
+              "t": "¶",
+              "h": "#3-cpu-3"
+            },
+            {
+              "t": "¶",
+              "h": "#4-rom-flash4"
+            },
+            {
+              "t": "¶",
+              "h": "#5-cache5"
+            },
+            {
+              "t": "¶",
+              "h": "#51"
+            },
+            {
+              "t": "¶",
+              "h": "#52"
+            },
+            {
+              "t": "¶",
+              "h": "#53"
+            },
+            {
+              "t": "¶",
+              "h": "#54"
+            },
+            {
+              "t": "¶",
+              "h": "#6-6"
+            },
+            {
+              "t": "¶",
+              "h": "#7"
+            },
+            {
+              "t": "¶",
+              "h": "#8"
+            },
+            {
+              "t": "¶",
+              "h": "#9"
+            }
+          ]
+        },
+        {
+          "url": "/computer-organization/chapter-6/",
+          "contentLinks": 0,
+          "external": 0,
+          "crossChapter": 0,
+          "breadcrumb": 0,
+          "toc": [
+            "#_1",
+            "#_2",
+            "#1-1",
+            "#2-2",
+            "#3-cpu-3",
+            "#31",
+            "#4-io-4",
+            "#5-io-5",
+            "#51",
+            "#52",
+            "#53-dma",
+            "#6_1",
+            "#7",
+            "#8",
+            "#_1",
+            "#_2",
+            "#1-1",
+            "#2-2",
+            "#3-cpu-3",
+            "#31",
+            "#4-io-4",
+            "#5-io-5",
+            "#51",
+            "#52",
+            "#53-dma",
+            "#6_1",
+            "#7",
+            "#8"
+          ],
+          "hrefs": [
+            {
+              "t": "¶",
+              "h": "#6"
+            },
+            {
+              "t": "¶",
+              "h": "#_1"
+            },
+            {
+              "t": "¶",
+              "h": "#_2"
+            },
+            {
+              "t": "¶",
+              "h": "#1-1"
+            },
+            {
+              "t": "¶",
+              "h": "#2-2"
+            },
+            {
+              "t": "¶",
+              "h": "#3-cpu-3"
+            },
+            {
+              "t": "¶",
+              "h": "#31"
+            },
+            {
+              "t": "¶",
+              "h": "#4-io-4"
+            },
+            {
+              "t": "¶",
+              "h": "#5-io-5"
+            },
+            {
+              "t": "¶",
+              "h": "#51"
+            },
+            {
+              "t": "¶",
+              "h": "#52"
+            },
+            {
+              "t": "¶",
+              "h": "#53-dma"
+            },
+            {
+              "t": "¶",
+              "h": "#6_1"
+            },
+            {
+              "t": "¶",
+              "h": "#7"
+            },
+            {
+              "t": "¶",
+              "h": "#8"
+            }
+          ]
+        }
+      ],
+      "uniqueLinks": 250,
+      "broken": [],
+      "footer": [
+        {
+          "url": "/chapters/chapter-1/",
+          "links": [
+            {
+              "href": "../..",
+              "label": "上一页 学习首页",
+              "cls": "md-footer__link md-footer__link--prev"
+            },
+            {
+              "href": "../chapter-2/",
+              "label": "下一页 第二章 进程管理",
+              "cls": "md-footer__link md-footer__link--next"
+            }
+          ]
+        },
+        {
+          "url": "/chapters/chapter-3/",
+          "links": [
+            {
+              "href": "../chapter-2/",
+              "label": "上一页 第二章 进程管理",
+              "cls": "md-footer__link md-footer__link--prev"
+            },
+            {
+              "href": "../chapter-4/",
+              "label": "下一页 第四章 内存管理",
+              "cls": "md-footer__link md-footer__link--next"
+            }
+          ]
+        },
+        {
+          "url": "/chapters/chapter-6/",
+          "links": [
+            {
+              "href": "../chapter-5/",
+              "label": "上一页 第五章 文件系统",
+              "cls": "md-footer__link md-footer__link--prev"
+            },
+            {
+              "href": "../../computer-organization/chapter-1/",
+              "label": "下一页 第一章 计算机系统概述",
+              "cls": "md-footer__link md-footer__link--next"
+            }
+          ]
+        },
+        {
+          "url": "/computer-organization/chapter-1/",
+          "links": [
+            {
+              "href": "../../chapters/chapter-6/",
+              "label": "上一页 第六章 I/O 设备管理",
+              "cls": "md-footer__link md-footer__link--prev"
+            },
+            {
+              "href": "../chapter-2/",
+              "label": "下一页 第二章 数据的表示和运算",
+              "cls": "md-footer__link md-footer__link--next"
+            }
+          ]
+        },
+        {
+          "url": "/computer-organization/chapter-6/",
+          "links": [
+            {
+              "href": "../chapter-5/",
+              "label": "上一页 第五章 存储器层次结构",
+              "cls": "md-footer__link md-footer__link--prev"
+            },
+            {
+              "href": "../../lab/scheduling/",
+              "label": "下一页 进程调度实验",
+              "cls": "md-footer__link md-footer__link--next"
+            }
+          ]
+        },
+        {
+          "url": "/lab/scheduling/",
+          "links": [
+            {
+              "href": "../../computer-organization/chapter-6/",
+              "label": "上一页 第六章 互连及输入输出组织",
+              "cls": "md-footer__link md-footer__link--prev"
+            }
+          ]
+        }
+      ],
+      "tocChecks": [
+        {
+          "page": "/chapters/chapter-4/",
+          "headings": 24,
+          "tocLinks": 23,
+          "missingAnchors": [],
+          "offsets": [
+            {
+              "id": "_1",
+              "top": 68,
+              "headerBottom": 49,
+              "covered": false,
+              "scrollMarginTop": "68px"
+            },
+            {
+              "id": "1-1112",
+              "top": 68,
+              "headerBottom": 49,
+              "covered": false,
+              "scrollMarginTop": "68px"
+            },
+            {
+              "id": "2-2123",
+              "top": 68,
+              "headerBottom": 49,
+              "covered": false,
+              "scrollMarginTop": "68px"
+            }
+          ]
+        },
+        {
+          "page": "/chapters/chapter-1/",
+          "headings": 20,
+          "tocLinks": 19,
+          "missingAnchors": [],
+          "offsets": [
+            {
+              "id": "_1",
+              "top": 68,
+              "headerBottom": 49,
+              "covered": false,
+              "scrollMarginTop": "68px"
+            },
+            {
+              "id": "1-1112",
+              "top": 68,
+              "headerBottom": 49,
+              "covered": false,
+              "scrollMarginTop": "68px"
+            },
+            {
+              "id": "2-2124",
+              "top": 68,
+              "headerBottom": 49,
+              "covered": false,
+              "scrollMarginTop": "68px"
+            }
+          ]
+        },
+        {
+          "page": "/computer-organization/chapter-3/",
+          "headings": 14,
+          "tocLinks": 13,
+          "missingAnchors": [],
+          "offsets": [
+            {
+              "id": "_1",
+              "top": 68,
+              "headerBottom": 49,
+              "covered": false,
+              "scrollMarginTop": "68px"
+            },
+            {
+              "id": "_2",
+              "top": 68,
+              "headerBottom": 49,
+              "covered": false,
+              "scrollMarginTop": "68px"
+            },
+            {
+              "id": "1-1",
+              "top": 68,
+              "headerBottom": 49,
+              "covered": false,
+              "scrollMarginTop": "68px"
+            }
+          ]
+        }
+      ]
+    },
+    "labScreen": null,
+    "lab": {
+      "comparisons": [
+        {
+          "dataset": "默认示例",
+          "algorithm": "fcfs",
+          "quantum": 2,
+          "quantumDisabledInUi": true,
+          "page": {
+            "avg": 6.5,
+            "weighted": 3.46
+          },
+          "metricsText": "平均周转时间 6.50　·　平均带权周转时间 3.46",
+          "pageRows": [
+            [
+              "P1",
+              "5",
+              "5",
+              "1.00"
+            ],
+            [
+              "P2",
+              "8",
+              "7",
+              "2.33"
+            ],
+            [
+              "P3",
+              "9",
+              "7",
+              "7.00"
+            ],
+            [
+              "P4",
+              "11",
+              "7",
+              "3.50"
+            ]
+          ],
+          "pageGantt": [
+            "P1|0–5",
+            "P2|5–8",
+            "P3|8–9",
+            "P4|9–11"
+          ],
+          "ref": {
+            "avgTurnaround": 6.5,
+            "avgWeighted": 3.46,
+            "avgTurnaroundExact": 6.5,
+            "avgWeightedExact": 3.458333,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 5,
+                "turnaround": 5,
+                "weighted": 1
+              },
+              {
+                "id": "P2",
+                "finish": 8,
+                "turnaround": 7,
+                "weighted": 2.3333333333333335
+              },
+              {
+                "id": "P3",
+                "finish": 9,
+                "turnaround": 7,
+                "weighted": 7
+              },
+              {
+                "id": "P4",
+                "finish": 11,
+                "turnaround": 7,
+                "weighted": 3.5
+              }
+            ],
+            "segments": [
+              {
+                "id": "P1",
+                "start": 0,
+                "end": 5
+              },
+              {
+                "id": "P2",
+                "start": 5,
+                "end": 8
+              },
+              {
+                "id": "P3",
+                "start": 8,
+                "end": 9
+              },
+              {
+                "id": "P4",
+                "start": 9,
+                "end": 11
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": 0.001667
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "默认示例",
+          "algorithm": "spf",
+          "quantum": 2,
+          "quantumDisabledInUi": true,
+          "page": {
+            "avg": 5.75,
+            "weighted": 2.58
+          },
+          "metricsText": "平均周转时间 5.75　·　平均带权周转时间 2.58",
+          "pageRows": [
+            [
+              "P1",
+              "5",
+              "5",
+              "1.00"
+            ],
+            [
+              "P2",
+              "11",
+              "10",
+              "3.33"
+            ],
+            [
+              "P3",
+              "6",
+              "4",
+              "4.00"
+            ],
+            [
+              "P4",
+              "8",
+              "4",
+              "2.00"
+            ]
+          ],
+          "pageGantt": [
+            "P1|0–5",
+            "P3|5–6",
+            "P4|6–8",
+            "P2|8–11"
+          ],
+          "ref": {
+            "avgTurnaround": 5.75,
+            "avgWeighted": 2.58,
+            "avgTurnaroundExact": 5.75,
+            "avgWeightedExact": 2.583333,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 5,
+                "turnaround": 5,
+                "weighted": 1
+              },
+              {
+                "id": "P2",
+                "finish": 11,
+                "turnaround": 10,
+                "weighted": 3.3333333333333335
+              },
+              {
+                "id": "P3",
+                "finish": 6,
+                "turnaround": 4,
+                "weighted": 4
+              },
+              {
+                "id": "P4",
+                "finish": 8,
+                "turnaround": 4,
+                "weighted": 2
+              }
+            ],
+            "segments": [
+              {
+                "id": "P1",
+                "start": 0,
+                "end": 5
+              },
+              {
+                "id": "P3",
+                "start": 5,
+                "end": 6
+              },
+              {
+                "id": "P4",
+                "start": 6,
+                "end": 8
+              },
+              {
+                "id": "P2",
+                "start": 8,
+                "end": 11
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": -0.003333
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "默认示例",
+          "algorithm": "rr",
+          "quantum": 2,
+          "quantumDisabledInUi": false,
+          "page": {
+            "avg": 7,
+            "weighted": 2.67
+          },
+          "metricsText": "平均周转时间 7.00　·　平均带权周转时间 2.67",
+          "pageRows": [
+            [
+              "P1",
+              "11",
+              "11",
+              "2.20"
+            ],
+            [
+              "P2",
+              "10",
+              "9",
+              "3.00"
+            ],
+            [
+              "P3",
+              "5",
+              "3",
+              "3.00"
+            ],
+            [
+              "P4",
+              "9",
+              "5",
+              "2.50"
+            ]
+          ],
+          "pageGantt": [
+            "P1|0–2",
+            "P2|2–4",
+            "P3|4–5",
+            "P1|5–7",
+            "P4|7–9",
+            "P2|9–10",
+            "P1|10–11"
+          ],
+          "ref": {
+            "avgTurnaround": 7,
+            "avgWeighted": 2.68,
+            "avgTurnaroundExact": 7,
+            "avgWeightedExact": 2.675,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 11,
+                "turnaround": 11,
+                "weighted": 2.2
+              },
+              {
+                "id": "P2",
+                "finish": 10,
+                "turnaround": 9,
+                "weighted": 3
+              },
+              {
+                "id": "P3",
+                "finish": 5,
+                "turnaround": 3,
+                "weighted": 3
+              },
+              {
+                "id": "P4",
+                "finish": 9,
+                "turnaround": 5,
+                "weighted": 2.5
+              }
+            ],
+            "segments": [
+              {
+                "id": "P1",
+                "start": 0,
+                "end": 2
+              },
+              {
+                "id": "P2",
+                "start": 2,
+                "end": 4
+              },
+              {
+                "id": "P3",
+                "start": 4,
+                "end": 5
+              },
+              {
+                "id": "P1",
+                "start": 5,
+                "end": 7
+              },
+              {
+                "id": "P4",
+                "start": 7,
+                "end": 9
+              },
+              {
+                "id": "P2",
+                "start": 9,
+                "end": 10
+              },
+              {
+                "id": "P1",
+                "start": 10,
+                "end": 11
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": -0.01,
+            "avgExact": 0,
+            "weightedExact": -0.005
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "开头与中间有空闲",
+          "algorithm": "fcfs",
+          "quantum": 2,
+          "quantumDisabledInUi": true,
+          "page": {
+            "avg": 2,
+            "weighted": 1
+          },
+          "metricsText": "平均周转时间 2.00　·　平均带权周转时间 1.00",
+          "pageRows": [
+            [
+              "P1",
+              "5",
+              "2",
+              "1.00"
+            ],
+            [
+              "P2",
+              "3",
+              "2",
+              "1.00"
+            ],
+            [
+              "P3",
+              "10",
+              "1",
+              "1.00"
+            ],
+            [
+              "P4",
+              "8",
+              "3",
+              "1.00"
+            ]
+          ],
+          "pageGantt": [
+            "空闲|0–1",
+            "P2|1–3",
+            "P1|3–5",
+            "P4|5–8",
+            "空闲|8–9",
+            "P3|9–10"
+          ],
+          "ref": {
+            "avgTurnaround": 2,
+            "avgWeighted": 1,
+            "avgTurnaroundExact": 2,
+            "avgWeightedExact": 1,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 5,
+                "turnaround": 2,
+                "weighted": 1
+              },
+              {
+                "id": "P2",
+                "finish": 3,
+                "turnaround": 2,
+                "weighted": 1
+              },
+              {
+                "id": "P3",
+                "finish": 10,
+                "turnaround": 1,
+                "weighted": 1
+              },
+              {
+                "id": "P4",
+                "finish": 8,
+                "turnaround": 3,
+                "weighted": 1
+              }
+            ],
+            "segments": [
+              {
+                "id": "空闲",
+                "start": 0,
+                "end": 1
+              },
+              {
+                "id": "P2",
+                "start": 1,
+                "end": 3
+              },
+              {
+                "id": "P1",
+                "start": 3,
+                "end": 5
+              },
+              {
+                "id": "P4",
+                "start": 5,
+                "end": 8
+              },
+              {
+                "id": "空闲",
+                "start": 8,
+                "end": 9
+              },
+              {
+                "id": "P3",
+                "start": 9,
+                "end": 10
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": 0
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "开头与中间有空闲",
+          "algorithm": "spf",
+          "quantum": 2,
+          "quantumDisabledInUi": true,
+          "page": {
+            "avg": 2,
+            "weighted": 1
+          },
+          "metricsText": "平均周转时间 2.00　·　平均带权周转时间 1.00",
+          "pageRows": [
+            [
+              "P1",
+              "5",
+              "2",
+              "1.00"
+            ],
+            [
+              "P2",
+              "3",
+              "2",
+              "1.00"
+            ],
+            [
+              "P3",
+              "10",
+              "1",
+              "1.00"
+            ],
+            [
+              "P4",
+              "8",
+              "3",
+              "1.00"
+            ]
+          ],
+          "pageGantt": [
+            "空闲|0–1",
+            "P2|1–3",
+            "P1|3–5",
+            "P4|5–8",
+            "空闲|8–9",
+            "P3|9–10"
+          ],
+          "ref": {
+            "avgTurnaround": 2,
+            "avgWeighted": 1,
+            "avgTurnaroundExact": 2,
+            "avgWeightedExact": 1,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 5,
+                "turnaround": 2,
+                "weighted": 1
+              },
+              {
+                "id": "P2",
+                "finish": 3,
+                "turnaround": 2,
+                "weighted": 1
+              },
+              {
+                "id": "P3",
+                "finish": 10,
+                "turnaround": 1,
+                "weighted": 1
+              },
+              {
+                "id": "P4",
+                "finish": 8,
+                "turnaround": 3,
+                "weighted": 1
+              }
+            ],
+            "segments": [
+              {
+                "id": "空闲",
+                "start": 0,
+                "end": 1
+              },
+              {
+                "id": "P2",
+                "start": 1,
+                "end": 3
+              },
+              {
+                "id": "P1",
+                "start": 3,
+                "end": 5
+              },
+              {
+                "id": "P4",
+                "start": 5,
+                "end": 8
+              },
+              {
+                "id": "空闲",
+                "start": 8,
+                "end": 9
+              },
+              {
+                "id": "P3",
+                "start": 9,
+                "end": 10
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": 0
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "开头与中间有空闲",
+          "algorithm": "rr",
+          "quantum": 2,
+          "quantumDisabledInUi": false,
+          "page": {
+            "avg": 2,
+            "weighted": 1
+          },
+          "metricsText": "平均周转时间 2.00　·　平均带权周转时间 1.00",
+          "pageRows": [
+            [
+              "P1",
+              "5",
+              "2",
+              "1.00"
+            ],
+            [
+              "P2",
+              "3",
+              "2",
+              "1.00"
+            ],
+            [
+              "P3",
+              "10",
+              "1",
+              "1.00"
+            ],
+            [
+              "P4",
+              "8",
+              "3",
+              "1.00"
+            ]
+          ],
+          "pageGantt": [
+            "空闲|0–1",
+            "P2|1–3",
+            "P1|3–5",
+            "P4|5–7",
+            "P4|7–8",
+            "空闲|8–9",
+            "P3|9–10"
+          ],
+          "ref": {
+            "avgTurnaround": 2,
+            "avgWeighted": 1,
+            "avgTurnaroundExact": 2,
+            "avgWeightedExact": 1,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 5,
+                "turnaround": 2,
+                "weighted": 1
+              },
+              {
+                "id": "P2",
+                "finish": 3,
+                "turnaround": 2,
+                "weighted": 1
+              },
+              {
+                "id": "P3",
+                "finish": 10,
+                "turnaround": 1,
+                "weighted": 1
+              },
+              {
+                "id": "P4",
+                "finish": 8,
+                "turnaround": 3,
+                "weighted": 1
+              }
+            ],
+            "segments": [
+              {
+                "id": "空闲",
+                "start": 0,
+                "end": 1
+              },
+              {
+                "id": "P2",
+                "start": 1,
+                "end": 3
+              },
+              {
+                "id": "P1",
+                "start": 3,
+                "end": 5
+              },
+              {
+                "id": "P4",
+                "start": 5,
+                "end": 7
+              },
+              {
+                "id": "P4",
+                "start": 7,
+                "end": 8
+              },
+              {
+                "id": "空闲",
+                "start": 8,
+                "end": 9
+              },
+              {
+                "id": "P3",
+                "start": 9,
+                "end": 10
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": 0
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "全部同时到达",
+          "algorithm": "fcfs",
+          "quantum": 2,
+          "quantumDisabledInUi": true,
+          "page": {
+            "avg": 7.25,
+            "weighted": 4.25
+          },
+          "metricsText": "平均周转时间 7.25　·　平均带权周转时间 4.25",
+          "pageRows": [
+            [
+              "P1",
+              "4",
+              "4",
+              "1.00"
+            ],
+            [
+              "P2",
+              "6",
+              "6",
+              "3.00"
+            ],
+            [
+              "P3",
+              "9",
+              "9",
+              "3.00"
+            ],
+            [
+              "P4",
+              "10",
+              "10",
+              "10.00"
+            ]
+          ],
+          "pageGantt": [
+            "P1|0–4",
+            "P2|4–6",
+            "P3|6–9",
+            "P4|9–10"
+          ],
+          "ref": {
+            "avgTurnaround": 7.25,
+            "avgWeighted": 4.25,
+            "avgTurnaroundExact": 7.25,
+            "avgWeightedExact": 4.25,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 4,
+                "turnaround": 4,
+                "weighted": 1
+              },
+              {
+                "id": "P2",
+                "finish": 6,
+                "turnaround": 6,
+                "weighted": 3
+              },
+              {
+                "id": "P3",
+                "finish": 9,
+                "turnaround": 9,
+                "weighted": 3
+              },
+              {
+                "id": "P4",
+                "finish": 10,
+                "turnaround": 10,
+                "weighted": 10
+              }
+            ],
+            "segments": [
+              {
+                "id": "P1",
+                "start": 0,
+                "end": 4
+              },
+              {
+                "id": "P2",
+                "start": 4,
+                "end": 6
+              },
+              {
+                "id": "P3",
+                "start": 6,
+                "end": 9
+              },
+              {
+                "id": "P4",
+                "start": 9,
+                "end": 10
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": 0
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "全部同时到达",
+          "algorithm": "spf",
+          "quantum": 2,
+          "quantumDisabledInUi": true,
+          "page": {
+            "avg": 5,
+            "weighted": 1.75
+          },
+          "metricsText": "平均周转时间 5.00　·　平均带权周转时间 1.75",
+          "pageRows": [
+            [
+              "P1",
+              "10",
+              "10",
+              "2.50"
+            ],
+            [
+              "P2",
+              "3",
+              "3",
+              "1.50"
+            ],
+            [
+              "P3",
+              "6",
+              "6",
+              "2.00"
+            ],
+            [
+              "P4",
+              "1",
+              "1",
+              "1.00"
+            ]
+          ],
+          "pageGantt": [
+            "P4|0–1",
+            "P2|1–3",
+            "P3|3–6",
+            "P1|6–10"
+          ],
+          "ref": {
+            "avgTurnaround": 5,
+            "avgWeighted": 1.75,
+            "avgTurnaroundExact": 5,
+            "avgWeightedExact": 1.75,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 10,
+                "turnaround": 10,
+                "weighted": 2.5
+              },
+              {
+                "id": "P2",
+                "finish": 3,
+                "turnaround": 3,
+                "weighted": 1.5
+              },
+              {
+                "id": "P3",
+                "finish": 6,
+                "turnaround": 6,
+                "weighted": 2
+              },
+              {
+                "id": "P4",
+                "finish": 1,
+                "turnaround": 1,
+                "weighted": 1
+              }
+            ],
+            "segments": [
+              {
+                "id": "P4",
+                "start": 0,
+                "end": 1
+              },
+              {
+                "id": "P2",
+                "start": 1,
+                "end": 3
+              },
+              {
+                "id": "P3",
+                "start": 3,
+                "end": 6
+              },
+              {
+                "id": "P1",
+                "start": 6,
+                "end": 10
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": 0
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "全部同时到达",
+          "algorithm": "rr",
+          "quantum": 2,
+          "quantumDisabledInUi": false,
+          "page": {
+            "avg": 7.5,
+            "weighted": 3.65
+          },
+          "metricsText": "平均周转时间 7.50　·　平均带权周转时间 3.65",
+          "pageRows": [
+            [
+              "P1",
+              "9",
+              "9",
+              "2.25"
+            ],
+            [
+              "P2",
+              "4",
+              "4",
+              "2.00"
+            ],
+            [
+              "P3",
+              "10",
+              "10",
+              "3.33"
+            ],
+            [
+              "P4",
+              "7",
+              "7",
+              "7.00"
+            ]
+          ],
+          "pageGantt": [
+            "P1|0–2",
+            "P2|2–4",
+            "P3|4–6",
+            "P4|6–7",
+            "P1|7–9",
+            "P3|9–10"
+          ],
+          "ref": {
+            "avgTurnaround": 7.5,
+            "avgWeighted": 3.65,
+            "avgTurnaroundExact": 7.5,
+            "avgWeightedExact": 3.645833,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 9,
+                "turnaround": 9,
+                "weighted": 2.25
+              },
+              {
+                "id": "P2",
+                "finish": 4,
+                "turnaround": 4,
+                "weighted": 2
+              },
+              {
+                "id": "P3",
+                "finish": 10,
+                "turnaround": 10,
+                "weighted": 3.3333333333333335
+              },
+              {
+                "id": "P4",
+                "finish": 7,
+                "turnaround": 7,
+                "weighted": 7
+              }
+            ],
+            "segments": [
+              {
+                "id": "P1",
+                "start": 0,
+                "end": 2
+              },
+              {
+                "id": "P2",
+                "start": 2,
+                "end": 4
+              },
+              {
+                "id": "P3",
+                "start": 4,
+                "end": 6
+              },
+              {
+                "id": "P4",
+                "start": 6,
+                "end": 7
+              },
+              {
+                "id": "P1",
+                "start": 7,
+                "end": 9
+              },
+              {
+                "id": "P3",
+                "start": 9,
+                "end": 10
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": 0.004167
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "到达乱序+等长",
+          "algorithm": "fcfs",
+          "quantum": 2,
+          "quantumDisabledInUi": true,
+          "page": {
+            "avg": 3.25,
+            "weighted": 1.21
+          },
+          "metricsText": "平均周转时间 3.25　·　平均带权周转时间 1.21",
+          "pageRows": [
+            [
+              "P1",
+              "6",
+              "4",
+              "1.33"
+            ],
+            [
+              "P2",
+              "1",
+              "1",
+              "1.00"
+            ],
+            [
+              "P3",
+              "10",
+              "6",
+              "1.50"
+            ],
+            [
+              "P4",
+              "3",
+              "2",
+              "1.00"
+            ]
+          ],
+          "pageGantt": [
+            "P2|0–1",
+            "P4|1–3",
+            "P1|3–6",
+            "P3|6–10"
+          ],
+          "ref": {
+            "avgTurnaround": 3.25,
+            "avgWeighted": 1.21,
+            "avgTurnaroundExact": 3.25,
+            "avgWeightedExact": 1.208333,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 6,
+                "turnaround": 4,
+                "weighted": 1.3333333333333333
+              },
+              {
+                "id": "P2",
+                "finish": 1,
+                "turnaround": 1,
+                "weighted": 1
+              },
+              {
+                "id": "P3",
+                "finish": 10,
+                "turnaround": 6,
+                "weighted": 1.5
+              },
+              {
+                "id": "P4",
+                "finish": 3,
+                "turnaround": 2,
+                "weighted": 1
+              }
+            ],
+            "segments": [
+              {
+                "id": "P2",
+                "start": 0,
+                "end": 1
+              },
+              {
+                "id": "P4",
+                "start": 1,
+                "end": 3
+              },
+              {
+                "id": "P1",
+                "start": 3,
+                "end": 6
+              },
+              {
+                "id": "P3",
+                "start": 6,
+                "end": 10
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": 0.001667
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "到达乱序+等长",
+          "algorithm": "spf",
+          "quantum": 2,
+          "quantumDisabledInUi": true,
+          "page": {
+            "avg": 3.25,
+            "weighted": 1.21
+          },
+          "metricsText": "平均周转时间 3.25　·　平均带权周转时间 1.21",
+          "pageRows": [
+            [
+              "P1",
+              "6",
+              "4",
+              "1.33"
+            ],
+            [
+              "P2",
+              "1",
+              "1",
+              "1.00"
+            ],
+            [
+              "P3",
+              "10",
+              "6",
+              "1.50"
+            ],
+            [
+              "P4",
+              "3",
+              "2",
+              "1.00"
+            ]
+          ],
+          "pageGantt": [
+            "P2|0–1",
+            "P4|1–3",
+            "P1|3–6",
+            "P3|6–10"
+          ],
+          "ref": {
+            "avgTurnaround": 3.25,
+            "avgWeighted": 1.21,
+            "avgTurnaroundExact": 3.25,
+            "avgWeightedExact": 1.208333,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 6,
+                "turnaround": 4,
+                "weighted": 1.3333333333333333
+              },
+              {
+                "id": "P2",
+                "finish": 1,
+                "turnaround": 1,
+                "weighted": 1
+              },
+              {
+                "id": "P3",
+                "finish": 10,
+                "turnaround": 6,
+                "weighted": 1.5
+              },
+              {
+                "id": "P4",
+                "finish": 3,
+                "turnaround": 2,
+                "weighted": 1
+              }
+            ],
+            "segments": [
+              {
+                "id": "P2",
+                "start": 0,
+                "end": 1
+              },
+              {
+                "id": "P4",
+                "start": 1,
+                "end": 3
+              },
+              {
+                "id": "P1",
+                "start": 3,
+                "end": 6
+              },
+              {
+                "id": "P3",
+                "start": 6,
+                "end": 10
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": 0.001667
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "到达乱序+等长",
+          "algorithm": "rr",
+          "quantum": 2,
+          "quantumDisabledInUi": false,
+          "page": {
+            "avg": 3.75,
+            "weighted": 1.38
+          },
+          "metricsText": "平均周转时间 3.75　·　平均带权周转时间 1.38",
+          "pageRows": [
+            [
+              "P1",
+              "8",
+              "6",
+              "2.00"
+            ],
+            [
+              "P2",
+              "1",
+              "1",
+              "1.00"
+            ],
+            [
+              "P3",
+              "10",
+              "6",
+              "1.50"
+            ],
+            [
+              "P4",
+              "3",
+              "2",
+              "1.00"
+            ]
+          ],
+          "pageGantt": [
+            "P2|0–1",
+            "P4|1–3",
+            "P1|3–5",
+            "P3|5–7",
+            "P1|7–8",
+            "P3|8–10"
+          ],
+          "ref": {
+            "avgTurnaround": 3.75,
+            "avgWeighted": 1.38,
+            "avgTurnaroundExact": 3.75,
+            "avgWeightedExact": 1.375,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 8,
+                "turnaround": 6,
+                "weighted": 2
+              },
+              {
+                "id": "P2",
+                "finish": 1,
+                "turnaround": 1,
+                "weighted": 1
+              },
+              {
+                "id": "P3",
+                "finish": 10,
+                "turnaround": 6,
+                "weighted": 1.5
+              },
+              {
+                "id": "P4",
+                "finish": 3,
+                "turnaround": 2,
+                "weighted": 1
+              }
+            ],
+            "segments": [
+              {
+                "id": "P2",
+                "start": 0,
+                "end": 1
+              },
+              {
+                "id": "P4",
+                "start": 1,
+                "end": 3
+              },
+              {
+                "id": "P1",
+                "start": 3,
+                "end": 5
+              },
+              {
+                "id": "P3",
+                "start": 5,
+                "end": 7
+              },
+              {
+                "id": "P1",
+                "start": 7,
+                "end": 8
+              },
+              {
+                "id": "P3",
+                "start": 8,
+                "end": 10
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": 0.005
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "时间片=1",
+          "algorithm": "fcfs",
+          "quantum": 1,
+          "quantumDisabledInUi": true,
+          "page": {
+            "avg": 6,
+            "weighted": 3.38
+          },
+          "metricsText": "平均周转时间 6.00　·　平均带权周转时间 3.38",
+          "pageRows": [
+            [
+              "P1",
+              "4",
+              "4",
+              "1.00"
+            ],
+            [
+              "P2",
+              "7",
+              "6",
+              "2.00"
+            ],
+            [
+              "P3",
+              "9",
+              "7",
+              "3.50"
+            ],
+            [
+              "P4",
+              "10",
+              "7",
+              "7.00"
+            ]
+          ],
+          "pageGantt": [
+            "P1|0–4",
+            "P2|4–7",
+            "P3|7–9",
+            "P4|9–10"
+          ],
+          "ref": {
+            "avgTurnaround": 6,
+            "avgWeighted": 3.38,
+            "avgTurnaroundExact": 6,
+            "avgWeightedExact": 3.375,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 4,
+                "turnaround": 4,
+                "weighted": 1
+              },
+              {
+                "id": "P2",
+                "finish": 7,
+                "turnaround": 6,
+                "weighted": 2
+              },
+              {
+                "id": "P3",
+                "finish": 9,
+                "turnaround": 7,
+                "weighted": 3.5
+              },
+              {
+                "id": "P4",
+                "finish": 10,
+                "turnaround": 7,
+                "weighted": 7
+              }
+            ],
+            "segments": [
+              {
+                "id": "P1",
+                "start": 0,
+                "end": 4
+              },
+              {
+                "id": "P2",
+                "start": 4,
+                "end": 7
+              },
+              {
+                "id": "P3",
+                "start": 7,
+                "end": 9
+              },
+              {
+                "id": "P4",
+                "start": 9,
+                "end": 10
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": 0.005
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "时间片=1",
+          "algorithm": "spf",
+          "quantum": 1,
+          "quantumDisabledInUi": true,
+          "page": {
+            "avg": 5,
+            "weighted": 2.13
+          },
+          "metricsText": "平均周转时间 5.00　·　平均带权周转时间 2.13",
+          "pageRows": [
+            [
+              "P1",
+              "4",
+              "4",
+              "1.00"
+            ],
+            [
+              "P2",
+              "10",
+              "9",
+              "3.00"
+            ],
+            [
+              "P3",
+              "7",
+              "5",
+              "2.50"
+            ],
+            [
+              "P4",
+              "5",
+              "2",
+              "2.00"
+            ]
+          ],
+          "pageGantt": [
+            "P1|0–4",
+            "P4|4–5",
+            "P3|5–7",
+            "P2|7–10"
+          ],
+          "ref": {
+            "avgTurnaround": 5,
+            "avgWeighted": 2.13,
+            "avgTurnaroundExact": 5,
+            "avgWeightedExact": 2.125,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 4,
+                "turnaround": 4,
+                "weighted": 1
+              },
+              {
+                "id": "P2",
+                "finish": 10,
+                "turnaround": 9,
+                "weighted": 3
+              },
+              {
+                "id": "P3",
+                "finish": 7,
+                "turnaround": 5,
+                "weighted": 2.5
+              },
+              {
+                "id": "P4",
+                "finish": 5,
+                "turnaround": 2,
+                "weighted": 2
+              }
+            ],
+            "segments": [
+              {
+                "id": "P1",
+                "start": 0,
+                "end": 4
+              },
+              {
+                "id": "P4",
+                "start": 4,
+                "end": 5
+              },
+              {
+                "id": "P3",
+                "start": 5,
+                "end": 7
+              },
+              {
+                "id": "P2",
+                "start": 7,
+                "end": 10
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": 0.005
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        },
+        {
+          "dataset": "时间片=1",
+          "algorithm": "rr",
+          "quantum": 1,
+          "quantumDisabledInUi": false,
+          "page": {
+            "avg": 6.75,
+            "weighted": 2.79
+          },
+          "metricsText": "平均周转时间 6.75　·　平均带权周转时间 2.79",
+          "pageRows": [
+            [
+              "P1",
+              "10",
+              "10",
+              "2.50"
+            ],
+            [
+              "P2",
+              "9",
+              "8",
+              "2.67"
+            ],
+            [
+              "P3",
+              "8",
+              "6",
+              "3.00"
+            ],
+            [
+              "P4",
+              "6",
+              "3",
+              "3.00"
+            ]
+          ],
+          "pageGantt": [
+            "P1|0–1",
+            "P2|1–2",
+            "P1|2–3",
+            "P3|3–4",
+            "P2|4–5",
+            "P4|5–6",
+            "P1|6–7",
+            "P3|7–8",
+            "P2|8–9",
+            "P1|9–10"
+          ],
+          "ref": {
+            "avgTurnaround": 6.75,
+            "avgWeighted": 2.79,
+            "avgTurnaroundExact": 6.75,
+            "avgWeightedExact": 2.791667,
+            "rows": [
+              {
+                "id": "P1",
+                "finish": 10,
+                "turnaround": 10,
+                "weighted": 2.5
+              },
+              {
+                "id": "P2",
+                "finish": 9,
+                "turnaround": 8,
+                "weighted": 2.6666666666666665
+              },
+              {
+                "id": "P3",
+                "finish": 8,
+                "turnaround": 6,
+                "weighted": 3
+              },
+              {
+                "id": "P4",
+                "finish": 6,
+                "turnaround": 3,
+                "weighted": 3
+              }
+            ],
+            "segments": [
+              {
+                "id": "P1",
+                "start": 0,
+                "end": 1
+              },
+              {
+                "id": "P2",
+                "start": 1,
+                "end": 2
+              },
+              {
+                "id": "P1",
+                "start": 2,
+                "end": 3
+              },
+              {
+                "id": "P3",
+                "start": 3,
+                "end": 4
+              },
+              {
+                "id": "P2",
+                "start": 4,
+                "end": 5
+              },
+              {
+                "id": "P4",
+                "start": 5,
+                "end": 6
+              },
+              {
+                "id": "P1",
+                "start": 6,
+                "end": 7
+              },
+              {
+                "id": "P3",
+                "start": 7,
+                "end": 8
+              },
+              {
+                "id": "P2",
+                "start": 8,
+                "end": 9
+              },
+              {
+                "id": "P1",
+                "start": 9,
+                "end": 10
+              }
+            ]
+          },
+          "diff": {
+            "avg": 0,
+            "weighted": 0,
+            "avgExact": 0,
+            "weightedExact": -0.001667
+          },
+          "rowsMatch": true,
+          "ganttMatch": true,
+          "ganttVsTableConsistent": false
+        }
+      ],
+      "afterReset": {
+        "metrics": "平均周转时间 6.50　·　平均带权周转时间 3.46",
+        "table": [
+          [
+            "进程",
+            "完成时刻",
+            "周转时间",
+            "带权周转时间"
+          ],
+          [
+            "P1",
+            "5",
+            "5",
+            "1.00"
+          ],
+          [
+            "P2",
+            "8",
+            "7",
+            "2.33"
+          ],
+          [
+            "P3",
+            "9",
+            "7",
+            "7.00"
+          ],
+          [
+            "P4",
+            "11",
+            "7",
+            "3.50"
+          ]
+        ],
+        "gantt": [
+          {
+            "text": "P1|0–5",
+            "title": "P1：0 至 5"
+          },
+          {
+            "text": "P2|5–8",
+            "title": "P2：5 至 8"
+          },
+          {
+            "text": "P3|8–9",
+            "title": "P3：8 至 9"
+          },
+          {
+            "text": "P4|9–11",
+            "title": "P4：9 至 11"
+          }
+        ],
+        "quantumDisabled": true,
+        "resultsText": "执行时间轴P1\n0–5P2\n5–8P3\n8–9P4\n9–11平均周转时间 6.50　·　平均带权周转时间 3.46进程完"
+      },
+      "invalid": {
+        "invalid0": {
+          "message": "Value must be greater than or equal to 1.",
+          "valid": false
+        },
+        "invalid101": {
+          "message": "Value must be less than or equal to 100.",
+          "valid": false
+        },
+        "emptyBurst": {
+          "message": "Please fill out this field.",
+          "valid": false
+        }
+      },
+      "jsValidation": "到达时刻应为 0～100、服务时间应为 1～100 的整数",
+      "quantumDisabled": true,
+      "rrScreenshot": {
+        "metrics": "平均周转时间 7.00　·　平均带权周转时间 2.67",
+        "table": [
+          [
+            "进程",
+            "完成时刻",
+            "周转时间",
+            "带权周转时间"
+          ],
+          [
+            "P1",
+            "11",
+            "11",
+            "2.20"
+          ],
+          [
+            "P2",
+            "10",
+            "9",
+            "3.00"
+          ],
+          [
+            "P3",
+            "5",
+            "3",
+            "3.00"
+          ],
+          [
+            "P4",
+            "9",
+            "5",
+            "2.50"
+          ]
+        ],
+        "gantt": [
+          {
+            "text": "P1|0–2",
+            "title": "P1：0 至 2"
+          },
+          {
+            "text": "P2|2–4",
+            "title": "P2：2 至 4"
+          },
+          {
+            "text": "P3|4–5",
+            "title": "P3：4 至 5"
+          },
+          {
+            "text": "P1|5–7",
+            "title": "P1：5 至 7"
+          },
+          {
+            "text": "P4|7–9",
+            "title": "P4：7 至 9"
+          },
+          {
+            "text": "P2|9–10",
+            "title": "P2：9 至 10"
+          },
+          {
+            "text": "P1|10–11",
+            "title": "P1：10 至 11"
+          }
+        ],
+        "quantumDisabled": false,
+        "resultsText": "执行时间轴P1\n0–2P2\n2–4P3\n4–5P1\n5–7P4\n7–9P2\n9–10P1\n10–11平均周转时间 7.0"
+      },
+      "quantumDisabledInFcfs": true
+    },
+    "history": {
+      "u1": "http://127.0.0.1:8123/chapters/chapter-1/",
+      "nextUrl": "http://127.0.0.1:8123/chapters/chapter-3/",
+      "back": {
+        "url": "http://127.0.0.1:8123/chapters/chapter-2/",
+        "y": 2000
+      },
+      "fwd": {
+        "url": "http://127.0.0.1:8123/chapters/chapter-3/",
+        "y": 0
+      },
+      "palette": {
+        "before": 1500,
+        "after": 1500,
+        "scheme": "slate"
+      },
+      "scrollRestored": true
+    },
+    "diagnostics": {
+      "pageDiagnostics": [
+        {
+          "console": [],
+          "pageerror": [],
+          "requestfailed": [],
+          "http4xx": []
+        }
+      ],
+      "local404": {
+        "status": 404,
+        "title": "Error response",
+        "h1": "Error response",
+        "bodyText": "Error response Error code: 404 Message: File not found. Error code explanation: 404 - Nothing matches the given URI.",
+        "homeLinks": []
+      },
+      "live404": {
+        "status": 404,
+        "title": "课程笔记",
+        "h1": "404 - Not found",
+        "bodyText": "404 - Not found",
+        "contentLinks": [],
+        "navHomeHref": "/."
+      },
+      "liveSearch": {
+        "FCFS": {
+          "meta": "没有找到符合条件的结果",
+          "count": 0
+        },
+        "内存管理": {
+          "meta": "5 个符合条件的结果",
+          "count": 5
+        }
+      }
+    },
+    "mobile": {
+      "inline": {
+        "imgW": 301,
+        "imgH": 110,
+        "btnW": 343,
+        "natural": [
+          900,
+          330
+        ]
+      },
+      "dialog": {
+        "open": true,
+        "imgW": 311,
+        "imgH": 114,
+        "dialogW": 353,
+        "dialogH": 275,
+        "closeBtn": {
+          "w": 105,
+          "h": 50,
+          "inViewport": true
+        },
+        "caption": "图2-1 进程状态转换图"
+      },
+      "closed": true,
+      "ratio": 1.033,
+      "font20": {
+        "body": "20px",
+        "overflow": false,
+        "tableCell": "12.8px"
+      },
+      "toolbar": {
+        "select": {
+          "w": 77,
+          "h": 44
+        },
+        "checkbox": {
+          "w": 22,
+          "h": 22
+        },
+        "label": 44,
+        "overflow": false
+      },
+      "persistMobile": {
+        "checked": true,
+        "ls": "[\"2\"]"
+      },
+      "labMobile": {
+        "metrics": "平均周转时间 6.50　·　平均带权周转时间 3.46",
+        "tableOverflow": {
+          "client": 402,
+          "scroll": 400
+        },
+        "ganttScroll": {
+          "client": 311,
+          "scroll": 329
+        },
+        "docOverflow": false
+      },
+      "searchMobile": {
+        "meta": "5 个符合条件的结果",
+        "count": 5,
+        "panelH": 619
+      }
+    }
+  },
+  "verified": [
+    {
+      "item": "搜索索引与中文检索",
+      "detail": "search_index.json HTTP 200，237 文档；进程调度 8、内存管理 5、死锁 1、先来先服务 2、CPI 3 条，结果标题与正文均高亮；空查询提示「没有找到符合条件的结果」，0 条。",
+      "evidence": [
+        "artifacts/functional/fn-09b-search-panel.png"
+      ]
+    },
+    {
+      "item": "搜索跳转落点",
+      "detail": "带锚点结果 #8-41 落地后目标标题 top=68px > 固定页头底 49px，未被遮挡；正文高亮 43 处。",
+      "evidence": []
+    },
+    {
+      "item": "搜索键盘操作",
+      "detail": "?q= 打开面板后 ArrowDown×2 聚焦结果链接（focus 命中 1 个），Enter 跳转到 http://127.0.0.1:8123/chapters/chapter-3/?h=%E6%AD%BB%E9%94%81#8-41",
+      "evidence": []
+    },
+    {
+      "item": "复习进度持久化",
+      "detail": "勾选后 localStorage 键 os-notes:completed:v1 = [\"2\"]；刷新后 checked=true；第二章与第一章、组成原理第一章互不影响；清空后首页回落 [\"0\",\"0\"]。",
+      "evidence": []
+    },
+    {
+      "item": "字号记忆与跨页",
+      "detail": "选 20 后刷新仍为 20，正文 20px；换到第五章仍 20（正文 20px）；iPhone SE 选 20 后正文 20px、无横向溢出（false）。",
+      "evidence": [
+        "artifacts/functional/fn-04b-mobile-font20.png"
+      ]
+    },
+    {
+      "item": "插图 dialog 三种关闭方式与不串图",
+      "detail": "OS 第一章 8 张插图均包成按钮且 alt 完整（8/8）；点按钮关闭 open=false，Esc 关闭 open=false 且焦点回按钮（figure-zoom focus-visible），点背景关闭 open=false；连点两图预览源不同（true）。warm() 后正文图 0 张 404。",
+      "evidence": [
+        "artifacts/functional/fn-05b-dialog-desktop.png"
+      ]
+    },
+    {
+      "item": "OS 习题折叠完整性",
+      "detail": "六章 75 个 details = 源笔记 75 道题，默认展开数 0，空答案 0，摘要统一「答案与解析」；单项选择题解析出 4 个选项（3/4/3/5/3/3 题）。",
+      "evidence": [
+        "artifacts/functional/fn-01-os-exercise.png"
+      ]
+    },
+    {
+      "item": "交叉链接可用性",
+      "detail": "250 个内部链接（含 ¶ 锚点）全部 HTTP 200，锚点目标全部存在（坏链 0 个）。",
+      "evidence": []
+    },
+    {
+      "item": "TOC 锚点精度",
+      "detail": "三页 TOC 共 55 个锚点，缺失 0 个；hash 导航实测 9 次全部 top=68px > 页头底 49px，遮挡 0 次（scroll-margin-top=68px）。",
+      "evidence": []
+    },
+    {
+      "item": "页脚上下页",
+      "detail": "第一章→…→第六章→组成原理第一章→…→第六章→进程调度实验，上下页链接与文案正确（抽查 6 页全部 200）。",
+      "evidence": []
+    },
+    {
+      "item": "调度实验三算法正确性",
+      "detail": "5 组数据 × 3 算法共 15 次复算：平均周转时间/逐进程完成与周转值/gantt 片段全部一致（0 处不一致），仅 RR 默认示例平均带权 2.67 vs 2.675 的四舍五入问题（FUN-08）。时间片在 FCFS/SPF 下 disabled=true，「恢复示例」后回到 6.50/3.46。",
+      "evidence": [
+        "artifacts/functional/fn-08-lab-rr.png"
+      ]
+    },
+    {
+      "item": "历史记录与主题切换",
+      "detail": "前进后退 URL 正确：首页→第一章，第二章→页脚下一页→第三章；后退回到 http://127.0.0.1:8123/chapters/chapter-2/、前进回到 http://127.0.0.1:8123/chapters/chapter-3/；返回后 scrollY 2000 恢复（true）；深浅色切换 scrollY 1500→1500（scheme=slate）。",
+      "evidence": [
+        "artifacts/functional/fn-12-dark.png"
+      ]
+    },
+    {
+      "item": "JS 异常与资源 4xx",
+      "detail": "首页/实验页/12 章共 14 页 diagnostics：console error 0、pageerror 0、requestfailed 0、HTTP 4xx 0。",
+      "evidence": []
+    },
+    {
+      "item": "iPhone SE 关键交互",
+      "detail": "工具条字号 select 77×44、label 高 44，勾选后刷新保留（true）；实验页表格 402/400、甘特图 311/329，无整页横向溢出（false）；移动端搜索「内存管理」5 条。",
+      "evidence": [
+        "artifacts/functional/fn-08b-lab-mobile.png"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "FUN-01",
+      "title": "计算机组成原理六章「教材本章习题」答案完全没折叠：0 个 <details>，答案以表格列直接可见（操作系统概论六章 75 个）",
+      "severity": "P1",
+      "scope": "content",
+      "category": "content",
+      "device": "desktop-1280",
+      "url": "http://127.0.0.1:8123/computer-organization/chapter-1/",
+      "steps": [
+        "打开 /computer-organization/chapter-1/",
+        "滚动到「7 教材本章习题」",
+        "对照 /chapters/chapter-2/ 的同名小节"
+      ],
+      "expected": "README 承诺「教材习题的答案默认折起来」；两门课共十二章都应默认折叠，点「答案与解析」才展开。",
+      "actual": "操作系统概论六章共 75 个 <details>（13/16/13/15/9/9），全部默认收起；计算机组成原理六章共 0 个 <details>，本应折叠的 33 行答案（6 个表格的第二列）直接铺在页面上。",
+      "measurements": {
+        "osDetails": 75,
+        "coDetails": 0,
+        "coAnswerRows": 33,
+        "coChapters": 6,
+        "osItems": 75,
+        "coVisibleAnswerTables": 6
+      },
+      "evidence": [
+        "artifacts/functional/fn-01-co-exercise.png",
+        "artifacts/functional/fn-01-os-exercise.png"
+      ],
+      "source": "站点/hooks.py:28-34 format_exercises 只识别 `^## .*教材.*习题` 节里的 `**N.` / `**题目：` 题号（hooks.py:32 正则），组成原理的题目是 markdown 表格，0 次匹配；hooks.py:73 对组成原理也只调用同一个 format_exercises，没有表格→details 的转换分支。",
+      "fix": "给 hooks.py 增加表格形态习题的处理：把 `## N 教材本章习题` 节内表格的每一数据行转成 <section class=\"exercise-item\"> + <details class=\"exercise-answer\"><summary>答案与解析</summary>，答案列放 details 内；或在 README/首页明确写「计算机组成原理的习题表答案不折叠」。"
+    },
+    {
+      "id": "FUN-02",
+      "title": "第三章综合应用题（银行家算法）的资源状态表没有渲染：整张 5 行表格变成一段带竖线的纯文本",
+      "severity": "P2",
+      "scope": "site",
+      "category": "content",
+      "device": "desktop-1280",
+      "url": "http://127.0.0.1:8123/chapters/chapter-3/",
+      "steps": [
+        "打开 /chapters/chapter-3/",
+        "滚动到「12 教材本章习题 → 综合应用题」最后一道（题目：考虑系统某一时刻的状态…）"
+      ],
+      "expected": "「进程 / Allocation / Max / Available」应渲染成 5 行表格，和答案里的 Need 表一样可读。",
+      "actual": "题目段落里出现原始竖线文本：题目： 考虑系统某一时刻的状态，资源列顺序为 A、B、C、D。 ⏎ | 进程 | Allocation | Max | Available | ⏎ |---|---|---|---| ⏎ | p0 | (0,0,1,2) | (0,0,1,2) | (；页面内 <table> 0 个、纯文本段落 1 个（约 262 字）。",
+      "measurements": {
+        "rawPipeParagraphs": 1,
+        "chars": 262,
+        "tablesInThisItem": 0
+      },
+      "evidence": [
+        "artifacts/functional/fn-02-ch3-broken-table.png"
+      ],
+      "source": "站点/hooks.py:22-25 exercise()：`result = <section markdown=\"1\">\\n\\n + question + \"\\n\" + prompt.strip()`，题目行与紧随其后的表格之间只有一个换行；md_in_html 要求块级元素前后有空行，表格因此没被解析。答案里的表格因为 hooks.py:24 用了 `\\n\\n<details…>\\n<summary…>\\n\\n` 才正常。",
+      "fix": "把 hooks.py:22 的拼接改成 `question + \"\\n\\n\" + prompt.strip()`（或在 prompt 里补 `\\n\\n`），并给 <section markdown=\"1\"> 内的表格前后保证空行。"
+    },
+    {
+      "id": "FUN-03",
+      "title": "十二章正文里内部链接数为 0，「正文之间可以互相跳转」没有落地（只有侧栏/页脚能走）",
+      "severity": "P2",
+      "scope": "content",
+      "category": "navigation",
+      "device": "desktop-1280",
+      "url": "http://127.0.0.1:8123/chapters/chapter-1/",
+      "steps": [
+        "打开任意章节页",
+        "检查正文（.md-content 内、非标题锚点）里的链接",
+        "对照 README「正文之间可以互相跳转」"
+      ],
+      "expected": "章节正文中的「见第三章 2.2」「第 4 节」等交叉引用应是可点击链接，能直接跳到对应章节/锚点。",
+      "actual": "12 个章节页正文内非永久链接（排除 ¶ headerlink）合计 0 个，有链接的章节页 0/12；首页有 15 个链接（课程卡片+章节列表）、实验页 0 个。正文交叉引用全部是纯文本，例如「具体说明见本章第 4 节」。",
+      "measurements": {
+        "contentLinksInChapters": 0,
+        "chapterPages": 12,
+        "pagesWithLinks": 0,
+        "homeLinks": 15,
+        "brokenLinks": 0,
+        "uniqueInternalLinks": 250
+      },
+      "evidence": [
+        "artifacts/functional/fn-03-chapter-no-inbody-links.png"
+      ],
+      "source": "内容侧：课程/操作系统概论/第N章_笔记.md 与 课程/计算机组成原理/第N章_笔记.md 正文中没有 markdown 链接（`见第三章 2.2` 等为纯文本）；构建侧无自动交叉引用能力（hooks.py 也没有链接重写）。",
+      "fix": "在源笔记里把「见第 X 章 / 第 N 节」改成 `[第 X 章](../chapter-X.md#锚点)` 形式（MkDocs 会自动转目录 URL 并校验），或在 hooks.py 里做一次关键词→链接替换；README 若不想承诺，可改为「侧栏与页脚导航」。"
+    },
+    {
+      "id": "FUN-04",
+      "title": "字号 16/18/20 只缩放正文、列表和代码；表格固定 12.8px、标题固定 31/24px、折叠摘要与工具条固定 17.5px",
+      "severity": "P2",
+      "scope": "site",
+      "category": "typography",
+      "device": "desktop-1280 / iPhone SE",
+      "url": "http://127.0.0.1:8123/chapters/chapter-2/",
+      "steps": [
+        "打开章节页",
+        "把工具条「字号」依次设为 标准/较大/大号",
+        "量 .md-content__inner > p 与 td/th/h2/h3/details summary/.study-toolbar 的 computed font-size"
+      ],
+      "expected": "字号选项应让整页正文（含表格、折叠答案、标题层级）按 16/18/20px 缩放，或至少保持相对比例不变。",
+      "actual": "正文段落 16px / 18px / 20px 随选项变化；但表格单元格始终 12.8px，h2 始终 31px、h3 始终 24px，工具条始终 17.5px；折叠答案摘要按 0.875 系数走（14px / 15.75px / 17.5px），比正文小一档。选「大号」后正文 20px，表格仍是 12.8px（0.64×），折叠答案摘要 17.5px 比正文小 2.5px。",
+      "measurements": {
+        "body": [
+          "16px",
+          "18px",
+          "20px"
+        ],
+        "listItem": [
+          "16px",
+          "18px",
+          "20px"
+        ],
+        "code": [
+          "14.4px",
+          "16.2px",
+          "18px"
+        ],
+        "tableCell": [
+          "12.8px",
+          "12.8px",
+          "12.8px"
+        ],
+        "h2": [
+          "31px",
+          "31px",
+          "31px"
+        ],
+        "h3": [
+          "24px",
+          "24px",
+          "24px"
+        ],
+        "exerciseSummary": [
+          "14px",
+          "15.75px",
+          "17.5px"
+        ],
+        "toolbar": [
+          "17.5px",
+          "17.5px",
+          "17.5px"
+        ],
+        "tableToBodyRatio": [
+          0.8,
+          0.711,
+          0.64
+        ]
+      },
+      "evidence": [
+        "artifacts/functional/fn-04-font-16.png",
+        "artifacts/functional/fn-04-font-20.png"
+      ],
+      "source": "站点/docs/assets/notes.css:51 与 151 只把 `--note-font-size` 赋给正文容器；标题在 notes.css:122-124 被显式改回 rem（`h2{font-size:1.55rem}` / `h3{font-size:1.2rem}`，覆盖了 53-54 行的 1.45em/1.15em），root=20px → 31/24px 固定；表格字号来自 Material 的 `.md-typeset table:not([class]){font-size:.64rem}`（12.8px，notes.css:55 的 .9em 因选择器优先级更低没生效）；工具条 notes.css:61 `.875rem`（17.5px 固定）；折叠摘要 notes.css:134/163 `.875em`（永远比正文小 0.125）；interactions.js:131-139 只写 `--note-font-size`。",
+      "fix": "把标题的 rem 改回相对正文的 em（或让 `--note-font-size` 驱动一个 `--note-scale` 变量同时作用于 h2/h3/表格），表格用 `.md-typeset.chapter-prose table{font-size:.9em}` 并提高优先级（如 `.md-typeset.chapter-prose table:not([class])`），工具条与折叠摘要改用 em；这样 16/18/20 三档才能整体等比缩放。"
+    },
+    {
+      "id": "FUN-05",
+      "title": "iPhone SE（375px）上点击插图「放大」几乎不放大：正文内图 301px → dialog 内 311px（1.03×）",
+      "severity": "P2",
+      "scope": "site",
+      "category": "interaction",
+      "device": "iPhone SE 375x667",
+      "url": "http://127.0.0.1:8123/chapters/chapter-2/",
+      "steps": [
+        "iPhone SE 打开第四章以外的带插图章节",
+        "量正文内 .figure-zoom img 宽度",
+        "点开 dialog，量 dialog 内 img 宽度"
+      ],
+      "expected": "「点击放大」在手机上应明显大于正文内插图（桌面 706px → 1161px 为 1.64×），至少铺满屏宽或按高度放大。",
+      "actual": "inline img 301px（高 110px）→ dialog img 311px（高 114px），只有 1.033×；dialog 宽 353px、高 275px，图片 max-height 远未用满。桌面同一张图 706→1161（1.64×）正常。",
+      "measurements": {
+        "inlineW": 301,
+        "dialogW": 311,
+        "ratio": 1.033,
+        "desktop": 1161,
+        "closeBtn": {
+          "w": 105,
+          "h": 50,
+          "inViewport": true
+        }
+      },
+      "evidence": [
+        "artifacts/functional/fn-05-mobile-dialog.png",
+        "artifacts/functional/fn-05b-dialog-desktop.png"
+      ],
+      "source": "站点/docs/assets/notes.css:77-79 `.image-dialog{width:min(94vw,1400px);padding:1rem}` + `.image-dialog img{width:100%;max-height:76dvh}`：375px 屏上 dialog 内容宽 353−40=311px，和正文列宽 301px 基本相同，height 又被 SVG 的固有比例锁住，所以没有放大幅度。",
+      "fix": "移动端让 dialog 宽度用 100vw/去掉内边距，或让 img 按 `max-height:76dvh; width:auto` 由高度驱动放大；也可加 `transform:scale()` 或允许双指缩放（`touch-action: pinch-zoom`）。"
+    },
+    {
+      "id": "FUN-06",
+      "title": "搜索对以 s 结尾的缩写做词干化：FCFS / CFS / HTTP(S) 命中 0 条，而 FCF 能搜到 3 条",
+      "severity": "P2",
+      "scope": "upstream",
+      "category": "interaction",
+      "device": "desktop-1280 / 线上",
+      "url": "http://127.0.0.1:8123/?q=FCFS",
+      "steps": [
+        "在搜索框输入 FCFS 并回车（或直接访问 /?q=FCFS）",
+        "再试 FCF / FIFO / CPU",
+        "线上同样试一次"
+      ],
+      "expected": "搜索「FCFS」应命中有 FCFS 字样的页面（实验页与第三章）。",
+      "actual": "FCFS → 「没有找到符合条件的结果」0 条；CFS → 0 条；FCF → 3 条；FIFO → 3、LRU → 2、DMA → 3、CPU → 10、RR → 1 正常；HTTP/HTTPS → 0。本地与线上一致（线上 FCFS 0 条、内存管理 5 条）。",
+      "measurements": {
+        "local": {
+          "进程调度": 8,
+          "内存管理": 5,
+          "死锁": 1,
+          "先来先服务": 2,
+          "FCFS": 0,
+          "CFS": 0,
+          "FCF": 3,
+          "FIFO": 3,
+          "CPI": 3,
+          "zjq没有这个词": 0
+        },
+        "live": {
+          "FCFS": {
+            "meta": "没有找到符合条件的结果",
+            "count": 0
+          },
+          "内存管理": {
+            "meta": "5 个符合条件的结果",
+            "count": 5
+          }
+        },
+        "leadMatrix": "qa/artifacts/lead/search-acronyms.json"
+      },
+      "evidence": [
+        "artifacts/functional/fn-06-search-fcfs.png"
+      ],
+      "source": "Material 9.7.7 内置 lunr 的 Porter 词干化在查询侧把 `fcfs` 词干化成 `fcf`（索引侧未这样切），属于上游搜索库行为；本站 search 配置见 站点/mkdocs.yml:48-50（`search: lang [zh, en]`，未配同义词/自定义分词）。",
+      "fix": "给搜索加别名兜底：在 mkdocs.yml 的 search 配置里加 `separator`/自定义 `stemmer` 不现实，可用 `search` 插件 + 在实验页与第三章正文里补「FCFS（先来先服务）」多写法（现有正文已有「FCFS · 先来先服务」，但搜索仍按词干匹配失败），或在导航层加「实验」直达入口；至少已知问题记录在 README。"
+    },
+    {
+      "id": "FUN-07",
+      "title": "首页复习进度只显示「已复习 N / 6 章」，不显示复习到第几章；模板里没有 data-progress-chapter / data-next-chapter 元素，对应代码是死代码",
+      "severity": "P2",
+      "scope": "content",
+      "category": "content",
+      "device": "desktop-1280 / iPhone SE",
+      "url": "http://127.0.0.1:8123/",
+      "steps": [
+        "勾选第二章与组成原理第一章",
+        "回首页看「复习进度」区",
+        "检查 DOM 里 [data-progress-chapter]/[data-next-chapter]"
+      ],
+      "expected": "README：「首页会显示两门课各自复习到第几章」——应能看出复习到哪一章（或哪几章已完成），最好有「继续复习」入口。",
+      "actual": "首页只有「操作系统概论已复习 1 / 6 章」「计算机组成原理已复习 1 / 6 章」与两条进度条；[data-progress-chapter] 徽标 0 个、[data-next-chapter] 0 个——interactions.js:161-180 的「已复习/待复习」徽标与「继续复习 · 第 N 章」永远不会执行。勾选第二章 + 组成原理第一章后首页只显示 1/6 与 1/6，看不出勾的是哪一章。",
+      "measurements": {
+        "counts": [
+          {
+            "k": "os",
+            "v": "1"
+          },
+          {
+            "k": "co",
+            "v": "1"
+          }
+        ],
+        "bars": [
+          {
+            "k": "os",
+            "v": 1,
+            "max": 6
+          },
+          {
+            "k": "co",
+            "v": 1,
+            "max": 6
+          }
+        ],
+        "badges": 0,
+        "nextChapterEl": false,
+        "deadCodeLines": "站点/docs/assets/interactions.js:161-180"
+      },
+      "evidence": [
+        "artifacts/functional/fn-07-home-progress.png"
+      ],
+      "source": "站点/docs/index.md:40-50 只有计数 span 与 <progress>，没有 `data-progress-chapter` 徽标和 `data-next-chapter` 按钮；站点/docs/assets/interactions.js:161-180 依赖这两个选择器。",
+      "fix": "二选一：① 在 index.md 的六章列表项上加 `data-progress-chapter=\"1\"…`（并补 `data-next-chapter` 按钮），让已有 JS 生效；② 若不做，删掉 interactions.js:161-180 的死代码并把 README 改成「显示已复习章数」。"
+    },
+    {
+      "id": "FUN-08",
+      "title": "RR 默认示例的平均带权周转时间显示 2.67，独立复算为 2.675（四舍五入应为 2.68）——toFixed 的二进制截断",
+      "severity": "P3",
+      "scope": "site",
+      "category": "content",
+      "device": "desktop-1280",
+      "url": "http://127.0.0.1:8123/lab/scheduling/",
+      "steps": [
+        "打开实验页，算法选 RR、时间片 2，点「运行」",
+        "读「平均带权周转时间」",
+        "用 (11/5+9/3+3/1+5/2)/4 复算"
+      ],
+      "expected": "平均带权周转时间 = (2.2+3+3+2.5)/4 = 2.675，保留两位小数应为 2.68。",
+      "actual": "默认示例 RR（q=2）页面输出「平均周转时间 7.00　·　平均带权周转时间 2.67」，即平均带权 2.67；独立复算 (2.2+3+3+2.5)/4 = 2.675，两位小数应为 2.68。逐进程带权 2.20/3.00/3.00/2.50 与平均周转时间 7 均与复算一致；15 组对比中只有这 1 处不一致，其余 14 组的均值、逐进程值与 gantt 片段全部一致。",
+      "measurements": {
+        "page": {
+          "avg": 7,
+          "weighted": 2.67
+        },
+        "refRounded": 2.68,
+        "refExact": 2.675,
+        "diffRounded": -0.01,
+        "diffExact": -0.005,
+        "comparisons": 15,
+        "rowMismatches": 0,
+        "mismatchedRuns": [
+          "默认示例/rr"
+        ]
+      },
+      "evidence": [
+        "artifacts/functional/fn-08-lab-rr.png"
+      ],
+      "source": "站点/docs/assets/interactions.js:37 `weightedAverage: ... / jobs.length` 与 interactions.js:77 `result.weightedAverage.toFixed(2)`；10.7/4 在 IEEE-754 下是 2.674999…，toFixed 得 2.67。",
+      "fix": "改为十进制四舍五入（如 `Math.round(x * 100 + Number.EPSILON * 100) / 100`，或先加 1e-9 再 toFixed），或保留 3 位小数。"
+    },
+    {
+      "id": "FUN-09",
+      "title": "搜索结果的高亮参数被截断/为空：查「进程调度」只高亮「进程」，查「死锁」的页面级结果落地后 0 处高亮",
+      "severity": "P3",
+      "scope": "upstream",
+      "category": "interaction",
+      "device": "desktop-1280",
+      "url": "http://127.0.0.1:8123/?q=死锁",
+      "steps": [
+        "搜索「进程调度」，看结果链接的 ?h= 参数",
+        "点第一条页面级结果，数正文 <mark>",
+        "搜索「死锁」，点第一条（无 #）结果，数 <mark>"
+      ],
+      "expected": "搜索跳转后应高亮完整查询词，至少高亮命中的词。",
+      "actual": "「进程调度」结果链接是 ?h=进程（只有前两字），落地后正文高亮 5 处「进程」，没有「调度」；「死锁」的页面级结果链接是 ?h=（空），落地 0 处高亮；带锚点的结果（#8-41）落点正确且高亮 43 处。",
+      "measurements": {
+        "query": "进程调度",
+        "hParam": "进程",
+        "pageLevelMarks": 0,
+        "anchorLanding": {
+          "url": "http://127.0.0.1:8123/chapters/chapter-3/?h=%E6%AD%BB%E9%94%81#8-41",
+          "hash": "#8-41",
+          "targetFound": true,
+          "targetTop": 68,
+          "headerBottom": 49,
+          "covered": false,
+          "marksInContent": 43,
+          "firstMark": "死锁"
+        },
+        "keyboardAfterEnter": "http://127.0.0.1:8123/chapters/chapter-3/?h=%E6%AD%BB%E9%94%81#8-41"
+      },
+      "evidence": [
+        "artifacts/functional/fn-09-search-highlight-anchor.png",
+        "artifacts/functional/fn-09b-search-panel.png"
+      ],
+      "source": "Material 搜索组件的 `?h=` 高亮参数（站点未自定义）；查询词经 lunr zh 分词后只把首个 token 写进 h，页面级结果有时为空。",
+      "fix": "无法从站点侧改 Material 内部行为；可在 mkdocs.yml 关掉 `search.highlight`（避免半截高亮误导），或升级 Material 观察上游是否修复。"
+    },
+    {
+      "id": "FUN-10",
+      "title": "404 页正文只有一行英文「404 - Not found」：无中文说明、无返回首页入口；本地静态服务不返回站点 404 页",
+      "severity": "P3",
+      "scope": "upstream",
+      "category": "navigation",
+      "device": "desktop-1280",
+      "url": "https://studynote.chosenecho.dpdns.org/no-such-page-xyz/",
+      "steps": [
+        "直接访问不存在的路径（线上）",
+        "看状态码与正文内容/链接",
+        "本地同样访问（python http.server）"
+      ],
+      "expected": "404 应返回 404 状态码，并给出中文说明和「返回学习首页 / 搜索」入口。",
+      "actual": "线上：HTTP 404，标题「课程笔记」，h1「404 - Not found」，正文只有「404 - Not found」，正文链接 0 个（只有左侧导航可回首页，移动端要开抽屉）。本地：HTTP 404，正文「Error response Error code: 404 Message: File not found. Erro…」（python http.server 自带英文错误页），完全不是站点 404.html。",
+      "measurements": {
+        "liveStatus": 404,
+        "liveH1": "404 - Not found",
+        "liveContentLinks": 0,
+        "localStatus": 404,
+        "localH1": "Error response"
+      },
+      "evidence": [
+        "artifacts/functional/fn-10-404-live.png",
+        "artifacts/functional/fn-10-404-local.png"
+      ],
+      "source": "Material 默认 404 模板只输出 `<h1>404 - Not found</h1>`（站点未提供 404.md 覆盖）；本地评估环境用 `python -m http.server` 服务站点/dist，它对未命中路径返回自己的错误页，不会读 404.html（线上 Cloudflare Pages 会）；钩子/工作流均未生成 404 内容页。",
+      "fix": "新增 站点/docs/404.md（中文说明 + 返回首页 + 搜索入口），构建后即覆盖 Material 默认模板；本地评估若要复现线上行为，需用能回退 404.html 的静态服务器（如 `npx serve` / mkdocs serve）。"
+    },
+    {
+      "id": "FUN-11",
+      "title": "「教材本章习题」标题下挂的是「自测题（自编）」表格，导语却写「答案依据教材附录」——口径自相矛盾",
+      "severity": "P3",
+      "scope": "content",
+      "category": "content",
+      "device": "desktop-1280",
+      "url": "http://127.0.0.1:8123/computer-organization/chapter-1/",
+      "steps": [
+        "打开组成原理任意一章，滚动到「N 教材本章习题」",
+        "读导语与表头"
+      ],
+      "expected": "标题、导语、表头一致：要么是教材原题（答案依据教材附录），要么是自编自测题。",
+      "actual": "六章全部是「## N 教材本章习题」+ 导语「本节按“单项选择题／填空题／简答题”分节，答案依据教材附录。」，但表格表头是「自测题（自编） / 参考答案与辨析」；组成原理六章根本没有单选/填空/简答分节（subsections 0 个），导语与内容不符。",
+      "measurements": {
+        "chapters": 6,
+        "headings": [
+          "7 教材本章习题¶",
+          "12 教材本章习题¶",
+          "6 教材本章习题¶",
+          "10 教材本章习题¶",
+          "8 教材本章习题¶",
+          "7 教材本章习题¶"
+        ],
+        "headers": [
+          [
+            "自测题（自编）",
+            "参考答案与辨析"
+          ],
+          [
+            "自测题（自编）",
+            "参考答案与辨析"
+          ],
+          [
+            "自测题（自编）",
+            "参考答案与辨析"
+          ],
+          [
+            "自测题（自编）",
+            "参考答案与辨析"
+          ],
+          [
+            "自测题（自编）",
+            "参考答案与辨析"
+          ],
+          [
+            "自测题（自编）",
+            "参考答案与辨析"
+          ]
+        ],
+        "intro": "本节按“单项选择题／填空题／简答题”分节，答案依据教材附录。",
+        "subsectionCount": 0
+      },
+      "evidence": [
+        "artifacts/functional/fn-11-co-label.png"
+      ],
+      "source": "内容侧：课程/计算机组成原理/第N章_笔记.md 的习题节标题与导语沿用操作系统概论的模板，但内容改成了自编表（表头「自测题（自编）」）。",
+      "fix": "把六章的「N 教材本章习题」改为「N 本章自测题（自编）」，导语改成「题目与答案均为自编，用于自测」；或补齐教材原题与附录答案。"
+    }
+  ],
+  "gaps": [
+    "自动化输入中文走 CDP insertText，只触发 input 不触发 keyup，Material 搜索面板不会即时刷新；本报告搜索结论用 `?q=` 直连与真实 keydown/keyup（ArrowDown/Enter）取得，真实 IME 用户不受影响（信息性，不记缺陷）。",
+    "本地静态服务是 python http.server，未命中路径不返回站点 404.html（线上 Cloudflare Pages 会），FUN-10 已把两者分开写。",
+    "深色主题只做了一次滚动/布局抽查（fn-12-dark.png），系统深色不生效是已知陷阱（BRIEF 陷阱 1），未重复记为缺陷。"
+  ],
+  "errors": []
+}

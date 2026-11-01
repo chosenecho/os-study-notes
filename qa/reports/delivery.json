@@ -1,0 +1,577 @@
+{
+  "member": "qa-delivery",
+  "env": "live+local",
+  "devices": [
+    "Chrome 141 headless 1366x900 (冷上下文，每次新建 context)",
+    "Chrome 141 headless 1280x800 (路由/404 证据截图)",
+    "iPhone UA 390x844 @3x (CDP 弱网 Slow 3G / Fast 3G)",
+    "本地 http://127.0.0.1:8123 (python http.server -> 站点/dist)"
+  ],
+  "live": "https://studynote.chosenecho.dpdns.org",
+  "local": "http://127.0.0.1:8123",
+  "measured_at": "2026-11-01T11:05~11:35+08:00",
+  "method": {
+    "net": "python urllib (Accept-Encoding: identity 取精确字节) + curl.exe keep-alive 计时",
+    "browser": "node + playwright chromium，PerformanceObserver 采集 LCP/CLS/FCP，CDP Network.emulateNetworkConditions 模拟弱网",
+    "edge_ray": "cf-ray 全部落在 -SIN（新加坡），本机 RTT 不代表其他地区"
+  },
+  "findings": [
+    {
+      "id": "DEL-01",
+      "title": "重复斜杠路径不归一化：返回 200 但 5 个 CSS/JS 全部 404，首屏被 1264px 的 logo SVG 占满，正文被推到 8000px 之外",
+      "severity": "P1",
+      "scope": "defect",
+      "verified": "实测",
+      "category": "delivery",
+      "device": "Chrome 141 headless 1280x800 / 1366x900",
+      "url": "https://studynote.chosenecho.dpdns.org/lab/scheduling//",
+      "steps": [
+        "curl -sSI 'https://studynote.chosenecho.dpdns.org/lab/scheduling//' -> 200，无 Location 头（不重定向）",
+        "Playwright 打开同一 URL，监听 response >= 400",
+        "对比 /lab/scheduling/ 与 /lab/scheduling// 的 scrollHeight、h1 的绝对 top、logo svg 渲染尺寸、body 计算字体"
+      ],
+      "expected": "多一个斜杠应 301/308 归一化到 /lab/scheduling/（或至少让页面内相对资源仍能解析），用户不应看到损坏的页面",
+      "actual": "线上对 // 和末尾 // 一律返回 200 且不做重定向。HTML 内相对路径 ../../assets/... 以 // 结尾的 base 解析后落到 /lab/assets/ 与 /chapters/assets/，全部 404（每个 404 都返回 19012 字节的 404.html）。结果：/lab/scheduling// 的 scrollHeight 从 1826 涨到 9972，h1 绝对 top=8282px，logo SVG 渲染成 1264x1264 填满 1280 宽视口，body 计算字体回退到 \"Times New Roman\"、背景透明；/chapters/chapter-1// 的 scrollHeight=22486、h1 top=9154px。lab 页 interactions.js 与 bundle 均 404，表单/甘特图脚本完全不执行。",
+      "measurements": {
+        "lab_canonical_scrollHeight": 1826,
+        "lab_doubleslash_scrollHeight": 9972,
+        "lab_doubleslash_h1_top_px": 8282,
+        "chapter1_doubleslash_h1_top_px": 9154,
+        "chapter1_doubleslash_scrollHeight": 22486,
+        "logo_svg_rendered_px": "1264x1264 (canonical: 24x24)",
+        "http_status": 200,
+        "failed_subresources": 5,
+        "failed_css_404_bytes": 19012,
+        "body_font_doubleslash": "\"Times New Roman\" (canonical: _, -apple-system, ...)"
+      },
+      "evidence": [
+        "artifacts/delivery/lab-double-slash.png",
+        "artifacts/delivery/lab-styled.png",
+        "artifacts/delivery/chapter1-double-slash.png",
+        "artifacts/delivery/chapter1-canonical.png",
+        "artifacts/delivery/shots.json",
+        "artifacts/delivery/doubleslash_layout.txt",
+        "artifacts/delivery/net.json"
+      ],
+      "source": "Cloudflare Pages 静态托管：无 _redirects/_headers 规则；worker/index.js:27 只做 ORIGIN + pathname 拼接，不归一化斜杠",
+      "fix": "在站点加 站点/docs/_redirects（mkdocs 会原样复制到 dist）：`/:path+/ /:path/ 301` 之类的双斜杠归一化规则，或在 Worker 里对 url.pathname 做 pathname.replace(/\\/{2,}/g,'/') 后 301。canonical 已正确（指向 /chapters/chapter-1/），但浏览器不会自动跳转，必须靠 301。"
+    },
+    {
+      "id": "DEL-02",
+      "title": "弱网首屏 5.9–6.2 秒才出字：3 个渲染阻塞样式表 + 0 个 preload/preconnect，Slow 3G 下每个往返 2 秒",
+      "severity": "P2",
+      "scope": "defect",
+      "verified": "实测",
+      "category": "performance",
+      "device": "iPhone UA 390x844 @3x，CDP Slow 3G(2000ms/400kbps) 与 Fast 3G(150ms/1.6Mbps)",
+      "url": "https://studynote.chosenecho.dpdns.org/chapters/chapter-2/",
+      "steps": [
+        "CDP Network.emulateNetworkConditions 设 Slow 3G（latency 2000ms，down 400kbps，up 400kbps）",
+        "冷上下文打开首页与 /chapters/chapter-2/，用 PerformanceObserver 取 FCP/LCP，另用轮询取「正文首个标题进入视口」时间",
+        "切 Fast 3G 重复；同时统计 HTML 中 rel=preload/preconnect/dns-prefetch/modulepreload 的数量"
+      ],
+      "expected": "静态笔记站弱网下首屏应在 2–3 秒内可读；关键 CSS/JS 应有 preload，第三方分析源应有 preconnect",
+      "actual": "Slow 3G 首页 FCP=5892ms、LCP=5892ms、DCL=6104ms、正文可读=6111ms；章节页 FCP=6208ms、DCL=6534ms、可读=6549ms。Fast 3G 首页 FCP=1476ms、章节页 FCP=2200ms / 可读 2989ms。构建产物里 preload/preconnect/dns-prefetch/modulepreload 计数为 0；3 个样式表全部渲染阻塞（main.ec1eaa64.min.css 139846B、palette.ab4e12ef.min.css 12641B、notes.css 12932B）。有线环境首字节也不快：首页 TTFB 中位 1180ms（1193/1133/1180）、章节页 1373ms，LCP 中位 2184ms / 2772ms。",
+      "measurements": {
+        "slow3g_home_fcp_ms": 5892,
+        "slow3g_home_readable_ms": 6111,
+        "slow3g_os2_fcp_ms": 6208,
+        "slow3g_os2_readable_ms": 6549,
+        "fast3g_home_fcp_ms": 1476,
+        "fast3g_os2_fcp_ms": 2200,
+        "live_home_ttfb_median_ms": 1180,
+        "live_os2_ttfb_median_ms": 1373,
+        "live_home_lcp_median_ms": 2184,
+        "live_os2_lcp_median_ms": 2772,
+        "render_blocking_stylesheets": 3,
+        "preload_preconnect_hints": 0
+      },
+      "evidence": [
+        "artifacts/delivery/weaknet.json",
+        "artifacts/delivery/perf.json",
+        "artifacts/delivery/weaknet-home-slow-3g.png",
+        "artifacts/delivery/weaknet-os2-slow-3g.png",
+        "artifacts/delivery/browser_stdout.txt"
+      ],
+      "source": "站点/mkdocs.yml:66-69 (extra_css/extra_javascript)，Material 默认输出 3 个 <link rel=stylesheet>，无 preload",
+      "fix": "给 main.css 加 <link rel=preload as=style>（或 mkdocs 的 extra_head 模板注入），把 notes.css 合并进 main；给 static.cloudflareinsights.com 加 preconnect 或干脆去掉 beacon。注意：本机到边缘的 RTT 偏大（cf-ray -SIN），绝对毫秒数在其他地区会不同，但「3 个阻塞 CSS + 0 preload」的结构性成本是通用的。"
+    },
+    {
+      "id": "DEL-03",
+      "title": "首页空闲期就拉 437774B 的 search_index.json（传输 103173B），占首页总传输 52%",
+      "severity": "P2",
+      "scope": "defect",
+      "verified": "实测",
+      "category": "performance",
+      "device": "Chrome 141 headless 1366x900 冷上下文",
+      "url": "https://studynote.chosenecho.dpdns.org/",
+      "steps": [
+        "冷上下文打开首页，等 load 后再等 1200ms",
+        "读 performance.getEntriesByType('resource')，按 initiatorType 汇总 transferSize/decodedBodySize",
+        "重复 3 次观察是否稳定拉取"
+      ],
+      "expected": "静态笔记站首屏不需要全文搜索索引；索引应在用户点开搜索框时按需拉取",
+      "actual": "3 次冷加载中有 2 次在 load 后约 1.2s 内拉取了 search/search_index.json：解码 437774B、传输 103173B（h3），是首页最大单文件；同时 search.2c215733.min.js（39481B 解码 / 13617B 传输）也被拉取。搜索相关合计 116790B，占首页总传输 197730B 的 59%。另 1 次（live-home-3）只拉了 8 个请求、总传输 94556B，说明该拉取是空闲期竞态，用户实际体验到的是「多半会拉」。",
+      "measurements": {
+        "search_index_decoded_bytes": 437774,
+        "search_index_transfer_bytes": 103173,
+        "search_worker_transfer_bytes": 13617,
+        "home_total_transfer_median_bytes": 197730,
+        "search_share_of_home_transfer": "59%",
+        "runs_that_fetched_index": "2/3",
+        "home_requests_median": 9
+      },
+      "evidence": [
+        "artifacts/delivery/perf.json",
+        "artifacts/delivery/browser_stdout.txt"
+      ],
+      "source": "站点/mkdocs.yml:48-50 search 插件（lang: [zh, en]）+ 站点/dist/search/search_index.json 437774B；mkdocs.yml:27 search.suggest 会提前准备建议",
+      "fix": "优先方案：把 search.suggest 关掉（只留 search.highlight），实测可避免空闲期拉索引；或改用 search 插件的 `indexing: 'sections'` 之外的分片，并把搜索索引放到 /search/ 子路径下延迟加载。若必须保留 suggest，至少给 search_index.json 加 <link rel=prefetch> 之外的按需触发（点开搜索框再 fetch）。"
+    },
+    {
+      "id": "DEL-04",
+      "title": "HTML 既没有 ETag 也没有 Last-Modified，却声明 must-revalidate：每次导航都全量重下，无法走 304",
+      "severity": "P2",
+      "scope": "defect",
+      "verified": "实测",
+      "category": "delivery",
+      "device": "curl.exe / Chrome 141",
+      "url": "https://studynote.chosenecho.dpdns.org/",
+      "steps": [
+        "curl -sSI 首页与章节页，检查 cache-control / etag / last-modified",
+        "对 assets/notes.css 发 If-None-Match 观察是否 304",
+        "对首页发 If-None-Match / If-Modified-Since（无验证器可发，记录为 no validator）"
+      ],
+      "expected": "声明 must-revalidate 时必须提供验证器（ETag 或 Last-Modified），否则浏览器每次都得整份重下",
+      "actual": "线上 HTML 响应头只有 cache-control: public, max-age=0, must-revalidate，没有 etag、没有 last-modified、没有 Vary。静态资源相反：assets/notes.css 有 ETag \"531a9752e45f2d17f188b957e590426e\"，带 If-None-Match 请求返回 304、0 字节、699ms。因此 HTML 每次导航都是 6611–6686B 的 zstd 全量（解码 26700B），章节页 22244–22396B（解码 78946B），永远不会 304。",
+      "measurements": {
+        "html_cache_control": "public, max-age=0, must-revalidate",
+        "html_etag": null,
+        "html_last_modified": null,
+        "html_vary": null,
+        "html_transfer_home_zstd_bytes": 6611,
+        "html_transfer_os2_zstd_bytes": 22244,
+        "css_etag_present": true,
+        "css_if_none_match_status": 304,
+        "css_304_bytes": 0
+      },
+      "evidence": [
+        "artifacts/delivery/net.json",
+        "artifacts/delivery/conditional_worker_meta_digest.txt"
+      ],
+      "source": "Cloudflare Pages 对 HTML 的默认缓存策略（源站行为，非 Worker 造成；worker/index.js:61 原样透传 resp.headers）",
+      "fix": "在站点加 站点/docs/_headers：对 /*.html 设 `Cache-Control: public, max-age=0, must-revalidate` 并让 Pages 生成 ETag（Pages 对静态资源会自动加 ETag，HTML 需显式 `_headers` 里加 `ETag: on` 或改用 `max-age=60` 让边缘直接命中）。低成本替代：把 HTML 改成 max-age=300，配合 Worker 的 cacheTtl 让重复访问命中边缘。"
+    },
+    {
+      "id": "DEL-05",
+      "title": "robots.txt 不在仓库里：线上是 Cloudflare 边缘托管的 5013B content-signals 文件，没有 Sitemap 行，且 Disallow: / 覆盖 Baiduspider",
+      "severity": "P2",
+      "scope": "defect",
+      "verified": "实测",
+      "category": "delivery",
+      "device": "curl.exe / urllib",
+      "url": "https://studynote.chosenecho.dpdns.org/robots.txt",
+      "steps": [
+        "curl 线上 /robots.txt -> 200、5013B、cache-control: no-store",
+        "直接 curl 源站 https://studynote-42b.pages.dev/robots.txt -> 200、1248B（另一份，同样 no-store）",
+        "检查 站点/dist 目录：没有 robots.txt（本地 /robots.txt -> 404）",
+        "逐行解析线上 robots.txt 的非注释行"
+      ],
+      "expected": "中文课程笔记站应有一份可版本控制的 robots.txt，至少包含 `Sitemap: https://studynote.chosenecho.dpdns.org/sitemap.xml`，并且不封百度",
+      "actual": "线上 robots.txt 是 Cloudflare 的 content-signals 托管文件（5013B，no-store），仓库和构建产物里都没有这个文件（本地 404）。内容为 `User-agent: *` + `Content-Signal: search=yes,ai-train=no,use=reference` + `Allow: /`，随后逐个 UA 列出 `Disallow: /` 共约 50 组，其中包括 **Baiduspider**、Bytespider、PetalBot、GPTBot、CCBot、ClaudeBot、PerplexityBot 等。全文没有 `Sitemap:` 行——站点有 sitemap.xml（200、14 条 URL、与本地逐字节一致）但从未被 robots.txt 告知爬虫。",
+      "measurements": {
+        "live_robots_status": 200,
+        "live_robots_bytes": 5013,
+        "live_robots_cache_control": "no-store",
+        "origin_pages_dev_robots_bytes": 1248,
+        "local_dist_robots": "absent (404)",
+        "disallow_all_ua_groups": 50,
+        "baiduspider_blocked": true,
+        "sitemap_directive_present": false,
+        "sitemap_url_count": 14
+      },
+      "evidence": [
+        "artifacts/delivery/live_robots.txt",
+        "artifacts/delivery/net.json",
+        "artifacts/delivery/origin_robots_chapter4_digest.txt"
+      ],
+      "source": "Cloudflare 边缘「managed robots.txt / Content Signals」功能；仓库 站点/docs/ 下无 robots.txt",
+      "fix": "在 站点/docs/robots.txt 里写显式规则（`User-agent: *` / `Allow: /` / `Sitemap: https://studynote.chosenecho.dpdns.org/sitemap.xml`），并在 Cloudflare 面板关掉该 zone 的 managed robots.txt，避免边缘把仓库里的文件盖掉。若想保留 AI 爬虫限制，把 Baiduspider 从 Disallow 列表里去掉——中文站封百度等于放弃主要发现入口。"
+    },
+    {
+      "id": "DEL-06",
+      "title": "没有任何 OG / Twitter 卡片元信息，分享到微信、Telegram 时没有标题与缩略图",
+      "severity": "P2",
+      "scope": "defect",
+      "verified": "实测",
+      "category": "delivery",
+      "device": "Chrome 141 (iPhone UA) / 原始 HTML",
+      "url": "https://studynote.chosenecho.dpdns.org/",
+      "steps": [
+        "在浏览器里 querySelectorAll('meta[property^=\"og:\"]') 与 meta[name^=\"twitter:\"]",
+        "对照原始 HTML 的 <meta> 计数（4 个：charset、viewport、description、theme-color 由 JS 注入）"
+      ],
+      "expected": "笔记类站点被分享时应有 og:title / og:description / og:image 与 twitter:card",
+      "actual": "首页 og: 0 个、twitter: 0 个；HTML 里只有 4 个 meta（其中 theme-color 还是 JS 运行时注入的）。canonical 存在且正确（https://studynote.chosenecho.dpdns.org/），description 也有（依据教材与考试大纲整理的课程笔记），但社交平台读不到 OG 标签，链接预览会退化成裸 URL。",
+      "measurements": {
+        "og_meta_count": 0,
+        "twitter_meta_count": 0,
+        "meta_count_in_html": 4,
+        "canonical_present": true,
+        "description_present": true
+      },
+      "evidence": [
+        "artifacts/delivery/meta.json",
+        "artifacts/delivery/net.json"
+      ],
+      "source": "站点/mkdocs.yml:70-71 extra.generator: false，无 social 插件、无 extra_head 模板",
+      "fix": "在 站点/ 里加 overrides/main.html，block extrahead 注入 og:type/og:title/og:description/og:image/og:url + twitter:card=summary；og:image 可先用 assets/images/favicon.png（1870B）或生成一张 1200x630。页面级 title/description 已由 MkDocs 渲染，直接复用 page.title / config.site_description 即可。"
+    },
+    {
+      "id": "DEL-07",
+      "title": "Worker 的 cacheEverything + cacheTtl:1800 完全不可观测：响应里没有 cf-cache-status、没有 Age；代价是部署后最多 30 分钟旧 HTML",
+      "severity": "P2",
+      "scope": "tradeoff",
+      "verified": "实测 + 代码推断（cacheTtl 语义、部署滞后上限）",
+      "category": "delivery",
+      "device": "curl.exe keep-alive / urllib",
+      "url": "https://studynote.chosenecho.dpdns.org/",
+      "steps": [
+        "curl -sSI 首页，检查 cf-cache-status / age / cache-control",
+        "同一连接连续 3 次 GET 首页与章节页，记录 TTFB",
+        "读 esa-deploy/worker/index.js 的 cf 配置与回源超时"
+      ],
+      "expected": "既然声称「静态站：边缘缓存 30 分钟」，应能在响应头看到命中状态（HIT/MISS）与 Age，重复请求应有明显加速",
+      "actual": "线上响应头只有 server: cloudflare、cf-ray: ...-SIN、cache-control: public, max-age=0, must-revalidate、x-served-by: cf-worker-proxy，没有 cf-cache-status、没有 age、没有 x-cache。同一 keep-alive 连接连续 3 次：首页 TTFB 730ms -> 375ms -> 312ms，章节页 940ms -> 547ms -> 517ms——第 2/3 次省下的是 TLS 握手（321–492ms），之后稳定在 1 个 RTT 量级，看不出边缘命中带来的额外收益。worker 代码里 cacheTtl: 1800 只作用于 Worker 的回源子请求缓存，客户端侧完全不可见；因此「部署后旧 HTML 滞留多久」无法实测，只能从代码推断上限 30 分钟。",
+      "measurements": {
+        "cf_cache_status": null,
+        "age_header": null,
+        "home_ttfb_3x_ms": [
+          730,
+          375,
+          312
+        ],
+        "os2_ttfb_3x_ms": [
+          940,
+          547,
+          517
+        ],
+        "tls_handshake_ms": 321,
+        "worker_cache_ttl_s": 1800,
+        "worker_origin_timeout_ms": 15000,
+        "cache_ttl_by_status": {
+          "200-299": 1800,
+          "301-302": 60,
+          "404": 60,
+          "500-599": 0
+        }
+      },
+      "evidence": [
+        "artifacts/delivery/net.json",
+        "artifacts/delivery/headers_digest.txt"
+      ],
+      "source": "esa-deploy/worker/index.js:43-48 (cf.cacheEverything/cacheTtl/cacheTtlByStatus)、:61-70 (头透传，只加 x-served-by 与 x-content-type-options)",
+      "fix": "取舍点：要么接受 30 分钟新鲜度窗口换取边缘命中，并显式在 Worker 里加 `x-cache: HIT/MISS` 之类可观测头（或读 resp.headers 的 cf-cache-status 透传）；要么对 HTML 把 cacheTtl 降到 60–300s，让部署后 1–5 分钟内生效。当前状态是「缓存收益看不见、滞后风险却真实存在」，两头都不占。"
+    },
+    {
+      "id": "DEL-08",
+      "title": "安全头只有 2 个：HSTS / CSP / X-Frame-Options / Permissions-Policy 全缺，且响应暴露 server: cloudflare 与 x-served-by",
+      "severity": "P3",
+      "scope": "defect",
+      "verified": "实测",
+      "category": "delivery",
+      "device": "curl.exe -sSI",
+      "url": "https://studynote.chosenecho.dpdns.org/chapters/chapter-2/",
+      "steps": [
+        "curl -sSI 首页/章节页/404/静态资源，逐项检查安全相关响应头",
+        "与 worker/index.js 里显式设置的头部对照"
+      ],
+      "expected": "纯 HTTPS 站点至少应有 HSTS；静态站应有 CSP（哪怕 report-only）与 X-Frame-Options 防点击劫持",
+      "actual": "存在：referrer-policy: strict-origin-when-cross-origin、x-content-type-options: nosniff（Worker 加的）、alt-svc: h3=\":443\"; ma=86400、nel、report-to。缺失：strict-transport-security、content-security-policy、x-frame-options、permissions-policy、cross-origin-opener-policy、cross-origin-resource-policy（6 项全无）。另外 server: cloudflare、x-served-by: cf-worker-proxy、cf-ray 暴露了反代实现。本地 python http.server 更少：只有 Server/Date/Content-Length/Content-Type/Last-Modified。",
+      "measurements": {
+        "hsts": null,
+        "csp": null,
+        "x_frame_options": null,
+        "permissions_policy": null,
+        "coop": null,
+        "corp": null,
+        "referrer_policy": "strict-origin-when-cross-origin",
+        "x_content_type_options": "nosniff",
+        "server_header": "cloudflare",
+        "x_served_by": "cf-worker-proxy"
+      },
+      "evidence": [
+        "artifacts/delivery/net.json",
+        "artifacts/delivery/headers_digest.txt"
+      ],
+      "source": "esa-deploy/worker/index.js:62-64 只 set 了 x-served-by 与 x-content-type-options；无 HSTS/CSP/XFO",
+      "fix": "在 Worker 里补 3 行：`Strict-Transport-Security: max-age=31536000; includeSubDomains`、`X-Frame-Options: DENY`、`Permissions-Policy: geolocation=(), microphone=(), camera=()`；CSP 建议先用 Content-Security-Policy-Report-Only 跑一段（站点有 inline style 与 inline SVG，直接上 CSP 容易炸样式）。"
+    },
+    {
+      "id": "DEL-09",
+      "title": "404 页只有 15 个字、title 仍是「课程笔记」、没有 canonical：用户不知道发生了什么，也不知道去哪",
+      "severity": "P3",
+      "scope": "defect",
+      "verified": "实测",
+      "category": "content",
+      "device": "Chrome 141 headless 1280x800",
+      "url": "https://studynote.chosenecho.dpdns.org/no-such-page/",
+      "steps": [
+        "打开 /no-such-page/，记录状态码、title、h1、正文长度、导航链接数",
+        "截图；对比 站点/dist/404.html 与线上 404 响应体（差一段 beacon）"
+      ],
+      "expected": "404 页应说明「页面不存在」并给出回到首页/章节目录的入口，title 应体现 404",
+      "actual": "状态码 404（正确）、响应体 19379B（= 本地 404.html 19012B + 367B beacon，归一化后逐字节相等）、cache-control: no-store（正确）。但 <title> 是「课程笔记」（没有 404 字样），h1 是英文「404 - Not found」，.md-content 正文只有 15 个字符，没有 canonical，也没有「你可能想找」的链接列表——只有 15 个侧边导航链接可退出。另外 /lab/ 也是 404（导航直接链 /lab/scheduling/，所以不影响主流程，属预期）。",
+      "measurements": {
+        "status": 404,
+        "title": "课程笔记",
+        "h1": "404 - Not found",
+        "content_chars": 15,
+        "nav_links": 15,
+        "canonical": null,
+        "body_bytes": 19379,
+        "cache_control": "no-store"
+      },
+      "evidence": [
+        "artifacts/delivery/live-404.png",
+        "artifacts/delivery/live-lab-dir-404.png",
+        "artifacts/delivery/shots.json"
+      ],
+      "source": "站点/docs/404.html 不存在，用的是 MkDocs Material 内置 404 模板（404 - Not found + 站点 title）",
+      "fix": "在 站点/docs/404.html 里覆盖模板：title 写「页面不存在 - 课程笔记」，正文加一句中文说明 + 两条直达链接（学习首页 / 进程调度实验），保持 15 个导航链接不变。"
+    },
+    {
+      "id": "DEL-10",
+      "title": "移动端交付元信息缺口：没有 apple-touch-icon、没有 manifest、theme-color 只在 JS 执行后才有",
+      "severity": "P3",
+      "scope": "defect",
+      "verified": "实测",
+      "category": "delivery",
+      "device": "iPhone UA 390x844 @3x (Chromium)",
+      "url": "https://studynote.chosenecho.dpdns.org/",
+      "steps": [
+        "以 iPhone UA 打开首页，检查 link[rel=apple-touch-icon]、link[rel=manifest]、meta[name=theme-color]、meta[name=apple-mobile-web-app-*]",
+        "同时检查 meta[name=viewport] 与 document.documentElement.scrollWidth 是否等于视口宽"
+      ],
+      "expected": "「添加到主屏幕」应有图标与标题；theme-color 应在服务端 HTML 里就存在，避免首屏状态栏闪色",
+      "actual": "viewport 正确（width=device-width,initial-scale=1，实测 innerWidth=390、scrollWidth=390，无横向溢出）；favicon 正常（assets/favicon.svg 200/332B，assets/images/favicon.png 200/1870B）。但 apple-touch-icon 0 个、manifest 0 个、apple-mobile-web-app-capable/status-bar-style/title 全 0 个、msapplication-TileColor 0 个；theme-color 在原始 HTML 里不存在，是 Material 的 JS 运行时注入的 <meta name=\"theme-color\" content=\"#ffffff\">，禁用 JS 或 JS 失败时就没有。iOS 添加到主屏会用页面截图当图标。",
+      "measurements": {
+        "viewport_meta": "width=device-width,initial-scale=1",
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "apple_touch_icon_count": 0,
+        "manifest_count": 0,
+        "apple_mobile_web_app_meta": 0,
+        "theme_color_in_raw_html": false,
+        "theme_color_in_dom": "#ffffff",
+        "favicon_svg_status": 200,
+        "favicon_svg_bytes": 332,
+        "favicon_png_bytes": 1870
+      },
+      "evidence": [
+        "artifacts/delivery/meta.json",
+        "artifacts/delivery/meta-mobile-home.png"
+      ],
+      "source": "站点/mkdocs.yml:5-9 theme（favicon 只有 svg/png，无 apple-touch-icon 配置）；theme-color 由 Material 的 palette JS 注入",
+      "fix": "用 assets/images/favicon.png 生成一张 180x180 的 apple-touch-icon.png，在 overrides/main.html 的 extrahead 里加 `<link rel=\"apple-touch-icon\" href=\"assets/images/apple-touch-icon.png\">` 与静态 `<meta name=\"theme-color\" content=\"#ffffff\">`（深色主题用 media 查询给 #1e1e1e）。manifest 可选，纯文档站收益不大。"
+    },
+    {
+      "id": "DEL-11",
+      "title": "边缘偶发挂起：/chapters/chapter-4/ 有一次 45 秒无响应，其余 4 次均 1.17–1.49 秒",
+      "severity": "P3",
+      "scope": "defect",
+      "verified": "实测（根因未定位）",
+      "category": "performance",
+      "device": "python urllib (timeout 45s) / urllib retest",
+      "url": "https://studynote.chosenecho.dpdns.org/chapters/chapter-4/",
+      "steps": [
+        "第一轮逐页比对时按顺序请求 15 个页面，记录每页状态与耗时",
+        "/chapters/chapter-4/ 超时后，单独重试 4 次（timeout 60s）",
+        "对照源站直连 https://studynote-42b.pages.dev/chapters/chapter-4/ 的耗时"
+      ],
+      "expected": "静态页请求应在 1–2 秒内完成；边缘/回源异常应给出 5xx 而不是无限等待",
+      "actual": "首轮请求 /chapters/chapter-4/ 在 46505.8ms 后客户端 TimeoutError（无状态码、0 字节）。随后 4 次重试全部 200，耗时 1172.2 / 1278.1 / 1492.4 / 1292.6ms，字节 66703（= 本地 66336 + 367 beacon）；源站直连 991.7ms、66336B。同批其他 14 个页面无一次超时。Worker 侧 ORIGIN_TIMEOUT_MS=15000，若回源真卡住应在 15 秒返回 502，而客户端等了 46 秒仍未收完响应，指向边缘→客户端这一段，而非回源。",
+      "measurements": {
+        "first_attempt_ms": 46505.8,
+        "first_attempt_status": null,
+        "retries_ok": "4/4",
+        "retry_ms": [
+          1172.2,
+          1278.1,
+          1492.4,
+          1292.6
+        ],
+        "retry_bytes": 66703,
+        "origin_direct_ms": 991.7,
+        "origin_direct_bytes": 66336,
+        "worker_origin_timeout_ms": 15000,
+        "timeouts_in_15_pages": 1
+      },
+      "evidence": [
+        "artifacts/delivery/net.json",
+        "artifacts/delivery/origin_robots_chapter4_digest.txt",
+        "artifacts/delivery/net_stdout.txt"
+      ],
+      "source": "无法定位：需要 Cloudflare Analytics / Worker 日志（本机无账号权限）",
+      "fix": "缺口项：单次样本不足以定性。建议在 Worker 里加 `Server-Timing` 记录回源耗时，或开 Cloudflare 的 Worker 观察日志，复现后再决定是否调 cacheTtl。若确认为冷回源首包慢，可对 HTML 预热。"
+    },
+    {
+      "id": "DEL-12",
+      "title": "本地 8123 无法用来验证 404 与性能：不压缩、404 用 python 默认页、/lab/ 返回目录列表 200",
+      "severity": "P3",
+      "scope": "tradeoff",
+      "verified": "实测",
+      "category": "delivery",
+      "device": "python -m http.server 8123 (SimpleHTTP/0.6)",
+      "url": "http://127.0.0.1:8123/",
+      "steps": [
+        "同一冷加载流程跑本地首页与章节页，对比传输字节与 live",
+        "请求本地 /no-such-page/ 与 /lab/，对比 live 的 404 行为",
+        "对比响应头"
+      ],
+      "expected": "本地服务应尽量模拟线上（至少 404 页与压缩），否则本地结论会误导",
+      "actual": "本地首页总传输 796010B，线上同页 197730B——差 4.0 倍，因为 python http.server 不压缩（transferSize≈decodedBodySize≈793610）；首页 TTFB 5ms / LCP 88ms，与线上的 1180ms / 2184ms 没有可比性。本地 /no-such-page/ 返回 404 + 335B 的 python 默认页（不是 404.html），线上是 19379B 的完整 404 页；本地 /lab/ 返回 200 + 242B 目录列表，线上是 404。本地响应头只有 Server/Date/Content-Length/Content-Type/Last-Modified，无任何安全头。",
+      "measurements": {
+        "local_home_transfer_bytes": 796010,
+        "live_home_transfer_bytes": 197730,
+        "ratio": "4.0x",
+        "local_ttfb_ms": 5,
+        "local_lcp_ms": 88,
+        "local_404_bytes": 335,
+        "live_404_bytes": 19379,
+        "local_lab_status": 200,
+        "live_lab_status": 404,
+        "local_protocol": "http/1.0"
+      },
+      "evidence": [
+        "artifacts/delivery/perf.json",
+        "artifacts/delivery/net.json",
+        "artifacts/delivery/browser_stdout.txt"
+      ],
+      "source": "本地用 python -m http.server（无 gzip、无 404 映射、http/1.0、目录列表）；线上是 Cloudflare Pages + Worker",
+      "fix": "本地只用于看布局/内容，不要用来下性能与 404 结论；要本地验 404 与压缩，用 `python -m http.server` 的替代品（如 `npx serve --single` 不合适，建议 `python -m http.server` + 反向代理到 `npx http-server -c-1 --gzip`）或直接 `wrangler pages dev 站点/dist`。"
+    },
+    {
+      "id": "DEL-13",
+      "title": "独立复核通过：15 个页面线上 = 本地 + 366B beacon（每页 +367B），13 项静态资源逐字节相等，源站无陈旧内容",
+      "severity": "P3",
+      "scope": "info",
+      "verified": "实测",
+      "category": "delivery",
+      "device": "python urllib (Accept-Encoding: identity)",
+      "url": "https://studynote.chosenecho.dpdns.org/",
+      "steps": [
+        "对 15 个页面（14 个内容页 + 404.html）与 13 项静态资源分别取线上 identity 字节与本地 站点/dist 文件字节",
+        "逐字节比对 sha256；对 HTML 额外剥离 cloudflareinsights <script> 后比对",
+        "直连源站 https://studynote-42b.pages.dev/ 取首页字节，确认 beacon 是外层 zone 注入"
+      ],
+      "expected": "线上应与本地构建一致（Lead 已声明线上 = 本地 + beacon）",
+      "actual": "15 个页面全部「beacon-only」：剥离 beacon 后逐字节相等，字节差恒为 +367B（beacon 脚本 366B + 换行）。例：首页 26700 vs 26333、chapter-2 78946 vs 78579、404.html 19379 vs 19012。13 项静态资源全部 byte-identical：notes.css 12932、interactions.js 10317、bundle 114286、search worker 39481、main.css 139846、palette.css 12641、favicon.svg 332、favicon.png 1870、进程三态.svg 1693、search_index.json 437774、sitemap.xml 2110、sitemap.xml.gz 278（另有 robots.txt 是唯一例外，见 DEL-05）。源站 pages.dev 首页 = 26333B，与本地完全一致且不含 beacon，证明 beacon 由外层 zone 边缘注入，源站无陈旧内容。",
+      "measurements": {
+        "pages_checked": 15,
+        "pages_identical_after_beacon_strip": 15,
+        "beacon_delta_bytes_per_page": 367,
+        "beacon_script_bytes": 366,
+        "static_assets_identical": 13,
+        "static_assets_differing": 1,
+        "origin_index_bytes": 26333,
+        "local_index_bytes": 26333,
+        "beacon_file_transfer_bytes": 10264
+      },
+      "evidence": [
+        "artifacts/delivery/net.json",
+        "artifacts/delivery/net_stdout.txt"
+      ],
+      "source": "构建产物 站点/dist；线上 Cloudflare Pages(studynote-42b.pages.dev) + 外层 zone beacon",
+      "fix": "无需修复。这条是复核结论：没有发现陈旧内容或构建漂移，beacon 是唯一差异且为 366B 的 type=module 脚本（跨域，10,264B 实际传输，本次环境里 Resource Timing 因无 TAO 拿不到它的字节数）。"
+    },
+    {
+      "id": "DEL-14",
+      "title": "路由其余语义正常：无尾斜杠与 /index.html 都 308 归一化、大小写 404、查询串 200、中文文件名 200、canonical 与 sitemap 一致",
+      "severity": "P3",
+      "scope": "info",
+      "verified": "实测",
+      "category": "delivery",
+      "device": "python urllib (follow=False 取原始 3xx)",
+      "url": "https://studynote.chosenecho.dpdns.org/chapters/chapter-1/",
+      "steps": [
+        "对 16 条路由变体发 GET（不跟随重定向），记录状态码与 Location",
+        "对 3xx 再跟一次看落点；对 200 的变体检查 canonical",
+        "比对 sitemap.xml 的 14 条 URL 与实际页面集合"
+      ],
+      "expected": "无尾斜杠应 301/308 到带斜杠；大小写敏感应 404；查询串不应影响状态",
+      "actual": "/chapters/chapter-1 -> 308 -> /chapters/chapter-1/（200）；/chapters/chapter-1/index.html -> 308 -> /chapters/chapter-1/；/index.html -> 308 -> /；/CHAPTERS/CHAPTER-1/ -> 404、/Assets/Notes.css -> 404（大小写敏感，正确）；/?utm_source=qa&x=1 与 /chapters/chapter-1/?utm_source=qa&x=1 -> 200；中文文件名 /assets/figures/%E8%BF%9B%E7%A8%8B%E4%B8%89%E6%80%81.svg -> 200/1693B；POST / -> 405、HEAD -> 200。sitemap.xml 200、2110B、14 条 URL、与本地逐字节一致、host 全部是 studynote.chosenecho.dpdns.org（无 chosenecho.github.io 子路径遗留），与实际页面集合完全对应。canonical 在首页与章节页都指向规范化后的绝对 URL。唯一例外是双斜杠（DEL-01）。",
+      "measurements": {
+        "no_trailing_slash_status": 308,
+        "no_trailing_slash_location": "/chapters/chapter-1/",
+        "index_html_status": 308,
+        "uppercase_status": 404,
+        "mixedcase_asset_status": 404,
+        "query_string_status": 200,
+        "encoded_cn_asset_status": 200,
+        "post_status": 405,
+        "head_status": 200,
+        "sitemap_urls": 14,
+        "sitemap_identical_to_local": true,
+        "sitemap_host": "studynote.chosenecho.dpdns.org",
+        "canonical_home": "https://studynote.chosenecho.dpdns.org/",
+        "canonical_duplicate_slash_page": "https://studynote.chosenecho.dpdns.org/chapters/chapter-1/"
+      },
+      "evidence": [
+        "artifacts/delivery/net.json",
+        "artifacts/delivery/net_stdout.txt"
+      ],
+      "source": "Cloudflare Pages 的默认尾斜杠/索引归一化 + MkDocs 的 canonical 输出",
+      "fix": "无需修复。注意本地 python http.server 与线上在这几项上不同（本地 301、大小写 200、/lab/ 200 目录列表），比对时不要用本地当基准。"
+    },
+    {
+      "id": "DEL-15",
+      "title": "交付层正面项：HTTP/2 协商成功且部分资源已走 h3、zstd 压缩 26.7KB→6.6KB、无 webfont、favicon 200、Worker 故障路径明确",
+      "severity": "P3",
+      "scope": "info",
+      "verified": "实测 + 代码推断（Worker 502/421 分支）",
+      "category": "delivery",
+      "device": "python ssl ALPN / Chrome 141 / curl.exe",
+      "url": "https://studynote.chosenecho.dpdns.org/",
+      "steps": [
+        "用 ssl 上下文 set_alpn_protocols(['h2','http/1.1']) 与线上握手，读 selected_alpn_protocol",
+        "读响应头 alt-svc；在 Chrome 里读 performance navigationEntry.nextHopProtocol 与资源级 nextHopProtocol",
+        "对比 identity/gzip/br/zstd 四种编码的字节；检查是否请求 woff2"
+      ],
+      "expected": "静态站应支持 HTTP/2 或 /3、文本压缩、不加载多余字体",
+      "actual": "ALPN 协商结果 h2（TLSv1.3，TLS_AES_256_GCM_SHA384）；alt-svc: h3=\":443\"; ma=86400；Chrome 实测文档走 h2、search_index.json 与 search worker 走 h3（nextHopProtocol=h3）。压缩：首页 identity 26700B -> gzip 5789B / br 5845B，Chrome 实际拿到 zstd 6611B（章节页 78946B -> 22244B）；main.css 139846B -> 26523B。font: false 生效：0 个字体请求、document.fonts 为空。favicon.svg 200/332B。Worker 故障路径（代码推断，无法实测）：回源异常 catch 后返回 502 + text/plain「origin error: ...」，非白名单 host 返回 421，回源超时 15000ms，redirect: manual 使源站 3xx 原样透传（与实测的 308 一致）。",
+      "measurements": {
+        "alpn_negotiated": "h2",
+        "tls_version": "TLSv1.3",
+        "alt_svc": "h3=\":443\"; ma=86400",
+        "h3_observed_resources": 2,
+        "html_identity_bytes": 26700,
+        "html_gzip_bytes": 5789,
+        "html_br_bytes": 5845,
+        "html_zstd_transfer_bytes": 6611,
+        "main_css_transfer_bytes": 26523,
+        "webfont_requests": 0,
+        "document_fonts": 0,
+        "favicon_status": 200,
+        "worker_error_status": 502,
+        "worker_unknown_host_status": 421
+      },
+      "evidence": [
+        "artifacts/delivery/net.json",
+        "artifacts/delivery/perf.json",
+        "artifacts/delivery/beacon_meta_figures.txt"
+      ],
+      "source": "Cloudflare 边缘（ALPN/alt-svc/压缩）+ esa-deploy/worker/index.js:71-77 (502 分支)、:22-25 (421 分支)、:49-51 (redirect: manual)",
+      "fix": "无需修复。缺口：本机 curl 8.21 的 Windows Schannel 构建不含 nghttp2，所以 curl 侧只能报 http/1.1，HTTP/2 结论靠 python ALPN 与 Chrome nextHopProtocol 交叉验证；HTTP/3 只验证到「alt-svc 宣告 + Chrome 实际用 h3」，没有独立 QUIC 客户端做握手级验证。"
+    }
+  ],
+  "gaps": [
+    "cf-cache-status / Age / x-cache 一律不暴露，边缘命中率无法测量（DEL-07 用重复请求耗时间接推断）。",
+    "Worker 源站故障（502）与部署后旧内容滞留都无法实测：不能打挂 Pages、不能触发部署，只有 worker/index.js 代码推断。",
+    "/chapters/chapter-4/ 那次 46.5s 挂起无法定位根因：需要 Cloudflare Analytics 或 Worker 日志权限。",
+    "beacon 实际传输字节无法从 Resource Timing 取（跨域且无 Timing-Allow-Origin，transferSize=0），只能用 curl 直接下该文件得 10264B。",
+    "HTTP/3 只验证到 alt-svc 宣告与 Chrome nextHopProtocol=h3，未做 QUIC 握手级验证（本机无 quic 客户端）。",
+    "iOS Safari 真机的「添加到主屏幕」表现未验证，只有 Chromium + iPhone UA 模拟；apple-touch-icon 缺失是从 DOM 直接判定的。",
+    "所有耗时来自本机（cf-ray 全部 -SIN 新加坡），不代表中国大陆其他运营商或其他地区用户的绝对值；结构性结论（3 个阻塞 CSS、0 preload、无 ETag、双斜杠资源 404）不受此影响。"
+  ]
+}

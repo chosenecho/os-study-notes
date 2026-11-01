@@ -2,6 +2,7 @@ site_name: 课程笔记
 site_description: 依据教材与考试大纲整理的课程笔记
 site_url: !ENV [SITE_URL, 'https://chosenecho.github.io/os-study-notes/']
 site_dir: dist
+docs_dir: docs
 theme:
   name: material
   custom_dir: overrides

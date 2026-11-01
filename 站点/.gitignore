@@ -1,8 +1,4 @@
-dist/
-__pycache__/
-.playwright-cli/
-node_modules/
-.astro/
-docs/chapters/
-docs/computer-organization/
-docs/assets/figures/
+/dist/
+/docs/*
+!/docs/.gitkeep
+/__pycache__/

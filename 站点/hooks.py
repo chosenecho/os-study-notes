@@ -8,6 +8,12 @@ REPO = ROOT.parent
 COURSES = REPO / '课程'
 SOURCE = COURSES / '操作系统概论'
 COMPOSITION = COURSES / '计算机组成原理'
+# 手写源全在 src/；docs/ 是纯派生产物，每次构建先清空再从 src/ 整目录复制。
+# KEEP 是唯一允许留在 docs/ 的文件：MkDocs 在 hooks 运行之前就要求 docs_dir 存在，
+# 所以仓库里保留一个空哨兵（mkdocs 默认排除点文件，不会进产物）。
+SRC = ROOT / 'src'
+DOCS = ROOT / 'docs'
+KEEP = '.gitkeep'
 
 TOOLBAR = (
     '<div class="study-toolbar" data-chapter="{id}">'
@@ -150,9 +156,19 @@ def chapter_nav(number, prefix, home):
 
 
 def on_pre_build(config):
-    docs = ROOT / 'docs'
-    (docs / 'chapters').mkdir(parents=True, exist_ok=True)
-    images = docs / 'assets/figures'
+    # docs/ 100% 派生：先清空（保留哨兵），再把 src/ 的手写源整目录复制过来，
+    # 这样旧的派生残留不会存活到下一次构建。
+    DOCS.mkdir(parents=True, exist_ok=True)
+    for entry in DOCS.iterdir():
+        if entry.name == KEEP:
+            continue
+        if entry.is_dir():
+            shutil.rmtree(entry)
+        else:
+            entry.unlink()
+    shutil.copytree(SRC, DOCS, dirs_exist_ok=True)
+    (DOCS / 'chapters').mkdir(parents=True, exist_ok=True)
+    images = DOCS / 'assets/figures'
     images.mkdir(parents=True, exist_ok=True)
     for n in range(1, 7):
         file = next(SOURCE.glob(f'第{n}章*_笔记.md'))
@@ -185,9 +201,9 @@ def on_pre_build(config):
             + '\n\n'
             + DIALOG
         )
-        (docs / f'chapters/chapter-{n}.md').write_text(page, encoding='utf-8')
+        (DOCS / f'chapters/chapter-{n}.md').write_text(page, encoding='utf-8')
 
-    composition_docs = docs / 'computer-organization'
+    composition_docs = DOCS / 'computer-organization'
     composition_docs.mkdir(parents=True, exist_ok=True)
     for n in range(1, 7):
         file = next(COMPOSITION.glob(f'第{n}章*_笔记.md'))
@@ -211,7 +227,7 @@ def on_pre_build(config):
 
 def on_post_build(config):
     """Inline the reader stylesheet so it is no longer an extra blocking request."""
-    css = (ROOT / 'docs/assets/notes.css').read_text(encoding='utf-8')
+    css = (DOCS / 'assets/notes.css').read_text(encoding='utf-8')
     style = '<style>\n' + css + '\n</style>'
     site = Path(config['site_dir'])
     for html in site.rglob('*.html'):

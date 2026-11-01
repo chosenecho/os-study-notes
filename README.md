@@ -13,7 +13,7 @@
 | `qa/` | 站点质量审计：Playwright 脚本、37 项断言、逐设备报告 | 是（`qa/artifacts/` 的截图不入库） |
 | `资料/` | 教材（含 OCR 复原本）、历年真题 | 否，仅本地 |
 | `归档/` | 其他科目，三层：`自考/`（5 门）、`NCRE/`（一至四级）、`校课/`；另有 `_第三方快照/`、`_待归类/` | 否，仅本地 |
-| `.github/workflows/pages.yml` | GitHub Pages 构建与发布 | 是 |
+| `课程/`、`站点/`、`qa/` | 手工维护的源与审计，部署走 Cloudflare Pages 直传（见「部署」） | 是 |
 
 `资料/` 与 `归档/` 占地方又不该发布，已写进 `.gitignore`；它们**不再各自带独立的 `.git`**（2026-11-01 整理时退役，快照见 `Documents\_备份\git-bundle-20261101\`）。唯一还带独立仓库的是 `归档/数据结构/`，它有自己的远端 `data-structure-13181`。
 
@@ -40,7 +40,7 @@
 
 ## 站点
 
-<https://chosenecho.github.io/os-study-notes/>
+<https://studynote.chosenecho.dpdns.org/>
 
 站点上放了两门课全部十二章。跟阅读有关的都在这里：章节之间有上一章/下一章与课程首页的跳转，搜索认中文，两门课的章末习题都是**教材原题**、答案默认折起来（组成原理的解答取自书末「附录 部分习题解答」，附录没给答案的题目只列题干），插图点开按原图尺寸显示、手机上可左右拖动，字号能调。每章开头有个「本章已复习」的勾选，首页会显示两门课各自复习到第几章、每章是否已复习，并给出「继续复习」入口。
 
@@ -65,28 +65,30 @@ python -m mkdocs build -f 站点/mkdocs.yml --strict
 
 产物在 `站点/dist/`（81 个文件、14 个页面 + 404、sitemap 14 条）。
 
-`site_url` 由环境变量 `SITE_URL` 决定，默认是 GitHub Pages 的子路径 `https://chosenecho.github.io/os-study-notes/`。同一份源可以构建到两个部署目标：
+`site_url` 由环境变量 `SITE_URL` 决定，默认是生产域名 `https://studynote.chosenecho.dpdns.org/`。只有这一个部署目标，构建时也可以显式传一遍：
 
 ```sh
-SITE_URL=https://chosenecho.github.io/os-study-notes/ python -m mkdocs build -f 站点/mkdocs.yml --strict
 SITE_URL=https://studynote.chosenecho.dpdns.org/ python -m mkdocs build -f 站点/mkdocs.yml --strict
 ```
 
-404 页里的站内链接跟着 `site_url` 走，所以两个目标都对。**不要在源码里写死 `/`**，那只能对其中一个成立。
+404 页里的站内链接跟着 `site_url` 走。**不要在源码里写死 `/`**，换域名时会全错。
 
 ### 部署
 
-推到 `main` 就行，GitHub Actions 会自动构建发布。工作流在 `.github/workflows/pages.yml`：装 `站点/requirements.txt` 里的依赖，带 `--strict` 构建，把 `站点/dist` 传成 Pages 制品。
-
-第一次用得在仓库设置里把 Pages 源选成 "GitHub Actions"，也可以用命令行：
+生产是 **Cloudflare Pages 项目 `studynote`，直传**（不做 Git 集成，仓库里不存 Cloudflare 凭据）。两步：
 
 ```sh
-gh api -X POST repos/chosenEcho/os-study-notes/pages -f build_type=workflow
+SITE_URL=https://studynote.chosenecho.dpdns.org/ python -m mkdocs build -f 站点/mkdocs.yml --strict
+wrangler pages deploy ".\站点\dist" --project-name=studynote --branch=main
 ```
 
-站点挂在 `https://chosenecho.github.io/os-study-notes/` 这个子路径下，由 `site_url` 决定；工作流里通过 `SITE_URL` 环境变量传进去。
+`wrangler` 先 `wrangler login`（或设 `CLOUDFLARE_API_TOKEN`）。上传是增量的，只传有变化的文件，通常几十秒完事。
 
-另有一条 Cloudflare 的线路（自定义域名 `studynote.chosenecho.dpdns.org`，源站是自己的 ECS），脚本与部署记录在仓库外的 `Documents\studynote-deploy\`。注意 `站点/src/_headers`（CSP、缓存策略）是 **Cloudflare Pages 的约定文件**，GitHub Pages 会原样当静态文件发出去、不生效；要它生效必须走 Cloudflare。
+对外域名 `studynote.chosenecho.dpdns.org` 并不直接指向 Pages，而是经 Worker `site-proxy` 代理到 `studynote-42b.pages.dev`。Worker、DNS、证书脚本都在仓库外的 `Documents\studynote-deploy\`。
+
+`站点/src/_headers`（CSP、缓存策略）是 **Cloudflare Pages 的约定文件**，只有走 Pages 才生效。
+
+**GitHub Pages 已下线**：2026-11-01 删除该仓库的 Pages 站点，同时移除 `.github/workflows/pages.yml`。原来的 `chosenecho.github.io/os-study-notes/` 不再更新、也不再可访问；要看那个工作流长什么样，去 git 历史里翻。
 
 ### 改笔记
 

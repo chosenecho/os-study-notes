@@ -505,8 +505,19 @@ def check_404_body():
 
 
 def check_worker_headers_inferred():
-    """Static inspection of esa-deploy/worker/index.js -> what headers the proxy sets/strips."""
-    p = os.path.join(ROOT, "esa-deploy", "worker", "index.js")
+    """Static inspection of esa-deploy/worker/index.js -> what headers the proxy sets/strips.
+
+    部署实验已于 2026-11-01 移出仓库（仓库是公开远端，里面有源站 IP、account id 和一个待吊销的
+    Cloudflare token），现在放在 Documents\\studynote-deploy\\。这里按「仓库内 → 外部目录」两处找，
+    找不到就返回 missing，不让整套检查因为一个可选文件而崩掉。
+    """
+    candidates = [
+        os.path.join(ROOT, "esa-deploy", "worker", "index.js"),
+        os.path.join(os.path.dirname(ROOT), "studynote-deploy", "worker", "index.js"),
+    ]
+    p = next((c for c in candidates if os.path.exists(c)), None)
+    if p is None:
+        return {"missing": True, "looked_in": candidates}
     with open(p, "r", encoding="utf-8") as fh:
         src = fh.read()
     return {

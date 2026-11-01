@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+
+{#
+  404 页的站内链接必须跟着 site_url 走，不能写死 "/"。
+  这个站有两个部署目标（GitHub Pages 的 /os-study-notes/ 子路径，和 Cloudflare 的自定义域名根路径），
+  写死 "/" 只对其中一个成立；用 config.site_url 前缀则两边都成立。
+  注意 site_url 由 mkdocs 规范化成带尾斜杠的形式，`or '/'` 只是兜底。
+#}
+{% set root = config.site_url or '/' %}
+
+{% block content %}
+  <h1>页面没有找到</h1>
+  <p>这个地址没有对应的笔记。可能是链接过期了，或者网址打错了。</p>
+  <ul>
+    <li><a href="{{ root }}">回到学习首页</a></li>
+    <li><a href="{{ root }}chapters/chapter-1/">操作系统概论 · 第一章 操作系统简介</a></li>
+    <li><a href="{{ root }}computer-organization/chapter-1/">计算机组成原理 · 第一章 计算机系统概述</a></li>
+  </ul>
+  <p>也可以点右上角的搜索，按章节名或概念名查找。</p>
+{% endblock %}

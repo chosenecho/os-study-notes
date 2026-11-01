@@ -4,6 +4,7 @@ site_url: !ENV [SITE_URL, 'https://chosenecho.github.io/os-study-notes/']
 site_dir: dist
 theme:
   name: material
+  custom_dir: overrides
   language: zh
   font: false
   favicon: assets/favicon.svg
@@ -11,12 +12,14 @@ theme:
     - scheme: default
       primary: custom
       accent: blue
+      media: "(prefers-color-scheme: light)"
       toggle:
         icon: material/weather-night
         name: 切换深色主题
     - scheme: slate
       primary: custom
       accent: blue
+      media: "(prefers-color-scheme: dark)"
       toggle:
         icon: material/weather-sunny
         name: 切换浅色主题

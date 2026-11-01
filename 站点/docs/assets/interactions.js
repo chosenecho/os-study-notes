@@ -37,6 +37,11 @@
     return { segments, results, average: results.reduce((n, p) => n + p.turnaround, 0) / jobs.length, weightedAverage: results.reduce((n, p) => n + p.weighted, 0) / jobs.length };
   }
 
+  /** Decimal rounding: 2.675 must print as 2.68, not 2.67. */
+  function round2(value) {
+    return Math.round(value * 100 + 1e-9) / 100;
+  }
+
   // 笔记网站/src/scripts/scheduler.ts
   function initScheduler() {
     const root = document.querySelector("[data-scheduler]");
@@ -74,7 +79,7 @@ ${segment.start}\u2013${segment.end}`;
         output.append(chart);
         const metrics = document.createElement("p");
         metrics.className = "lab-metrics";
-        metrics.textContent = `\u5E73\u5747\u5468\u8F6C\u65F6\u95F4 ${result.average.toFixed(2)}\u3000\xB7\u3000\u5E73\u5747\u5E26\u6743\u5468\u8F6C\u65F6\u95F4 ${result.weightedAverage.toFixed(2)}`;
+        metrics.textContent = `\u5E73\u5747\u5468\u8F6C\u65F6\u95F4 ${round2(result.average).toFixed(2)}\u3000\xB7\u3000\u5E73\u5747\u5E26\u6743\u5468\u8F6C\u65F6\u95F4 ${round2(result.weightedAverage).toFixed(2)}`;
         output.append(metrics);
         const table = document.createElement("table");
         const head = table.createTHead().insertRow();
@@ -87,7 +92,7 @@ ${segment.start}\u2013${segment.end}`;
         const body = table.createTBody();
         result.results.forEach((p) => {
           const row = body.insertRow();
-          [p.id, p.finish, p.turnaround, p.weighted.toFixed(2)].forEach((value) => {
+          [p.id, p.finish, p.turnaround, round2(p.weighted).toFixed(2)].forEach((value) => {
             row.insertCell().textContent = String(value);
           });
         });
@@ -173,40 +178,79 @@ ${segment.start}\u2013${segment.end}`;
     const nextLink = document.querySelector("[data-next-chapter]");
     if (nextLink) {
       const next = ["1", "2", "3", "4", "5", "6"].find((id) => !progress.includes(id));
+      const done = ["1", "2", "3", "4", "5", "6"].filter((id) => progress.includes(id)).length;
       if (next) {
         nextLink.href = nextLink.href.replace(/chapter-\d/, `chapter-${next}`);
-        nextLink.querySelector("[data-next-label]").textContent = progress.length ? `\u7EE7\u7EED\u590D\u4E60 \xB7 \u7B2C ${next} \u7AE0` : "\u5F00\u59CB\u7B2C\u4E00\u7AE0";
+        nextLink.querySelector("[data-next-label]").textContent = done ? `\u7EE7\u7EED\u590D\u4E60 \xB7 \u7B2C ${next} \u7AE0` : "\u5F00\u59CB\u7B2C\u4E00\u7AE0";
       } else nextLink.querySelector("[data-next-label]").textContent = "\u56DE\u987E\u7B2C\u4E00\u7AE0";
     }
     const dialog = document.querySelector(".image-dialog");
-    if (!dialog || dialog.dataset.ready) return;
-    dialog.dataset.ready = "true";
-    dialog.querySelector("button").addEventListener("click", () => dialog.close());
-    dialog.addEventListener("click", (event) => {
-      if (event.target === dialog) dialog.close();
-    });
-    document.querySelectorAll(".md-content__inner img").forEach((img) => {
-      if (img.closest("dialog")) return;
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "figure-zoom";
-      button.setAttribute("aria-label", `\u653E\u5927\u63D2\u56FE\uFF1A${img.alt}`);
-      img.replaceWith(button);
-      button.append(img);
-      const hint = document.createElement("span");
-      hint.className = "zoom-hint";
-      hint.textContent = "\u70B9\u51FB\u653E\u5927";
-      hint.setAttribute("aria-hidden", "true");
-      button.append(hint);
-      button.addEventListener("click", () => {
-        const preview = dialog.querySelector("img");
-        preview.src = img.currentSrc || img.src;
-        preview.alt = img.alt;
-        dialog.querySelector("p").textContent = img.alt;
-        dialog.showModal();
+    if (dialog && !dialog.dataset.ready) {
+      dialog.dataset.ready = "true";
+      dialog.querySelector("button").addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
       });
+      dialog.addEventListener("close", () => document.documentElement.classList.remove("dialog-open"));
+      document.querySelectorAll(".md-content__inner img").forEach((img) => {
+        if (img.closest("dialog")) return;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "figure-zoom";
+        button.setAttribute("aria-label", `\u653E\u5927\u63D2\u56FE\uFF1A${img.alt}`);
+        img.replaceWith(button);
+        button.append(img);
+        const hint = document.createElement("span");
+        hint.className = "zoom-hint";
+        hint.textContent = "\u70B9\u51FB\u653E\u5927";
+        hint.setAttribute("aria-hidden", "true");
+        button.append(hint);
+        button.addEventListener("click", () => {
+          const preview = dialog.querySelector("img");
+          preview.src = img.currentSrc || img.src;
+          preview.alt = img.alt;
+          dialog.querySelector("p").textContent = img.alt;
+          dialog.showModal();
+          dialog.scrollTop = 0;
+          dialog.scrollLeft = 0;
+          document.documentElement.classList.add("dialog-open");
+        });
+      });
+    }
+  }
+
+  /**
+   * Material 的搜索只在 keyup 时读取输入框的值。中文输入法的候选词提交、
+   * 粘贴、语音输入都只发 input 事件，于是结果面板会停在旧查询上。
+   * 这里补一次合成的 keyup，让所有输入路径都能触发检索。
+   */
+  function initSearchInputFallback() {
+    const input = document.querySelector(".md-search__input");
+    if (!input || input.dataset.keyupFallback) return;
+    input.dataset.keyupFallback = "true";
+    let timer = 0;
+    input.addEventListener("input", () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        input.dispatchEvent(new KeyboardEvent("keyup", { key: "Process", bubbles: true }));
+      }, 220);
     });
   }
+
+  /** 搜索面板收起时，结果滚动容器仍是一个 0 高度的 Tab 停靠点——移出 Tab 序列。 */
+  function initSearchTabStop() {
+    const toggle = document.getElementById("__search");
+    const wrap = document.querySelector(".md-search__scrollwrap");
+    if (!wrap) return;
+    const sync = () => {
+      wrap.tabIndex = toggle && toggle.checked ? 0 : -1;
+    };
+    if (toggle) toggle.addEventListener("change", sync);
+    sync();
+  }
+
   initNotes();
   initScheduler();
+  initSearchInputFallback();
+  initSearchTabStop();
 })();

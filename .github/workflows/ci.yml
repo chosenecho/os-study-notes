@@ -38,6 +38,15 @@ jobs:
         with:
           node-version: '20'
 
+      # 纯 Node、零依赖、读 dist 不用起服务器。有任何断链/坏资源/丢锚点即 exit 1。
+      # 2026-11 之前它对目录式 URL 不 stat，1313 条站内链接里有 315 条从没被检查过，
+      # 而且全文件没有 process.exit，真断链也照报 broken:0 —— 那种检查不进 CI 反而是好事。
+      - name: Site self-check (links, anchors, assets)
+        run: node qa/scripts/lead-links.mjs
+
+      - name: Note structure self-check
+        run: python qa/scripts/check-notes.py
+
       # 调度实验的答案另用脚本核过；纯 Node、无依赖，不参与站点构建。
       - name: Scheduling self-check
         run: node 站点/scripts/test-scheduling.mjs

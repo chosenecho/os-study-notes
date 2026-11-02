@@ -31,7 +31,12 @@ const exists = async (f) => {
 };
 const toFile = async (base, urlPath) => {
   let p = path.join(base, urlPath);
-  if (urlPath.endsWith('/')) return path.join(p, 'index.html');
+  // 目录式 URL 必须 stat：早先直接 return，导致 24% 的站内链接
+  // （1313 条里 315 条以 / 结尾）从未做过存在性检查，脚本永远报 broken:0。
+  if (urlPath.endsWith('/')) {
+    const idx = path.join(p, 'index.html');
+    return (await exists(idx)) ? idx : null;
+  }
   if (await exists(p)) return p;
   if (await exists(path.join(p, 'index.html'))) return path.join(p, 'index.html');
   if (await exists(p + '.html')) return p + '.html';
@@ -90,10 +95,22 @@ const result = {
   missingAnchors,
   brokenAssets,
 };
-const outFile = path.resolve('qa/artifacts/lead/link-check.json');
-await fs.mkdir(path.dirname(outFile), { recursive: true });
-await fs.writeFile(outFile, JSON.stringify(result, null, 2), 'utf8');
+// CI 上不落盘：qa/artifacts/ 被 gitignore，写进去只会污染工作树。
+if (!process.env.CI) {
+  const outFile = path.resolve('qa/artifacts/lead/link-check.json');
+  await fs.mkdir(path.dirname(outFile), { recursive: true });
+  await fs.writeFile(outFile, JSON.stringify(result, null, 2), 'utf8');
+}
 console.log(JSON.stringify({ pages: result.pages, links: result.links, assets: result.assets, broken: brokenLinks.length, anchors: missingAnchors.length, brokenAssets: brokenAssets.length }, null, 1));
 console.log(JSON.stringify(brokenLinks.slice(0, 20), null, 1));
 console.log(JSON.stringify(missingAnchors.slice(0, 20), null, 1));
 console.log(JSON.stringify(brokenAssets.slice(0, 10), null, 1));
+
+// 有断链/坏资源/丢锚点就非零退出，否则这个检查永远不会让 CI 变红。
+if (brokenLinks.length || brokenAssets.length || missingAnchors.length) {
+  console.error(
+    `FAIL broken=${brokenLinks.length} assets=${brokenAssets.length} anchors=${missingAnchors.length}`,
+  );
+  process.exit(1);
+}
+process.exit(0);

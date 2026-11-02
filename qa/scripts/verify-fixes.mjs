@@ -321,3 +321,10 @@ const summary = { passed, total: checks.length, failed: checks.filter((c) => !c.
 console.log(await saveJSON('artifacts/verify/checks.json', { summary, checks }));
 console.log(`PASS ${passed}/${checks.length}`);
 for (const c of checks) console.log(`${c.pass ? 'OK  ' : 'FAIL'} ${c.id.padEnd(7)} ${c.title} :: ${c.actual} (want ${c.expected})`);
+
+// 断言失败必须以非零退出码收场，否则挂进 CI 也只是摆设。
+if (summary.failed.length) {
+  console.error(`FAIL ${summary.failed.length}/${checks.length} 项断言未通过`);
+  process.exit(1);
+}
+process.exit(0);

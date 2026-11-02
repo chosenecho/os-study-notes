@@ -21,11 +21,12 @@
 
 | 目录 | 轮次 | 说明 |
 |---|---|---|
-| `rounds/r1/` | R1 | 首轮基线审计 |
+| `rounds/r1/` | R1 | 首轮基线审计（36 条缺陷） |
 | `rounds/r2/` | R2 | 逐设备深挖，81 条 findings |
 | `rounds/r3/` | R3 | 两书风格一致性 + 结构 |
 | `rounds/r4/` | R4 | 内容审读（技术 / 考纲 / 结构 / 一致性） |
 | `rounds/r5/` | R5 | 12 章笔记口径统一与终校 |
+| `rounds/r6/` | R6 | **仓库本体整理**（不是站点审计）：拆假门禁、删死文件、qa 归档、文档对齐 |
 
 `reports/` 是逐设备的机器可读报告（`desktop` / `tablet` / `mobile` / `functional` / `delivery`，各 `.md` + `.json`）。
 

@@ -1,9 +1,0 @@
-Delete the retired probes now that they are recoverable from history
-
-qa/scripts/_retired held the 42 one-off probes (20 lead-* scripts, the
-check-* variants, the screenshot runners) kept "for a week" after the
-restructure. They are all in 56a142b, so keeping a second copy on disk adds
-nothing.
-
-Verified after removal: strict build 0, lead-links 0, check-notes 0,
-test-scheduling 0, working tree clean apart from this deletion.

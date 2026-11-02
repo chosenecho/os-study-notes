@@ -1,4 +1,4 @@
-"""Verify that every item in qa/修订规范与勘误清单.md actually landed.
+"""Verify that every item in qa/rounds/r5/修订规范与勘误清单.md actually landed.
 
 Structural integrity is covered by check-notes.py; this file answers a
 different question: did the specific technical fix / 补强 / 顺色 edit survive?

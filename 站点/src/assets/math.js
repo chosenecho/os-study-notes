@@ -4,8 +4,9 @@
 // `.arithmatex` spans and divs. KaTeX is self-hosted under assets/katex/, so the
 // existing CSP (`script-src 'self'`, `font-src 'self'`) keeps working.
 //
-// KaTeX is 275 KB of JavaScript; only six of the fifteen pages contain formulas,
-// so the two scripts are injected on demand instead of being loaded everywhere.
+// KaTeX is 275 KB of JavaScript; only the pages that actually contain formulas
+// get it, so the two scripts are injected on demand instead of being loaded
+// everywhere. (At the time of writing that is 12 of the 15 built pages.)
 (() => {
   const SELF = document.currentScript && document.currentScript.src;
   const OPTIONS = {

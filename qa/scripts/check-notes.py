@@ -4,7 +4,7 @@ Run from the repo root:
     python qa/scripts/check-notes.py
 
 Exit code 0 means every note still satisfies what 站点/hooks.py depends on,
-plus the house style rules agreed in qa/修订规范与勘误清单.md.
+plus the house style rules agreed in qa/rounds/r5/修订规范与勘误清单.md.
 """
 from pathlib import Path
 import re

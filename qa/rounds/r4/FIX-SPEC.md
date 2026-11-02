@@ -12,7 +12,7 @@
 | `fix-os-b` | `课程/操作系统概论/第1章…`、`第4章…`、`第5章…`、`第6章…`（四篇） |
 | `fix-co-a` | `课程/计算机组成原理/第1章…`、`第2章…`、`第3章…`（三篇） |
 | `fix-co-b` | `课程/计算机组成原理/第4章…`、`第5章…`、`第6章…`（三篇） |
-| `fix-meta` | `README.md`、`课程/操作系统概论/README.md`、`课程/计算机组成原理/README.md`、`.gitignore`、`站点/hooks.py`、`qa/修复记录.md`、`qa/修订规范与勘误清单.md`、新建 `.github/workflows/ci.yml`、`课程/术语与缩写表.md`、`课程/易错点清单.md` |
+| `fix-meta` | `README.md`、`课程/操作系统概论/README.md`、`课程/计算机组成原理/README.md`、`.gitignore`、`站点/hooks.py`、`qa/rounds/r1/修复记录.md`、`qa/rounds/r5/修订规范与勘误清单.md`、新建 `.github/workflows/ci.yml`、`课程/术语与缩写表.md`、`课程/易错点清单.md` |
 
 ## 1. 硬结构约束（hooks.py 依赖；破了站点就坏）
 
@@ -197,8 +197,8 @@ A. …　B. …　C. …　D. …
    - 删除死代码 `table_exercises`/`TABLE_RULE`（确认无调用后）或注明保留原因。
 8. `.gitignore` 追加 `qa/r2/`、`qa/r3/`、`qa/r4/_scratch/`；`qa/README.md` 若不存在则新建一句说明（可放 `qa/README.md`，内容 5 行）。
 9. 新建 `.github/workflows/ci.yml`：`pip install -r 站点/requirements.txt` → `python -m mkdocs build -f 站点/mkdocs.yml --strict` → `node 站点/scripts/test-scheduling.mjs`。
-10. `qa/修复记录.md` 顶部加勘误：所有 `站点/docs/*` 路径按 `551d061` 之前记，实际源在 `站点/src/`；并把「CO 六章各 5 题」标注为已被 `db0091b` 推翻。
-11. `qa/修订规范与勘误清单.md:24`「14 个 SVG」→「15 个 SVG」。
+10. `qa/rounds/r1/修复记录.md` 顶部加勘误：所有 `站点/docs/*` 路径按 `551d061` 之前记，实际源在 `站点/src/`；并把「CO 六章各 5 题」标注为已被 `db0091b` 推翻。
+11. `qa/rounds/r5/修订规范与勘误清单.md:24`「14 个 SVG」→「15 个 SVG」。
 12. 新建 `课程/术语与缩写表.md`（§2.6）、`课程/易错点清单.md`（§2.7），并在两个课程 README 顶部加一行链接、根 `README.md` 的「两门课」节加一行链接。
 13. `课程/计算机组成原理/README.md:16`「约 L87 起」→「约 L216 起（L89 是目录项）」；`:19` 真题说明补「本地已有 202410/202504 两卷正卷与一份自测卷，四卷考点见 `qa/r4/C-考纲与应试.md` 表 5」。
 14. `课程/操作系统概论/README.md`：加术语表/易错清单链接；真题说明补一句「202410/202504 正卷无文本层，考点可从答案页核对」。

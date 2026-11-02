@@ -20,5 +20,43 @@
 /404.html
   Cache-Control: public, max-age=300, must-revalidate
 
-/assets/*
+# Cloudflare Pages merges the Cache-Control values of every matching rule instead
+# of letting a later rule override an earlier one.  Do not use a broad
+# `/assets/*` rule here: a specific rule underneath it would be concatenated
+# (`max-age=31536000, immutable, max-age=300, ...`), which browsers resolve
+# unpredictably.  Keep the rules disjoint instead.
+/assets/stylesheets/*
   Cache-Control: public, max-age=31536000, immutable
+
+/assets/javascripts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Figures and the vendored KaTeX bundle keep stable filenames: a day is enough
+# to cut repeat downloads without freezing a bad file for a year.
+/assets/figures/*
+  Cache-Control: public, max-age=86400
+
+/assets/katex/*
+  Cache-Control: public, max-age=86400
+
+# These asset names are not content-hashed, so they must not be immutable: a
+# deployed fix has to reach returning visitors.
+/assets/interactions.js
+  Cache-Control: public, max-age=300, must-revalidate
+
+/assets/math.js
+  Cache-Control: public, max-age=300, must-revalidate
+
+/assets/favicon.svg
+  Cache-Control: public, max-age=86400
+
+# The search index (~400 KB after minifying) is fetched on every page load;
+# without a rule Pages sends max-age=0, so every navigation re-downloads it.
+/search/*
+  Cache-Control: public, max-age=300, must-revalidate
+
+/robots.txt
+  Cache-Control: public, max-age=300
+
+/sitemap.xml
+  Cache-Control: public, max-age=300

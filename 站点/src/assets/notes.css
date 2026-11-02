@@ -23,6 +23,7 @@
   --note-radius: .75rem;
   --note-font-size: 16px;
   --note-content-max: 760px;
+  --note-scroll-shadow: rgba(255, 255, 255, .24);
 }
 [data-md-color-scheme="default"] {
   --sl-color-accent-low: #edf2ff;
@@ -40,6 +41,7 @@
   --note-on-button: #fff;
   --note-field-border: #7c8495;
   --note-focus: #2859c5;
+  --note-scroll-shadow: rgba(0, 0, 0, .22);
   --md-default-fg-color--light: rgba(0, 0, 0, .66);
 }
 body { line-height: 1.85; }
@@ -57,23 +59,30 @@ h1, h2, h3 { letter-spacing: -.025em; text-wrap: balance; }
 /* Tables: keep the table layout, a readable size and a discoverable horizontal scroller. */
 .md-typeset table:not([class]) { display: table; width: 100%; border-collapse: separate; border-spacing: 0; font-size: .9em; line-height: 1.8; margin-block: 1.25rem; }
 .md-typeset th { background: var(--note-muted-surface); font-weight: 650; color: var(--note-text); }
-.md-typeset :is(th, td) { padding: .8rem .9rem; border-bottom: 1px solid var(--note-border); vertical-align: top; }
+.md-typeset table:not([class]) :is(th, td) { padding: .8rem .9rem; border-bottom: 1px solid var(--note-border); vertical-align: top; }
 .md-typeset tr:last-child td { border-bottom-width: 1px; }
 .md-typeset__scrollwrap {
+  position: relative;
   scrollbar-width: thin;
   scrollbar-color: var(--note-border) transparent;
   background:
     linear-gradient(to right, var(--note-bg) 30%, rgba(0, 0, 0, 0)) left center / 40px 100% no-repeat local,
     linear-gradient(to left, var(--note-bg) 30%, rgba(0, 0, 0, 0)) right center / 40px 100% no-repeat local,
-    radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, .14), rgba(0, 0, 0, 0)) left center / 14px 100% no-repeat scroll,
-    radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, .14), rgba(0, 0, 0, 0)) right center / 14px 100% no-repeat scroll;
+    radial-gradient(farthest-side at 0 50%, var(--note-scroll-shadow), rgba(0, 0, 0, 0)) left center / 14px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, var(--note-scroll-shadow), rgba(0, 0, 0, 0)) right center / 14px 100% no-repeat scroll;
 }
 .md-typeset__scrollwrap::-webkit-scrollbar { height: 8px; }
 .md-typeset__scrollwrap::-webkit-scrollbar-thumb { background: var(--note-border); border-radius: 4px; }
 .md-typeset__scrollwrap::-webkit-scrollbar-track { background: transparent; }
-.md-typeset__scrollwrap table :is(th, td):first-child { position: sticky; left: 0; background: var(--note-bg); z-index: 1; }
+/* The sticky first column needs its own surface colour and a hairline, otherwise a
+   horizontally scrolled table swallows the next column without any visual seam. */
+.md-typeset__scrollwrap table :is(th, td):first-child { position: sticky; left: 0; background: var(--note-surface); z-index: 1; box-shadow: 1px 0 0 var(--note-border); }
 .md-typeset__scrollwrap table th:first-child { background: var(--note-muted-surface); }
-.md-typeset blockquote { border-inline-start: 3px solid var(--note-accent); font-size: .875em; color: var(--note-muted); background: var(--note-muted-surface); padding: 1rem 1.15rem; border-radius: 0 .5rem .5rem 0; }
+/* Hint injected by interactions.js when a table actually overflows. */
+.table-scroll-hint { margin: .15rem 0 .5rem; font-size: 13px; color: var(--note-muted); }
+.table-scroll-hint::before { content: "\2190 "; }
+.table-scroll-hint::after { content: " \2192"; }
+.md-typeset blockquote { border-inline-start: 3px solid var(--note-accent) !important; font-size: .875em; color: var(--note-muted); background: var(--note-muted-surface); padding: 1rem 1.15rem; border-radius: 0 .5rem .5rem 0; }
 .md-typeset :not(pre) > code { border-radius: .25rem; font-size: .9em; }
 .study-toolbar { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; padding: .7rem 1rem; margin-bottom: 1.75rem; border: 1px solid var(--note-border); border-radius: var(--note-radius); font-size: .9em; background: var(--note-surface); color: var(--note-text); }
 .study-toolbar label { display: flex; align-items: center; gap: .6rem; min-height: 44px; cursor: pointer; }
@@ -90,7 +99,11 @@ input[type='checkbox'] { accent-color: var(--note-button); width: 1.1rem; height
 .exercise-answer[open] { padding-bottom: 1rem !important; }
 .exercise-answer[open] summary { border-bottom: 1px solid var(--note-border); margin-bottom: 1rem; }
 .figure-zoom { position: relative; display: block; width: 100%; border: 1px solid var(--note-border); padding: 1rem; border-radius: .6rem; background: var(--note-surface); cursor: zoom-in; margin-block: 1.75rem; overflow: hidden; }
-.figure-zoom img { display: block; width: 100%; height: auto; margin: 0; background: #fff; border-radius: .35rem; }
+.figure-zoom img { display: block; width: auto; max-width: 100%; height: auto; margin: 0 auto; background: #fff; border-radius: .35rem; }
+/* Captions: OS1 puts the <em> in the same paragraph as the zoom button,
+   OS2/3 put it in the next paragraph.  Give both the same quiet caption. */
+.md-typeset p:has(> .figure-zoom) + p > em,
+.md-typeset p > .figure-zoom + em { display: block; font-size: .875em; color: var(--note-muted); font-style: normal; text-align: center; margin: .5rem auto 0; }
 .zoom-hint { position: absolute; right: .5rem; bottom: .5rem; padding: .15rem .5rem; background: var(--note-surface); color: var(--note-muted); border: 1px solid var(--note-border); font: 500 .75em/1.6 var(--sl-font); border-radius: .25rem; }
 .image-dialog { width: min(94vw, 1400px); max-width: 96vw; max-height: 94dvh; overflow: auto; overscroll-behavior: contain; border: 1px solid var(--note-border); border-radius: var(--note-radius); padding: 1rem; background: var(--note-bg); color: var(--note-text); }
 .image-dialog::backdrop { background: #071719d9; }
@@ -98,11 +111,10 @@ input[type='checkbox'] { accent-color: var(--note-button); width: 1.1rem; height
 .image-dialog img { display: block; width: auto; max-width: none; max-height: 72dvh; object-fit: contain; background: #fff; border-radius: .35rem; margin: .75rem auto 0; }
 .md-typeset .image-dialog img { width: auto; max-width: none; }
 .image-dialog p { margin: .5rem 0 0; text-align: center; font-size: .875em; }
-.close-dialog { display: block; margin-left: auto; position: sticky; top: 0; z-index: 2; }
+.close-dialog { display: block; margin-left: auto; position: sticky; top: 0; left: 0; z-index: 2; }
 html.dialog-open { overflow: hidden; }
-@media (max-width: 40rem) {
+@media (max-width: 800px) {
   .image-dialog { width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh; border: 0; border-radius: 0; padding: .75rem; }
-  .image-dialog img { max-height: 68dvh; }
 }
 .primary-link { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 1.25rem; padding: .65rem 1.15rem; background: var(--note-button); color: var(--note-on-button) !important; border: 1px solid transparent; border-radius: .45rem; text-decoration: none; font: 600 .9375em/1.5 var(--sl-font); cursor: pointer; transition: box-shadow .2s, filter .2s; }
 .primary-link:hover { filter: brightness(1.08); box-shadow: 0 3px 12px #102c2020; }
@@ -125,7 +137,8 @@ button:active { filter: brightness(.96); }
 .lab-results h2 { font-size: 1.15em; margin-bottom: 1rem; }
 .lab-results table { font-variant-numeric: tabular-nums; }
 .gantt { display: flex; overflow-x: auto; gap: 3px; padding: .5rem 0 1rem; scrollbar-width: thin; scrollbar-color: var(--note-border) transparent; }
-.gantt-block { flex-basis: 0; min-width: 4rem; white-space: pre; text-align: center; padding: .7rem .25rem; border-radius: .3rem; background: #c6e8df; color: #123f37; font: 600 .8125em/1.7 var(--sl-font); font-variant-numeric: tabular-nums; }
+.gantt-track { display: flex; flex: 1 0 auto; gap: 3px; }
+.gantt-block { flex: 0 0 auto; min-width: 0; white-space: pre; text-align: center; padding: .7rem .25rem; border-radius: .3rem; background: #c6e8df; color: #123f37; font: 600 .8125em/1.7 var(--sl-font); font-variant-numeric: tabular-nums; }
 .process-1 { background: #d8e6fa; color: #153665; }
 .process-2 { background: #fae7ba; color: #62440d; }
 .process-3 { background: #e8d9f4; color: #4b266a; }
@@ -146,29 +159,45 @@ button:active { filter: brightness(.96); }
 .progress-badge { display: inline-block; margin-left: .35rem; padding: .05rem .45rem; border: 1px solid var(--note-border); border-radius: 1rem; color: var(--note-muted); font-size: .8em; white-space: nowrap; vertical-align: middle; }
 .progress-badge[data-completed="true"] { color: var(--note-accent); background: var(--note-accent-soft); border-color: var(--note-accent); }
 .md-typeset .grid.cards .primary-link { margin-top: .35rem; }
-@media (max-width: 40rem) {
+@media (max-width: 800px) {
   .md-typeset.chapter-prose { line-height: 1.9; }
-  .md-typeset :is(th, td) { padding: .65rem .7rem; }
+  .md-typeset table:not([class]) :is(th, td) { padding: .65rem .7rem; min-width: 3.5rem; }
+  /* The lab result table keeps horizontal scrolling (its cells are numeric
+     columns, not prose); only chapter tables may wrap freely. */
+  .lab-results .md-typeset__scrollwrap :is(th, td) { min-width: 5rem !important; }
   .study-toolbar { padding: .65rem .75rem; gap: .5rem; }
   .study-toolbar .reading-size { margin-left: auto; }
   .scheduler { padding: 1rem .75rem; }
   .lab-controls { grid-template-columns: 1fr; gap: .75rem; }
   .scheduler .input-table :is(th, td) { padding: .6rem .35rem; }
   .scheduler :is(input, select) { padding-inline: .35rem; }
-  .gantt { flex-wrap: wrap; }
-  .gantt-block { min-width: 2.5rem; font-size: .75em; }
+  .gantt { flex-wrap: nowrap; }
+  .gantt-block { font-size: .75em; }
   .md-typeset .exercise-item { padding: 1rem 1rem 0; }
 }
-/* 960–1220px: no separate TOC column, so the article keeps a stable, centred measure. */
+/* The on-page TOC is taller than the viewport on chapter pages; give its own
+   scroll area the full sticky height so the last entries stay reachable. */
+@media (min-width: 60em) {
+  /* header 49px + main padding 30px; the TOC scroll area then ends at the viewport edge. */
+  .md-sidebar--secondary:not([hidden]) { height: calc(100vh - 79px); }
+  .md-sidebar--secondary .md-sidebar__scrollwrap { height: calc(100vh - 103px) !important; max-height: none !important; padding-bottom: 3.5rem; }
+}
+/* 960–1219px: keep the on-page TOC, just make it narrower. Hiding it left this
+   range with no table of contents at all (the drawer copy is display:none there). */
 @media (min-width: 60em) and (max-width: 76.234375em) {
-  .md-sidebar--secondary:not([hidden]) { display: none; }
+  .md-sidebar--secondary:not([hidden]) { display: block; width: 8rem; }
+  .md-sidebar--secondary .md-sidebar__scrollwrap { padding-inline: .4rem; }
 }
 @media (min-width: 76.25em) {
   .md-sidebar--secondary { width: 9rem; }
 }
 .md-content__inner { max-width: var(--note-content-max); }
-@media (min-width: 60em) {
+/* Below 800px Material's own side margins must win, otherwise the text touches the edge. */
+@media (min-width: 800px) {
   .md-content__inner { margin-inline: auto; }
+}
+@media (min-width: 1600px) {
+  :root { --note-content-max: 820px; }
 }
 @media (hover: none) {
   .md-header__button { padding: .6rem; }
@@ -178,7 +207,34 @@ button:active { filter: brightness(.96); }
   .md-search__options button.md-search__icon { width: 24px; height: 24px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; animation: none !important; } }
-@media print { .study-toolbar, .close-dialog, .image-dialog, .lab-controls, .lab-buttons, .zoom-hint, .chapter-nav { display: none !important; } .figure-zoom { border: 0; } }
+@media print {
+  .study-toolbar, .close-dialog, .image-dialog, .lab-controls, .lab-buttons, .zoom-hint, .chapter-nav { display: none !important; }
+  .figure-zoom { border: 0; }
+  /* interactions.js opens the folded answers on beforeprint; the old
+     `details:not([open]) > *` rule never changed Blink's closed-details slot. */
+  details > summary { list-style: none; }
+  /* The dark palette must not leak onto white paper. */
+  :root, [data-md-color-scheme="slate"] {
+    --md-default-fg-color: #111;
+    --md-default-fg-color--light: #333;
+    --md-typeset-a-color: #0b57d0;
+    --md-default-bg-color: #fff;
+    --note-text: #111;
+    --note-muted: #333;
+    --note-accent: #0b57d0;
+    --note-bg: #fff;
+    --note-surface: #fff;
+    --note-muted-surface: #fff;
+    --note-border: #999;
+  }
+  .md-typeset, .md-typeset h1, .md-typeset h2, .md-typeset h3, .md-typeset h4,
+  .md-typeset p, .md-typeset li, .md-typeset td, .md-typeset th, .md-typeset blockquote { color: #111 !important; }
+  .md-typeset a { color: #0b57d0 !important; }
+  .md-typeset table, .md-typeset th, .md-typeset td, .md-typeset__scrollwrap,
+  .md-typeset .exercise-item, .md-typeset .exercise-options li, .lab-metrics { background: #fff !important; }
+  .md-typeset table, .md-typeset th, .md-typeset td { print-color-adjust: economy; }
+  .md-typeset th { border-bottom: 1px solid #999; }
+}
 /* Each exercise keeps its question, options and answer in one reading group. */
 .md-typeset .exercise-item { margin-block: 1.5rem; padding: 1.3rem 1.4rem 0; border: 1px solid var(--note-border); border-radius: .6rem; background: var(--note-surface); }
 .md-typeset .exercise-item > p:first-child { margin-top: 0; font-weight: 600; line-height: 1.85; }
@@ -191,6 +247,8 @@ button:active { filter: brightness(.96); }
 .md-typeset .exercise-item .exercise-answer summary { font-size: .875em; font-weight: 500; padding: .8rem 0; min-height: 48px; }
 .md-typeset .exercise-item .exercise-answer[open] summary { border-bottom: 0; margin-bottom: .15rem; }
 .md-typeset .exercise-item .exercise-answer > :not(summary) { font-size: .95em; }
+.md-typeset .exercise-item .exercise-answer > .table-scroll-hint,
+.md-typeset .exercise-item .exercise-answer > .code-scroll-hint { font-size: 13px; }
 .md-typeset .exercise-item .exercise-answer > p:first-of-type { margin-top: .5rem; }
 .md-typeset .exercise-item .exercise-answer > :last-child { margin-bottom: .5rem; }
 
@@ -220,3 +278,66 @@ button:active { filter: brightness(.96); }
 /* The form background is a light surface now, so the placeholder and the icon must be dark too. */
 .md-search__input::placeholder { color: var(--note-muted); opacity: 1; }
 .md-search__form .md-search__icon, .md-search__form .md-search__icon svg { color: var(--note-muted); fill: currentColor; }
+
+/* Math (KaTeX). pymdownx.arithmatex emits the raw delimiters; math.js renders them. */
+.arithmatex { font-size: 1.02em; }
+.katex { font-size: 1.06em; }
+.katex-display { overflow-x: auto; overflow-y: hidden; margin: .8rem 0; padding-block: .3rem; }
+[data-md-color-scheme="slate"] .arithmatex, [data-md-color-scheme="slate"] .katex { color: var(--note-text); }
+
+/* iOS Safari zooms the page when a focused control is smaller than 16px. */
+.md-typeset select, .md-typeset textarea,
+.md-typeset input:not([type='checkbox']):not([type='radio']) { font-size: 16px; }
+.study-toolbar .reading-size select { font-size: 16px; }
+.scheduler :is(input, select) { font-size: 16px; }
+
+/* The drawer title inherited the primary colour and stood out as a blue block in
+   the light theme while matching the page in the dark theme. */
+.md-nav--primary .md-nav__title, .md-nav--primary > .md-nav__title[for="__drawer"], .md-nav__title[for="__drawer"] {
+  background: var(--note-surface) !important;
+  color: var(--note-text) !important;
+  box-shadow: none !important;
+}
+
+/* Home / 404 chapter lists: the whole row is a 44px target. */
+.chapter-list { list-style: none; padding-left: 0; margin: 0; }
+.chapter-list li { display: flex; align-items: center; justify-content: space-between; gap: .5rem; min-height: 44px; margin: 0; }
+.chapter-list li > a { flex: 1; display: flex; align-items: center; min-height: 44px; padding-block: .15rem; }
+.chapter-list .progress-badge { flex: none; }
+
+/* Dark theme: a pure white diagram block is jarring; dim it without killing contrast. */
+[data-md-color-scheme="slate"] .figure-zoom img,
+[data-md-color-scheme="slate"] .image-dialog img { filter: brightness(.74) contrast(1.06); }
+
+/* Pygments' number token was just under 4.5:1 in the dark theme. */
+[data-md-color-scheme="slate"] .md-typeset .highlight :is(.m, .mi, .mf, .mh, .mo) { color: #f2ab96; }
+
+/* Drawer open: lock the page behind it (Material does not lock it itself). */
+html.drawer-open, html.drawer-open body { overflow: hidden; }
+
+/* Search: Chinese alias hint for acronyms the zh tokenizer cannot match. */
+.search-alias-hint { margin: .75rem 1rem; font-size: .875em; color: var(--note-muted); }
+.search-alias-hint button { margin-left: .35rem; padding: .1rem .5rem; border: 1px solid var(--note-accent); border-radius: .3rem; background: transparent; color: var(--note-accent); font: inherit; cursor: pointer; }
+
+/* Material's copy button is 24px with 0.07 alpha, effectively invisible on touch. */
+.md-typeset .highlight .md-clipboard { width: 2.5rem; height: 2.5rem; opacity: .5; }
+.md-typeset .highlight .md-clipboard:hover, .md-typeset .highlight .md-clipboard:focus { opacity: 1; }
+.md-typeset .highlight .md-clipboard::after { font-size: 1rem; }
+
+/* Material's back-to-top pill floats at top center (and its JS also writes an
+   inline `top`), covering a line of text. Move it to the bottom-right corner. */
+.md-top, [dir="ltr"] .md-top, [dir="rtl"] .md-top {
+  top: auto !important; bottom: 1.2rem; left: auto; right: 1.2rem;
+  margin-left: 0 !important; margin-right: 0 !important; transform: none !important;
+}
+.md-top[hidden] { opacity: 0; pointer-events: none; }
+
+/* Without JavaScript the toolbar's checkbox and font picker do nothing; hide them
+   instead of showing controls that silently fail. */
+html.no-js .study-toolbar { display: none; }
+.lab-noscript { padding: 1rem 1.15rem; border: 1px solid var(--note-border); border-radius: var(--note-radius); background: var(--note-muted-surface); }
+
+@media print {
+  .arithmatex, .katex, .katex * { color: #111 !important; }
+  .katex-display { overflow-x: auto; font-size: .85em; }
+}

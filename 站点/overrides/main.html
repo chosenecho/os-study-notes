@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{#
+  Two head-level additions:
+
+  1. A localStorage guard that runs *before* Material's bundle. When the browser
+     blocks storage (sandboxed iframe, "block all cookies", some privacy modes),
+     `window.localStorage` throws and Material's palette crashes on click. We
+     replace it with an in-memory shim and expose `window.__storageBlocked` so the
+     notes script can tell the reader that progress will not survive a reload.
+  2. Open Graph / Twitter card tags. Material's base.html only emits a canonical
+     URL and a description, so shared links had no title or preview.
+
+  `page` is None while rendering 404.html, hence the guards in point 2.
+#}
+{% block extrahead %}
+  {{ super() }}
+  <script>
+    (function () {
+      try {
+        void window.localStorage;
+      } catch (error) {
+        window.__storageBlocked = true;
+        var memory = new Map();
+        var shim = {
+          getItem: function (key) { return memory.has(key) ? memory.get(key) : null; },
+          setItem: function (key, value) { memory.set(key, String(value)); },
+          removeItem: function (key) { memory.delete(key); },
+          clear: function () { memory.clear(); },
+          key: function (index) { return Array.from(memory.keys())[index] ?? null; },
+          get length() { return memory.size; }
+        };
+        try {
+          Object.defineProperty(window, 'localStorage', { configurable: true, get: function () { return shim; } });
+        } catch (ignored) {}
+      }
+    })();
+  </script>
+  {% set og_title = (page.meta.title if page and page.meta and page.meta.title else (page.title if page and page.title else config.site_name)) %}
+  {% set og_desc = (page.meta.description if page and page.meta and page.meta.description else config.site_description) %}
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="{{ config.site_name }}">
+  <meta property="og:title" content="{{ og_title | striptags }}">
+  <meta property="og:description" content="{{ og_desc }}">
+  <meta property="og:url" content="{{ page.canonical_url if page and page.canonical_url else config.site_url }}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ og_title | striptags }}">
+  <meta name="twitter:description" content="{{ og_desc }}">
+{% endblock %}

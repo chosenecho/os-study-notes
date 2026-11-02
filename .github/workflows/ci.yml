@@ -1,0 +1,43 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: build-and-selfcheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install MkDocs
+        run: python -m pip install -r 站点/requirements.txt
+
+      # --strict 会把 hooks.py 里 logging.warning 的越界章号、nav 漏页等都升级成构建失败。
+      - name: Build site (strict)
+        run: python -m mkdocs build -f 站点/mkdocs.yml --strict
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 调度实验的答案另用脚本核过；纯 Node、无依赖，不参与站点构建。
+      - name: Scheduling self-check
+        run: node 站点/scripts/test-scheduling.mjs

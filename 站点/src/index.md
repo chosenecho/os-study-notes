@@ -1,3 +1,7 @@
+---
+description: 课程学习笔记首页：操作系统概论与计算机组成原理的章节入口、复习进度与进程调度实验。
+---
+
 # 课程学习笔记
 
 按课程分别整理章节笔记、考核要点与例题，持续更新中。
@@ -24,27 +28,35 @@
 
 ### 章节
 
-- [第一章 · 操作系统简介](chapters/chapter-1.md) <span class="progress-badge" data-progress-chapter="1">待复习</span>
-- [第二章 · 进程管理](chapters/chapter-2.md) <span class="progress-badge" data-progress-chapter="2">待复习</span>
-- [第三章 · 进程调度与死锁](chapters/chapter-3.md) <span class="progress-badge" data-progress-chapter="3">待复习</span>
-- [第四章 · 内存管理](chapters/chapter-4.md) <span class="progress-badge" data-progress-chapter="4">待复习</span>
-- [第五章 · 文件系统](chapters/chapter-5.md) <span class="progress-badge" data-progress-chapter="5">待复习</span>
-- [第六章 · I/O 设备管理](chapters/chapter-6.md) <span class="progress-badge" data-progress-chapter="6">待复习</span>
+<div class="chapter-list" markdown="1">
+
+- [第 1 章 · 操作系统简介](chapters/chapter-1.md) <span class="progress-badge" data-progress-chapter="1">待复习</span>
+- [第 2 章 · 进程管理](chapters/chapter-2.md) <span class="progress-badge" data-progress-chapter="2">待复习</span>
+- [第 3 章 · 进程调度与死锁](chapters/chapter-3.md) <span class="progress-badge" data-progress-chapter="3">待复习</span>
+- [第 4 章 · 内存管理](chapters/chapter-4.md) <span class="progress-badge" data-progress-chapter="4">待复习</span>
+- [第 5 章 · 文件系统](chapters/chapter-5.md) <span class="progress-badge" data-progress-chapter="5">待复习</span>
+- [第 6 章 · I/O 设备管理](chapters/chapter-6.md) <span class="progress-badge" data-progress-chapter="6">待复习</span>
+
+</div>
 
 ### 继续复习
 
-<p><a class="primary-link" data-next-chapter href="chapters/chapter-1/"><span data-next-label>开始第一章</span></a></p>
+<p><a class="primary-link" data-next-chapter href="chapters/chapter-1/"><span data-next-label>开始第 1 章</span></a></p>
 
 ## 计算机组成原理
 
 ### 章节
 
-- [第一章 · 计算机系统概述](computer-organization/chapter-1.md) <span class="progress-badge" data-progress-chapter="co-1">待复习</span>
-- [第二章 · 数据的表示和运算](computer-organization/chapter-2.md) <span class="progress-badge" data-progress-chapter="co-2">待复习</span>
-- [第三章 · 指令系统](computer-organization/chapter-3.md) <span class="progress-badge" data-progress-chapter="co-3">待复习</span>
-- [第四章 · 中央处理器](computer-organization/chapter-4.md) <span class="progress-badge" data-progress-chapter="co-4">待复习</span>
-- [第五章 · 存储器层次结构](computer-organization/chapter-5.md) <span class="progress-badge" data-progress-chapter="co-5">待复习</span>
-- [第六章 · 互连及输入输出组织](computer-organization/chapter-6.md) <span class="progress-badge" data-progress-chapter="co-6">待复习</span>
+<div class="chapter-list" markdown="1">
+
+- [第 1 章 · 计算机系统概述](computer-organization/chapter-1.md) <span class="progress-badge" data-progress-chapter="co-1">待复习</span>
+- [第 2 章 · 数据的表示和运算](computer-organization/chapter-2.md) <span class="progress-badge" data-progress-chapter="co-2">待复习</span>
+- [第 3 章 · 指令系统](computer-organization/chapter-3.md) <span class="progress-badge" data-progress-chapter="co-3">待复习</span>
+- [第 4 章 · 中央处理器](computer-organization/chapter-4.md) <span class="progress-badge" data-progress-chapter="co-4">待复习</span>
+- [第 5 章 · 存储器层次结构](computer-organization/chapter-5.md) <span class="progress-badge" data-progress-chapter="co-5">待复习</span>
+- [第 6 章 · 互连及输入输出组织](computer-organization/chapter-6.md) <span class="progress-badge" data-progress-chapter="co-6">待复习</span>
+
+</div>
 
 ## 交互练习
 

@@ -1,3 +1,7 @@
+---
+description: 进程调度实验：用 FCFS、非抢占 SPF 与时间片轮转跑同一组作业，比较甘特图与周转时间。
+---
+
 # 进程调度实验
 
 修改参数后点击“运行”，查看时间轴与计算结果。
@@ -10,6 +14,7 @@
     <div class="lab-buttons"><button type="submit" class="primary-link">运行</button><button type="reset">恢复示例</button></div>
   </form>
   <div class="lab-results" aria-live="polite" aria-atomic="true"></div>
+  <noscript><p class="lab-noscript">这个实验需要 JavaScript 才能运行：请启用 JavaScript 后刷新页面。</p></noscript>
 </div>
 
 

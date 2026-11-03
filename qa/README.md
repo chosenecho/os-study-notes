@@ -27,6 +27,9 @@
 | `rounds/r4/` | R4 | 内容审读（技术 / 考纲 / 结构 / 一致性） |
 | `rounds/r5/` | R5 | 12 章笔记口径统一与终校 |
 | `rounds/r6/` | R6 | **仓库本体整理**（不是站点审计）：拆假门禁、删死文件、qa 归档、文档对齐 |
+| [rounds/r7/](rounds/r7/README.md) | R7 | 笔记概念勘误、页面置换表精简、共用速查表与回查链接优化 |
+| [rounds/r8/](rounds/r8/README.md) | R8 | 十二章笔记润色校对、导读与术语对齐、单总线及算法表述修正 |
+| [rounds/r9/](rounds/r9/README.md) | R9 | 阅读体验复审、长步骤拆分、术语与口语表述整理、12 章保护区核对 |
 
 `reports/` 是逐设备的机器可读报告（`desktop` / `tablet` / `mobile` / `functional` / `delivery`，各 `.md` + `.json`）。
 

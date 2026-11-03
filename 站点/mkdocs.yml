@@ -47,6 +47,9 @@ nav:
       - 第 4 章 中央处理器: computer-organization/chapter-4.md
       - 第 5 章 存储器层次结构: computer-organization/chapter-5.md
       - 第 6 章 互连及输入输出组织: computer-organization/chapter-6.md
+  - 复习速查:
+      - 易错点清单: reference/pitfalls.md
+      - 术语与缩写表: reference/glossary.md
   - 交互练习:
       - 进程调度实验: lab/scheduling.md
 plugins:

@@ -58,6 +58,11 @@ description: 课程学习笔记首页：操作系统概论与计算机组成原�
 
 </div>
 
+## 复习速查
+
+- [易错点清单](reference/pitfalls.md)：按课程与章次核对易混概念、公式条件和单位。
+- [术语与缩写表](reference/glossary.md)：查缩写、辨含义，再跳回对应章节。
+
 ## 交互练习
 
 [进入进程调度实验 →](lab/scheduling.md){: .primary-link}

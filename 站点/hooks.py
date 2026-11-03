@@ -291,6 +291,32 @@ def on_pre_build(config):
         )
         (composition_docs / f'chapter-{n}.md').write_text(page, encoding='utf-8')
 
+    references = DOCS / 'reference'
+    references.mkdir(parents=True, exist_ok=True)
+    reference_files = (
+        ('易错点清单.md', 'pitfalls'),
+        ('术语与缩写表.md', 'glossary'),
+    )
+    for filename, slug in reference_files:
+        text = (COURSES / filename).read_text(encoding='utf-8')
+        # Markdown 原稿按课程目录回查；发布页改指向生成的章节页。
+        for course, output in ((SOURCE, 'chapters'), (COMPOSITION, 'computer-organization')):
+            for n in range(1, 7):
+                note = chapter_note(course, n)
+                text = text.replace(
+                    f']({course.name}/{note.name})',
+                    f'](../{output}/chapter-{n}.md)',
+                )
+        for other_filename, other_slug in reference_files:
+            text = text.replace(f']({other_filename})', f']({other_slug}.md)')
+        title = text.split('\n', 1)[0].lstrip('# ').strip()
+        metadata = (
+            '---\n'
+            f'description: 两门课程的{title}，含概念辨析、计算条件与章节回查链接。\n'
+            '---\n\n'
+        )
+        (references / f'{slug}.md').write_text(metadata + text, encoding='utf-8')
+
 
 def front_matter(course, title):
     """Give every generated page its own meta description."""
@@ -367,18 +393,19 @@ def on_post_build(config):
     #     哪门课就自动生效。注意这只是 JS 按需：katex.min.css 走 mkdocs.yml 的
     #     extra_css，CSS 与 assets/katex/fonts/ 下的 20 个 woff2 仍然全站加载，
     #     但字体只有用到对应字形时浏览器才真正下载。
-    #     用 rglob 而不是写死两门课的目录名：加第三门课时不会再漏掉它。
-    chapter_pages = sorted(site.rglob('chapter-*/index.html'))
-    for html in chapter_pages:
+    #     扫描全部页面，章节与共用速查页都可按需加载。
+    for html in sorted(site.rglob('*.html')):
         text = html.read_text(encoding='utf-8')
         if 'class="arithmatex"' not in text:
             continue
-        marker = '<script src="../../assets/math.js"></script>'
-        if marker in text and 'assets/katex/katex.min.js' not in text:
+        math_script = re.search(r'<script src="([^"]*assets/)math\.js"></script>', text)
+        if math_script and 'assets/katex/katex.min.js' not in text:
+            asset_prefix = math_script.group(1)
             tags = (
-                '<script src="../../assets/katex/katex.min.js"></script>'
-                '<script src="../../assets/katex/contrib/auto-render.min.js"></script>'
+                f'<script src="{asset_prefix}katex/katex.min.js"></script>'
+                f'<script src="{asset_prefix}katex/contrib/auto-render.min.js"></script>'
             )
+            marker = math_script.group(0)
             html.write_text(text.replace(marker, tags + marker, 1), encoding='utf-8')
 
     # 4) The chapter toolbar is page text, so the search index indexes its control

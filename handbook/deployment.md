@@ -1,75 +1,80 @@
 # 构建与部署
 
-studynote 的生产域名为 https://chosenecho.top/，仓库为 https://github.com/chosenecho/studynote。本地 ESA 配置的目标项目已改为 `studynote`。MkDocs 在本地构建，ESA CLI 上传 `dist/`；GitHub Actions 负责校验，不自动发布。
-
-发布仅限已记录审阅依据的当前修订版，许可范围见 [许可与版权](../LICENSING.md)。`deploy` 与 `deploy:staging` 首先执行 `check:rights`，存在待核验、未登记或核验后变更的内容时，在调用 ESA 上传前退出。
-
-## ESA 项目改名状态
-
-GitHub 仓库已经改名为 `studynote`。2026-11-04 核对的 ESA CLI 1.0.13、其 SDK 及阿里云官方 TypeScript SDK 的 Routine 接口没有提供项目原地改名操作。本地已改用新名称，但尚未创建新 ESA 项目或迁移生产域名；当前云端旧项目 `os-study-notes` 保持服务，未删除。
-
-完成内容权利核验后，先在新名称下创建项目并发布到测试环境，核对路由、资源和页面，再迁移自定义域名并验证 HTTPS 与响应头。保留旧项目用于回退，确认新项目稳定后再决定何时清理。仅修改 `esa.jsonc` 不会改名已有云端资源，也不会自动转移域名。核对依据：[ESA CLI 源码](https://github.com/aliyun/alibabacloud-esa-cli)、[ESA 官方 SDK](https://github.com/aliyun/alibabacloud-typescript-sdk/tree/master/esa-20240910)。
+生产链路为 **浏览器 → ESA 基础版 → HTTPS → ECS Nginx → 静态文件**。唯一正式域名为 `studynote.chosenecho.top`，页面 canonical、Sitemap 和 robots.txt 均使用该域名。`chosenecho.top` 仅以 HTTP 301 跳转到对应的子域名地址，保留路径与查询参数，不提供内容镜像。ECS、域名和站点配置分别见 [ecs-site.json](../config/ecs-site.json)、[esa-site.json](../config/esa-site.json) 与 [mkdocs.yml](../mkdocs.yml)。生产不再使用 ESA Pages 上传，也不保留旧网址兼容路由。
 
 ## 本地准备
 
-~~~sh
+```sh
 python -m pip install -r requirements.txt
 npm ci
 npx playwright install chromium
 npx esa login
-~~~
+workbench version
+```
 
-ESA CLI 的版本由 package-lock.json 锁定。凭据存放在用户目录的 ESA CLI 配置中，或由 CLI 支持的阿里云凭据环境变量提供，不写入仓库。
+复制 `.env.example` 为 `.env.local`，设置 `STUDY_ECS_INSTANCE_ID`。该本地文件已被 Git 忽略。Workbench 负责上传和执行 ECS 命令，须已配置目标实例的访问凭据。ESA CLI 只用于解析已有阿里云凭据及调用站点管理 API。源站公网 IP 只保存在云端回源记录及私有操作资料中。凭据、源站校验值和证书私钥不能提交到 Git。
 
-## 构建与发布
+## 内容权利
 
-~~~sh
-npm run build
-npm run deploy:staging
-npm run deploy
-~~~
+发布仅限已登记并通过核验的当前修订版。未登记、待核验或审阅后发生变化的内容都会阻止上传。发布命令不接受跳过权利检查的参数；普通构建和测试通过也不授予传播或再许可权限。许可范围见 [许可与版权](../LICENSING.md)。
 
-`build` 严格构建站点，产物为 `dist/`，直接读取 `docs/` 源文件。本地构建不执行权利检查，也不代表允许公开传播。`deploy:staging` 先检查内容权利，再运行内容、模型、构建和链接检查，然后发布到 ESA 测试环境。`deploy` 还会运行浏览器交互检查，通过后发布到生产环境。新增或变更内容须先重新审阅；不得只刷新摘要或绕过失败的权利检查直接上传。
+## 发布过程
 
-`esa.jsonc` 指定目标项目名与 `assets.directory`；`assets.notFoundStrategy` 为 `404Page`，不存在的页面应返回错误页和 HTTP 404。CLI 不执行配置文件中的构建命令，因此发布入口明确先构建、检查，再上传。
+[ecs.mjs](../tools/deploy/ecs.mjs) 在权利检查后执行内容、修订、模型、严格构建、链接和浏览器检查，随后打包 `dist/`。构建直接读取 `docs/`，无旧目录转换层。
 
-`mkdocs.yml` 的 `SITE_URL` 默认值为 `https://chosenecho.top/`，用于 canonical、Open Graph 和 sitemap。`docs/robots.txt` 的 Sitemap 地址与生产域名一致。若变更域名，需同时维护这两个入口。
+上传前确认远端归档和发布目录不存在。归档经 SHA-256 校验后解包到 `/var/www/studynote/releases/<release>/`，目录权限为 `755`，文件为 `644`。通过 `nginx -t` 后，原子切换 `current` 符号链接并重载 Nginx。激活失败时恢复原链接。源码提交、内容摘要、逐文件摘要、缓存刷新请求与激活结果保存在本地 `artifacts/releases/<release>/`。
 
-## 域名与 HTTPS
+激活后刷新正式域名和跳转域名的 ESA 缓存，读取 `studynote.chosenecho.top/__release.json` 确认发布编号。日常发布无需改变 DNS、证书或源站校验值。
 
-`chosenecho.top` 使用已购买的 ESA 基础版（`basic`）套餐，通过 CNAME 接入并保留现有 DNS 服务器。阿里云 DNS 中的记录：
+## DNS 与回源
+
+阿里云 DNS 保持 CNAME 接入：
 
 | 主机记录 | 类型 | 目标 |
 | --- | --- | --- |
 | @ | CNAME | chosenecho.top.a1.initak.com |
-| _esaauth | TXT | ESA 站点详情中的归属校验码 |
+| studynote | CNAME | studynote.chosenecho.top.a1.initak.com |
 
-ESA 中该域名绑定 `os-study-notes`。证书使用 ESA 托管的 Let's Encrypt 免费证书，强制 HTTPS 由站点规则控制。域名绑定和 DNS 属于首次接入操作，日常发布无需重复执行。
+`_esaauth` 归属校验记录继续保留。ESA 的站点名称 `chosenecho.top` 是管理域标识，网站只使用 `studynote.chosenecho.top`。根域名的记录仅用于 HTTPS 跳转和证书验证。ESA 中两个加速记录的源地址均为目标 ECS 的公网 IP，业务类型为 `web`。旧 `os-study-notes` Pages 项目已解除生产域名绑定。
 
-~~~sh
-npx esa domain list --skip-update-check
-npx esa deployments list --skip-update-check
-~~~
+回源规则固定 HTTPS 与端口，分别发送对应域名的 Host 和 SNI，并开启 `OriginVerify`。服务器证书路径为 `/etc/letsencrypt/live/studynote/`；证书同时覆盖两个域名。模板见 [nginx-site.conf](../tools/deploy/nginx-site.conf)。
 
-## 站点规则
+ESA 先删除客户端提供的 `X-Studynote-Origin`，再加入站点独有的随机校验值。Nginx 仅接受匹配值，拒绝其他源站请求；未知 Host 直接断开连接。映射文件为 `/etc/nginx/conf.d/10-studynote-auth.conf`，由 root 持有并设为 `600`。校验值只放在该服务器文件、ESA 请求头规则和本地受保护操作资料中。更换时须协调两端，不能只改一端。
 
-`config/esa-site.json` 保存站点 ID、域名和受管理的命名规则。预览或同步配置：
+此次 ESA `CreateOriginProtection` 返回 `FunctionArgError`，没有取得回源 IP 白名单，也没有开启该功能。当前源站访问校验依靠上述随机值，不应在控制台记录或交付说明中写成已启用 ESA IP 收敛。
 
-~~~sh
+## 证书续期
+
+证书由 Certbot webroot 验证签发。验证目录为 `/var/lib/letsencrypt`，ESA 对 `/.well-known/acme-challenge/` 绕过缓存；Nginx 在两个域名的 HTTPS 站点提供该目录。`certbot.timer` 负责续期，续期钩子执行 `nginx -t` 后重载 Nginx。服务器无需保存 DNS 管理密钥。
+
+```sh
+certbot renew --cert-name studynote --dry-run --no-random-sleep-on-renew
+systemctl status certbot.timer
+```
+
+不得将验证目录改为站点发布目录，否则切换发布可能使验证文件丢失。证书续期或重载失败时检查 `/var/log/letsencrypt/letsencrypt.log` 和 `journalctl -u certbot.service`。
+
+## 缓存与安全
+
+缓存值由 [nginx-http.conf](../tools/deploy/nginx-http.conf) 的映射定义：普通页面和未指纹化脚本短缓存，Material 指纹资源长期不可变缓存，图标、第三方静态库与课程插图按日缓存。错误响应使用 `no-store`。ESA 跟随源站缓存策略，静态内容的缓存键忽略查询参数，POST 不缓存，ACME 与发布信息绕过缓存。退役的边缘响应头缓存规则已删除，避免把源站错误页改成长缓存。
+
+HTTPS、CSP、防嵌入、防 MIME 嗅探、HSTS、权限与来源策略由命名规则维护；压缩和原有 TLS 安全设置继续保留。已关闭 ESA 质量数据采集，避免向 HTML 注入外部 RUM 脚本。预览与同步：
+
+```sh
 npm run esa:configure
 npm run esa:configure -- --apply
-~~~
+```
 
-脚本核对站点名称、激活状态和基础版套餐实例，只创建或更新本文件中列出的规则，并读取远端配置复核。已存在且相同的规则保持不变，不删除其他规则。首次迁移时执行过配置同步，日常内容发布无需重复执行。
+脚本核对站点名称、状态与基础版实例，只同步受管理的响应头、缓存、HTTPS、回源及质量采集配置，并读取配置复核。请求头中的校验值单独保管，不在该配置文件中。
 
-响应头规则包含 CSP、防 MIME 嗅探、防嵌入、来源策略和权限策略。未指纹化的脚本、样式与页面使用短缓存；Material 指纹资源使用长期不可变缓存，插图和 KaTeX 资源使用日缓存。强制 HTTPS 使用永久跳转。规则具体值见 `config/esa-site.json`，配置后应以生产响应头实测为准。
+WAF 保留扫描路径拦截；防盗链同时覆盖 `/assets/` 和课程 `figures/`，允许本站来源与无 Referer 请求。原速率规则仍为观察模式，不能视作已执行的流量或费用上限。套餐外用量需另行观察账单，不应把缓存或 WAF 当成费用硬上限。
 
-响应头使用 `add` 操作创建；`modify` 只修改已有响应头。原 Cloudflare Pages 的 `_headers` 文件已退役，ESA 使用上述站点规则。
+## 回退与排查
 
-官方参考：[Pages 构建和路由指南](https://help.aliyun.com/zh/edge-security-acceleration/esa/build-pages)、[ESA CLI](https://github.com/aliyun/alibabacloud-esa-cli)、[响应头配置 API](https://help.aliyun.com/zh/edge-security-acceleration/esa/api-esa-2024-09-10-createhttpresponseheadermodificationrule)。
+回退仅切换到已校验的 ECS 发布目录，执行 `nginx -t`、重载，并刷新两个域名的 ESA 缓存。不要重新绑定旧 Pages 项目。服务器保留私有历史发布目录，发布脚本不自动删除历史版本；含旧材料的版本不得重新上线。清理前须核对 `current` 和需要保留的版本。
 
-## 回退
+源站日志为 `/var/log/nginx/studynote.access.log` 与 `studynote.error.log`。访问日志不记录源站校验头或查询参数值。线上排查同时核对 `/__release.json`、ESA 缓存状态、HTTP 状态和资源 MIME；不存在的页面须返回 HTTP 404，模块脚本须返回 JavaScript 类型。
 
-先用 `npx esa deployments list --skip-update-check` 获取历史版本，再执行 `npx esa deploy --version <版本号> --environment production --no-preview --skip-update-check`。回退旧代码不会自动回退 DNS、证书或站点规则；涉及这些配置时，应先检查对应的发布记录。
+当前仓库发布入口只使用 ECS，不再提供 Pages 发布命令。本轮曾在新建的 studynote Pages 项目上传测试及生产版本，但该项目没有绑定正式域名；默认调试地址实测需要访问验证。旧 os-study-notes 项目同样没有正式域名绑定。云端历史版本的保留与清理须单独核查。
 
-旧部署可能保留已移除内容，不能把旧版本回退当作安全默认。公开的内容变更与历史边界见 [整理记录](../archive/releases/2026-11-04-open-content.md)。
+官方接口参考：[HTTPS 回源](https://help.aliyun.com/zh/edge-security-acceleration/esa/user-guide/back-to-source-protocols-and-ports)、[回源规则 API](https://help.aliyun.com/zh/edge-security-acceleration/esa/api-esa-2024-09-10-createoriginrule)、[缓存规则 API](https://help.aliyun.com/zh/edge-security-acceleration/esa/api-esa-2024-09-10-createcacherule)。本仓库实际配置值以配置文件和线上读取结果为准。

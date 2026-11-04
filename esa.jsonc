@@ -1,7 +1,0 @@
-{
-  "name": "studynote",
-  "assets": {
-    "directory": "./dist",
-    "notFoundStrategy": "404Page"
-  }
-}

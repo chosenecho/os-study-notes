@@ -1,0 +1,270 @@
+{
+  "date": "2026-11-04",
+  "implementation_base_commit": "49c5797626d75f7fbdfe1b42bb2df3bac66b2023",
+  "branch": "codex/seo-geo-plan",
+  "deployed": false,
+  "validation_status": "passed",
+  "metadata": {
+    "sitemap_pages": 37,
+    "errors": 0,
+    "warnings": 0,
+    "entry_pages": [
+      {
+        "url": "https://studynote.chosenecho.top/",
+        "title": "计算机课程笔记与交互练习 - studynote",
+        "description": "操作系统概论、计算机组成原理、计算机网络技术的原创课程笔记、自编练习与交互实验。按大纲查章节，记录复习进度并回查术语。",
+        "canonical": [
+          "https://studynote.chosenecho.top/"
+        ],
+        "h1_count": 1
+      },
+      {
+        "url": "https://studynote.chosenecho.top/courses/computer-networks/",
+        "title": "计算机网络技术：课程笔记与复习指南 - studynote",
+        "description": "计算机网络技术课程目录与复习指南。",
+        "canonical": [
+          "https://studynote.chosenecho.top/courses/computer-networks/"
+        ],
+        "h1_count": 1
+      },
+      {
+        "url": "https://studynote.chosenecho.top/courses/computer-organization/",
+        "title": "计算机组成原理：课程笔记与复习指南 - studynote",
+        "description": "计算机组成原理课程目录与复习指南。",
+        "canonical": [
+          "https://studynote.chosenecho.top/courses/computer-organization/"
+        ],
+        "h1_count": 1
+      },
+      {
+        "url": "https://studynote.chosenecho.top/courses/operating-systems/",
+        "title": "操作系统概论：课程笔记与复习指南 - studynote",
+        "description": "操作系统概论课程目录与复习指南。",
+        "canonical": [
+          "https://studynote.chosenecho.top/courses/operating-systems/"
+        ],
+        "h1_count": 1
+      }
+    ]
+  },
+  "performance": {
+    "scope": "Local cold-context lab navigation, CDP network/CPU emulation; no field data or INP.",
+    "browser": "148.0.7778.96",
+    "runs_per_group": 3,
+    "total_samples_per_build": 24,
+    "devices": [
+      {
+        "name": "desktop",
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "latency": 40,
+        "download": 1250000,
+        "cpu": 1
+      },
+      {
+        "name": "mobile",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "latency": 150,
+        "download": 200000,
+        "cpu": 4
+      }
+    ],
+    "measurements": [
+      {
+        "device": "desktop",
+        "url": "/",
+        "before": {
+          "lcp_median_ms": 496,
+          "cls_median": 0,
+          "viewport_overflow": false
+        },
+        "after": {
+          "lcp_median_ms": 504,
+          "cls_median": 0,
+          "viewport_overflow": false
+        }
+      },
+      {
+        "device": "desktop",
+        "url": "/courses/operating-systems/chapter-02/",
+        "before": {
+          "lcp_median_ms": 516,
+          "cls_median": 0,
+          "viewport_overflow": false
+        },
+        "after": {
+          "lcp_median_ms": 536,
+          "cls_median": 0,
+          "viewport_overflow": false
+        }
+      },
+      {
+        "device": "desktop",
+        "url": "/courses/computer-organization/chapter-05/",
+        "before": {
+          "lcp_median_ms": 636,
+          "cls_median": 0.00022,
+          "viewport_overflow": false
+        },
+        "after": {
+          "lcp_median_ms": 628,
+          "cls_median": 1.5e-05,
+          "viewport_overflow": false
+        }
+      },
+      {
+        "device": "desktop",
+        "url": "/labs/paging/",
+        "before": {
+          "lcp_median_ms": 472,
+          "cls_median": 0.186812,
+          "viewport_overflow": false
+        },
+        "after": {
+          "lcp_median_ms": 488,
+          "cls_median": 0,
+          "viewport_overflow": false
+        }
+      },
+      {
+        "device": "mobile",
+        "url": "/",
+        "before": {
+          "lcp_median_ms": 2392,
+          "cls_median": 0,
+          "viewport_overflow": false
+        },
+        "after": {
+          "lcp_median_ms": 2344,
+          "cls_median": 0,
+          "viewport_overflow": false
+        }
+      },
+      {
+        "device": "mobile",
+        "url": "/courses/operating-systems/chapter-02/",
+        "before": {
+          "lcp_median_ms": 2400,
+          "cls_median": 0.028402,
+          "viewport_overflow": false
+        },
+        "after": {
+          "lcp_median_ms": 2400,
+          "cls_median": 0.028402,
+          "viewport_overflow": false
+        }
+      },
+      {
+        "device": "mobile",
+        "url": "/courses/computer-organization/chapter-05/",
+        "before": {
+          "lcp_median_ms": 2808,
+          "cls_median": 0.031585,
+          "viewport_overflow": false
+        },
+        "after": {
+          "lcp_median_ms": 2772,
+          "cls_median": 0.031585,
+          "viewport_overflow": false
+        }
+      },
+      {
+        "device": "mobile",
+        "url": "/labs/paging/",
+        "before": {
+          "lcp_median_ms": 2248,
+          "cls_median": 0.498507,
+          "viewport_overflow": false
+        },
+        "after": {
+          "lcp_median_ms": 2308,
+          "cls_median": 0,
+          "viewport_overflow": false
+        }
+      }
+    ],
+    "raw_reports": [
+      "artifacts/seo/performance-before.json",
+      "artifacts/seo/performance-after.json"
+    ]
+  },
+  "production_http": {
+    "checked_at": "2026-11-04T20:36:26.238829+08:00",
+    "existing_pages_200": 37,
+    "robots": "User-agent: *; Allow: /",
+    "missing_page_status": 404,
+    "missing_page_cache_control": "no-store",
+    "root_redirect": {
+      "status": 301,
+      "location": "https://studynote.chosenecho.top/courses/computer-networks/?seo-check=1"
+    },
+    "local_changes_deployed": false
+  },
+  "limitations": [
+    "No Search Console or Bing Webmaster Tools access",
+    "No verified bot logs",
+    "No field Core Web Vitals or INP",
+    "No measured AI citation outcome"
+  ],
+  "validation": {
+    "npm run check": {
+      "exit_code": 0,
+      "scope": [
+        "rights",
+        "structure",
+        "notes",
+        "revisions",
+        "unit",
+        "strict build",
+        "links",
+        "seo"
+      ]
+    },
+    "npm run test:browser": {
+      "exit_code": 0,
+      "checks": 22,
+      "runtime_errors": [],
+      "raw_report": "artifacts/browser/labs/browser-checks.json"
+    },
+    "git diff --check": {
+      "exit_code": 0
+    },
+    "unit_python_tests": 21,
+    "lab_model_cases": 131973,
+    "static_examples": 6
+  },
+  "lighthouse": [
+    {
+      "sample": "lighthouse-chapter",
+      "version": "13.6.0",
+      "checked_at": "2026-11-04T12:53:18.395Z",
+      "category": "seo",
+      "score": 1,
+      "report": "artifacts/seo/lighthouse-chapter.json",
+      "scope": "Local build, automatic SEO checks only; not ranking or indexation."
+    },
+    {
+      "sample": "lighthouse-home",
+      "version": "13.6.0",
+      "checked_at": "2026-11-04T12:53:05.121Z",
+      "category": "seo",
+      "score": 1,
+      "report": "artifacts/seo/lighthouse-home.json",
+      "scope": "Local build, automatic SEO checks only; not ranking or indexation."
+    },
+    {
+      "sample": "lighthouse-paging",
+      "version": "13.6.0",
+      "checked_at": "2026-11-04T12:53:32.321Z",
+      "category": "seo",
+      "score": 1,
+      "report": "artifacts/seo/lighthouse-paging.json",
+      "scope": "Local build, automatic SEO checks only; not ranking or indexation."
+    }
+  ]
+}

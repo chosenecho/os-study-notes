@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
 import {questions} from '../../docs/assets/javascripts/labs/quiz-bank.mjs';
 import {runThemeChecks} from './theme-checks.mjs';
+import {runSeoChecks} from './seo-checks.mjs';
 const root=path.resolve('dist'),out=path.resolve(process.env.STUDY_OUTPUT_DIR||'artifacts/browser/labs');fs.mkdirSync(out,{recursive:true});
 const types={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'application/javascript','.mjs':'application/javascript','.svg':'image/svg+xml','.woff2':'font/woff2','.json':'application/json'};
 const server=http.createServer((req,res)=>{
@@ -24,6 +25,7 @@ const browser=await chromium.launch({headless:true}),report={base,checks:[],scre
 function ok(name){report.checks.push(name);}
 try{
  const page=await browser.newPage({viewport:{width:1280,height:900}});page.on('pageerror',e=>report.errors.push(String(e)));
+ await runSeoChecks(page,{base,out,report});
  await runThemeChecks(page,{base,out,report});
  const syllabus=JSON.parse(fs.readFileSync('config/syllabus.json','utf8'));
  for(const chapter of syllabus.chapters){

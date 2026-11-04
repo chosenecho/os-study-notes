@@ -1,0 +1,332 @@
+{
+  "checked_at": "2026-11-04T17:39:01.494180+08:00",
+  "base_commit": "a6ce571fbd0c720a90867f3c713af668e8801c5a",
+  "method": "HTTP source inspection; no Search Console access, field performance data or authenticated bot logs",
+  "canonical_host": "studynote.chosenecho.top",
+  "sitemap_url_count": 27,
+  "sitemap_http_ok": 27,
+  "self_canonical_count": 27,
+  "missing_description_count": 0,
+  "noindex_count": 0,
+  "raw_html_jsonld_pages": 0,
+  "duplicate_titles": {
+    "课程概览 - studynote": [
+      "https://studynote.chosenecho.top/courses/computer-organization/",
+      "https://studynote.chosenecho.top/courses/operating-systems/"
+    ]
+  },
+  "duplicate_descriptions": {
+    "以大纲为索引的原创课程笔记、自编练习与交互实验": [
+      "https://studynote.chosenecho.top/licensing/",
+      "https://studynote.chosenecho.top/third-party-notices/"
+    ]
+  },
+  "home": {
+    "url": "https://studynote.chosenecho.top/",
+    "final_url": "https://studynote.chosenecho.top/",
+    "status": 200,
+    "headers": {
+      "server": "ESA",
+      "content-type": "text/html",
+      "cache-control": "public, max-age=300, must-revalidate"
+    },
+    "seconds": 0.156,
+    "bytes": 45991,
+    "title": "studynote",
+    "h1": [
+      "studynote",
+      "¶"
+    ],
+    "description": "操作系统概论与计算机组成原理的课程目录、复习进度、速查与交互练习。",
+    "canonical": [
+      "https://studynote.chosenecho.top/"
+    ],
+    "robots": null,
+    "og_type": "article",
+    "og_url": "https://studynote.chosenecho.top/",
+    "jsonld": 0,
+    "visible_text_chars": 12796
+  },
+  "page_inventory": [
+    {
+      "url": "https://studynote.chosenecho.top/",
+      "status": 200,
+      "title": "studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/computer-organization/",
+      "status": 200,
+      "title": "课程概览 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/computer-organization/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/computer-organization/chapter-01/",
+      "status": 200,
+      "title": "第 1 章 计算机系统概述 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/computer-organization/chapter-01/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/computer-organization/chapter-02/",
+      "status": 200,
+      "title": "第 2 章 数据的表示和运算 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/computer-organization/chapter-02/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/computer-organization/chapter-03/",
+      "status": 200,
+      "title": "第 3 章 指令系统 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/computer-organization/chapter-03/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/computer-organization/chapter-04/",
+      "status": 200,
+      "title": "第 4 章 中央处理器 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/computer-organization/chapter-04/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/computer-organization/chapter-05/",
+      "status": 200,
+      "title": "第 5 章 存储器层次结构 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/computer-organization/chapter-05/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/computer-organization/chapter-06/",
+      "status": 200,
+      "title": "第 6 章 互连及输入输出组织 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/computer-organization/chapter-06/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/operating-systems/",
+      "status": 200,
+      "title": "课程概览 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/operating-systems/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/operating-systems/chapter-01/",
+      "status": 200,
+      "title": "第 1 章 操作系统简介 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/operating-systems/chapter-01/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/operating-systems/chapter-02/",
+      "status": 200,
+      "title": "第 2 章 进程管理 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/operating-systems/chapter-02/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/operating-systems/chapter-03/",
+      "status": 200,
+      "title": "第 3 章 进程调度与死锁 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/operating-systems/chapter-03/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/operating-systems/chapter-04/",
+      "status": 200,
+      "title": "第 4 章 内存管理 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/operating-systems/chapter-04/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/operating-systems/chapter-05/",
+      "status": 200,
+      "title": "第 5 章 文件系统 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/operating-systems/chapter-05/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/courses/operating-systems/chapter-06/",
+      "status": 200,
+      "title": "第 6 章 I/O 设备管理 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/courses/operating-systems/chapter-06/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/labs/",
+      "status": 200,
+      "title": "练习入口 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/labs/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/labs/address/",
+      "status": 200,
+      "title": "分页地址转换 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/labs/address/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/labs/banker/",
+      "status": 200,
+      "title": "银行家算法 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/labs/banker/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/labs/cache/",
+      "status": 200,
+      "title": "Cache 映射 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/labs/cache/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/labs/complement/",
+      "status": 200,
+      "title": "补码加减 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/labs/complement/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/labs/paging/",
+      "status": 200,
+      "title": "页面置换 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/labs/paging/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/labs/quiz/",
+      "status": 200,
+      "title": "随堂自测 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/labs/quiz/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/labs/scheduling/",
+      "status": 200,
+      "title": "进程调度实验 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/labs/scheduling/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/reference/glossary/",
+      "status": 200,
+      "title": "术语与缩写表 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/reference/glossary/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/reference/pitfalls/",
+      "status": 200,
+      "title": "易错点清单 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/reference/pitfalls/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/licensing/",
+      "status": 200,
+      "title": "许可与版权 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/licensing/"
+      ]
+    },
+    {
+      "url": "https://studynote.chosenecho.top/third-party-notices/",
+      "status": 200,
+      "title": "第三方资源说明 - studynote",
+      "canonical": [
+        "https://studynote.chosenecho.top/third-party-notices/"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "name": "google-ai",
+      "url": "https://developers.google.com/search/docs/appearance/ai-features",
+      "final_url": "https://developers.google.com/search/docs/appearance/ai-features",
+      "status": 200
+    },
+    {
+      "name": "google-titles",
+      "url": "https://developers.google.com/search/docs/appearance/title-link",
+      "final_url": "https://developers.google.com/search/docs/appearance/title-link",
+      "status": 200
+    },
+    {
+      "name": "google-sitemaps",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+      "final_url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+      "status": 200
+    },
+    {
+      "name": "openai-bots",
+      "url": "https://platform.openai.com/docs/bots",
+      "final_url": "https://developers.openai.com/api/docs/bots",
+      "status": 200
+    }
+  ],
+  "sitemap_lastmod_distribution": {
+    "2026-11-04": 27
+  },
+  "skills": [
+    {
+      "name": "seo-audit",
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "88c79f6528a9347420e57ceb1fff9a60de651768",
+      "sha256": "e0ebb5808787f2ff26b96d7b429423874d9785541cd4ab775629a5cf1137e7a9",
+      "installed": true
+    },
+    {
+      "name": "ai-seo",
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "88c79f6528a9347420e57ceb1fff9a60de651768",
+      "sha256": "8e5532f13d069dc113316d3b18e26d98adc7e20a69b57b94d20d7e2a2f90c220",
+      "installed": true
+    },
+    {
+      "name": "seo",
+      "repository": "addyosmani/web-quality-skills",
+      "commit": "afa8da942115f2961fdbfa80807ea0b232ff6c00",
+      "sha256": "57cd16566c2c706186b643644dec2884da89c42f296843364c65a40a4d566ae6",
+      "installed": true
+    }
+  ],
+  "limitations": [
+    "HTTP source inspection only; no browser-rendered structured-data verification",
+    "No Search Console or Bing Webmaster Tools data",
+    "No validated crawler logs",
+    "No field Core Web Vitals or AI citation baseline",
+    "Legacy path 404s follow the explicit deployment policy; no compatibility redirects planned"
+  ],
+  "build": {
+    "command": "python -m mkdocs build --strict --site-dir artifacts/research/2026-11-04-seo-geo/build",
+    "exit_code": 0,
+    "code_changed": false
+  }
+}

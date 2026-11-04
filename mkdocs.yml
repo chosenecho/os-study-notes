@@ -89,6 +89,7 @@ hooks:
   - tools/mkdocs/content.py
   - tools/mkdocs/licenses.py
   - tools/mkdocs/assets.py
+  - tools/mkdocs/seo.py
 markdown_extensions:
   - tables
   - toc:

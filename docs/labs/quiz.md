@@ -6,8 +6,8 @@ description: 三门课二十一章共四十二道自编自测题，含即时解�
 
 每章 2 题，共 42 题。先选答案，再查看解释；答错后可回到对应章节，完成一轮后重练错题。这里都是依据笔记编写的练习题，**不是教材原题或历年真题**。
 
-<div data-study-lab="quiz"><p>正在载入练习；若长时间未出现操作区，请刷新页面。</p></div>
-<noscript>本自测需要 JavaScript；也可阅读各章末尾的教材习题。</noscript>
+<div class="study-lab" data-study-lab="quiz"><p>正在载入练习；若长时间未出现操作区，请刷新页面。</p></div>
+<noscript>本自测需要 JavaScript；也可阅读各章末尾的自编练习与解析。</noscript>
 
 本轮进度只保留在当前页面，不与章节复习勾选混算，刷新或切换题组会重新开始。
 

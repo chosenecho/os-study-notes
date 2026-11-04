@@ -21,8 +21,9 @@
   <p>这个地址没有对应的笔记。可能是链接过期了，或者网址打错了。</p>
   <ul>
     <li><a href="{{ root }}">回到学习首页</a></li>
-    <li><a href="{{ root }}courses/operating-systems/">操作系统概论 · 课程概览</a></li>
-    <li><a href="{{ root }}courses/computer-organization/">计算机组成原理 · 课程概览</a></li>
+    {% for course in config.extra.study_courses %}
+      <li><a href="{{ root }}courses/{{ course.slug }}/">{{ course.title }} · 课程概览</a></li>
+    {% endfor %}
   </ul>
   <p>也可以点右上角的搜索，按章节名或概念名查找。</p>
 {% endblock %}

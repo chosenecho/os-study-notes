@@ -92,6 +92,25 @@ class BuildTests(unittest.TestCase):
         self.assertIn('Read in order.', result)
         self.assertNotIn('Private', result)
         self.assertEqual(page.meta['description'], 'Demo课程目录与复习指南。')
+        self.assertEqual(page.meta['title'], 'Demo：课程笔记与复习指南')
+
+    def test_home_metadata_uses_registry_without_a_fixed_course_count(self):
+        config = {'extra': {}}
+        with patch.object(content, 'COURSES', [dict(title='第一门', slug='first'),
+                                             dict(title='新增课程', slug='new')]):
+            content.on_config(config)
+            page = SimpleNamespace(file=SimpleNamespace(src_uri='index.md'), meta={})
+            content.on_page_markdown('# studynote', page, config, [])
+        self.assertIn('第一门、新增课程', page.meta['description'])
+        self.assertNotIn('两门', page.meta['description'])
+
+    def test_virtual_license_pages_have_distinct_descriptions(self):
+        descriptions = []
+        for uri in ['licensing.md', 'third-party-notices.md']:
+            page = SimpleNamespace(file=SimpleNamespace(src_uri=uri), meta={})
+            self.assertEqual(licenses.on_page_markdown('# A', page), '# A')
+            descriptions.append(page.meta['description'])
+        self.assertEqual(len(set(descriptions)), 2)
 
     def test_chapter_enrichment_uses_source_paths_without_writing_copies(self):
         with TemporaryDirectory() as tmp:

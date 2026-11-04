@@ -1,6 +1,10 @@
 /* Scoped additions: use the reader's light/dark tokens. */
 .study-lab { margin-block: 1.5rem; padding: 1.4rem; border: 1px solid var(--note-border); border-radius: var(--note-radius); background: var(--note-surface); min-width: 0; }
-html.no-js [data-study-lab] { display: none; }
+/* Reserve the measured initial form space before the lazy module arrives.
+   This is a minimum, so validation messages and result steps can still grow. */
+html.study-js [data-study-lab] { min-height: 28rem; }
+@media(max-width:600px) { html.study-js [data-study-lab] { min-height: 36rem; } }
+html.no-js:not(.study-js) [data-study-lab] { display: none; }
 .study-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; }
 .study-field { min-width: 0; }
 .study-field:has(textarea), .study-field:has(input[type=text]) { grid-column: 1 / -1; }
@@ -29,4 +33,4 @@ html.no-js [data-study-lab] { display: none; }
 .study-option:has(:checked) { border-color: var(--note-accent); background: var(--note-muted-surface); }
 .study-option input { flex: none; width: 20px; height: 20px; margin-top: .3rem; accent-color: var(--note-accent); }
 @media(max-width:600px) { .study-lab { padding: 1rem .75rem; } .study-fields { grid-template-columns: 1fr; } .study-lab .lab-buttons button { flex: 1 1 auto; } }
-@media print { .study-lab form, .study-step-controls { display: none; } .study-lab { padding: 0; border: 0; } }
+@media print { .study-lab form, .study-step-controls { display: none; } .study-lab { padding: 0; border: 0; } html.study-js [data-study-lab] { min-height: 0; } }

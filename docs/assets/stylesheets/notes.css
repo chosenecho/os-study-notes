@@ -32,6 +32,10 @@ progress[data-study-progress]::-webkit-progress-value { background: var(--note-a
 progress[data-study-progress]::-moz-progress-bar { background: var(--note-accent); }
 /* Keep options together; answer disclosure uses Material's native details style. */
 .exercise-item { margin-block: 1.5rem; }
+.study-breadcrumbs { margin-bottom: 1rem; font-size: .7rem; color: var(--note-muted); }
+.md-typeset .study-breadcrumbs ol { display: flex; flex-wrap: wrap; gap: .3rem .5rem; list-style: none; margin: 0; padding: 0; }
+.md-typeset .study-breadcrumbs li { margin: 0; }
+.study-breadcrumbs li + li::before { content: "/"; margin-right: .5rem; }
 .md-typeset .exercise-options ul { list-style: none; padding: 0; margin-left: 0; }
 .md-typeset .exercise-options li { margin-left: 0; }
 .md-typeset details.exercise-answer > summary { min-height: 44px; }

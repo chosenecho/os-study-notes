@@ -46,6 +46,10 @@ def format_exercises(text):
 def on_config(config):
     """Share the canonical registry with reader progress and quiz rendering."""
     config['extra']['study_courses'] = COURSES
+    config['site_description'] = (
+        '、'.join(course['title'] for course in COURSES)
+        + '的原创课程笔记、自编练习与交互实验。'
+    )
     return config
 
 
@@ -109,16 +113,20 @@ def chapter_images(markdown, page):
 def on_page_markdown(markdown, page, config, files):
     """Transform pages in place; source paths are the public paths."""
     uri = Path(page.file.src_uri)
+    if uri.as_posix() == 'index.md':
+        page.meta['description'] = config['site_description'] + '按大纲查章节，记录复习进度并回查术语。'
     course = next((course for course in COURSES
                    if uri.parent.as_posix() == f'courses/{course["slug"]}'), None)
     if course:
         if uri.name == 'index.md':
+            page.meta['title'] = f'{course["title"]}：课程笔记与复习指南'
             page.meta['description'] = f'{course["title"]}课程目录与复习指南。'
             return course_index(markdown, course)
         chapter = re.fullmatch(r'chapter-(\d{2})\.md', uri.name)
         if chapter:
             number = int(chapter[1])
             title, body = markdown.split('\n', 1)
+            page.meta['title'] = f'{title.lstrip("# ")} · {course["title"]}'
             page.meta['description'] = (
                 f'{course["title"]}复习笔记：{title.lstrip("# ")}。'
                 '含大纲索引、独立讲解与附解析的自编练习。'

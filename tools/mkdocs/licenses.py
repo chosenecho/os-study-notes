@@ -28,3 +28,13 @@ def on_files(files, config):
                 .replace('](archive/', '](https://github.com/chosenecho/studynote/blob/main/archive/'))
         files.append(File.generated(config, target, content=text))
     return files
+
+
+def on_page_markdown(markdown, page, **kwargs):
+    descriptions = {
+        'licensing.md': 'studynote 的软件与学习内容许可、署名要求、教材引用边界和权利通知处理规则。',
+        'third-party-notices.md': 'studynote 使用的第三方主题、公式与搜索组件，以及对应许可证和分发文件。',
+    }
+    if page.file.src_uri in descriptions:
+        page.meta['description'] = descriptions[page.file.src_uri]
+    return markdown

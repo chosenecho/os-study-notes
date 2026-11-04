@@ -1,0 +1,7 @@
+{
+  "name": "os-study-notes",
+  "assets": {
+    "directory": "./dist",
+    "notFoundStrategy": "404Page"
+  }
+}

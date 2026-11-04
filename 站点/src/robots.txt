@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://studynote.chosenecho.dpdns.org/sitemap.xml

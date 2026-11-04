@@ -11,6 +11,8 @@ export async function runThemeChecks(page, {base, out, report}) {
     assert.equal(await icp.textContent(), '苏ICP备2026085504号-1');
     assert.equal(await icp.getAttribute('target'), '_blank');
     assert.equal(await icp.getAttribute('rel'), 'noopener noreferrer');
+    const contact = page.locator('footer a[href="mailto:chosenecho@163.com"]');
+    assert.equal(await contact.textContent(), '联系我：chosenecho@163.com');
   };
   const screenshot = async name => {
     await page.screenshot({path: path.join(out, name), animations: 'disabled'});
@@ -21,6 +23,7 @@ export async function runThemeChecks(page, {base, out, report}) {
 
   await open('/');
   assert.match(await page.title(), /studynote/);
+  assert.equal(await page.locator('article .md-button--primary[href="mailto:chosenecho@163.com"]').isVisible(), true);
   assert.match(await page.locator('article').innerText(), /版权与引用说明/);
   assert.equal(await page.locator('.md-tabs__item').count(), courses.length+3);
   assert.equal(await page.locator('.grid.cards > ul > li').count(), courses.length);

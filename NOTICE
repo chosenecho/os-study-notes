@@ -1,0 +1,10 @@
+studynote
+https://github.com/chosenecho/studynote
+
+Project licensing scope and exclusions: LICENSING.md
+Third-party copyright and license notices: THIRD_PARTY_NOTICES.md and LICENSES/
+
+Apache-2.0 applies only to the project's licensable original software and
+associated software documentation. Original learning text expressly cleared
+in config/content-rights.json is separately licensed under CC BY 4.0. Pending textbook
+material and third-party works are not relicensed by this project.

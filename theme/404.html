@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+
+{#
+  404 页的站内链接必须跟着 site_url 走，不能写死 "/"。
+  注意 site_url 由 mkdocs 规范化成带尾斜杠的形式，`or '/'` 只是兜底。
+  这个页面没有 Page 对象，所以标题和 noindex 必须在这里覆盖。
+#}
+{% set root = config.site_url or '/' %}
+
+{% block htmltitle %}
+  <title>页面未找到 - {{ config.site_name }}</title>
+{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  <meta name="robots" content="noindex, follow">
+{% endblock %}
+
+{% block content %}
+  <h1>页面没有找到</h1>
+  <p>这个地址没有对应的笔记。可能是链接过期了，或者网址打错了。</p>
+  <ul>
+    <li><a href="{{ root }}">回到学习首页</a></li>
+    <li><a href="{{ root }}courses/operating-systems/">操作系统概论 · 课程概览</a></li>
+    <li><a href="{{ root }}courses/computer-organization/">计算机组成原理 · 课程概览</a></li>
+  </ul>
+  <p>也可以点右上角的搜索，按章节名或概念名查找。</p>
+{% endblock %}

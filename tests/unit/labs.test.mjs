@@ -1,15 +1,17 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {integer,sequence,matrix,paging,banker,address,cache,complement} from '../../docs/assets/javascripts/labs/labs-core.mjs';
-import {questions} from '../../docs/assets/javascripts/labs/quiz-bank.mjs';
+import {questions, questionSource} from '../../docs/assets/javascripts/labs/quiz-bank.mjs';
 let cases=0;
+const courses=JSON.parse(readFileSync(new URL('../../config/courses.json',import.meta.url),'utf8'));
+const chapterCount=courses.reduce((sum,c)=>sum+c.chapters,0);
 const syllabus=JSON.parse(readFileSync(new URL('../../config/syllabus.json',import.meta.url),'utf8'));
 for(const question of questions){
  const chapter=syllabus.chapters.find(c=>c.id===question.course+'-'+question.chapter);
  assert.equal(question.origin,'original');
  assert(question.sections.length>0);
  assert(question.sections.every(n=>chapter.sections.some(s=>s.number===n)));
- assert(question.source.endsWith('#s'+question.sections[0]));
+ assert.equal(questionSource(question,courses),'../../'+chapter.path.replace('docs/','').replace('.md','/')+'#s'+question.sections[0]);
 }
 function check(fn){fn();cases++;}
 check(()=>{const r=[2,3,4,2,5,3,6];assert.equal(paging(r,3,'fifo').faults,5);assert.equal(paging(r,3,'lru').faults,6);assert.equal(paging(r,3,'opt').faults,5);});
@@ -31,5 +33,5 @@ for(let trial=0;trial<150;trial++){const refs=Array.from({length:12},()=>rand(6)
 function optimum(refs,count,i=0,frames=[]){if(i===refs.length)return 0;const p=refs[i];if(frames.includes(p))return optimum(refs,count,i+1,frames);if(frames.length<count)return 1+optimum(refs,count,i+1,[...frames,p]);return 1+Math.min(...frames.map((_,j)=>optimum(refs,count,i+1,frames.map((v,k)=>j===k?p:v))));}
 for(let t=0;t<80;t++)check(()=>{const refs=Array.from({length:8},()=>rand(5)),count=1+rand(3);assert.equal(paging(refs,count,'opt').faults,optimum(refs,count));});
 check(()=>{for(const fn of [()=>sequence(''),()=>sequence('1 -2'),()=>sequence('1.5'),()=>integer('',0,8,'x'),()=>matrix('1 2\n3'),()=>banker([1],[[2]],[[1]]),()=>cache([0],3,16),()=>complement(128,0,8,'add'),()=>paging([1],0,'fifo')])assert.throws(fn);});
-check(()=>{assert.equal(questions.length,24);assert.equal(new Set(questions.map(q=>q.id)).size,24);for(const course of ['os','co'])for(let chapter=1;chapter<=6;chapter++)assert.equal(questions.filter(q=>q.course===course&&q.chapter===chapter).length,2);for(const q of questions){assert(q.answer>=0&&q.answer<q.options.length);assert(q.explanation.length>20);}});
-console.log(JSON.stringify({status:'passed',cases,questionCount:questions.length,chapterCoverage:12,complementExhaustiveWidths:[4,8],onlinePolicyRandomTrials:150,optBruteForceTrials:80}));
+check(()=>{assert.equal(questions.length,chapterCount*2);assert.equal(new Set(questions.map(q=>q.id)).size,questions.length);for(const course of courses)for(let chapter=1;chapter<=course.chapters;chapter++)assert.equal(questions.filter(q=>q.course===course.id&&q.chapter===chapter).length,2);for(const q of questions){assert(q.answer>=0&&q.answer<q.options.length);assert(q.explanation.length>20);}});
+console.log(JSON.stringify({status:'passed',cases,questionCount:questions.length,chapterCoverage:chapterCount,complementExhaustiveWidths:[4,8],onlinePolicyRandomTrials:150,optBruteForceTrials:80}));

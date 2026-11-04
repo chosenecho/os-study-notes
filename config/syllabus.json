@@ -1,9 +1,10 @@
 {
   "version": 1,
-  "basis": "沿用仓库现有的两门课大纲条目索引；不是对最新考试公告的核验。条目名称与能力层次用于定位，正文、算例与练习独立编写，不提供教材复刻或附录答案。",
+  "basis": "各课程所列成书版本的配套自学考试大纲；索引不代表现行考试公告。",
   "sources": {
     "os": "《操作系统概论》（2017 年版）配套自学考试大纲",
-    "co": "袁春风《计算机组成原理》（2016 年版）配套自学考试大纲"
+    "co": "袁春风《计算机组成原理》（2016 年版）配套自学考试大纲",
+    "cn": "张海霞主编《计算机网络技术》（机械工业出版社，2016年版），课程代码02141，配套自学考试大纲。"
   },
   "chapters": [
     {
@@ -1758,6 +1759,2542 @@
           ],
           "levels": [
             "简单应用",
+            "领会"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cn-1",
+      "path": "docs/courses/computer-networks/chapter-01.md",
+      "title": "第 1 章 计算机网络技术概论",
+      "objectives": [
+        {
+          "number": 1,
+          "title": "计算机网络的定义、起源和发展",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "计算机网络的分类",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "计算机网络的硬件和软件组成",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            3
+          ]
+        },
+        {
+          "number": 4,
+          "title": "计算机网络的性能指标",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            4
+          ]
+        },
+        {
+          "number": 5,
+          "title": "计算机网络的功能和应用",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            5
+          ]
+        },
+        {
+          "number": 6,
+          "title": "计算机网络的标准化组织及其代表协议",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            6
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "number": 1,
+          "title": "网络的形成与资源共享",
+          "scope": [
+            "自治计算机",
+            "资源共享",
+            "ARPANET",
+            "TCP/IP"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "分类维度与拓扑结构",
+          "scope": [
+            "局域网",
+            "城域网",
+            "广域网",
+            "互联网",
+            "有线",
+            "无线",
+            "公用网",
+            "专用网",
+            "总线",
+            "树形",
+            "环形",
+            "星形",
+            "网状",
+            "通信子网",
+            "资源子网",
+            "广播式",
+            "点对点式"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "硬件、协议与网络操作系统",
+          "scope": [
+            "终端",
+            "交换机",
+            "路由器",
+            "传输介质",
+            "网络协议",
+            "网络操作系统"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            3
+          ]
+        },
+        {
+          "number": 4,
+          "title": "速率、带宽、吞吐量与延迟",
+          "scope": [
+            "速率",
+            "带宽",
+            "吞吐量",
+            "发送延迟",
+            "传播延迟",
+            "处理延迟",
+            "排队延迟",
+            "QoS",
+            "可靠性",
+            "可扩展性",
+            "安全性",
+            "标准化",
+            "成本"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            4
+          ]
+        },
+        {
+          "number": 5,
+          "title": "功能与应用之间的关系",
+          "scope": [
+            "数据通信",
+            "分布式处理",
+            "集中控制"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            5
+          ]
+        },
+        {
+          "number": 6,
+          "title": "标准组织与互操作",
+          "scope": [
+            "ISO",
+            "ITU",
+            "EIA",
+            "IEEE",
+            "OSI",
+            "X.25",
+            "RS-232",
+            "IEEE 802"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            6
+          ]
+        }
+      ],
+      "practice": [
+        {
+          "number": 1,
+          "sections": [
+            1
+          ],
+          "levels": [
+            "识记"
+          ]
+        },
+        {
+          "number": 2,
+          "sections": [
+            2,
+            3
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 3,
+          "sections": [
+            4
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 4,
+          "sections": [
+            3,
+            5
+          ],
+          "levels": [
+            "领会",
+            "识记"
+          ]
+        },
+        {
+          "number": 5,
+          "sections": [
+            6
+          ],
+          "levels": [
+            "识记"
+          ]
+        },
+        {
+          "number": 6,
+          "sections": [
+            2,
+            4,
+            5
+          ],
+          "levels": [
+            "领会",
+            "识记"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cn-2",
+      "path": "docs/courses/computer-networks/chapter-02.md",
+      "title": "第 2 章 数据通信基础",
+      "objectives": [
+        {
+          "number": 1,
+          "title": "数据通信的基本概念",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "数据传输方式",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "数据通信系统的性能",
+          "levels": [
+            "简单应用"
+          ],
+          "sections": [
+            3
+          ]
+        },
+        {
+          "number": 4,
+          "title": "传输信道",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            4
+          ]
+        },
+        {
+          "number": 5,
+          "title": "数据通信中的编码",
+          "levels": [
+            "简单应用"
+          ],
+          "sections": [
+            5,
+            6
+          ]
+        },
+        {
+          "number": 6,
+          "title": "时分复用、频分复用、波分复用和码分复用",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            7
+          ]
+        },
+        {
+          "number": 7,
+          "title": "差错控制",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            8,
+            9
+          ]
+        },
+        {
+          "number": 8,
+          "title": "交换技术",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            10
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "number": 1,
+          "title": "信息、数据、信号与系统模型",
+          "scope": [
+            "信息",
+            "数据",
+            "信号",
+            "信源",
+            "发送设备",
+            "信道",
+            "接收设备",
+            "信宿",
+            "模拟",
+            "数字"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "传输方式的四组区别",
+          "scope": [
+            "单向",
+            "双向交替",
+            "双向同时",
+            "并行",
+            "串行",
+            "异步",
+            "同步",
+            "基带",
+            "频带"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "速率、误差与信道容量",
+          "scope": [
+            "码元速率",
+            "信息速率",
+            "频带利用率",
+            "误码率",
+            "误比特率",
+            "信噪比",
+            "香农"
+          ],
+          "levels": [
+            "简单应用"
+          ],
+          "objectives": [
+            3
+          ]
+        },
+        {
+          "number": 4,
+          "title": "有线与无线信道的选择",
+          "scope": [
+            "架空明线",
+            "双绞线",
+            "同轴电缆",
+            "光纤",
+            "电磁波",
+            "VHF",
+            "UHF",
+            "SHF"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            4
+          ]
+        },
+        {
+          "number": 5,
+          "title": "载波调制与数字线路编码",
+          "scope": [
+            "ASK",
+            "FSK",
+            "PSK",
+            "单极不归零",
+            "双极不归零",
+            "单极归零",
+            "双极归零",
+            "差分码",
+            "双相码",
+            "多元码"
+          ],
+          "levels": [
+            "简单应用"
+          ],
+          "objectives": [
+            5
+          ]
+        },
+        {
+          "number": 6,
+          "title": "抽样、量化与 PCM 编码",
+          "scope": [
+            "抽样",
+            "量化",
+            "编码",
+            "PCM",
+            "量化误差"
+          ],
+          "levels": [
+            "简单应用"
+          ],
+          "objectives": [
+            5
+          ]
+        },
+        {
+          "number": 7,
+          "title": "复用与正交码分离",
+          "scope": [
+            "FDM",
+            "TDM",
+            "WDM",
+            "CDM",
+            "码片",
+            "正交"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            6
+          ]
+        },
+        {
+          "number": 8,
+          "title": "差错控制与 ARQ",
+          "scope": [
+            "检错重发",
+            "前向纠错",
+            "反馈校验",
+            "检错丢弃",
+            "停止等待",
+            "回退 N 步",
+            "选择性重传"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            7
+          ]
+        },
+        {
+          "number": 9,
+          "title": "冗余编码与奇偶校验",
+          "scope": [
+            "检错码",
+            "纠错码",
+            "线性码",
+            "分组码",
+            "卷积码",
+            "系统码",
+            "码率",
+            "奇偶校验"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            7
+          ]
+        },
+        {
+          "number": 10,
+          "title": "电路、报文与分组交换",
+          "scope": [
+            "电路交换",
+            "报文交换",
+            "分组交换",
+            "数据报",
+            "虚电路",
+            "存储转发"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            8
+          ]
+        }
+      ],
+      "practice": [
+        {
+          "number": 1,
+          "sections": [
+            1,
+            2
+          ],
+          "levels": [
+            "识记",
+            "领会"
+          ]
+        },
+        {
+          "number": 2,
+          "sections": [
+            3
+          ],
+          "levels": [
+            "简单应用"
+          ]
+        },
+        {
+          "number": 3,
+          "sections": [
+            3,
+            4
+          ],
+          "levels": [
+            "简单应用",
+            "领会"
+          ]
+        },
+        {
+          "number": 4,
+          "sections": [
+            5
+          ],
+          "levels": [
+            "简单应用"
+          ]
+        },
+        {
+          "number": 5,
+          "sections": [
+            6
+          ],
+          "levels": [
+            "简单应用"
+          ]
+        },
+        {
+          "number": 6,
+          "sections": [
+            7
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 7,
+          "sections": [
+            8
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 8,
+          "sections": [
+            9
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 9,
+          "sections": [
+            2,
+            10
+          ],
+          "levels": [
+            "领会"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cn-3",
+      "path": "docs/courses/computer-networks/chapter-03.md",
+      "title": "第 3 章 网络协议和体系结构",
+      "objectives": [
+        {
+          "number": 1,
+          "title": "网络协议和体系结构",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "OSI参考模型",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "TCP/IP参考模型",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            3
+          ]
+        },
+        {
+          "number": 4,
+          "title": "UDP和TCP",
+          "levels": [
+            "简单应用"
+          ],
+          "sections": [
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "number": 1,
+          "title": "协议、服务与分层",
+          "scope": [
+            "语法",
+            "语义",
+            "时序",
+            "对等实体",
+            "接口",
+            "体系结构"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "OSI 七层与层间数据",
+          "scope": [
+            "物理层",
+            "数据链路层",
+            "网络层",
+            "传输层",
+            "会话层",
+            "表示层",
+            "应用层",
+            "PDU",
+            "SDU",
+            "PCI",
+            "SAP",
+            "服务原语"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "TCP/IP 与 OSI 的对应",
+          "scope": [
+            "TCP/IP",
+            "网络接口层",
+            "网络互联层",
+            "四层"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            3
+          ]
+        },
+        {
+          "number": 4,
+          "title": "UDP 首部、报文边界与能力",
+          "scope": [
+            "UDP",
+            "源端口",
+            "目的端口",
+            "长度",
+            "检验和",
+            "报文边界"
+          ],
+          "levels": [
+            "简单应用"
+          ],
+          "objectives": [
+            4
+          ]
+        },
+        {
+          "number": 5,
+          "title": "TCP 字节序号与连接管理",
+          "scope": [
+            "TCP",
+            "字节序号",
+            "累积确认",
+            "SYN",
+            "FIN",
+            "三次握手"
+          ],
+          "levels": [
+            "简单应用"
+          ],
+          "objectives": [
+            4
+          ]
+        },
+        {
+          "number": 6,
+          "title": "接收窗口与流量控制",
+          "scope": [
+            "流量控制",
+            "接收窗口",
+            "未确认"
+          ],
+          "levels": [
+            "简单应用"
+          ],
+          "objectives": [
+            4
+          ]
+        },
+        {
+          "number": 7,
+          "title": "拥塞控制的教材模型",
+          "scope": [
+            "拥塞控制",
+            "慢启动",
+            "拥塞避免",
+            "快速重传",
+            "快速恢复",
+            "RTT"
+          ],
+          "levels": [
+            "简单应用"
+          ],
+          "objectives": [
+            4
+          ]
+        }
+      ],
+      "practice": [
+        {
+          "number": 1,
+          "sections": [
+            1,
+            2,
+            3
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 2,
+          "sections": [
+            2
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 3,
+          "sections": [
+            4
+          ],
+          "levels": [
+            "简单应用"
+          ]
+        },
+        {
+          "number": 4,
+          "sections": [
+            5
+          ],
+          "levels": [
+            "简单应用"
+          ]
+        },
+        {
+          "number": 5,
+          "sections": [
+            5
+          ],
+          "levels": [
+            "简单应用"
+          ]
+        },
+        {
+          "number": 6,
+          "sections": [
+            6,
+            7
+          ],
+          "levels": [
+            "简单应用"
+          ]
+        },
+        {
+          "number": 7,
+          "sections": [
+            7
+          ],
+          "levels": [
+            "简单应用"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cn-4",
+      "path": "docs/courses/computer-networks/chapter-04.md",
+      "title": "第 4 章 局域网技术",
+      "objectives": [
+        {
+          "number": 1,
+          "title": "局域网技术的基本概念",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "以太网的基本原理",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            2,
+            3
+          ]
+        },
+        {
+          "number": 3,
+          "title": "以太网的扩展",
+          "levels": [
+            "简单应用"
+          ],
+          "sections": [
+            4
+          ]
+        },
+        {
+          "number": 4,
+          "title": "虚拟局域网",
+          "levels": [
+            "综合应用"
+          ],
+          "sections": [
+            5,
+            6
+          ]
+        },
+        {
+          "number": 5,
+          "title": "无线局域网",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            7
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "number": 1,
+          "title": "局域网层次与 IEEE 802",
+          "scope": [
+            "IEEE 802",
+            "LLC",
+            "MAC",
+            "802.3",
+            "802.11"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "共享以太网与 CSMA/CD",
+          "scope": [
+            "CSMA/CD",
+            "载波监听",
+            "冲突检测",
+            "退避"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "MAC 地址、帧与产品标识",
+          "scope": [
+            "MAC 地址",
+            "目的地址",
+            "源地址",
+            "类型",
+            "FCS",
+            "10Base",
+            "100Base",
+            "千兆",
+            "万兆"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            2
+          ]
+        },
+        {
+          "number": 4,
+          "title": "中继、集线与交换学习",
+          "scope": [
+            "中继器",
+            "集线器",
+            "网桥",
+            "交换机",
+            "源地址学习",
+            "泛洪",
+            "过滤"
+          ],
+          "levels": [
+            "简单应用"
+          ],
+          "objectives": [
+            3
+          ]
+        },
+        {
+          "number": 5,
+          "title": "VLAN 成员、标记与中继",
+          "scope": [
+            "VLAN",
+            "端口",
+            "MAC",
+            "上层协议",
+            "802.1Q",
+            "Trunk",
+            "Access"
+          ],
+          "levels": [
+            "综合应用"
+          ],
+          "objectives": [
+            4
+          ]
+        },
+        {
+          "number": 6,
+          "title": "按任务核对 VLAN 配置",
+          "scope": [
+            "vlan",
+            "configure terminal",
+            "switchport access vlan",
+            "switchport mode trunk",
+            "show vlan"
+          ],
+          "levels": [
+            "综合应用"
+          ],
+          "objectives": [
+            4
+          ]
+        },
+        {
+          "number": 7,
+          "title": "无线局域网与 CSMA/CA",
+          "scope": [
+            "WLAN",
+            "AP",
+            "BSS",
+            "ESS",
+            "SSID",
+            "CSMA/CA",
+            "Ad Hoc"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            5
+          ]
+        }
+      ],
+      "practice": [
+        {
+          "number": 1,
+          "sections": [
+            1,
+            2
+          ],
+          "levels": [
+            "识记",
+            "领会"
+          ]
+        },
+        {
+          "number": 2,
+          "sections": [
+            2,
+            3
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 3,
+          "sections": [
+            4
+          ],
+          "levels": [
+            "简单应用"
+          ]
+        },
+        {
+          "number": 4,
+          "sections": [
+            3,
+            4
+          ],
+          "levels": [
+            "领会",
+            "简单应用"
+          ]
+        },
+        {
+          "number": 5,
+          "sections": [
+            5,
+            6
+          ],
+          "levels": [
+            "综合应用"
+          ]
+        },
+        {
+          "number": 6,
+          "sections": [
+            6
+          ],
+          "levels": [
+            "综合应用"
+          ]
+        },
+        {
+          "number": 7,
+          "sections": [
+            7
+          ],
+          "levels": [
+            "领会"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cn-5",
+      "path": "docs/courses/computer-networks/chapter-05.md",
+      "title": "第 5 章 网络互联技术",
+      "objectives": [
+        {
+          "number": 1,
+          "title": "网络互联技术的基本概念",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "网际协议IP的基本概念",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "IP地址",
+          "levels": [
+            "综合应用"
+          ],
+          "sections": [
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "number": 4,
+          "title": "IP路由",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            7
+          ]
+        },
+        {
+          "number": 5,
+          "title": "ARP、DHCP、ICMP和IGMP的功能和工作原理",
+          "levels": [
+            "简单应用"
+          ],
+          "sections": [
+            8
+          ]
+        },
+        {
+          "number": 6,
+          "title": "IPv6协议基本知识",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            9
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "number": 1,
+          "title": "从物理连接到网络互联",
+          "scope": [
+            "异构网络",
+            "协议转换",
+            "虚拟互联网络"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "IPv4 服务与首部字段",
+          "scope": [
+            "无连接",
+            "尽力而为",
+            "首部长度",
+            "总长度",
+            "DF",
+            "MF",
+            "片偏移",
+            "TTL",
+            "首部校验和"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "IPv4 表示与分类地址",
+          "scope": [
+            "点分十进制",
+            "网络号",
+            "主机号",
+            "A 类",
+            "回环"
+          ],
+          "levels": [
+            "综合应用"
+          ],
+          "objectives": [
+            3
+          ]
+        },
+        {
+          "number": 4,
+          "title": "掩码、子网与主机范围",
+          "scope": [
+            "子网掩码",
+            "按位与",
+            "网络地址",
+            "广播地址"
+          ],
+          "levels": [
+            "综合应用"
+          ],
+          "objectives": [
+            3
+          ]
+        },
+        {
+          "number": 5,
+          "title": "CIDR、地址块与路由聚合",
+          "scope": [
+            "CIDR",
+            "网络前缀",
+            "路由聚合",
+            "对齐"
+          ],
+          "levels": [
+            "综合应用"
+          ],
+          "objectives": [
+            3
+          ]
+        },
+        {
+          "number": 6,
+          "title": "私有地址与 NAT 的边界",
+          "scope": [
+            "私有地址",
+            "NAT",
+            "转换表"
+          ],
+          "levels": [
+            "综合应用"
+          ],
+          "objectives": [
+            3
+          ]
+        },
+        {
+          "number": 7,
+          "title": "路由器、转发与路由协议",
+          "scope": [
+            "输入端口",
+            "交换结构",
+            "路由处理器",
+            "最长前缀匹配",
+            "RIP",
+            "OSPF",
+            "BGP"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            4
+          ]
+        },
+        {
+          "number": 8,
+          "title": "ARP、DHCP、ICMP 与 IGMP",
+          "scope": [
+            "ARP",
+            "DHCP",
+            "ICMP",
+            "IGMP"
+          ],
+          "levels": [
+            "简单应用"
+          ],
+          "objectives": [
+            5
+          ]
+        },
+        {
+          "number": 9,
+          "title": "IPv6 首部与地址表示",
+          "scope": [
+            "IPv6",
+            "128 位",
+            "扩展首部",
+            "单播",
+            "组播",
+            "任播"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            6
+          ]
+        }
+      ],
+      "practice": [
+        {
+          "number": 1,
+          "sections": [
+            1,
+            2
+          ],
+          "levels": [
+            "识记",
+            "领会"
+          ]
+        },
+        {
+          "number": 2,
+          "sections": [
+            2
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 3,
+          "sections": [
+            2
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 4,
+          "sections": [
+            3,
+            4
+          ],
+          "levels": [
+            "综合应用"
+          ]
+        },
+        {
+          "number": 5,
+          "sections": [
+            4,
+            5
+          ],
+          "levels": [
+            "综合应用"
+          ]
+        },
+        {
+          "number": 6,
+          "sections": [
+            6,
+            8
+          ],
+          "levels": [
+            "综合应用",
+            "简单应用"
+          ]
+        },
+        {
+          "number": 7,
+          "sections": [
+            7,
+            8
+          ],
+          "levels": [
+            "领会",
+            "简单应用"
+          ]
+        },
+        {
+          "number": 8,
+          "sections": [
+            8,
+            9
+          ],
+          "levels": [
+            "简单应用",
+            "识记"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cn-6",
+      "path": "docs/courses/computer-networks/chapter-06.md",
+      "title": "第 6 章 网络应用技术",
+      "objectives": [
+        {
+          "number": 1,
+          "title": "网络应用的含义和模式",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "域名解析系统DNS",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "文件传输协议（FTP）",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            3
+          ]
+        },
+        {
+          "number": 4,
+          "title": "电子邮件E-mail",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            4
+          ]
+        },
+        {
+          "number": 5,
+          "title": "WWW应用",
+          "levels": [
+            "综合应用"
+          ],
+          "sections": [
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "number": 6,
+          "title": "电子商务应用基本知识",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            8
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "number": 1,
+          "title": "应用进程与服务模式",
+          "scope": [
+            "客户机/服务器",
+            "C/S",
+            "B/S",
+            "P2P"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "DNS 层次、区域与解析",
+          "scope": [
+            "DNS",
+            "域名",
+            "区",
+            "根",
+            "顶级",
+            "权限",
+            "本地",
+            "递归",
+            "迭代",
+            "缓存"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "FTP 的控制与数据连接",
+          "scope": [
+            "FTP",
+            "控制连接",
+            "数据连接",
+            "21"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            3
+          ]
+        },
+        {
+          "number": 4,
+          "title": "电子邮件的发送与读取",
+          "scope": [
+            "用户代理",
+            "邮件服务器",
+            "SMTP",
+            "POP3",
+            "IMAP"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            4
+          ]
+        },
+        {
+          "number": 5,
+          "title": "WWW、URL 与 HTTP 交互",
+          "scope": [
+            "WWW",
+            "URL",
+            "HTTP",
+            "请求行",
+            "状态行",
+            "首部",
+            "空行",
+            "实体",
+            "持续连接"
+          ],
+          "levels": [
+            "综合应用"
+          ],
+          "objectives": [
+            5
+          ]
+        },
+        {
+          "number": 6,
+          "title": "Cookie 与 Session 的状态位置",
+          "scope": [
+            "Cookie",
+            "Session",
+            "Set-Cookie",
+            "标识"
+          ],
+          "levels": [
+            "综合应用"
+          ],
+          "objectives": [
+            5
+          ]
+        },
+        {
+          "number": 7,
+          "title": "用 HTML 组织一个资料页",
+          "scope": [
+            "HTML",
+            "head",
+            "title",
+            "body",
+            "段落",
+            "链接",
+            "图像"
+          ],
+          "levels": [
+            "综合应用"
+          ],
+          "objectives": [
+            5
+          ]
+        },
+        {
+          "number": 8,
+          "title": "电子商务的业务与平台",
+          "scope": [
+            "电子商务",
+            "B2B",
+            "B2C",
+            "C2C",
+            "O2O",
+            "交易前",
+            "交易中",
+            "交易后"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            6
+          ]
+        }
+      ],
+      "practice": [
+        {
+          "number": 1,
+          "sections": [
+            1
+          ],
+          "levels": [
+            "识记"
+          ]
+        },
+        {
+          "number": 2,
+          "sections": [
+            2
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 3,
+          "sections": [
+            3
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 4,
+          "sections": [
+            4
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 5,
+          "sections": [
+            5
+          ],
+          "levels": [
+            "综合应用"
+          ]
+        },
+        {
+          "number": 6,
+          "sections": [
+            6
+          ],
+          "levels": [
+            "综合应用"
+          ]
+        },
+        {
+          "number": 7,
+          "sections": [
+            5,
+            7
+          ],
+          "levels": [
+            "综合应用"
+          ]
+        },
+        {
+          "number": 8,
+          "sections": [
+            8
+          ],
+          "levels": [
+            "识记"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cn-7",
+      "path": "docs/courses/computer-networks/chapter-07.md",
+      "title": "第 7 章 网络管理技术",
+      "objectives": [
+        {
+          "number": 1,
+          "title": "网络管理的基本概念",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "网络管理的体系结构与模式",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            2,
+            3
+          ]
+        },
+        {
+          "number": 3,
+          "title": "网络管理的功能",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            4
+          ]
+        },
+        {
+          "number": 4,
+          "title": "简单网络管理协议（SNMP）",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            5
+          ]
+        },
+        {
+          "number": 5,
+          "title": "网络管理系统",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            6
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "number": 1,
+          "title": "管理任务、对象与标准",
+          "scope": [
+            "网络管理",
+            "被管对象",
+            "硬件",
+            "软件",
+            "标准"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "管理站、代理、协议与信息",
+          "scope": [
+            "管理站",
+            "管理代理",
+            "管理协议",
+            "MIB",
+            "SMI"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "集中、分布与混合管理",
+          "scope": [
+            "集中式",
+            "分布式",
+            "混合"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            2
+          ]
+        },
+        {
+          "number": 4,
+          "title": "五类管理功能与排障证据",
+          "scope": [
+            "故障管理",
+            "配置管理",
+            "安全管理",
+            "性能管理",
+            "计费管理"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            3
+          ]
+        },
+        {
+          "number": 5,
+          "title": "SNMP、对象标识与报文",
+          "scope": [
+            "SNMP",
+            "Get",
+            "Set",
+            "Trap",
+            "OID",
+            "请求标识",
+            "变量绑定",
+            "UDP"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            4
+          ]
+        },
+        {
+          "number": 6,
+          "title": "网络管理系统与工具选择",
+          "scope": [
+            "网络管理系统",
+            "NMS",
+            "MIB 浏览器",
+            "命令行",
+            "Sniff",
+            "OpenView",
+            "NetView",
+            "CiscoWorks",
+            "Cacti"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            5
+          ]
+        }
+      ],
+      "practice": [
+        {
+          "number": 1,
+          "sections": [
+            1,
+            4
+          ],
+          "levels": [
+            "识记",
+            "领会"
+          ]
+        },
+        {
+          "number": 2,
+          "sections": [
+            2,
+            5
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 3,
+          "sections": [
+            3
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 4,
+          "sections": [
+            4
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 5,
+          "sections": [
+            5
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 6,
+          "sections": [
+            5,
+            6
+          ],
+          "levels": [
+            "领会",
+            "识记"
+          ]
+        },
+        {
+          "number": 7,
+          "sections": [
+            1,
+            6
+          ],
+          "levels": [
+            "识记"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cn-8",
+      "path": "docs/courses/computer-networks/chapter-08.md",
+      "title": "第 8 章 网络操作系统",
+      "objectives": [
+        {
+          "number": 1,
+          "title": "操作系统概述",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "网络操作系统的基本概念",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "常见的网络操作系统",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            3
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Windows Server 2008的基本操作",
+          "levels": [
+            "综合应用"
+          ],
+          "sections": [
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "number": 1,
+          "title": "操作系统的职责与特征",
+          "scope": [
+            "并发",
+            "共享",
+            "虚拟",
+            "异步",
+            "处理机",
+            "存储器",
+            "设备",
+            "文件",
+            "接口",
+            "批处理",
+            "分时",
+            "实时",
+            "分布式"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "网络操作系统的分类与服务",
+          "scope": [
+            "网络操作系统",
+            "专用型",
+            "通用型",
+            "对等",
+            "非对等",
+            "文件服务",
+            "打印服务",
+            "数据库",
+            "通信",
+            "网络管理",
+            "Internet"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            2
+          ]
+        },
+        {
+          "number": 3,
+          "title": "教材中的常见系统",
+          "scope": [
+            "UNIX",
+            "Linux",
+            "NetWare",
+            "Windows",
+            "Server 2008"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            3
+          ]
+        },
+        {
+          "number": 4,
+          "title": "安装任务与方案核对",
+          "scope": [
+            "全新安装",
+            "升级安装",
+            "远程安装",
+            "Server Core",
+            "硬件兼容"
+          ],
+          "levels": [
+            "综合应用"
+          ],
+          "objectives": [
+            4
+          ]
+        },
+        {
+          "number": 5,
+          "title": "本地账户、域账户与组",
+          "scope": [
+            "本地账户",
+            "域账户",
+            "SAM",
+            "用户组",
+            "Administrator",
+            "Guest"
+          ],
+          "levels": [
+            "综合应用"
+          ],
+          "objectives": [
+            4
+          ]
+        },
+        {
+          "number": 6,
+          "title": "活动目录、域与成员加入",
+          "scope": [
+            "Active Directory",
+            "LDAPv3",
+            "域",
+            "OU",
+            "域树",
+            "林",
+            "域控制器",
+            "站点",
+            "DNS",
+            "SYSVOL"
+          ],
+          "levels": [
+            "综合应用"
+          ],
+          "objectives": [
+            4
+          ]
+        }
+      ],
+      "practice": [
+        {
+          "number": 1,
+          "sections": [
+            1
+          ],
+          "levels": [
+            "识记"
+          ]
+        },
+        {
+          "number": 2,
+          "sections": [
+            2
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 3,
+          "sections": [
+            3,
+            4
+          ],
+          "levels": [
+            "识记",
+            "综合应用"
+          ]
+        },
+        {
+          "number": 4,
+          "sections": [
+            4
+          ],
+          "levels": [
+            "综合应用"
+          ]
+        },
+        {
+          "number": 5,
+          "sections": [
+            5
+          ],
+          "levels": [
+            "综合应用"
+          ]
+        },
+        {
+          "number": 6,
+          "sections": [
+            5,
+            6
+          ],
+          "levels": [
+            "综合应用"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cn-9",
+      "path": "docs/courses/computer-networks/chapter-09.md",
+      "title": "第 9 章 计算机网络安全",
+      "objectives": [
+        {
+          "number": 1,
+          "title": "计算机网络安全概述",
+          "levels": [
+            "识记"
+          ],
+          "sections": [
+            1,
+            2
+          ]
+        },
+        {
+          "number": 2,
+          "title": "信息加密技术",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Internet中的安全协议",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            6
+          ]
+        },
+        {
+          "number": 4,
+          "title": "防火墙技术",
+          "levels": [
+            "简单应用"
+          ],
+          "sections": [
+            7
+          ]
+        },
+        {
+          "number": 5,
+          "title": "计算机病毒与恶意代码的防范",
+          "levels": [
+            "简单应用"
+          ],
+          "sections": [
+            8
+          ]
+        },
+        {
+          "number": 6,
+          "title": "保障网络安全的非技术手段",
+          "levels": [
+            "领会"
+          ],
+          "sections": [
+            9
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "number": 1,
+          "title": "威胁、目标与判断对象",
+          "scope": [
+            "机密性",
+            "完整性",
+            "可用性",
+            "不可抵赖性",
+            "可控性",
+            "窃听",
+            "伪造",
+            "拒绝服务"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            1
+          ]
+        },
+        {
+          "number": 2,
+          "title": "安全层次与组合防护",
+          "scope": [
+            "物理安全",
+            "逻辑安全",
+            "操作系统",
+            "联网",
+            "物理隔离",
+            "逻辑隔离",
+            "VPN",
+            "审计"
+          ],
+          "levels": [
+            "识记"
+          ],
+          "objectives": [
+            1
+          ]
+        },
+        {
+          "number": 3,
+          "title": "对称与非对称密码体制",
+          "scope": [
+            "明文",
+            "密文",
+            "算法",
+            "密钥",
+            "对称",
+            "公钥",
+            "私钥"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            2
+          ]
+        },
+        {
+          "number": 4,
+          "title": "密钥分配与保护位置",
+          "scope": [
+            "KDC",
+            "CA",
+            "证书",
+            "链路加密",
+            "结点加密",
+            "端到端加密"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            2
+          ]
+        },
+        {
+          "number": 5,
+          "title": "签名、摘要与鉴别",
+          "scope": [
+            "数字签名",
+            "摘要",
+            "鉴别",
+            "私钥签名",
+            "公钥验证"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            2
+          ]
+        },
+        {
+          "number": 6,
+          "title": "IPsec 与 SSL/TLS 的位置",
+          "scope": [
+            "IPsec",
+            "AH",
+            "ESP",
+            "SSL/TLS",
+            "握手"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            3
+          ]
+        },
+        {
+          "number": 7,
+          "title": "防火墙规则与边界",
+          "scope": [
+            "防火墙",
+            "包过滤",
+            "代理",
+            "状态检测",
+            "ACL",
+            "个人防火墙",
+            "NAT"
+          ],
+          "levels": [
+            "简单应用"
+          ],
+          "objectives": [
+            4
+          ]
+        },
+        {
+          "number": 8,
+          "title": "病毒、木马、蠕虫与防范",
+          "scope": [
+            "病毒",
+            "木马",
+            "蠕虫",
+            "特征库",
+            "扫描",
+            "隔离"
+          ],
+          "levels": [
+            "简单应用"
+          ],
+          "objectives": [
+            5
+          ]
+        },
+        {
+          "number": 9,
+          "title": "操作习惯、备份与责任",
+          "scope": [
+            "补丁",
+            "备份",
+            "授权",
+            "法律法规"
+          ],
+          "levels": [
+            "领会"
+          ],
+          "objectives": [
+            6
+          ]
+        }
+      ],
+      "practice": [
+        {
+          "number": 1,
+          "sections": [
+            1,
+            2
+          ],
+          "levels": [
+            "识记"
+          ]
+        },
+        {
+          "number": 2,
+          "sections": [
+            3,
+            5
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 3,
+          "sections": [
+            4
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 4,
+          "sections": [
+            2,
+            4
+          ],
+          "levels": [
+            "识记",
+            "领会"
+          ]
+        },
+        {
+          "number": 5,
+          "sections": [
+            3,
+            5
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 6,
+          "sections": [
+            6
+          ],
+          "levels": [
+            "领会"
+          ]
+        },
+        {
+          "number": 7,
+          "sections": [
+            7
+          ],
+          "levels": [
+            "简单应用"
+          ]
+        },
+        {
+          "number": 8,
+          "sections": [
+            8,
+            9
+          ],
+          "levels": [
+            "简单应用",
+            "领会"
+          ]
+        },
+        {
+          "number": 9,
+          "sections": [
+            1,
+            9
+          ],
+          "levels": [
+            "识记",
             "领会"
           ]
         }

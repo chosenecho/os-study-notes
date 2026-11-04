@@ -26,9 +26,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "独立维护文档与站点元数据；本轮核对 Git 改写结果、备份校验和现有 ESA/ECS 部署文件后更新记录，未引入教材表达。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "9f85e41d556179cd5f3b36822047b995f12b3933d09615b77547cd84921a9c51"
+      "sha256": "37530ccafb67d98dd2f6312e315b7f35da9cba850a6ff33c46bf5d4cb1ea9273"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -44,9 +44,18 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "d03518463fdb6099cf61f061fe3fba57c67f998f4cb3fdd36e30d647d6fa601e"
+      "sha256": "ac47621c5c31ecc86713c95e6b16a78af528ad73f23e40bf615a5e61efcde9c2"
+    },
+    {
+      "path": "archive/releases/2026-11-04-computer-networks.md",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "5ef4a4bcd7d03f39f0b4c092291156e247cf65d55083fd105f332a956e35c497"
     },
     {
       "path": "archive/releases/2026-11-04-open-content.md",
@@ -71,9 +80,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "b70637cce502aa19d92b5326ea10432e9b6a455a103cda20511cef8181729861"
+      "sha256": "2748746ecce07b55a965023986d88d7ac7c624d635f8a7b2f25bb8ea0144a904"
     },
     {
       "path": "docs/assets/images/favicon.svg",
@@ -83,6 +92,15 @@
       "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
       "reviewed_on": "2026-11-04",
       "sha256": "60946c69755f9620bec218bcb1dd08aac3e7ed982c98482bfbf94bfed0fce4fc"
+    },
+    {
+      "path": "docs/assets/javascripts/course-catalog.mjs",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "d2945b90f985c969ce3c2a6028615de0f35613e34c3edd4956deb2c99cb55c74"
     },
     {
       "path": "docs/assets/javascripts/labs/labs-core.mjs",
@@ -98,9 +116,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "8abd34401613a85ba15026e7fcedf76979e112f610ef658afdde140e76e769a2"
+      "sha256": "bf7ea0dbba58d52fe1989dc0b91c61c0d76ebbb9e77b609261a27e1cf4829052"
     },
     {
       "path": "docs/assets/javascripts/labs/loader.mjs",
@@ -116,9 +134,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "74d85b2d5e187f45c284a7ffc6f28c377ca55f85b3526706ce170a6fe25c67b2"
+      "sha256": "8e069e5aad6faca7308d8200fc276f240670fc4cf0c017432d7d5b4be502aa89"
     },
     {
       "path": "docs/assets/javascripts/labs/scheduler.mjs",
@@ -152,9 +170,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "1427d53749a7289f25d6cee7576f1f145a72a9ca8e9109fa53e3fcd44ced3805"
+      "sha256": "d2d7bd35beb435555544119b92c0d14481c20026d95ee21985f1640ac8bc9cb8"
     },
     {
       "path": "docs/assets/stylesheets/labs.css",
@@ -415,6 +433,123 @@
       "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
     },
     {
+      "path": "docs/courses/computer-networks/chapter-01.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "70d7d2c0c3b9db2409a4a553838330cfed4d0b2d644e35a16bb171e0c72d7678"
+    },
+    {
+      "path": "docs/courses/computer-networks/chapter-02.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "3a5039c83a0a17edbbb8a186b121f3cf0da43c4a5a21a265f4331e33db2d1646"
+    },
+    {
+      "path": "docs/courses/computer-networks/chapter-03.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "16170daede1e06f80e16fae52ac3a0baa9bacf6fb56c67ebf17f8667619837c7"
+    },
+    {
+      "path": "docs/courses/computer-networks/chapter-04.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "f90ec2df0cf44f4369aa0d2527c17dee416faf8bb75a625d7bca9ec06c61dd56"
+    },
+    {
+      "path": "docs/courses/computer-networks/chapter-05.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "47a983034df49e500c509f9e3f15fd7a584cee27ed6c7c0ca28ae8b00e1cf55f"
+    },
+    {
+      "path": "docs/courses/computer-networks/chapter-06.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "e98a7fc01b6e0b3420d4bc1d05ab3ddccc52dc2d2ba6aeecf810f2465e874d1d"
+    },
+    {
+      "path": "docs/courses/computer-networks/chapter-07.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "0fef325a27b6778b407a59fb9fb4efa94a32ef61def19ac5e6089c7133d9ae99"
+    },
+    {
+      "path": "docs/courses/computer-networks/chapter-08.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "a5716e514fc18fa982e166758a62dce76da6a9609b48aee26b3579dda5ffb96d"
+    },
+    {
+      "path": "docs/courses/computer-networks/chapter-09.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "6316bf531b99f488bd2ce12902ccf26199efe3fe91778c805d32098cdc0258e7"
+    },
+    {
+      "path": "docs/courses/computer-networks/figures/management-loop.svg",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "bbd9d5051bca1abafb169bdb108fb73a9e581d50059bbfd1f07a9ae05df9dbf6"
+    },
+    {
+      "path": "docs/courses/computer-networks/figures/subnet-allocation.svg",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "b57d278eeb5f72f79cf06a75f93c598cb3880c8323a6813271eaf9e7f9acbaae"
+    },
+    {
+      "path": "docs/courses/computer-networks/figures/tcp-handshake.svg",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "8fad7f6335f108efc0f01214477077303e64ce281ae474af6e8ac2ab1f7fbb91"
+    },
+    {
+      "path": "docs/courses/computer-networks/index.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "66f218394295129002397383039142776a6216005e50a63d477d110feff10879"
+    },
+    {
       "path": "docs/courses/computer-organization/chapter-01.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
@@ -599,9 +734,9 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "7122f96a912d9106ee2d21e09a67f7f70ab9c577a1a1cb6c21e9f531330255f7"
+      "sha256": "04661b9b155f9d161c463e934e6345c77485afa9f50a411cd06b3ccff9f33d99"
     },
     {
       "path": "docs/labs/address.md",
@@ -644,9 +779,9 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "743ccce018fc8113ba68173fd204ec96a95d3de29ae7a72400090e5c5191bc56"
+      "sha256": "bf2e30d0f3d6df289ecba1167b042a4075c0c289625d290e2fee8a1e95907440"
     },
     {
       "path": "docs/labs/paging.md",
@@ -662,9 +797,9 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "8e8d5f98ca7e99c1e0a8cb8bf826bfc5847cc1a8dc9982fb979ee04ecd66184a"
+      "sha256": "67f1594c0e3f32ab19a458134e071d14960029fc2c4775bb524dfdbe30f9692e"
     },
     {
       "path": "docs/labs/scheduling.md",
@@ -680,18 +815,18 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "ac3701f9f75dd43a2ad7708865ca12441342b91cf89b73da64a731bc26a190a4"
+      "sha256": "b4d3d133bee79e5b889c5406f946b18c9fe4219fe51c9e1eb8c6722219ab9101"
     },
     {
       "path": "docs/reference/pitfalls.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "d01bf0734abb96c1c8fb6ae44a7741d5bc960e07c41ea4c74aa1b5db394023dc"
+      "sha256": "55d1c53403a30a05d4a9e3333c693737ddd8bed88c0d0ec2938bbe09086315cb"
     },
     {
       "path": "docs/robots.txt",
@@ -707,9 +842,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "2b67affb7dec9e99461b124bef87528d972dd32c3819778a231f54843b9b1b90"
+      "sha256": "ec098e9fa30c7a06c106f3767104878a2f97e5cb9acbe37eb24c76cda9211302"
     },
     {
       "path": "handbook/deployment.md",

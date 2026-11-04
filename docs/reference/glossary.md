@@ -29,4 +29,31 @@
 | Cache / AMAT | 数据缓存与平均访问时间，代价统计口径需明确 | [CO 5](../courses/computer-organization/chapter-05.md#s5) |
 | DMA / IOMMU | 设备直接搬运数据的机制及设备地址转换、隔离设施 | [CO 6](../courses/computer-organization/chapter-06.md#s5) |
 
-CPU 的存储总线竞争与操作系统进程阻塞处在不同层次，见两门课的 I/O 章节。容量记号使用 B 表示字节、bit 表示位；KiB=1024 B，十进制速率按题设换算。
+CPU 的存储总线竞争与操作系统进程阻塞处在不同层次，见操作系统与组成原理的 I/O 章节。容量记号使用 B 表示字节、bit 表示位；KiB=1024 B，十进制速率按题设换算。
+
+## 计算机网络技术
+
+| 术语 | 本站含义与辨析 | 回查 |
+| --- | --- | --- |
+| LAN / WAN | 局域网与广域网，分类范围不直接决定实测速率 | [CN 1](../courses/computer-networks/chapter-01.md#s2) |
+| Baud / bit/s | 每秒码元数与每秒比特数，取决于每码元的状态数 | [CN 2](../courses/computer-networks/chapter-02.md#s3) |
+| PCM | 抽样、量化、编码，三步改变的维度不同 | [CN 2](../courses/computer-networks/chapter-02.md#s6) |
+| FDM / TDM / WDM / CDM | 按频带、时间、光波长或码片区分多路数据 | [CN 2](../courses/computer-networks/chapter-02.md#s7) |
+| ARQ / FEC | 反馈重传与接收端前向纠错 | [CN 2](../courses/computer-networks/chapter-02.md#s8) |
+| PDU / SDU / PCI | 本层协议单元、上交服务数据与协议控制信息 | [CN 3](../courses/computer-networks/chapter-03.md#s2) |
+| TCP / UDP | 连接与可靠传输、字节组织，同无连接报文服务区别 | [CN 3](../courses/computer-networks/chapter-03.md#s4) |
+| rwnd / cwnd | 接收窗口与拥塞窗口，约束不同来源的负担 | [CN 3](../courses/computer-networks/chapter-03.md#s6) |
+| CSMA/CD / CSMA/CA | 共享以太网冲突检测与无线冲突避免 | [CN 4](../courses/computer-networks/chapter-04.md#s7) |
+| MAC / VLAN / Trunk | 链路地址、逻辑广播范围与跨交换机承载 | [CN 4](../courses/computer-networks/chapter-04.md#s5) |
+| CIDR | 用网络前缀界定地址块，并支持路由聚合 | [CN 5](../courses/computer-networks/chapter-05.md#s5) |
+| NAT | 地址转换及返回映射，不等于加密 | [CN 5](../courses/computer-networks/chapter-05.md#s6) |
+| ARP / DHCP | 本地链路地址解析与动态配置分配 | [CN 5](../courses/computer-networks/chapter-05.md#s8) |
+| ICMP / IGMP | 控制差错与查询、多播本地成员关系 | [CN 5](../courses/computer-networks/chapter-05.md#s8) |
+| DNS / URL / HTTP | 名字解析、资源定位与请求响应分工 | [CN 6](../courses/computer-networks/chapter-06.md#s5) |
+| SMTP / POP3 / IMAP | 邮件发送与读取管理，不能互换 | [CN 6](../courses/computer-networks/chapter-06.md#s4) |
+| Cookie / Session | 客户端关联数据与服务器侧会话状态可配合 | [CN 6](../courses/computer-networks/chapter-06.md#s6) |
+| SNMP / SMI / MIB | 管理协议、对象描述规则与对象信息集合 | [CN 7](../courses/computer-networks/chapter-07.md#s5) |
+| OID / Trap | 对象标识与代理主动事件通报 | [CN 7](../courses/computer-networks/chapter-07.md#s5) |
+| AD / OU / LDAP | 活动目录、域内组织单元与目录访问协议 | [CN 8](../courses/computer-networks/chapter-08.md#s6) |
+| IPsec / AH / ESP | 网络层安全体系及其中不同保护机制 | [CN 9](../courses/computer-networks/chapter-09.md#s6) |
+| CA / KDC | 证书身份绑定与密钥分配中心，信任职责不同 | [CN 9](../courses/computer-networks/chapter-09.md#s4) |

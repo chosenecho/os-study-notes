@@ -10,5 +10,11 @@
     "slug": "computer-organization",
     "title": "计算机组成原理",
     "chapters": 6
+  },
+  {
+    "id": "cn",
+    "slug": "computer-networks",
+    "title": "计算机网络技术",
+    "chapters": 9
   }
 ]

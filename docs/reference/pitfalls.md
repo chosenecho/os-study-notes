@@ -34,3 +34,17 @@
 5. 对模型未规定的行为写出假设，不把某个教学模型推广到全部现代硬件。
 
 可在[交互练习](../labs/index.md)中更换输入，观察初始条件改变后结论是否仍成立。
+
+## 计算机网络技术
+
+| 章节 | 容易混淆的判断 | 回查方式 |
+| --- | --- | --- |
+| [网络概论](../courses/computer-networks/chapter-01.md) | 提高速率缩短发送时间，不按同比例缩短传播时间 | 分别写位数/速率与距离/传播速度 |
+| [数据通信](../courses/computer-networks/chapter-02.md) | Baud 不必等于 bit/s；抽样不等于量化；奇偶校验通过不证明无错 | 写每码元状态数、每样本位数与检错条件 |
+| [协议与体系](../courses/computer-networks/chapter-03.md) | TCP 按字节确认；接收窗口不等于拥塞窗口 | 写下一期望字节与两类约束的对象 |
+| [局域网](../courses/computer-networks/chapter-04.md) | 源地址学习与目的地址转发分开；VLAN 创建不代替 Trunk 许可 | 逐帧更新表，逐链路检查成员与承载 |
+| [网络互联](../courses/computer-networks/chapter-05.md) | 地址块总数与主机数不同；ARP 找下一跳而非远端；片偏移按 8 B | 先按位与，再查最长前缀和链路目的 |
+| [网络应用](../courses/computer-networks/chapter-06.md) | HTTP 无状态不等于不能复用 TCP；Cookie 与 Session 可配合 | 画请求路径与状态保存位置 |
+| [网络管理](../courses/computer-networks/chapter-07.md) | Trap 由代理主动报告，不能当作 Get 轮询本身 | 区分操作发起者、对象名与请求编号 |
+| [网络操作系统](../courses/computer-networks/chapter-08.md) | 装角色不等于完成域配置；域不等于站点 | 查名称解析、账户与目录状态，并标明旧版环境 |
+| [网络安全](../courses/computer-networks/chapter-09.md) | 加密、摘要、签名与访问控制职责不同；NAT 不等于保密 | 写保护目标、密钥归属、验证和授权条件 |

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="270" viewBox="0 0 840 270" role="img" aria-labelledby="title desc"><title id="title">自编 /24 地址分配方案</title><desc id="desc">192.168.72.0/24 依次分配给三间机房和一个保留块；示意不按地址数量等比例绘制。</desc><rect width="840" height="270" rx="12" fill="#fff"/><g style="font-family:Arial,Microsoft YaHei,sans-serif;font-size:18px;fill:#17243b"><text x="24" y="36" font-size="22">192.168.72.0/24：按容量从大到小分配</text>
+<path d="M28 65H812" stroke="#64748b" stroke-width="2"/>
+<rect x="24" y="85" width="188" height="120" rx="8" fill="#e7f0ff" stroke="#315ba8"/>
+<rect x="224" y="85" width="188" height="120" rx="8" fill="#e7f0ff" stroke="#315ba8"/>
+<rect x="424" y="85" width="188" height="120" rx="8" fill="#e7f0ff" stroke="#315ba8"/>
+<rect x="624" y="85" width="188" height="120" rx="8" fill="#f1f5f9" stroke="#64748b"/>
+<text x="40" y="116">机房 A · 70 台</text><text x="40" y="150">.0/25</text><text x="40" y="184">地址 .0 ～ .127</text>
+<text x="240" y="116">机房 B · 40 台</text><text x="240" y="150">.128/26</text><text x="240" y="184">地址 .128 ～ .191</text>
+<text x="440" y="116">机房 C · 20 台</text><text x="440" y="150">.192/27</text><text x="440" y="184">地址 .192 ～ .223</text>
+<text x="640" y="116">保留</text><text x="640" y="150">.224/27</text><text x="640" y="184">地址 .224 ～ .255</text>
+<text x="24" y="244">每块独立核对网络/广播地址；框宽仅表达分组，不代表容量比例。</text></g></svg>

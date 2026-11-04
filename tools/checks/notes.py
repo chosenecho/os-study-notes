@@ -58,6 +58,14 @@ for chapter in chapters:
         require(target.is_relative_to(path.parent.resolve()) and target.is_file(), f'missing/unsafe figure {ref}')
         referenced.add(target)
     figures.update(p.resolve() for p in (path.parent / 'figures').glob('*.svg'))
+    objectives = chapter.get('objectives', [])
+    if objectives:
+        require([o['number'] for o in objectives] == list(range(1, len(objectives)+1)), 'objective numbering differs')
+        for objective in objectives:
+            mapped = [s['number'] for s in chapter['sections'] if objective['number'] in s.get('objectives', [])]
+            require(bool(mapped) and mapped == objective['sections'], 'objective has no consistent teaching mapping')
+            require(set(objective['sections']) <= covered, 'objective has no independent practice')
+        require(all(s.get('objectives') for s in chapter['sections']), 'teaching section has no source objective')
     section_count += len(sections)
     question_count += len(questions)
 if figures != referenced:

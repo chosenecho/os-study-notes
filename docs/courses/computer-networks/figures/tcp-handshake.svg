@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="350" viewBox="0 0 840 350" role="img" aria-labelledby="title desc"><title id="title">自编 TCP 三次握手序号</title><desc id="desc">A 初始序号 4000，B 初始序号 9000；三次握手后数据从各自初始序号加一开始。</desc><rect width="840" height="350" rx="12" fill="#fff"/><g style="font-family:Arial,Microsoft YaHei,sans-serif;font-size:18px;fill:#17243b"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L8 3L0 6Z" fill="#315ba8"/></marker></defs>
+<text x="120" y="36" font-size="22">A：初始 4000</text><text x="590" y="36" font-size="22">B：初始 9000</text>
+<path d="M160 55V290M680 55V290" stroke="#94a3b8" stroke-width="2"/>
+<path d="M160 95H680M680 170H160M160 245H680" fill="none" stroke="#315ba8" stroke-width="3" marker-mid="url(#arrow)"/>
+<path d="M160 95H680M680 170H160M160 245H680" fill="none" stroke="#315ba8" stroke-width="3"/>
+<path d="M650 95H680M190 170H160M650 245H680" stroke="#315ba8" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="420" y="82" text-anchor="middle">SYN · seq=4000</text>
+<text x="420" y="157" text-anchor="middle">SYN+ACK · seq=9000 · ack=4001</text>
+<text x="420" y="232" text-anchor="middle">ACK · seq=4001 · ack=9001</text>
+<text x="24" y="324">时间向下；SYN 占序号，第三段在本图中不携带应用数据。</text></g></svg>

@@ -7,7 +7,7 @@ description: 输入资源向量与矩阵，逐步检查安全序列和试分配�
 先算 Need = Max − Allocation，再找当前能完成的进程。你可以检查原状态，也可以添加一次资源请求，比较试分配前后的安全性。
 
 <div data-study-lab="banker"><p>正在载入练习；若长时间未出现操作区，请刷新页面。</p></div>
-<noscript>本练习需要 JavaScript。可手算：Available 为 3 3 2；Allocation 各行为 0 1 0、2 0 0、3 0 2、2 1 1、0 0 2；Max 各行为 7 5 3、3 2 2、9 0 2、2 2 2、4 3 3。</noscript>
+<noscript>本练习需要 JavaScript。可手算：自编资源池：Available 为 1 1；Allocation 各行为 1 0、0 1、1 0；Max 各行为 2 1、2 1、1 2。</noscript>
 
 ## 怎样读结果
 
@@ -15,6 +15,6 @@ Work 是安全性检查中的临时向量，不是实际发放资源。找到 Ne
 
 请求必须先通过“请求不超过 Need”和“请求不超过 Available”两项检查，才能试分配。试分配后的不安全状态需要拒绝；**不安全不等于已经死锁**。每次运行都从输入的原状态开始，不把上次的试分配写回。
 
-试试 P1 请求 `1 0 2`，再试试 P4 请求 `3 3 0`，比较差别。
+自编资源池含 P0、P1、P2 和两类资源。试试 P0 请求 `1 0`，再将请求进程改成 P1、保持相同请求，比较试分配后的安全性。
 
 [回看调度与死锁](../courses/operating-systems/chapter-03.md) · [全部交互练习](index.md)

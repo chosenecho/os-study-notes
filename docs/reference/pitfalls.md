@@ -1,46 +1,36 @@
 # 易错点清单
 
-按课程和章次整理正文中的易混点。可先遮住“正确做法”一列自测，再按章节链接核对。表中保留模型、单位和缓存条件，避免把算例结论当作通用规则。
+用本表回查解题条件。条目按本项目的讲解与自编练习整理，不是教材勘误表，也不预测考试频率。
 
 ## 操作系统概论
 
-| 容易出错的做法 | 问题所在 | 正确做法 | 回查章节 |
-| --- | --- | --- | --- |
-| 12 位地址一律算成能寻址 4096 字节 | 地址数还要乘编址单位 | 本课模型机按 16 位字编址：$2^{12}$ 字 = 8192 B | [第 1 章](../courses/operating-systems/chapter-01.md) |
-| 把“忙则等待”当成“让权等待” | 前者规定不能进入临界区，后者规定等待时让出 CPU | 判断等待期间是否交出 CPU；忙等仍占用 CPU | [第 2 章](../courses/operating-systems/chapter-02.md) |
-| 尚未写清动作顺序就插入 P/V | 共享资源和先后约束还没确定 | 先列进程动作与约束，再定义信号量、初值和 P/V 位置，最后检查死锁 | [第 2 章](../courses/operating-systems/chapter-02.md) |
-| 周转时间从开始执行算起 | 漏掉提交后到开始前的等待时间 | 周转时间 = 完成时刻 − 提交时刻；带权周转时间再除以服务时间 | [第 3 章](../courses/operating-systems/chapter-03.md) |
-| 由“不安全”直接判定“已经死锁” | 无安全序列表示无法保证满足各进程的最大资源需求 | 安全状态一定不死锁；不安全状态可能发生死锁，是否已死锁需另判 | [第 3 章](../courses/operating-systems/chapter-03.md) |
-| LRU 命中后不更新使用次序 | 把按最近访问时间淘汰混成了按装入时间淘汰 | LRU 每次访问都更新最近使用信息；FIFO 命中不改变装入次序。顺序变化不代表页框搬动 | [第 4 章 §10](../courses/operating-systems/chapter-04.md) |
-| 把工作集、工作集大小和窗口长度当成一个量 | 集合、元素个数与统计范围不同 | 访问 `1,2,1,3,2`：工作集为 `{1,2,3}`，大小为 3，窗口为 5 次访问 | [第 4 章 §11](../courses/operating-systems/chapter-04.md) |
-| 把 i 结点理解成“每个文件一条 FAT 链” | FAT 按后继簇号追链；本章 i 结点模型按逻辑块号查混合索引 | FAT 由首簇号沿链查表；i 结点由直接项或多级间接项定位数据块 | [第 5 章 §7.3](../courses/operating-systems/chapter-05.md) |
+| 章节 | 容易混淆的判断 | 回查方式 |
+| --- | --- | --- |
+| [简介](../courses/operating-systems/chapter-01.md) | 并发不要求同时执行；地址数不必等于字节数 | 写出处理器数量、编址单位与字长 |
+| [进程](../courses/operating-systems/chapter-02.md) | 就绪还未获得 CPU；阻塞还缺事件条件 | 逐步写状态转换，不把唤醒直接画成运行 |
+| [同步](../courses/operating-systems/chapter-02.md#s10) | 互斥锁不能代替数据可用条件 | 先列 empty/full 等资源约束，再安排 P/V 次序 |
+| [调度与死锁](../courses/operating-systems/chapter-03.md) | 响应、等待、周转分别统计不同区间；不安全不等于已死锁 | 画到达与完成时间线；安全检查逐分量比较 |
+| [内存](../courses/operating-systems/chapter-04.md) | TLB 未命中不等于缺页；FIFO 命中不更新装入次序 | 将地址缓存、驻留状态和置换队列分开记录 |
+| [文件](../courses/operating-systems/chapter-05.md) | 链式文件未必连续；索引块不是文件内容 | 先画定位路径，再按缓存条件计算读盘次数 |
+| [I/O](../courses/operating-systems/chapter-06.md) | 进程阻塞不等于 CPU 停机；DMA 也有准备与完成开销 | 分清调度状态、数据搬运与共享总线竞争 |
 
 ## 计算机组成原理
 
-| 容易出错的做法 | 问题所在 | 正确做法 | 回查章节 |
-| --- | --- | --- | --- |
-| 把教材的解释执行流程理解成“先生成完整目标程序再运行” | 混淆了解释与编译的教材模型 | 按本章模型，解释程序逐句解释执行，不先生成独立的完整目标程序 | [第 1 章](../courses/computer-organization/chapter-01.md) |
-| 把补码当无符号数直接求完整乘积 | 操作数的符号与结果位宽影响解释和扩展方式 | 先明确有符号性、位宽和结果保留范围，再按相应乘法规则计算 | [第 2 章](../courses/computer-organization/chapter-02.md) |
-| 把未对齐访问一律算成延迟翻倍 | 是否跨行、跨页及指令支持情况都可能不同 | 先查对齐要求与地址边界；题目未给时延模型时，不自行假定倍率 | [第 2 章 §5](../courses/computer-organization/chapter-02.md) |
-| 相对寻址直接用本条指令首地址作基准 | 本章模型使用取指后 PC；位移还可能有伸缩规则 | 先按指令集确定基准 PC、符号扩展及位移单位；MIPS 条件分支以 PC+4 为基准 | [第 3 章](../courses/computer-organization/chapter-03.md) |
-| 流水线时钟周期只取最长一段的组合逻辑延时 | 漏算流水线寄存器开销 | 按题设计入寄存器传输与建立等开销；例：80 ps + 20 ps = 100 ps | [第 4 章](../courses/computer-organization/chapter-04.md) |
-| 单总线把多个功能阶段合在同一拍，或同时启用两个输出源 | 混淆功能阶段、时钟节拍与总线驱动约束 | 同时只允许一个源驱动总线；依据依赖和访存时序划分节拍，多个目的端是否可同时锁存则看题图 | [第 4 章 §3.1](../courses/computer-organization/chapter-04.md) |
-| 认为 Cache 块越大越好 | 数据区容量固定时，块变大意味着总行数减少 | 同时考虑空间局部性、调块损失和冲突，不能只看一次搬入的数据量 | [第 5 章](../courses/computer-organization/chapter-05.md) |
-| 把数据区容量当成 Cache 总容量 | 标记、有效位、脏位和替换信息还要占空间 | 分别计算数据与管理信息；替换信息按题设计入，可能按组保存；直接映射无需替换位 | [第 5 章 §5.2](../courses/computer-organization/chapter-05.md) |
-| 直接拼接各字段的十六进制字符串 | 21 位标记、7 位索引都跨越十六进制字符边界 | 按固定位宽拼二进制，再转十六进制；或按字段位数左移后相加 | [第 5 章 §5.2](../courses/computer-organization/chapter-05.md) |
-| 用虚页号直接代替物理页框号 | 虚拟与物理编号体系不同 | 先查页表，以页框号替换虚页号，保留页内偏移，再按 Cache 规则重切物理地址 | [第 5 章 §6](../courses/computer-organization/chapter-05.md) |
-| 算数组元素所在 Cache 块时直接用元素下标除以元素字节数 | 元素下标还不是字节地址 | 一般用 $\lfloor(\text{首地址}+j\times\text{元素字节数})/B\rfloor$；首地址按块对齐、块 32 B、元素 4 B 时，相对块号才是 $\lfloor j/8\rfloor$ | [第 5 章 §5.4](../courses/computer-organization/chapter-05.md) |
-| DDR3-1333 算带宽时再乘一次 2 | 1333 已表示每秒百万次传输，双沿效果已计入 | 64 位通道算 $8\ \text{B}\times1333\times10^6\ \text{/s}$；多通道再乘通道数 | [第 6 章](../courses/computer-organization/chapter-06.md) |
-| 平均旋转等待时间按整圈算 | 随机扇区位置的平均等待是半圈 | 转速 $r$ 的单位为 RPM 时，平均等待为 $30/r$ 秒；7200 RPM 约为 4.17 ms | [第 6 章](../courses/computer-organization/chapter-06.md) |
-| 把中断断点当作全部现场 | 返回位置与程序状态、通用寄存器等信息各有作用 | 本课模型由硬件保存断点等必要信息，服务程序保护其使用的寄存器；具体分工依体系结构 | [第 4 章](../courses/computer-organization/chapter-04.md)、[第 6 章](../courses/computer-organization/chapter-06.md) |
-| 把中断与 DMA 的响应边界记成相同 | 本课教材模型采用不同的响应时机 | 外部中断通常在指令边界响应；DMA 可在满足总线交接条件的周期边界响应，按题设判断 | [第 6 章 §5.3](../courses/computer-organization/chapter-06.md) |
-| 用几何平均代替总耗时 | 评价目标不同 | 相同运行次数看总耗时；综合相对表现时另说明几何平均方法 | [第 1 章 §7.3](../courses/computer-organization/chapter-01.md) |
+| 章节 | 容易混淆的判断 | 回查方式 |
+| --- | --- | --- |
+| [系统](../courses/computer-organization/chapter-01.md) | 主频高不保证同任务更快 | 同时比较指令数、平均 CPI 与主频 |
+| [数据](../courses/computer-organization/chapter-02.md) | 进位不等于有符号溢出；位型顺序不等于字节端序 | 固定位宽，分别解释无符号与补码值 |
+| [指令](../courses/computer-organization/chapter-03.md) | 字节偏移不等于数组下标；PC 相对分支有规定基准 | 先求有效地址，再追踪分支目标与延迟槽模型 |
+| [处理器](../courses/computer-organization/chapter-04.md) | 流水稳态吞吐不等于单条延迟；转发不能提前生成数据 | 画阶段时间线，标出结果产生和使用的时刻 |
+| [存储](../courses/computer-organization/chapter-05.md) | Cache 组号不等于主存块号；额外未命中惩罚不同于完整时间 | 按容量、块大小和路数拆位，先确认 AMAT 定义 |
+| [互连与 I/O](../courses/computer-organization/chapter-06.md) | 总线节拍峰值不等于事务有效带宽 | 统计每事务实际交付字节与总耗时 |
 
-## 访存时间：先看开销是“额外”还是“总计”
+## 计算前的检查
 
-| 本套笔记的模型 | 使用的符号与单位 | 公式及前提 | 回查章节 |
-| --- | --- | --- | --- |
-| OS：正常访存与缺页 | $p$ 为缺页率；$m$ 为正常访问时间；$F$ 为含重访的缺页总时间；$S$ 为额外缺页开销；时间须换成同一单位 | 给总时间用 $EAT=(1-p)m+pF$；给额外开销用 $EAT=m+pS$ | [操作系统第 4 章 §11](../courses/operating-systems/chapter-04.md) |
-| CO：Cache 命中与缺失 | $h$ 为命中率；此处 $m=1-h$ 为缺失率，无单位；$T_c$ 为命中时间 | 给额外缺失损失 $T_m$ 时用 $AMAT=T_c+(1-h)T_m$；给缺失总时间 $T_{\text{miss}}$ 时用 $hT_c+(1-h)T_{\text{miss}}$ | [组成原理第 5 章 §5.1](../courses/computer-organization/chapter-05.md) |
+1. 抄下题设的单位、编号起点、位宽、编址单位与初始状态。
+2. 写清算法变体：是否抢占、如何处理同一时刻事件、扫描方向及边界。
+3. 把时间统一到同一量级，把位与字节分开，KiB 与 kB 不混用。
+4. 用可复核条件验算：页内偏移小于页大小、余数在合法范围、安全向量逐分量满足、文件索引只统计内容块。
+5. 对模型未规定的行为写出假设，不把某个教学模型推广到全部现代硬件。
 
-EAT 与 AMAT 都在求平均访问耗时；差别来自题目讨论的层次和开销定义，不是课程名。遇到相同字母，先重新写下含义和单位，再代公式。
+可在[交互练习](../labs/index.md)中更换输入，观察初始条件改变后结论是否仍成立。

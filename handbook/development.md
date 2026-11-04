@@ -4,6 +4,8 @@
 
 MkDocs 直接读取 `docs/`。课程位于 `docs/courses/<slug>/`，入口为 `index.md`，章节为 `chapter-NN.md`；共用速查位于 `docs/reference/`，交互练习页面位于 `docs/labs/`。Markdown 使用相对路径，课程插图放在本课程的 `figures/` 中。
 
+`config/syllabus.json` 关联大纲小节与章节练习；`config/quotations.json` 登记必要的第三方引文，当前为空。出题与引用规则见 [内容贡献规则](content-policy.md)。
+
 `config/courses.json` 注册课程的 `id`、`slug`、`title` 和 `chapters`。源码路径直接决定网址；复习记录标识统一为 `<id>-<章号>`。
 
 构建由 `mkdocs.yml` 注册的原生钩子处理：
@@ -26,7 +28,7 @@ Material 9.7.7 的搜索分享会先保存旧链接再更新链接。`initSearch
 
 ## 修改与添加课程
 
-1. 修改对应章节，保留首行标题、大纲依据、复习导航与教材习题结构；插图使用本课程的相对路径。
+1. 修改对应章节，保留首行标题、大纲定位、复习导航与自编练习结构，并同步大纲小节与题目的映射；插图使用本课程的相对路径。
 2. 新课程在 `config/courses.json` 注册，并添加 `index.md` 和连续编号的 `chapter-NN.md`。
 3. 更新 `mkdocs.yml` 导航、`docs/index.md` 课程卡片及 `reader.mjs` 的课程进度配置；需要自测时补充题库。
 4. 调整 `tools/checks/notes.py` 与 `tools/checks/revisions.py` 的检查范围，补充相应测试。
@@ -34,7 +36,7 @@ Material 9.7.7 的搜索分享会先保存旧链接再更新链接。`initSearch
 
 ## 内容权利
 
-许可范围见 [LICENSING.md](../LICENSING.md)。新增或修改学习文字、插图后，在 `config/content-rights.json` 记录来源、核验结论和依据。只有确认具备相应授权后才设为 `cleared`，填写许可、核验日期和文件 SHA-256；Markdown、SVG 和 TXT 先统一为 LF 换行。正文变化后须重新核验，不能只更新摘要。不能确认的材料保持 `pending`，或从发布内容中移除。
+许可范围见 [LICENSING.md](../LICENSING.md)。新增或修改学习文字、插图后，在 `config/content-rights.json` 记录来源、核验结论和依据。只有确认具备相应授权后才设为 `cleared`，填写许可、核验日期和文件 SHA-256；文本按 LF 换行计算摘要，第三方二进制资源保持原字节。正文变化后须重新核验，不能只更新摘要。不能确认的材料保持 `pending`，或从发布内容中移除。
 
 第三方许可、署名与 MPL 搜索语言包对应源码随站点分发。更新依赖时，重新核对实际分发文件，并更新 [第三方资源说明](../THIRD_PARTY_NOTICES.md)。
 
@@ -51,12 +53,12 @@ Material 9.7.7 的搜索分享会先保存旧链接再更新链接。`initSearch
 | `npm run test:browser` | 主题、搜索、阅读控制、实验、打印与窄屏 |
 | `npm run check:rights` | 发布内容的核验记录、摘要与未登记文件 |
 
-`npm run check` 依次执行结构、笔记、修订、单元测试、构建与产物链接检查。发布命令另在上传前强制执行权利检查。
+`npm run check` 依次执行权利、结构、大纲与练习覆盖、技术回归、单元测试、构建与产物链接检查。发布命令在上传前再次约束内容权利。
 
 Playwright 为仓库锁定的开发依赖。浏览器证据默认写入 `artifacts/browser/labs/`；`STUDY_BASE_URL` 和 `STUDY_OUTPUT_DIR` 可指定站点与证据目录。
 
 ## 历史与私有材料
 
-`archive/` 保留历史报告、脚本和方案，记录中的旧路径与当时测量值保留原貌。当前检查统一从 `package.json` 启动。
+`archive/` 只保留当前可公开的维护记录。含旧题面、答案及截图的历史审计已移到本地对照副本。Git 历史和远端副本需另行清理。当前检查统一从 `package.json` 启动。
 
 `local/` 整体忽略提交，其中的独立 Git 仓库保留内部结构。构建不读取私有教材、扫描件或历史审计记录。

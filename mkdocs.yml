@@ -1,7 +1,7 @@
 site_name: studynote
 repo_name: chosenecho/studynote
 repo_url: https://github.com/chosenecho/studynote
-site_description: 依据教材与考试大纲整理的课程笔记
+site_description: 以大纲为索引的原创课程笔记、自编练习与交互实验
 copyright: >-
   <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">苏ICP备2026085504号-1</a>
 site_url: !ENV [SITE_URL, 'https://chosenecho.top/']

@@ -25,6 +25,17 @@ licenses = module('licenses')
 
 
 class BuildTests(unittest.TestCase):
+    def test_independent_practice_has_visible_scope_and_folded_answer(self):
+        source = '## 自编练习' + chr(10)*2 + '**1. Explain a mechanism.**' + chr(10)*2
+        source += '考点：第 1 节；层次：领会。' + chr(10)*2 + '**答案：** A reasoned explanation.'
+        result = content.format_exercises(source)
+        self.assertIn('class="exercise-item"', result)
+        self.assertIn('考点：第 1 节', result)
+        self.assertIn('参考答案：', result)
+        self.assertIn('A reasoned explanation.', result)
+        with self.assertRaises(ValueError):
+            content.format_exercises(source.split('**答案：**')[0])
+
     def test_license_snapshots_and_virtual_downloads_preserve_bytes(self):
         snapshots = json.loads((ROOT / 'LICENSES/third-party/SOURCES.json').read_text(encoding='utf-8'))
         with TemporaryDirectory() as tmp:

@@ -25,4 +25,5 @@ const rows = [
  ['co',6,'所有 RAID 级别都能容忍一块磁盘损坏吗？',['能，RAID 这个名字就保证冗余','不能，例如 RAID 0 没有冗余','能，条带化就等于备份'],1,'RAID 0 仅做条带化，没有容错冗余。其他级别的容错能力也需按具体组织判断；RAID 不代替独立备份。'],
  ['co',6,'计算总线峰值传输率时，哪一组信息直接相关？',['每次传输的数据位数、传输频率与每周期传输次数','只看 CPU 主频','只看内存总容量'],0,'峰值数据率可按每次字节数 × 每秒传输次数估算，并核对是否每周期多次传输。实际有效带宽还受协议、等待等开销影响。']
 ];
-export const questions = rows.map(([course, chapter, prompt, options, answer, explanation],i) => ({id:i+1,course,chapter,prompt,options,answer,explanation,source:'../../courses/'+(course==='os'?'operating-systems':'computer-organization')+'/chapter-'+String(chapter).padStart(2,'0')+'/'}));
+const syllabusSections = [[3], [2], [3], [1, 9], [4], [9, 10], [4], [10], [3], [7], [4], [2], [5], [5], [2, 7], [2], [2], [4], [4], [3], [5], [5], [2], [3]];
+export const questions = rows.map(([course, chapter, prompt, options, answer, explanation],i) => ({id:i+1,course,chapter,prompt,options,answer,explanation,sections:syllabusSections[i],origin:'original',source:'../../courses/'+(course==='os'?'operating-systems':'computer-organization')+'/chapter-'+String(chapter).padStart(2,'0')+'/#s'+syllabusSections[i][0]}));

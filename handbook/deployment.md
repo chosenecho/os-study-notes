@@ -2,7 +2,7 @@
 
 studynote 的生产域名为 https://chosenecho.top/，仓库为 https://github.com/chosenecho/studynote。本地 ESA 配置的目标项目已改为 `studynote`。MkDocs 在本地构建，ESA CLI 上传 `dist/`；GitHub Actions 负责校验，不自动发布。
 
-**当前暂停发布。**教材原题、附录答案与插图的传播授权尚未核验，见 [许可与版权](../LICENSING.md)。`deploy` 与 `deploy:staging` 首先执行 `check:rights`，存在待核验、未登记或核验后变更的内容时，在调用 ESA 上传前退出。
+发布仅限已记录审阅依据的当前修订版，许可范围见 [许可与版权](../LICENSING.md)。`deploy` 与 `deploy:staging` 首先执行 `check:rights`，存在待核验、未登记或核验后变更的内容时，在调用 ESA 上传前退出。
 
 ## ESA 项目改名状态
 
@@ -29,7 +29,7 @@ npm run deploy:staging
 npm run deploy
 ~~~
 
-`build` 严格构建站点，产物为 `dist/`，直接读取 `docs/` 源文件。本地构建不执行权利检查，也不代表允许公开传播。`deploy:staging` 先检查内容权利，再运行内容、模型、构建和链接检查，然后发布到 ESA 测试环境。`deploy` 还会运行浏览器交互检查，通过后发布到生产环境。当前权利检查预期失败，应解决待核验内容，不能绕过检查直接调用上传命令。
+`build` 严格构建站点，产物为 `dist/`，直接读取 `docs/` 源文件。本地构建不执行权利检查，也不代表允许公开传播。`deploy:staging` 先检查内容权利，再运行内容、模型、构建和链接检查，然后发布到 ESA 测试环境。`deploy` 还会运行浏览器交互检查，通过后发布到生产环境。新增或变更内容须先重新审阅；不得只刷新摘要或绕过失败的权利检查直接上传。
 
 `esa.jsonc` 指定目标项目名与 `assets.directory`；`assets.notFoundStrategy` 为 `404Page`，不存在的页面应返回错误页和 HTTP 404。CLI 不执行配置文件中的构建命令，因此发布入口明确先构建、检查，再上传。
 
@@ -72,4 +72,4 @@ npm run esa:configure -- --apply
 
 先用 `npx esa deployments list --skip-update-check` 获取历史版本，再执行 `npx esa deploy --version <版本号> --environment production --no-preview --skip-update-check`。回退旧代码不会自动回退 DNS、证书或站点规则；涉及这些配置时，应先检查对应的发布记录。
 
-历史 Cloudflare 发布保留在 [仓库结构翻新记录](../archive/releases/2026-11-04-structure.md)，仅用于追溯。
+旧部署可能保留已移除内容，不能把旧版本回退当作安全默认。公开的内容变更与历史边界见 [整理记录](../archive/releases/2026-11-04-open-content.md)。

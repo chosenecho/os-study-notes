@@ -19,7 +19,7 @@ export async function runThemeChecks(page, {base, out, report}) {
 
   await open('/');
   assert.match(await page.title(), /studynote/);
-  assert.match(await page.locator('article').innerText(), /版权核验中/);
+  assert.match(await page.locator('article').innerText(), /版权与引用说明/);
   assert.equal(await page.locator('.md-tabs__item').count(), 5);
   assert.equal(await page.locator('.grid.cards > ul > li').count(), 2);
   await page.evaluate(() => {
@@ -35,7 +35,7 @@ export async function runThemeChecks(page, {base, out, report}) {
   await screenshot('home-desktop.png');
 
   await open('/licensing/');
-  assert.match(await page.locator('article').innerText(), /待核验内容不授予开放许可/);
+  assert.match(await page.locator('article').innerText(), /教材、大纲与第三方引用/);
   const licenseResponse = await page.request.get(base + '/licenses/Apache-2.0.txt');
   assert.equal(licenseResponse.status(), 200);
   assert.match(await licenseResponse.text(), /Apache License/);

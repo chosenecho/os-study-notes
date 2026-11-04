@@ -1,183 +1,614 @@
 {
   "version": 1,
-  "reviewed_on": "2026-11-04",
+  "review_scope": "当前修订版的编辑核验记录；并非律师审查或对 Git 历史和外部副本的授权。自动检查无法判断复制或合理使用。",
+  "quotations": "config/quotations.json",
   "files": [
     {
-      "path": "docs/courses/computer-organization/index.md",
-      "status": "pending",
-      "basis": "整理资料尚待逐项核验来源与传播依据；未纳入原创文字许可。"
+      "path": "LICENSING.md",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "5ad7b127fb390f2e437ead6567add579480f47271dde8035c96c13db69192fb3"
     },
     {
-      "path": "docs/courses/computer-organization/chapter-01.md",
-      "status": "pending",
-      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+      "path": "NOTICE",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "6abb8e4081c2cde42fb35a96b263df890fe124df3c5087837e02a288bf316982"
     },
     {
-      "path": "docs/courses/computer-organization/chapter-02.md",
-      "status": "pending",
-      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+      "path": "README.md",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "30d2f5f35296da544daaeb827bd6e9194672e9315b42ecefdb5fa60a3bb5fd87"
     },
     {
-      "path": "docs/courses/computer-organization/chapter-03.md",
-      "status": "pending",
-      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+      "path": "THIRD_PARTY_NOTICES.md",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "0743c6c8864f54f2c352b94f85ef9d5947a99070c378a15c6ac3fb808b49e83f"
     },
     {
-      "path": "docs/courses/computer-organization/chapter-04.md",
-      "status": "pending",
-      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+      "path": "archive/README.md",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "d03518463fdb6099cf61f061fe3fba57c67f998f4cb3fdd36e30d647d6fa601e"
     },
     {
-      "path": "docs/courses/computer-organization/chapter-05.md",
-      "status": "pending",
-      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+      "path": "archive/releases/2026-11-04-open-content.md",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "648d88efefb3fdd3db7fc9e469e6af1ddcaa628fc7b99fc7e7f991b4afa92910"
     },
     {
-      "path": "docs/courses/computer-organization/chapter-06.md",
-      "status": "pending",
-      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+      "path": "config/quotations.json",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "da6fa0fb6dc64a3faf1f81f830b8696ccf02b9c654135111429090fa240870f8"
     },
     {
-      "path": "docs/courses/operating-systems/index.md",
-      "status": "pending",
-      "basis": "整理资料尚待逐项核验来源与传播依据；未纳入原创文字许可。"
-    },
-    {
-      "path": "docs/courses/operating-systems/chapter-01.md",
-      "status": "pending",
-      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
-    },
-    {
-      "path": "docs/courses/operating-systems/chapter-02.md",
-      "status": "pending",
-      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
-    },
-    {
-      "path": "docs/courses/operating-systems/chapter-03.md",
-      "status": "pending",
-      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
-    },
-    {
-      "path": "docs/courses/operating-systems/chapter-04.md",
-      "status": "pending",
-      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
-    },
-    {
-      "path": "docs/courses/operating-systems/chapter-05.md",
-      "status": "pending",
-      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
-    },
-    {
-      "path": "docs/courses/operating-systems/chapter-06.md",
-      "status": "pending",
-      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/PIT逻辑结构.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/单重中断流程.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/图1-10_模型机指令格式.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/图1-11_程序执行过程的实例.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/图1-1_操作系统在计算机系统中的位置.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/图1-3_内存中的多道作业.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/图1-6_单体结构模型.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/图1-7_层次结构模型.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/图1-8_客户服务器与微内核结构.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/图1-9_指令周期.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/死锁资源环.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/生产者消费者.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/轮转调度时间轴.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/进程三态.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/courses/operating-systems/figures/银行家安全性检查.svg",
-      "status": "pending",
-      "basis": "插图来源及传播授权尚未逐项核验。"
-    },
-    {
-      "path": "docs/reference/glossary.md",
-      "status": "pending",
-      "basis": "整理资料尚待逐项核验来源与传播依据；未纳入原创文字许可。"
-    },
-    {
-      "path": "docs/reference/pitfalls.md",
-      "status": "pending",
-      "basis": "整理资料尚待逐项核验来源与传播依据；未纳入原创文字许可。"
+      "path": "config/syllabus.json",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "b70637cce502aa19d92b5326ea10432e9b6a455a103cda20511cef8181729861"
     },
     {
       "path": "docs/assets/images/favicon.svg",
       "status": "cleared",
-      "license": "Apache-2.0",
-      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
       "reviewed_on": "2026-11-04",
       "sha256": "60946c69755f9620bec218bcb1dd08aac3e7ed982c98482bfbf94bfed0fce4fc"
+    },
+    {
+      "path": "docs/assets/javascripts/labs/labs-core.mjs",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "3c7b291e99c72edc65cd49bc1d8f4b7b95eceb02be4c9dc7eb4c0794a1cb80d9"
+    },
+    {
+      "path": "docs/assets/javascripts/labs/labs.mjs",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "8abd34401613a85ba15026e7fcedf76979e112f610ef658afdde140e76e769a2"
+    },
+    {
+      "path": "docs/assets/javascripts/labs/loader.mjs",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "1ca82aeb7097d3949d051b59c6ff7e82e2195c0143484745e273cd984c8ab17d"
+    },
+    {
+      "path": "docs/assets/javascripts/labs/quiz-bank.mjs",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "74d85b2d5e187f45c284a7ffc6f28c377ca55f85b3526706ce170a6fe25c67b2"
+    },
+    {
+      "path": "docs/assets/javascripts/labs/scheduler.mjs",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "adc739011292c4d03d03033826672a118564a2df8815cac7d1e13b21d8dc9914"
+    },
+    {
+      "path": "docs/assets/javascripts/labs/scheduling.mjs",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "dc21e83fc78d3c1811510c741c8331bbf5cf3d8949fd8e813e62c990b09b290b"
+    },
+    {
+      "path": "docs/assets/javascripts/math.js",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "5afefcebf6dadbdb53e88de8dc1bb6cbbe00665cdaf9e1bb083c8c1c624d06f5"
+    },
+    {
+      "path": "docs/assets/javascripts/reader.mjs",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "1427d53749a7289f25d6cee7576f1f145a72a9ca8e9109fa53e3fcd44ced3805"
+    },
+    {
+      "path": "docs/assets/stylesheets/labs.css",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "e3ee7000b2b28ff04bbd52353361b03666369ca9e026c2c07595ec22fa821fa9"
+    },
+    {
+      "path": "docs/assets/stylesheets/notes.css",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "a183291ddce5d145f1c776e6c1025b6400faf7d6b460fe9d74166a2844e6e127"
+    },
+    {
+      "path": "docs/assets/vendor/katex/LICENSE",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "766ccc1f306c885aa45542a9846bbd0a505b27a0374f146778171c2254ce18e3",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/contrib/auto-render.min.js",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "7b57d427ac6270677daf8d8380ded2cc73336f9149a167b8e1fe0d6ef66604ae",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_AMS-Regular.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Fraktur-Bold.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Fraktur-Regular.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Main-Bold.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Main-BoldItalic.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Main-Italic.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Main-Regular.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Math-BoldItalic.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Math-Italic.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_SansSerif-Bold.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_SansSerif-Italic.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_SansSerif-Regular.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Script-Regular.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Size1-Regular.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Size2-Regular.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Size3-Regular.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Size4-Regular.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/fonts/KaTeX_Typewriter-Regular.woff2",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/katex.min.css",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "717bc9ae7853b61f0f76455dddf0ecd4f527a783f42de2ac24684899c1c46258",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/assets/vendor/katex/katex.min.js",
+      "status": "cleared",
+      "license": "MIT",
+      "source_kind": "third-party",
+      "basis": "逐字节核对 KaTeX 0.16.11 官方 npm 发行包；保留原 MIT 及字体声明。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "e6bfe5deebd4c7ccd272055bab63bd3ab2c73b907b6e6a22d352740a81381fd4",
+      "source_url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz"
+    },
+    {
+      "path": "docs/courses/computer-organization/chapter-01.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "356d77faa8bc52fff6735de3930f08e491f94cb2dce33ffb40a2e7e16ff2f411"
+    },
+    {
+      "path": "docs/courses/computer-organization/chapter-02.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "70aa4a3123154f8698fa3ad4da62634740646edc8bb2beafd9b14e5c9ba2cfab"
+    },
+    {
+      "path": "docs/courses/computer-organization/chapter-03.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "146e1bf4a65b55adb73664c8dad333b76b61a7774b6e3dfb310104fce82f63c3"
+    },
+    {
+      "path": "docs/courses/computer-organization/chapter-04.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "75c5c4b7bb2085df8bcb9f854aa020e7e63078438b882507e57f2a2ea05971d6"
+    },
+    {
+      "path": "docs/courses/computer-organization/chapter-05.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "c08b423a6c9517c3932f3fcb03a7092861d9cae2940485b0afbb85ea7deedc04"
+    },
+    {
+      "path": "docs/courses/computer-organization/chapter-06.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "0774722407c9155747c6abd8e033e8821bac1b91e04d58413428087718e263ce"
+    },
+    {
+      "path": "docs/courses/computer-organization/index.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "1154a6be79e207dd63042bf09da54b003fbcc0a3b7654daea74679867d94856a"
+    },
+    {
+      "path": "docs/courses/operating-systems/chapter-01.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "105f6b61ae121d475653ba2741e96abbd5a939ad000d545134a67b07638846a1"
+    },
+    {
+      "path": "docs/courses/operating-systems/chapter-02.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "01895c766974a10db7e12d645b1013c94f06ab48c4857f704bf3d2085bd03c36"
+    },
+    {
+      "path": "docs/courses/operating-systems/chapter-03.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "2966e4af60f298358e04cc73d769620459ec5796a3812cea850b4d86fdf0e833"
+    },
+    {
+      "path": "docs/courses/operating-systems/chapter-04.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "951bcbd863820e9d8b56b5f584dac6b0907d44a43fb8a25bc3716e9b4eaebeb3"
+    },
+    {
+      "path": "docs/courses/operating-systems/chapter-05.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "bf387f608769574399afde26a37faedf72c346206dec6f2f738534377755a018"
+    },
+    {
+      "path": "docs/courses/operating-systems/chapter-06.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "b7ab6f3dd90d4581aca7665d152b4d5c11d0d1c25f9b464e8e716394de9ea8f4"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/address-walk.svg",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "74ed2598a2036412a204928fd32cf70cc230a987070ac1a09211938142b78ecd"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/file-lookup.svg",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "d462e69e960dbddc26f6b69a82b0920ab92182d866c31efe7f684aa4d627754d"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/io-path.svg",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "7a0a08c9cdf741d8993ff0614e8914dad692d21f61e32d8ab811a7707a3a953e"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/process-states.svg",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "4fbf581314f8deced6d228cec31ca8bfdc258013694ef500743ba02e5eadf6a7"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/safety-pass.svg",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "38b38b2f48b03bca3f063aaf090b4deb87d4dfaff5d4e212acb93ec0f6dd4199"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/service-path.svg",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "9bf550f6f95561dd91f5c9d86b1d7e01d21476d4b59ac5004ae8daf7be780a88"
+    },
+    {
+      "path": "docs/courses/operating-systems/index.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "e4f31a8d7d71cfa68beaf5e9f83101372925c1689a0c62fc3be91ad9191c9d2c"
     },
     {
       "path": "docs/index.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
-      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "83fdece0afcfe2a0c25aa12300f5d331710613c776e3d8b6b3ece9ef4d2828ff"
+      "sha256": "7122f96a912d9106ee2d21e09a67f7f70ab9c577a1a1cb6c21e9f531330255f7"
     },
     {
       "path": "docs/labs/address.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
-      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
       "reviewed_on": "2026-11-04",
       "sha256": "2f146da672f6651dcabf8d6d68c749e1f568825a5651d613644c150c5e5eddc7"
     },
@@ -185,15 +616,17 @@
       "path": "docs/labs/banker.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
-      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "d5c181099fe2630c9d267cf6f1977d083d7433ff6d7569412112d2d153ceb1b4"
+      "sha256": "2981e86dcd2fa17d3a7a02c5b7b207ef783fd573e43868acb5d90ea6b13da88e"
     },
     {
       "path": "docs/labs/cache.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
-      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
       "reviewed_on": "2026-11-04",
       "sha256": "3928a5ea17a12a1b1479fbb258394161c084d98867df9ed7860433015838e232"
     },
@@ -201,7 +634,8 @@
       "path": "docs/labs/complement.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
-      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
       "reviewed_on": "2026-11-04",
       "sha256": "9e625ee6ca76bf0ae1165b53bb2a9d90e46abfce49be298cb415c72208d5de79"
     },
@@ -209,7 +643,8 @@
       "path": "docs/labs/index.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
-      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
       "reviewed_on": "2026-11-04",
       "sha256": "743ccce018fc8113ba68173fd204ec96a95d3de29ae7a72400090e5c5191bc56"
     },
@@ -217,15 +652,17 @@
       "path": "docs/labs/paging.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
-      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "f9494b4ff6ef28a63a7211d2e4ac39c42bb959863a37f81a08f552660027a748"
+      "sha256": "a619bc560994a68802e04baf34e39c12d95b66478ffc41870a5a697b902cce7e"
     },
     {
       "path": "docs/labs/quiz.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
-      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
       "reviewed_on": "2026-11-04",
       "sha256": "8e8d5f98ca7e99c1e0a8cb8bf826bfc5847cc1a8dc9982fb979ee04ecd66184a"
     },
@@ -233,17 +670,82 @@
       "path": "docs/labs/scheduling.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
-      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
       "reviewed_on": "2026-11-04",
       "sha256": "fb9addde399d5070487646f75254f0e2537ba1744efdbc0a35a60de762b47843"
     },
     {
+      "path": "docs/reference/glossary.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "ac3701f9f75dd43a2ad7708865ca12441342b91cf89b73da64a731bc26a190a4"
+    },
+    {
+      "path": "docs/reference/pitfalls.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "d01bf0734abb96c1c8fb6ae44a7741d5bc960e07c41ea4c74aa1b5db394023dc"
+    },
+    {
       "path": "docs/robots.txt",
       "status": "cleared",
-      "license": "Apache-2.0",
-      "basis": "本项目自行编写的站点爬虫与 Sitemap 配置，不包含教材内容。",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
       "reviewed_on": "2026-11-04",
       "sha256": "56d409b9733c140c0cece335c3b4908fe1aebec9580f1564986e7d796cc1fca5"
+    },
+    {
+      "path": "handbook/content-policy.md",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "2b67affb7dec9e99461b124bef87528d972dd32c3819778a231f54843b9b1b90"
+    },
+    {
+      "path": "handbook/deployment.md",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "d2a960fe2dfd5bb4d1c6449460f2780e3d70bedd351e55bc00f892a20026193d"
+    },
+    {
+      "path": "handbook/development.md",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "d1dedef76557a6e9c22ba61cb3883c81e36f571f2c2f31889dfffc085d4ecd91"
+    },
+    {
+      "path": "handbook/history-cleanup.md",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "f2249a3db8c2df1a7bc7971a15a059f5830304aedeccbb23fb7fddd60c49cc3b"
+    },
+    {
+      "path": "handbook/vendor/katex.md",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "ecc2d03c975ac0c05ee6cc280a0b6394dae51149b01ea5e373d65dbf6139d4e4"
     }
   ]
 }

@@ -4,7 +4,7 @@
 
 网站：https://chosenecho.top/ · 仓库：https://github.com/chosenecho/studynote
 
-**版权核验中：**教材原题、附录答案和插图未取得或尚未核验公开传播与再许可授权，相关文件不在项目开放许可范围内。发布命令会停止上传；已有公开副本和历史记录仍需单独处理。
+公开内容以大纲为索引，提供原创讲解、自编练习和概念图；第三方资源保持原许可。当前修订版的范围与历史副本的处理边界见许可说明。
 
 - [操作系统概论](docs/courses/operating-systems/index.md)
 - [计算机组成原理](docs/courses/computer-organization/index.md)
@@ -34,7 +34,7 @@ docs/                    MkDocs 直接读取的站点源文件
     stylesheets/         阅读与实验样式
     images/              站点图标
     vendor/              保留原发行文件的 KaTeX
-config/                  课程注册、内容权利清单、ESA 域名规则
+config/                  课程注册、大纲映射、引文登记、权利清单及 ESA 域名规则
 theme/                   Material 模板覆盖
 tools/
   mkdocs/                内容处理、许可分发与产物处理钩子
@@ -42,7 +42,7 @@ tools/
   deploy/                ESA 配置同步工具
 tests/                   单元测试与浏览器测试
 handbook/                开发、部署与第三方资源维护说明
-archive/                 历史审计、发布记录与方案
+archive/                 可公开的内容整理与发布记录
 LICENSES/                第三方声明、许可原文与对应源码
 ```
 
@@ -58,11 +58,11 @@ npx playwright install chromium
 npm run test:browser
 ```
 
-CI 执行同一套检查。公开发布另须通过 `npm run check:rights`，核验记录位于 [config/content-rights.json](config/content-rights.json)。普通构建和测试不会授予内容传播权限。
+CI 执行同一套检查，其中包括 `npm run check:rights`，核验记录位于 [config/content-rights.json](config/content-rights.json)。普通构建和测试不会授予内容传播权限。
 
 - [开发约定](handbook/development.md)
 - [构建与部署](handbook/deployment.md)
 - [KaTeX 维护](handbook/vendor/katex.md)
-- [许可与版权](LICENSING.md)：代码采用 Apache-2.0，已核验的原创学习文字采用 CC BY 4.0；待核验材料与第三方资源另行处理。
+- [许可与版权](LICENSING.md)：代码采用 Apache-2.0，已核验的原创学习文字采用 CC BY 4.0；第三方资源与引文按来源分别处理。
 - [第三方资源说明](THIRD_PARTY_NOTICES.md)
-- [历史审计](archive/qa/README.md)
+- [内容贡献规则](handbook/content-policy.md) · [整理记录](archive/README.md)

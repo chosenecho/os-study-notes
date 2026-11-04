@@ -1,4 +1,5 @@
 import importlib.util
+import hashlib
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
@@ -56,3 +57,34 @@ class RightsTests(unittest.TestCase):
     def test_malformed_manifest_is_rejected(self):
         with self.assertRaises(ValueError):
             rights.audit(self.root, dict(version=2, files=[]))
+
+    def test_frontend_bank_public_archive_and_vendor_assets_are_in_scope(self):
+        for name in ('docs/assets/javascripts/labs/quiz-bank.mjs', 'archive/old-answer.txt',
+                     'handbook/review.md', 'docs/assets/vendor/katex/unregistered.svg'):
+            path = self.root / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text('new unreviewed content', encoding='utf-8')
+            self.assertTrue(any(name + ': unreviewed' in error for error in self.audit([self.entry])))
+
+    def test_quote_boundaries_source_scope_and_digest(self):
+        body = 'A short invented fixture.'
+        text = ('Author Example, Work Example, section 2' + chr(10)
+                + '<!-- quote:fixture -->' + body + '<!-- /quote:fixture -->')
+        self.file.write_text(text, encoding='utf-8')
+        ledger = dict(version=1, items=[])
+        self.assertIn('unregistered quotation', rights.audit_quotations(self.root, ledger)[0])
+        item = dict(id='fixture', path=self.path, status='reviewed', license='EXCLUDED',
+                    author='Author Example', work='Work Example', locator='section 2',
+                    source_url='https://example.org/work', necessity='Test fixture for review boundaries',
+                    publication_basis='Synthetic test content created for this test', reviewed_on='2026-11-04',
+                    sha256=hashlib.sha256(body.encode('utf-8')).hexdigest())
+        ledger['items'] = [item]
+        self.assertEqual(rights.audit_quotations(self.root, ledger), [])
+        self.file.write_text(text.replace(body, body + ' changed'), encoding='utf-8')
+        self.assertIn('changed since review', rights.audit_quotations(self.root, ledger)[0])
+        item.pop('necessity')
+        self.assertIn('lacks source or necessity', rights.audit_quotations(self.root, ledger)[0])
+
+    def test_malformed_quote_is_rejected(self):
+        self.file.write_text('<!-- quote:broken -->Not closed', encoding='utf-8')
+        self.assertIn('malformed', rights.audit_quotations(self.root, dict(version=1, items=[]))[0])

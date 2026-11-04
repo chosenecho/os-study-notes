@@ -1,13 +1,22 @@
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {integer,sequence,matrix,paging,banker,address,cache,complement} from '../../docs/assets/javascripts/labs/labs-core.mjs';
 import {questions} from '../../docs/assets/javascripts/labs/quiz-bank.mjs';
 let cases=0;
+const syllabus=JSON.parse(readFileSync(new URL('../../config/syllabus.json',import.meta.url),'utf8'));
+for(const question of questions){
+ const chapter=syllabus.chapters.find(c=>c.id===question.course+'-'+question.chapter);
+ assert.equal(question.origin,'original');
+ assert(question.sections.length>0);
+ assert(question.sections.every(n=>chapter.sections.some(s=>s.number===n)));
+ assert(question.source.endsWith('#s'+question.sections[0]));
+}
 function check(fn){fn();cases++;}
-check(()=>{const r=[7,0,1,2,0,3,0,4,2,3,0,3,2];assert.equal(paging(r,3,'fifo').faults,10);assert.equal(paging(r,3,'lru').faults,9);assert.equal(paging(r,3,'opt').faults,7);});
-check(()=>{const r=[1,2,3,4,1,2,5,1,2,3,4,5];assert.equal(paging(r,3,'fifo').faults,9);assert.equal(paging(r,4,'fifo').faults,10);assert.equal(paging([0,0,0],1,'lru').faults,1);});
-const alloc=matrix('0 1 0\n2 0 0\n3 0 2\n2 1 1\n0 0 2'), max=matrix('7 5 3\n3 2 2\n9 0 2\n2 2 2\n4 3 3');
-check(()=>{const r=banker([3,3,2],alloc,max);assert.equal(r.safe,true);assert.deepEqual(r.order,[1,3,0,2,4]);assert.deepEqual(r.finalWork,[10,5,7]);});
-check(()=>{assert.equal(banker([3,3,2],alloc,max,{process:1,resources:[1,0,2]}).safe,true);assert.equal(banker([3,3,2],alloc,max,{process:4,resources:[3,3,0]}).safe,false);assert.match(banker([3,3,2],alloc,max,{process:1,resources:[2,0,0]}).blocked,/Need/);assert.match(banker([3,3,2],alloc,max,{process:0,resources:[0,0,3]}).blocked,/Available/);assert.deepEqual(alloc[1],[2,0,0]);});
+check(()=>{const r=[2,3,4,2,5,3,6];assert.equal(paging(r,3,'fifo').faults,5);assert.equal(paging(r,3,'lru').faults,6);assert.equal(paging(r,3,'opt').faults,5);});
+check(()=>{const r=[2,3,4,2,5,3,6];assert(paging(r,4,'lru').faults<=paging(r,3,'lru').faults);assert.equal(paging([0,0,0],1,'lru').faults,1);});
+const alloc=matrix('1 0\n0 1\n1 0'), max=matrix('2 1\n2 1\n1 2');
+check(()=>{const r=banker([1,1],alloc,max);assert.equal(r.safe,true);assert.deepEqual(r.order,[0,1,2]);assert.deepEqual(r.finalWork,[3,2]);});
+check(()=>{assert.equal(banker([1,1],alloc,max,{process:0,resources:[1,0]}).safe,true);assert.equal(banker([1,1],alloc,max,{process:1,resources:[1,0]}).safe,false);assert.match(banker([1,1],alloc,max,{process:0,resources:[2,0]}).blocked,/Need/);assert.match(banker([1,1],alloc,max,{process:1,resources:[2,0]}).blocked,/Available/);assert.deepEqual(alloc[0],[1,0]);});
 check(()=>{assert.equal(address(2500,1024,[5,2,7,null]).physical,7620);assert.equal(address(3072,1024,[5,2,7,null]).status,'缺页');assert.equal(address(4096,1024,[5,2,7,null]).status,'越界');assert.equal(address(1023,1024,[0]).physical,1023);});
 check(()=>{const r=cache([0,4,16,64,0,16],4,16);assert.equal(r.misses,4);assert.equal(r.hits,2);assert.equal(r.steps[3].line,0);assert.equal(r.steps[3].tag,1);assert.equal(r.steps[1].offset,4);assert.equal(r.steps[1].hit,true);});
 check(()=>{assert.deepEqual([complement(100,40,8,'add').signed,complement(100,40,8,'add').overflow],[-116,true]);assert.equal(complement(-128,-128,8,'sub').signed,0);assert.equal(complement(-128,-128,8,'sub').overflow,false);assert.equal(complement(-128,1,8,'sub').signed,127);});

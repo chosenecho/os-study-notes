@@ -1,10 +1,15 @@
 import assert from 'node:assert/strict';
 import { schedule } from '../../docs/assets/javascripts/labs/scheduling.mjs';
 
-// 教材笔记的 FCFS 核算例。
+// 独立设计的最小调度夹具，用于核对完成、周转与带权值。
 const sample = schedule([{ arrival: 0, burst: 3 }, { arrival: 1, burst: 2 }]);
 assert.deepEqual(sample.results.map(p => [p.finish, p.turnaround, p.weighted]), [[3, 3, 1], [5, 4, 2]]);
 assert.equal(sample.average, 3.5);
+// 本轮独立练习：到达事件必须先于调度选择，SPF 不抢占。
+const chapterJobs = [{arrival:0,burst:4},{arrival:1,burst:2},{arrival:2,burst:1}];
+assert.equal(schedule(chapterJobs,'fcfs').average,14/3);
+assert.equal(schedule(chapterJobs,'spf').average,13/3);
+assert.deepEqual(schedule(chapterJobs,'fcfs').results.map(p=> p.finish),[4,6,7]);
 
 // SPF 不抢占当前运行者，并只从已经到达的进程中选择。
 const jobs = [{ arrival: 0, burst: 5 }, { arrival: 1, burst: 3 }, { arrival: 2, burst: 1 }, { arrival: 4, burst: 2 }];

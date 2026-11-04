@@ -11,7 +11,9 @@ def on_files(files, config):
             uri = 'licenses/' + source.relative_to(REPO / 'LICENSES').as_posix()
             files.append(File.generated(config, uri, abs_src_path=str(source)))
     for source, target in [('LICENSE', 'Apache-2.0.txt'), ('NOTICE', 'NOTICE.txt'),
-                           ('config/content-rights.json', 'content-rights.json')]:
+                           ('config/content-rights.json', 'content-rights.json'),
+                           ('config/syllabus.json', 'syllabus.json'),
+                           ('config/quotations.json', 'quotations.json')]:
         files.append(File.generated(config, 'licenses/' + target, abs_src_path=str(REPO / source)))
     for source, target in [('LICENSING.md', 'licensing.md'),
                            ('THIRD_PARTY_NOTICES.md', 'third-party-notices.md')]:
@@ -19,6 +21,10 @@ def on_files(files, config):
         text = (text.replace('](LICENSE)', '](licenses/Apache-2.0.txt)')
                 .replace('](LICENSES/', '](licenses/')
                 .replace('](THIRD_PARTY_NOTICES.md)', '](third-party-notices.md)')
-                .replace('](config/content-rights.json)', '](licenses/content-rights.json)'))
+                .replace('](config/content-rights.json)', '](licenses/content-rights.json)')
+                .replace('](config/syllabus.json)', '](licenses/syllabus.json)')
+                .replace('](config/quotations.json)', '](licenses/quotations.json)')
+                .replace('](handbook/', '](https://github.com/chosenecho/studynote/blob/main/handbook/')
+                .replace('](archive/', '](https://github.com/chosenecho/studynote/blob/main/archive/'))
         files.append(File.generated(config, target, content=text))
     return files

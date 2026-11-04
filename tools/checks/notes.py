@@ -1,120 +1,68 @@
-"""Structural regression checks for the 12 course notes.
-
-Run from the repo root:
-    python tools/checks/notes.py
-
-Exit code 0 means every note still satisfies what tools/mkdocs/content.py depends on,
-plus the house style rules agreed in archive/qa/rounds/r5/修订规范与勘误清单.md.
-"""
+"""Check syllabus coverage, independent exercises and local figure references."""
 from pathlib import Path
+import json
 import re
 import sys
 
-REPO = Path(__file__).resolve().parents[2]
-COURSES = {
-    'os': REPO / 'docs/courses/operating-systems',
-    'co': REPO / 'docs/courses/computer-organization',
-}
-EXERCISE_HEAD = re.compile(r'^## .*(?:教材.*习题|自测题)[^\n]*$', re.M)
-NUMBERED = re.compile(r'^\*\*\d+\.', re.M)
-ANSWER_START = re.compile(r'^\*\*答案', re.M)
-BANNED = [
-    '由此可见', '综上所述', '值得注意的是', '不难看出', '显而易见',
-    '深入探讨', '不可磨灭', '不断演变的格局',
-]
-IMG_MD = re.compile(r'!\[([^\]]*)\]\(([^)]+)\)')
-IMG_HTML = re.compile(r'<img\s+src="([^"]+)"')
-
-failures = []
-notes = []
-
-
-def fail(note, message):
-    failures.append(f'{note.name}: {message}')
-
-
-for key, folder in COURSES.items():
-    files = sorted(folder.glob('chapter-*.md'))
-    if len(files) != 6:
-        failures.append(f'{folder.name}: 找到 {len(files)} 篇章节笔记，应为 6 篇')
-    for path in files:
-        notes.append((key, folder, path))
-
-if len(notes) != 12:
-    failures.append(f'章节笔记总数 {len(notes)}，应为 12')
-
-for key, folder, path in notes:
+ROOT = Path(__file__).resolve().parents[2]
+manifest = json.loads((ROOT / 'config/syllabus.json').read_text(encoding='utf-8'))
+courses = json.loads((ROOT / 'config/courses.json').read_text(encoding='utf-8'))
+expected = {f'docs/courses/{c["slug"]}/chapter-{n:02}.md' for c in courses for n in range(1, c['chapters']+1)}
+chapters = manifest['chapters']
+errors, figures, referenced = [], set(), set()
+if manifest.get('version') != 1 or len(chapters) != len(expected) or {c['path'] for c in chapters} != expected:
+    errors.append('Syllabus chapter registry differs from course files')
+section_count = question_count = 0
+for chapter in chapters:
+    path = ROOT / chapter['path']
     text = path.read_text(encoding='utf-8')
-    lines = text.splitlines()
-
-    # 1. The page hook does text.split('\n', 1) and keeps the first line as the H1.
-    if not lines or not lines[0].startswith('# 第'):
-        fail(path, '首行不是 `# 第 N 章` 标题，构建会丢标题')
-
-    # 2. The exercise folding regex needs this exact section heading.
-    heads = EXERCISE_HEAD.findall(text)
-    if not heads:
-        fail(path, '缺少 `## N 教材本章习题` 节，习题不会被折叠')
-    elif len(heads) > 1:
-        fail(path, f'有 {len(heads)} 个习题节标题，折叠逻辑只会用第一个')
-
-    if not NUMBERED.search(text):
-        fail(path, '没有 `**N.` 形式的题号，习题不会被识别')
-    if not ANSWER_START.search(text):
-        fail(path, '没有 `**答案：` 开头的答案，答案不会折叠')
-
-    # 3. Both the citation block and the syllabus table must survive.
-    if '> 依据' not in text and '> 校订依据' not in text:
-        fail(path, '缺少 `> 依据：…` 引用块')
-    if '## 复习导航' not in text:
-        fail(path, '缺少 `## 复习导航` 节')
-
-    # 5. OS figures must point at a file that exists next to the note.
-    for ref in IMG_MD.findall(text) and [m[1] for m in IMG_MD.findall(text)]:
-        if not (folder / ref).exists():
-            fail(path, f'图片引用不存在：{ref}')
-    for ref in IMG_HTML.findall(text):
-        if not (folder / ref).exists():
-            fail(path, f'图片引用不存在：{ref}')
-
-    # 6. House style: the filler phrases we agreed to remove.
-    for word in BANNED:
-        if word in text:
-            fail(path, f'残留套话「{word}」')
-
-    # 7. A retired generated question set must not creep back in.
-    if '自测题（自编）' in text:
-        fail(path, '出现已退役的「自测题（自编）」')
-
-
-# 8. The migrated 周转时间 exercise must live in chapter 3, not chapter 1.
-os_dir = COURSES['os']
-ch1 = (os_dir / 'chapter-01.md').read_text(encoding='utf-8')
-ch3 = (os_dir / 'chapter-03.md').read_text(encoding='utf-8')
-if '平均周转时间' in ch1 and 'SJF' in ch1:
-    failures.append('第1章仍留有 SJF 周转时间真题，应已迁入第3章')
-if '平均周转时间' not in ch3:
-    failures.append('第3章没有接过周转时间真题')
-
-# 9. Every intra-course figure file should be referenced somewhere, and the
-#    figure folder should not have grown without a matching note reference.
-figures = {p.name for p in (os_dir / 'figures').glob('*.svg')}
-referenced = set()
-for path in os_dir.glob('chapter-*.md'):
-    text = path.read_text(encoding='utf-8')
-    referenced |= {Path(r).name for r in IMG_HTML.findall(text)}
-    referenced |= {Path(m[1]).name for m in IMG_MD.findall(text)}
-orphan = figures - referenced
-if orphan:
-    failures.append('figures/ 下没有笔记引用的 SVG：' + '、'.join(sorted(orphan)))
-
-total_lines = sum(len(p.read_text(encoding='utf-8').splitlines()) for _, _, p in notes)
-print(f'检查 {len(notes)} 篇章节笔记，共 {total_lines} 行，图 {len(figures)} 张（引用 {len(referenced)} 张）')
-
-if failures:
-    print(f'\n{len(failures)} 处不符合：')
-    for item in failures:
-        print('  -', item)
+    label = chapter['id']
+    def require(condition, message):
+        if not condition:
+            errors.append(f'{label}: {message}')
+    require(text.splitlines()[0] == '# ' + chapter['title'], 'chapter title changed')
+    require('> 大纲定位：' in text and text.count('## 复习导航') == 1, 'missing syllabus context/navigation')
+    require(text.count('## 自编练习') == 1, 'exactly one independent practice section is required')
+    if '## 自编练习' not in text:
+        continue
+    prose, exercise = text.split('## 自编练习', 1)
+    sections = list(re.finditer(r'^## ([0-9]+) (.+?) \{#s([0-9]+)\}$', prose, re.M))
+    require(len(sections) == len(chapter['sections']), 'syllabus section missing')
+    for index, (match, spec) in enumerate(zip(sections, chapter['sections'])):
+        require(int(match[1]) == int(match[3]) == spec['number'] == index+1, 'section numbering/anchor differs')
+        require(match[2] == spec['title'], 'section title differs from syllabus registry')
+        body = prose[match.end():sections[index+1].start() if index+1 < len(sections) else len(prose)]
+        require(len(body.strip()) >= 80, f'section {spec["number"]} lacks a substantive explanation')
+        for scope in spec['scope']:
+            require(scope in prose, f'syllabus scope not visible: {scope}')
+    questions = list(re.finditer(r'^\*\*([0-9]+)\. (.+?)\*\*', exercise, re.M))
+    require(len(questions) == len(chapter['practice']) and len(questions) >= 4, 'practice count changed')
+    covered = set()
+    for index, (match, spec) in enumerate(zip(questions, chapter['practice'])):
+        rest = exercise[match.end():questions[index+1].start() if index+1 < len(questions) else len(exercise)]
+        require(int(match[1]) == spec['number'] == index+1, 'question numbers must be consecutive')
+        mapping = re.search(r'考点：第 ([0-9、]+) 节；层次：([^。]+)。', rest)
+        require(mapping is not None, f'question {index+1} lacks a syllabus/level mapping')
+        if mapping:
+            numbers = [int(n) for n in mapping[1].split('、')]
+            require(numbers == spec['sections'] and mapping[2].split('、') == spec['levels'], 'practice metadata drifted')
+            require(set(numbers) <= {s['number'] for s in chapter['sections']}, 'question references unknown sections')
+            covered.update(numbers)
+        answer = rest.split('**答案：**', 1)
+        require(len(answer) == 2 and len(answer[-1].strip()) >= 25, f'question {index+1} lacks an explained answer')
+    require(covered == {s['number'] for s in chapter['sections']}, 'some syllabus sections have no practice')
+    for needle in ('教材原题：', '教材本章习题', '附录答案：', '教材例题', '部分习题参考答案', '由此可见', '综上所述', '不难看出'):
+        require(needle not in text, f'retired source/filler marker: {needle}')
+    for ref in re.findall(r'!\[[^]]*\]\(([^)]+)\)', text):
+        target = (path.parent / ref).resolve()
+        require(target.is_relative_to(path.parent.resolve()) and target.is_file(), f'missing/unsafe figure {ref}')
+        referenced.add(target)
+    figures.update(p.resolve() for p in (path.parent / 'figures').glob('*.svg'))
+    section_count += len(sections)
+    question_count += len(questions)
+if figures != referenced:
+    errors.append('Unreferenced or unregistered course figures: ' + str(figures ^ referenced))
+print(f'Syllabus coverage: {len(chapters)} chapters, {section_count} sections, {question_count} explained independent questions, {len(figures)} figures')
+if errors:
+    print(chr(10).join(errors))
     sys.exit(1)
-
-print('全部通过')

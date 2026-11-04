@@ -1,4 +1,4 @@
-"""Enrich authored Markdown through native MkDocs page events."""
+"""Enrich independently authored Markdown through native MkDocs events."""
 from pathlib import Path
 import json
 import logging
@@ -8,115 +8,38 @@ from mkdocs.utils import get_relative_url
 
 REPO = Path(__file__).resolve().parents[2]
 COURSES = json.loads((REPO / 'config/courses.json').read_text(encoding='utf-8'))
-
 TOOLBAR = (
     '<div class="study-toolbar" data-chapter="{id}">'
     '<label><input type="checkbox" data-complete> 本章已复习</label>'
     '<label class="reading-size">字号<select data-reading-size aria-label="正文字号">'
     '<option value="16">标准</option><option value="18">较大</option><option value="20">大号</option>'
-    '</select></label>'
-    '<span class="save-status" role="status"></span></div>'
+    '</select></label><span class="save-status" role="status"></span></div>'
 )
 DIALOG = (
     '<dialog class="image-dialog" aria-label="插图预览">'
     '<button type="button" class="md-button close-dialog" autofocus>关闭 · Esc</button>'
     '<img alt=""><p></p></dialog>'
 )
-
-EXERCISE_SECTION = re.compile(r'(^## .*(?:教材.*习题|自测题|自编客观题)[^\n]*\n)([\s\S]*?)(?=^## |\Z)', re.M)
-
-
-def _answer_block(answer):
-    """Normalize every answer-label variant to one rendered form.
-
-    The two books used four source forms: ``**答案：X**``, ``**答案：**``,
-    ``答案：X`` and ``答案：**X**``.  Rendering used to strip the label from
-    three of them, so 117 of 138 answers opened to a bare sentence.  Keep one
-    label, ``参考答案：``, in front of every answer body.
-
-    ``**参考答案：**`` / ``**参考答案**`` / ``参考答案：`` are accepted too and
-    stripped the same way, so an author who copies the rendered label back into
-    a note does not end up with a doubled ``参考答案：参考答案：``.
-    """
-    answer = answer.strip()
-    # **参考答案：** body / **参考答案** body  ->  body
-    m = re.match(r'^\*\*参考答案[：:]?\*\*\s*', answer)
-    if m:
-        answer = answer[m.end():]
-    # 参考答案：body  ->  body
-    m = re.match(r'^参考答案[：:]\s*', answer)
-    if m:
-        answer = answer[m.end():]
-    # **答案：D。** body  ->  D。 body
-    m = re.match(r'^\*\*答案：([^*\n]+)\*\*\s*', answer)
-    if m:
-        answer = m.group(1).strip() + answer[m.end():]
-    # 答案：**一**。  ->  **一**。
-    m = re.match(r'^答案：\s*', answer)
-    if m:
-        answer = answer[m.end():]
-    # **答案：** body  ->  body
-    m = re.match(r'^\*\*答案：\*\*\s*', answer)
-    if m:
-        answer = answer[m.end():]
-    label = '**参考答案：**'
-    # Block-level bodies (table/list/quote/code/HTML) must start a new paragraph.
-    if re.match(r'^(?:\||-{2,}|\d+\.\s|[-*+]\s|>|#{1,6}\s|```|<)', answer):
-        return label + '\n\n' + answer
-    return label + ' ' + answer
-
-
-def _options_block(prompt):
-    def options(m):
-        choices = re.split(r'[\s　]+(?=[A-D][.．])', m.group().strip())
-        return (
-            '<div class="exercise-options" markdown="1">\n\n'
-            + '\n\n'.join('- ' + c.strip() for c in choices)
-            + '\n\n</div>'
-        )
-
-    return re.sub(r'^[A-D][.．][\s\S]*?(?=\n\n(?![A-D][.．])|\Z)', options, prompt, flags=re.M)
-
-
-def _escape_blanks(text):
-    """Keep runs of ASCII underscores from turning into emphasis.
-
-    The 操作系统概论 fill-in-the-blank questions use ``___`` as a blank. Markdown
-    reads ``___x___`` as bold+italic, which silently deletes the blank and bolds
-    the word in between. Escaping keeps the blank visible.
-    """
-    return re.sub(r'(?<!\\)_{3,}', lambda m: '&#95;' * len(m.group(0)), text)
+EXERCISE_SECTION = re.compile(r'(^## 自编练习[^\n]*\n)([\s\S]*?)(?=^## |\Z)', re.M)
 
 
 def exercise(match):
     question, rest = match.group(1), match.group(2)
-    start = re.search(r'^(?:\*\*答案|\*\*参考答案[：:]|答案：|\*\*（1）计算 Need)', rest, re.M)
-    prompt, answer = (rest[: start.start()], rest[start.start():].strip()) if start else (rest, '')
-    result = '<section class="exercise-item" markdown="1">\n\n' + _escape_blanks(question) + '\n\n' + _escape_blanks(_options_block(prompt)).strip()
-    if answer:
-        body = _answer_block(answer)
-    else:
-        # 计算机组成原理的附录只收部分习题；没有答案的题也要有同一个折叠壳，
-        # 否则读者会以为页面坏了，或滚回节首才知道本来就没答案。
-        body = '<p class="exercise-answer--missing">教材附录未收本题解答，请对照教材自行完成。</p>'
-    result += (
-        '\n\n<details class="exercise-answer" markdown="1">\n<summary>答案与解析</summary>\n\n'
-        + body
-        + '\n\n</details>'
+    prompt, marker, answer = rest.partition('**答案：**')
+    if not marker or not answer.strip():
+        raise ValueError('Every independent exercise requires an authored answer: ' + question)
+    return (
+        '<section class="exercise-item" markdown="1">\n\n' + question + '\n\n' + prompt.strip()
+        + '\n\n<details class="exercise-answer" markdown="1">\n<summary>答案与解析</summary>\n\n'
+        + '**参考答案：** ' + answer.strip()
+        + '\n\n</details>\n\n</section>\n\n'
     )
-    return result + '\n\n</section>\n\n'
 
 
 def format_exercises(text):
-    def section(m):
-        head, body = m.group(1), m.group(2)
-        parts = re.split(r'(?=^### )', body, flags=re.M)
-        body = ''.join(
-            re.sub(r'(^\*\*\d+\.[^\n]*|^\*\*(?:题目|教材原题)：[^\n]*)([\s\S]*?)(?=^\*\*\d+\.|\Z)', exercise, part, flags=re.M)
-            for part in parts
-        )
-        return head + body
-
+    def section(match):
+        body = re.sub(r'(^\*\*[0-9]+\.[^\n]*)([\s\S]*?)(?=^\*\*[0-9]+\.|\Z)', exercise, match.group(2), flags=re.M)
+        return match.group(1) + body
     return EXERCISE_SECTION.sub(section, text)
 
 
@@ -219,7 +142,7 @@ def on_page_markdown(markdown, page, config, files):
             title, body = markdown.split('\n', 1)
             page.meta['description'] = (
                 f'{course["title"]}复习笔记：{title.lstrip("# ")}。'
-                '含大纲要求、重点讲解与教材习题（部分附答案）。'
+                '含大纲索引、独立讲解与附解析的自编练习。'
             )
             body = chapter_images(link_chapters(format_exercises(body.strip())), page)
             toolbar = TOOLBAR.format(id=f'{course["id"]}-{number}')

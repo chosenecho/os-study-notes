@@ -520,7 +520,7 @@
       "source_kind": "original",
       "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "bbd9d5051bca1abafb169bdb108fb73a9e581d50059bbfd1f07a9ae05df9dbf6"
+      "sha256": "0fa287d1a2f6be1b2e1192288eaf403ad6210961253c8e72d8d6d5944f87fd95"
     },
     {
       "path": "docs/courses/computer-networks/figures/subnet-allocation.svg",
@@ -538,7 +538,7 @@
       "source_kind": "original",
       "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
       "reviewed_on": "2026-11-04",
-      "sha256": "8fad7f6335f108efc0f01214477077303e64ce281ae474af6e8ac2ab1f7fbb91"
+      "sha256": "456c93472a0240d608c47878fa24d444c8b4e6e04a8e5b968add455e4676450b"
     },
     {
       "path": "docs/courses/computer-networks/index.md",

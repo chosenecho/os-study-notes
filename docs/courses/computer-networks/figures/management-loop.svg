@@ -3,8 +3,10 @@
 <rect x="610" y="70" width="206" height="150" rx="10" fill="#e7f0ff" stroke="#315ba8"/>
 <text x="52" y="112" font-size="22">管理站</text><text x="52" y="150">观察与决策</text><text x="52" y="188">关联请求/响应</text>
 <text x="638" y="112" font-size="22">设备代理</text><text x="638" y="150">读取接口状态</text><text x="638" y="188">响应与报告事件</text>
-<path d="M214 85H600M600 153H214M600 217H214" stroke="#315ba8" stroke-width="2" fill="none"/>
-<path d="M570 85H600M244 153H214M244 217H214" stroke="#315ba8" stroke-width="2" marker-end="url(#arrow)"/>
+
+<path d="M214 85H600" stroke="#315ba8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M600 153H214" stroke="#315ba8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M600 217H214" stroke="#315ba8" stroke-width="2" marker-end="url(#arrow)"/>
 <text x="408" y="67" text-anchor="middle">Get：读取接口变量</text>
 <text x="408" y="136" text-anchor="middle">响应：值与差错信息</text>
 <text x="408" y="200" text-anchor="middle">Trap：代理主动报告事件</text>

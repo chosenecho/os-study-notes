@@ -1,0 +1,104 @@
+site_name: studynote
+repo_name: chosenecho/studynote
+repo_url: https://github.com/chosenecho/studynote
+site_description: 以大纲为索引的原创课程笔记、自编练习与交互实验
+copyright: >-
+  <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">苏ICP备2026085504号-1</a>
+site_url: !ENV [SITE_URL, 'https://chosenecho.top/']
+site_dir: dist
+docs_dir: docs
+theme:
+  name: material
+  custom_dir: theme
+  language: zh
+  font: false
+  favicon: assets/images/favicon.svg
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: material/weather-night
+        name: 切换深色主题
+    - scheme: slate
+      primary: black
+      accent: indigo
+      media: "(prefers-color-scheme: dark)"
+      toggle:
+        icon: material/weather-sunny
+        name: 切换浅色主题
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.sections
+    - navigation.footer
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - search.share
+    - content.code.copy
+    - toc.follow
+nav:
+  - 学习首页: index.md
+  - 操作系统概论:
+      - 课程概览: courses/operating-systems/index.md
+      - 第 1 章 操作系统简介: courses/operating-systems/chapter-01.md
+      - 第 2 章 进程管理: courses/operating-systems/chapter-02.md
+      - 第 3 章 进程调度与死锁: courses/operating-systems/chapter-03.md
+      - 第 4 章 内存管理: courses/operating-systems/chapter-04.md
+      - 第 5 章 文件系统: courses/operating-systems/chapter-05.md
+      - 第 6 章 I/O 设备管理: courses/operating-systems/chapter-06.md
+  - 计算机组成原理:
+      - 课程概览: courses/computer-organization/index.md
+      - 第 1 章 计算机系统概述: courses/computer-organization/chapter-01.md
+      - 第 2 章 数据的表示和运算: courses/computer-organization/chapter-02.md
+      - 第 3 章 指令系统: courses/computer-organization/chapter-03.md
+      - 第 4 章 中央处理器: courses/computer-organization/chapter-04.md
+      - 第 5 章 存储器层次结构: courses/computer-organization/chapter-05.md
+      - 第 6 章 互连及输入输出组织: courses/computer-organization/chapter-06.md
+  - 复习速查:
+      - 易错点清单: reference/pitfalls.md
+      - 术语与缩写表: reference/glossary.md
+      - 许可与版权: licensing.md
+  - 交互练习:
+      - 练习入口: labs/index.md
+      - 进程调度实验: labs/scheduling.md
+      - 页面置换: labs/paging.md
+      - 银行家算法: labs/banker.md
+      - 分页地址转换: labs/address.md
+      - Cache 映射: labs/cache.md
+      - 补码加减: labs/complement.md
+      - 随堂自测: labs/quiz.md
+plugins:
+  - search:
+      lang: [zh, en]
+hooks:
+  - tools/mkdocs/content.py
+  - tools/mkdocs/licenses.py
+  - tools/mkdocs/assets.py
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.arithmatex:
+      generic: true
+extra_css:
+  - assets/stylesheets/notes.css
+  - assets/stylesheets/labs.css
+  - assets/vendor/katex/katex.min.css
+extra_javascript:
+  - assets/javascripts/math.js
+  - path: assets/javascripts/reader.mjs
+    type: module
+  - path: assets/javascripts/labs/loader.mjs
+    type: module
+extra:
+  generator: false

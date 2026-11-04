@@ -1,0 +1,20 @@
+# Private references and independent archives
+/local/
+# Generated output
+/dist/
+# Dependencies, caches and test evidence
+/node_modules/
+**/__pycache__/
+*.py[cod]
+/.venv/
+/.cache/
+/.esa/
+/artifacts/
+/test-results/
+/playwright-report/
+# Local settings and credentials
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db

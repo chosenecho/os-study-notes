@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="230" viewBox="0 0 960 230" role="img" aria-labelledby="title desc"><title id="title">操作系统请求路径</title><desc id="desc">请求结果沿服务路径返回；访问还需权限与参数检查</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#475569"/></marker></defs>
+<rect width="960" height="230" rx="12" fill="#f8fafc"/>
+<g font-family="sans-serif" text-anchor="middle" fill="#172554"><text x="480" y="42" font-size="25" font-weight="600">操作系统请求路径</text>
+<rect x="28" y="80" width="190" height="65" rx="8" fill="#e0e7ff" stroke="#818cf8"/><text x="123" y="120" font-size="21">应用提出请求</text>
+<path d="M223 112 H258" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="266" y="80" width="190" height="65" rx="8" fill="#e0e7ff" stroke="#818cf8"/><text x="361" y="120" font-size="21">受控服务入口</text>
+<path d="M461 112 H496" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="504" y="80" width="190" height="65" rx="8" fill="#e0e7ff" stroke="#818cf8"/><text x="599" y="120" font-size="21">内核管理资源</text>
+<path d="M699 112 H734" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="742" y="80" width="190" height="65" rx="8" fill="#e0e7ff" stroke="#818cf8"/><text x="837" y="120" font-size="21">硬件执行操作</text>
+<text x="480" y="193" font-size="20">请求结果沿服务路径返回；访问还需权限与参数检查</text>
+</g></svg>

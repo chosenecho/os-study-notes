@@ -1,0 +1,14 @@
+[
+  {
+    "id": "os",
+    "slug": "operating-systems",
+    "title": "操作系统概论",
+    "chapters": 6
+  },
+  {
+    "id": "co",
+    "slug": "computer-organization",
+    "title": "计算机组成原理",
+    "chapters": 6
+  }
+]

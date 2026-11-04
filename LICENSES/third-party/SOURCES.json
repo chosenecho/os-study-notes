@@ -1,0 +1,181 @@
+{
+  "reviewed_on": "2026-11-04",
+  "material_version": "9.7.7",
+  "material_lockfile": "https://github.com/squidfunk/mkdocs-material/blob/9.7.7/package-lock.json",
+  "npm": [
+    {
+      "name": "clipboard",
+      "version": "2.0.11",
+      "url": "https://registry.npmjs.org/clipboard/-/clipboard-2.0.11.tgz",
+      "license": "MIT",
+      "files": [
+        {
+          "name": "LICENSE",
+          "sha256": "a798e7b5fa604117d52d607e05f1cbac3b2fa5da087837f412a1a3c866b4b748",
+          "distributed_path": "LICENSES/third-party/clipboard-LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "escape-html",
+      "version": "1.0.3",
+      "url": "https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz",
+      "license": "MIT",
+      "files": [
+        {
+          "name": "LICENSE",
+          "sha256": "255aa557a1f55224ce522f311629c0bf20854740a67955cefd798fbd1d3d1ded",
+          "distributed_path": "LICENSES/third-party/escape-html-LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "focus-visible",
+      "version": "5.2.1",
+      "url": "https://registry.npmjs.org/focus-visible/-/focus-visible-5.2.1.tgz",
+      "license": "W3C",
+      "files": [
+        {
+          "name": "LICENSE.md",
+          "sha256": "7aeb3acf108717fd0f68ada2eebeaaec46dcdd239b4c5e7b4b8e6ea8861acfdd",
+          "distributed_path": "LICENSES/third-party/focus-visible-LICENSE.txt"
+        }
+      ]
+    },
+    {
+      "name": "lunr",
+      "version": "2.3.9",
+      "url": "https://registry.npmjs.org/lunr/-/lunr-2.3.9.tgz",
+      "license": "MIT",
+      "files": [
+        {
+          "name": "LICENSE",
+          "sha256": "ae33f5a0d538cd93de1136a052ffa734b59d6b28e7cfc19e03de1d8b5d9f40ea",
+          "distributed_path": "LICENSES/third-party/lunr-LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "lunr-languages",
+      "version": "1.14.0",
+      "url": "https://registry.npmjs.org/lunr-languages/-/lunr-languages-1.14.0.tgz",
+      "license": "MPL-1.1",
+      "files": [
+        {
+          "name": "LICENSE",
+          "sha256": "1a2c0a1e111a34ce11f56d6b7ee6270efe616dfaa90c5858312d5052e5778d72",
+          "distributed_path": "LICENSES/third-party/lunr-languages-LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "rxjs",
+      "version": "7.8.2",
+      "url": "https://registry.npmjs.org/rxjs/-/rxjs-7.8.2.tgz",
+      "license": "Apache-2.0",
+      "files": [
+        {
+          "name": "LICENSE.txt",
+          "sha256": "81c407ac717813b0e3795402960e04003c7bba8ba59b621624707028531c9ade",
+          "distributed_path": "LICENSES/third-party/rxjs-LICENSE.txt"
+        }
+      ]
+    },
+    {
+      "name": "tslib",
+      "version": "2.7.0",
+      "url": "https://registry.npmjs.org/tslib/-/tslib-2.7.0.tgz",
+      "license": "0BSD",
+      "files": [
+        {
+          "name": "LICENSE.txt",
+          "sha256": "210b19e543130388c68654b7497e967119ce17145f66ab7d85688fbd70f08751",
+          "distributed_path": "LICENSES/third-party/tslib-LICENSE.txt"
+        }
+      ]
+    },
+    {
+      "name": "good-listener",
+      "version": "1.2.2",
+      "url": "https://registry.npmjs.org/good-listener/-/good-listener-1.2.2.tgz",
+      "license": "MIT",
+      "files": []
+    },
+    {
+      "name": "delegate",
+      "version": "3.2.0",
+      "url": "https://registry.npmjs.org/delegate/-/delegate-3.2.0.tgz",
+      "license": "MIT",
+      "files": []
+    },
+    {
+      "name": "select",
+      "version": "1.1.2",
+      "url": "https://registry.npmjs.org/select/-/select-1.1.2.tgz",
+      "license": "MIT",
+      "files": []
+    },
+    {
+      "name": "tiny-emitter",
+      "version": "2.1.0",
+      "url": "https://registry.npmjs.org/tiny-emitter/-/tiny-emitter-2.1.0.tgz",
+      "license": "MIT",
+      "files": [
+        {
+          "name": "LICENSE",
+          "sha256": "aada4c7da6a5be46beadf9d4f40d7dba9e222e57180d46289b2bb9112e65daae",
+          "distributed_path": "LICENSES/third-party/tiny-emitter-LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "@mdi/svg",
+      "version": "7.4.47",
+      "url": "https://registry.npmjs.org/@mdi/svg/-/svg-7.4.47.tgz",
+      "license": "Apache-2.0",
+      "files": [
+        {
+          "name": "LICENSE",
+          "sha256": "f3bc8715bad84b26396bb42d2abd11f919cf58163be158eab79ecbaabf84cdf2",
+          "distributed_path": "LICENSES/third-party/mdi-svg-LICENSE.txt"
+        }
+      ]
+    }
+  ],
+  "additional_sources": {
+    "Apache-2.0": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+    "CC-BY-4.0": "https://creativecommons.org/licenses/by/4.0/legalcode.txt",
+    "mkdocs-material": "https://github.com/squidfunk/mkdocs-material/blob/9.7.7/LICENSE",
+    "mkdocs": "https://github.com/mkdocs/mkdocs/blob/1.6.1/LICENSE",
+    "KaTeX": "https://github.com/KaTeX/KaTeX/blob/v0.16.11/LICENSE",
+    "KaTeX-fonts": "https://github.com/KaTeX/katex-fonts/blob/master/LICENSE",
+    "W3C": "https://www.w3.org/copyright/software-license-2015/",
+    "FontAwesome": "https://github.com/FortAwesome/Font-Awesome/blob/7.1.0/LICENSE.txt",
+    "good-listener": "https://github.com/zenorocha/good-listener/blob/74ff6376e7f0b7c5c8d7e4b228fcbf9189f0d21d/readme.md",
+    "delegate": "https://github.com/zenorocha/delegate/blob/1fe374c9693576ebf95c42edeb59ebe146aef58f/readme.md",
+    "select": "https://github.com/zenorocha/select/blob/53e4a21d674cdfb09026e0474d95dc3779e7ff4a/readme.md"
+  },
+  "distributed_files": {
+    "third-party/clipboard-LICENSE": "a798e7b5fa604117d52d607e05f1cbac3b2fa5da087837f412a1a3c866b4b748",
+    "third-party/delegate-copyright.txt": "260baf8a8ce3ae326679959c6d360721abbacbf280383ebc109c382ac8c8901e",
+    "third-party/escape-html-LICENSE": "255aa557a1f55224ce522f311629c0bf20854740a67955cefd798fbd1d3d1ded",
+    "third-party/focus-visible-LICENSE.txt": "7aeb3acf108717fd0f68ada2eebeaaec46dcdd239b4c5e7b4b8e6ea8861acfdd",
+    "third-party/fontawesome-LICENSE.txt": "329f24fdba0c57714d7d202d30a74767feac6907685ee24f0abbf1bd47581a07",
+    "third-party/good-listener-copyright.txt": "260baf8a8ce3ae326679959c6d360721abbacbf280383ebc109c382ac8c8901e",
+    "third-party/katex-fonts-MIT.txt": "a7bd44abd8419bf78185be51f34216356af1adb0806ce39d6a9ca0940bd49b70",
+    "third-party/katex-MIT.txt": "766ccc1f306c885aa45542a9846bbd0a505b27a0374f146778171c2254ce18e3",
+    "third-party/lunr-languages-LICENSE": "1a2c0a1e111a34ce11f56d6b7ee6270efe616dfaa90c5858312d5052e5778d72",
+    "third-party/lunr-LICENSE": "ae33f5a0d538cd93de1136a052ffa734b59d6b28e7cfc19e03de1d8b5d9f40ea",
+    "third-party/mkdocs-BSD.txt": "26041bd625fc39411dc4b32748216236931c904adb90c2b3e0ba697090a5d54e",
+    "third-party/mkdocs-material-MIT.txt": "e1150f26b4c0f872627b39fda49ae3bd850304f2f7f3171ae0531c1f8f4dd078",
+    "third-party/rxjs-LICENSE.txt": "81c407ac717813b0e3795402960e04003c7bba8ba59b621624707028531c9ade",
+    "third-party/select-copyright.txt": "260baf8a8ce3ae326679959c6d360721abbacbf280383ebc109c382ac8c8901e",
+    "third-party/tiny-emitter-LICENSE": "aada4c7da6a5be46beadf9d4f40d7dba9e222e57180d46289b2bb9112e65daae",
+    "third-party/tslib-LICENSE.txt": "210b19e543130388c68654b7497e967119ce17145f66ab7d85688fbd70f08751",
+    "third-party/W3C-Software-and-Document-2015.txt": "3a1f028804940d23727ea58837ae91bada4867fce82f91bee18496b3c3aa48fb",
+    "third-party/lunr-languages/lunr.multi.js": "b096a0e82b79c55dc83b9d7506eb871c0c4ef95324e24b1d985833dda2e0fb39",
+    "third-party/lunr-languages/lunr.stemmer.support.js": "9acfb121aae107828dc54f15cf779ef4a151cdaaade158be705a26e6e96ec618",
+    "third-party/lunr-languages/lunr.zh.js": "c84164930f3288c37c0858a2d26bf147d57ffecbd5d8b40fdca9ec1aca4d4b3d",
+    "third-party/mdi-svg-LICENSE.txt": "f3bc8715bad84b26396bb42d2abd11f919cf58163be158eab79ecbaabf84cdf2"
+  }
+}

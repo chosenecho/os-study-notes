@@ -8,9 +8,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "2026-11-04 文案复核：对照现有许可说明精简；保留 Apache-2.0 与 CC BY 4.0 的适用范围、署名要求、第三方排除和反馈入口，未改变授权。",
       "reviewed_on": "2026-11-04",
-      "sha256": "5ad7b127fb390f2e437ead6567add579480f47271dde8035c96c13db69192fb3"
+      "sha256": "d5ab556ba8d9af6dd16a7716cf8fd73e5a713b117f8f996d8f07429b771ebfd8"
     },
     {
       "path": "NOTICE",
@@ -35,9 +35,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "2026-11-04 文案复核：保留组件版本、许可、版权声明和源码获取方式，删除主题迁移过程及重复说明；未修改上游许可文件。",
       "reviewed_on": "2026-11-04",
-      "sha256": "0743c6c8864f54f2c352b94f85ef9d5947a99070c378a15c6ac3fb808b49e83f"
+      "sha256": "bfbb4610cb473862bf3e558ec211f72e6f5301b0fb3f0291f8ffd5af400ba864"
     },
     {
       "path": "archive/README.md",
@@ -116,9 +116,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "bf7ea0dbba58d52fe1989dc0b91c61c0d76ebbb9e77b609261a27e1cf4829052"
+      "sha256": "0f4bdcee8b33dcec9def7b9a94455782a246477a18b166571a36109d9f6888ae"
     },
     {
       "path": "docs/assets/javascripts/labs/loader.mjs",
@@ -134,9 +134,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "8e069e5aad6faca7308d8200fc276f240670fc4cf0c017432d7d5b4be502aa89"
+      "sha256": "2679d48d68f77234ecf116c2aa8099b3fd453c5ef2acfdb454660597b4b1f470"
     },
     {
       "path": "docs/assets/javascripts/labs/scheduler.mjs",
@@ -554,117 +554,117 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "356d77faa8bc52fff6735de3930f08e491f94cb2dce33ffb40a2e7e16ff2f411"
+      "sha256": "c5a901feee9a436616620cd8333c946cb7f28bb87f61562c1822461f483fe76c"
     },
     {
       "path": "docs/courses/computer-organization/chapter-02.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "70aa4a3123154f8698fa3ad4da62634740646edc8bb2beafd9b14e5c9ba2cfab"
+      "sha256": "5e2be14f46a332094623f1ebd7d17a117887623fac603e1cb6670839efc7729d"
     },
     {
       "path": "docs/courses/computer-organization/chapter-03.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "146e1bf4a65b55adb73664c8dad333b76b61a7774b6e3dfb310104fce82f63c3"
+      "sha256": "3c37e2a5c98ef6b50d788033c715d3b02965f254234fc186a2bfbaec64bbe493"
     },
     {
       "path": "docs/courses/computer-organization/chapter-04.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "75c5c4b7bb2085df8bcb9f854aa020e7e63078438b882507e57f2a2ea05971d6"
+      "sha256": "d11cd22216c79539bbc2314160e8564b61828f2479c4ad55e6c7bbb5d70da9b5"
     },
     {
       "path": "docs/courses/computer-organization/chapter-05.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "c08b423a6c9517c3932f3fcb03a7092861d9cae2940485b0afbb85ea7deedc04"
+      "sha256": "6e3083abed716191064b6a45918fe59c7ae3f4c3da620efaab1e98edfb6ff0bc"
     },
     {
       "path": "docs/courses/computer-organization/chapter-06.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "0774722407c9155747c6abd8e033e8821bac1b91e04d58413428087718e263ce"
+      "sha256": "e87b342a3a36ae80a44c7a3d9a872a1ee1fa687ab6abce4094111acbd690cb41"
     },
     {
       "path": "docs/courses/computer-organization/index.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "1154a6be79e207dd63042bf09da54b003fbcc0a3b7654daea74679867d94856a"
+      "sha256": "2f32c80b5efd3572b193d876db2544a0868ff74de30d4e9932025b45c7736d93"
     },
     {
       "path": "docs/courses/operating-systems/chapter-01.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "105f6b61ae121d475653ba2741e96abbd5a939ad000d545134a67b07638846a1"
+      "sha256": "c516276b00ac2b82e9e164c3475a5b43d1ffb99395d685e0f04cfa7f5325856f"
     },
     {
       "path": "docs/courses/operating-systems/chapter-02.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "01895c766974a10db7e12d645b1013c94f06ab48c4857f704bf3d2085bd03c36"
+      "sha256": "2323d0a5404069bb2ebf6d70a6bb06b0160b1b249c211a0e438058dda8686de6"
     },
     {
       "path": "docs/courses/operating-systems/chapter-03.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "2966e4af60f298358e04cc73d769620459ec5796a3812cea850b4d86fdf0e833"
+      "sha256": "7c6c57640ce1a286c3c2ce01ee7e95b966eb9b8969c4205861641c93265d7af1"
     },
     {
       "path": "docs/courses/operating-systems/chapter-04.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "951bcbd863820e9d8b56b5f584dac6b0907d44a43fb8a25bc3716e9b4eaebeb3"
+      "sha256": "0cc968955faaa2894a67ba07209489d32d89518733de5687bd1d1340d2b21799"
     },
     {
       "path": "docs/courses/operating-systems/chapter-05.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "bf387f608769574399afde26a37faedf72c346206dec6f2f738534377755a018"
+      "sha256": "cb6beec06e4c96050105707808a23e8b87d77435491106339756653a1b692353"
     },
     {
       "path": "docs/courses/operating-systems/chapter-06.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "b7ab6f3dd90d4581aca7665d152b4d5c11d0d1c25f9b464e8e716394de9ea8f4"
+      "sha256": "155b1f0cd9276992647bb262f66837d298bbe4a6d086c1853761b87003bb07ce"
     },
     {
       "path": "docs/courses/operating-systems/figures/address-walk.svg",
@@ -725,108 +725,108 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "e4f31a8d7d71cfa68beaf5e9f83101372925c1689a0c62fc3be91ad9191c9d2c"
+      "sha256": "484d4bb4deada86a53078d71d3ae194aa4eaec6e66b448eba27e28e9b8a5b5e4"
     },
     {
       "path": "docs/index.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "按维护者要求移除首页联系按钮；联系方式仅保留在全站页脚，课程及许可说明未变。",
+      "basis": "按维护者要求移除首页联系按钮；联系方式仅保留在全站页脚，课程及许可说明未变。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "04661b9b155f9d161c463e934e6345c77485afa9f50a411cd06b3ccff9f33d99"
+      "sha256": "b70f4db360b38cbf31486a3f3c2e2682c7a8c2d5db457f74af91aed972ab0f42"
     },
     {
       "path": "docs/labs/address.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "2f146da672f6651dcabf8d6d68c749e1f568825a5651d613644c150c5e5eddc7"
+      "sha256": "b0dfcc4fbdf7a9dd679ddaad3e45f9145182f7ee3a3371b78f3916c62c933e1a"
     },
     {
       "path": "docs/labs/banker.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "2981e86dcd2fa17d3a7a02c5b7b207ef783fd573e43868acb5d90ea6b13da88e"
+      "sha256": "e129e79f9ff533a8723c6d9d3f6d73dd0e18f311454828607395f0d43a568c8a"
     },
     {
       "path": "docs/labs/cache.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "3928a5ea17a12a1b1479fbb258394161c084d98867df9ed7860433015838e232"
+      "sha256": "590bd716ff608dc7e6b347700be166992b373ce2d7322f587827c88407e3de8e"
     },
     {
       "path": "docs/labs/complement.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "9e625ee6ca76bf0ae1165b53bb2a9d90e46abfce49be298cb415c72208d5de79"
+      "sha256": "dbcdfd8c22a34b7d9def6c7eb0e3a21053924b0feb439ca28e7d681abc986b96"
     },
     {
       "path": "docs/labs/index.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "bf2e30d0f3d6df289ecba1167b042a4075c0c289625d290e2fee8a1e95907440"
+      "sha256": "20835d267a0bffcbf264917584444f6b22821f1a62e520f5247fa22f0b2980f3"
     },
     {
       "path": "docs/labs/paging.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "a619bc560994a68802e04baf34e39c12d95b66478ffc41870a5a697b902cce7e"
+      "sha256": "66e990fcaa7e40321899398da1c76ae3649cc6d953f470b4299482aece2aed23"
     },
     {
       "path": "docs/labs/quiz.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "67f1594c0e3f32ab19a458134e071d14960029fc2c4775bb524dfdbe30f9692e"
+      "sha256": "29aa575ea67f682930e8a5b94508fc0b97b47eb26c4c3a8f2797a4a004aa967f"
     },
     {
       "path": "docs/labs/scheduling.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "fb9addde399d5070487646f75254f0e2537ba1744efdbc0a35a60de762b47843"
+      "sha256": "e6dee4822d288f8e61d4d51e4b26c7b585ede9bbaed97d60116462d75d3463c8"
     },
     {
       "path": "docs/reference/glossary.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "b4d3d133bee79e5b889c5406f946b18c9fe4219fe51c9e1eb8c6722219ab9101"
+      "sha256": "036d9c1ec351c3779724f53aca6497825efe7cd7880d6c6e8a7541fb4172fd01"
     },
     {
       "path": "docs/reference/pitfalls.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "55d1c53403a30a05d4a9e3333c693737ddd8bed88c0d0ec2938bbe09086315cb"
+      "sha256": "48616b0699ff2f7d317a224a4fcfb4278b8a4cf9ec824f5b29a68d92ebea5543"
     },
     {
       "path": "docs/robots.txt",

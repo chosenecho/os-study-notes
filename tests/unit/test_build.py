@@ -52,9 +52,18 @@ class BuildTests(unittest.TestCase):
 
     def test_html_teaching_examples_are_not_treated_as_live_images(self):
         page = SimpleNamespace(file=SimpleNamespace(abs_src_path=str(ROOT / 'docs/courses/computer-networks/chapter-06.md')))
-        fence = chr(96)*3
-        source = fence+'html'+chr(10)+'<img src="example.png">'+chr(10)+fence
-        self.assertEqual(content.chapter_images(source, page), source)
+        tick = chr(96)
+        examples = [
+            tick*3+'html'+chr(10)+'<img src="example.png">'+chr(10)+tick*3,
+            '~~~html'+chr(10)+'<img src="example.png">'+chr(10)+'~~~',
+            'Use '+tick+'<img src="example.png">'+tick+' as an example.',
+            'Use '+tick+'![Example](example.png)'+tick+' as an example.',
+            tick*2+'single '+tick+' and <img src="example.png">'+tick*2,
+            tick+'a multiline'+chr(10)+'![Example](example.png)'+tick,
+        ]
+        for source in examples:
+            with self.subTest(source=source):
+                self.assertEqual(content.chapter_images(source, page), source)
 
     def test_license_snapshots_and_virtual_downloads_preserve_bytes(self):
         snapshots = json.loads((ROOT / 'LICENSES/third-party/SOURCES.json').read_text(encoding='utf-8'))
@@ -134,6 +143,10 @@ class BuildTests(unittest.TestCase):
             self.assertIn('image-dialog-holder', rendered)
             self.assertEqual(note.read_text(encoding='utf-8'), source)
             self.assertEqual(len(list(Path(tmp).rglob('*.md'))), 1)
+            mixed = chr(96)+'<img src="example.png">'+chr(96)+' ![A](figures/a.svg)'
+            images = content.chapter_images(mixed, page)
+            self.assertIn(chr(96)+'<img src="example.png">'+chr(96), images)
+            self.assertIn('src="../figures/a.svg"', images)
             for invalid in ('../outside.svg', 'figures/a.png', 'figures/missing.svg'):
                 with self.subTest(path=invalid), self.assertRaises(ValueError):
                     content.chapter_images(f'![Bad]({invalid})', page)

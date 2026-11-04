@@ -106,7 +106,13 @@ def chapter_images(markdown, page):
         alt = escape(match['alt'] or asset.stem, quote=True)
         return f'<img src="{escape(url, quote=True)}" alt="{alt}"{size} loading="lazy">'
 
-    pattern = r'(?P<code>^(`{3,}|~{3,})[^\n]*\n[\s\S]*?^\2[ \t]*$)|!\[(?P<alt>[^\]]*)\]\((?P<path>[^)]+)\)|<img\s+src="(?P<htmlpath>[^"]+)"[^>]*>'
+    # Preserve complete code samples before resolving real course images.
+    pattern = (
+        r'(?P<code>^(?P<fence>`{3,}|~{3,})[^\n]*\n[\s\S]*?^(?P=fence)[ \t]*$'
+        r'|(?<!`)(?P<ticks>`+)(?!`)[\s\S]*?(?<!`)(?P=ticks)(?!`))'
+        r'|!\[(?P<alt>[^\]]*)\]\((?P<path>[^)]+)\)'
+        r'|<img\s+src="(?P<htmlpath>[^"]+)"[^>]*>'
+    )
     return re.sub(pattern, image, markdown, flags=re.M)
 
 

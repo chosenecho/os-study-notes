@@ -44,9 +44,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
-      "reviewed_on": "2026-11-04",
-      "sha256": "ac47621c5c31ecc86713c95e6b16a78af528ad73f23e40bf615a5e61efcde9c2"
+      "basis": "第一方公开维护记录索引；本次仅新增三课发布核对记录的链接，已核对目标文件和相邻索引，原有公开范围说明保持不变。",
+      "reviewed_on": "2026-11-05",
+      "sha256": "a00cb622a611ed787711c2792eb25e6e609938f15d189a63cfa8858cef0955d4"
     },
     {
       "path": "archive/releases/2026-11-04-computer-networks.md",
@@ -65,6 +65,15 @@
       "basis": "独立维护文档与站点元数据；本轮核对 Git 改写结果、备份校验和现有 ESA/ECS 部署文件后更新记录，未引入教材表达。",
       "reviewed_on": "2026-11-04",
       "sha256": "12e65d01b2a964dff10be4fc68e46bf5eb03cf48625be96123e0a8c70b13c45f"
+    },
+    {
+      "path": "archive/releases/2026-11-05-three-course-release.md",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "第一方维护记录：已逐段核对课程登记表、构建回归、内容政策、现有部署流程和 OCR issue 链接；不包含教材题目、答案或扫描内容。",
+      "reviewed_on": "2026-11-05",
+      "sha256": "720914c57e21900bd748d2f821a59ea736efd27626b1ff4176aa8f4bbeafa250"
     },
     {
       "path": "config/quotations.json",

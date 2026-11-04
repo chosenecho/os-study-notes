@@ -18,12 +18,11 @@
 
 {% block content %}
   <h1>页面没有找到</h1>
-  <p>这个地址没有对应的笔记。可能是链接过期了，或者网址打错了。</p>
   <ul>
     <li><a href="{{ root }}">回到学习首页</a></li>
     {% for course in config.extra.study_courses %}
       <li><a href="{{ root }}courses/{{ course.slug }}/">{{ course.title }} · 课程概览</a></li>
     {% endfor %}
   </ul>
-  <p>也可以点右上角的搜索，按章节名或概念名查找。</p>
+  <p>可用搜索查找章节或概念。</p>
 {% endblock %}

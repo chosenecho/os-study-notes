@@ -69,7 +69,7 @@ function mountLab(root,kind) {
   try {
    const prediction=get('prediction').trim(), output=config.run(get);
    const predictionMatches=prediction===output.answer || (/^[0-9]+$/.test(prediction) && /^[0-9]+$/.test(output.answer) && Number(prediction)===Number(output.answer));
-   const feedback=prediction?(predictionMatches?'预测正确。':'预测为“'+prediction+'”；正确结果为“'+output.answer+'”。'):'本次未填写预测。你可以修改参数后再试一次。';
+   const feedback=prediction?(predictionMatches?'预测正确。':'预测为“'+prediction+'”；正确结果为“'+output.answer+'”。'):'未填写预测。';
    result.innerHTML='<h2>本次结果</h2><p class="lab-metrics">'+esc(output.summary)+'</p><p>'+esc(feedback)+'</p><div class="study-step-controls"><button class="md-button" type="button" data-step="prev">上一步</button><button class="md-button" type="button" data-step="next">下一步</button><button class="md-button" type="button" data-step="all">显示全部步骤</button><span data-step-count></span></div><ol class="study-steps">'+output.steps.map(s=>'<li><h3>'+esc(s.title)+'</h3><p>'+esc(s.body)+'</p></li>').join('')+'</ol>';
    let visible=1; const rows=[...result.querySelectorAll('.study-steps li')];
    function update(){rows.forEach((row,i)=>row.hidden=i>=visible);result.querySelector('[data-step-count]').textContent='已显示 '+visible+' / '+rows.length+' 步';result.querySelector('[data-step=prev]').disabled=visible<=1;result.querySelector('[data-step=next]').disabled=visible>=rows.length;result.querySelector('[data-step=all]').disabled=visible>=rows.length;}
@@ -89,7 +89,7 @@ function mountQuiz(root){
  function render(){
   progress.textContent='本轮已答 '+index+' / '+queue.length+'；答对 '+correct+' 题';
   if(index===queue.length){
-   body.innerHTML='<h2>本轮完成</h2><p>答对 '+correct+' / '+queue.length+' 题；错题 '+missed.length+' 道。'+(missed.length?'可以先回看解析，再重练错题。':'可以切换题组或重新练习。')+'</p><div class="lab-buttons"><button class="md-button" data-retry'+(missed.length?'':' disabled')+'>重练本轮错题</button><button class="md-button" data-restart>重新开始所选题组</button></div>';
+   body.innerHTML='<h2>本轮完成</h2><p>答对 '+correct+' / '+queue.length+' 题；错题 '+missed.length+' 道。</p><div class="lab-buttons"><button class="md-button" data-retry'+(missed.length?'':' disabled')+'>重练本轮错题</button><button class="md-button" data-restart>重新开始所选题组</button></div>';
    body.querySelector('[data-retry]').onclick=()=>{start(missed);body.focus();};body.querySelector('[data-restart]').onclick=()=>{initial();body.focus();};return;
   }
   const q=queue[index];

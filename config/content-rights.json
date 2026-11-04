@@ -8,9 +8,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "2026-11-04 文案复核：对照现有许可说明精简；保留 Apache-2.0 与 CC BY 4.0 的适用范围、署名要求、第三方排除和反馈入口，未改变授权。",
       "reviewed_on": "2026-11-04",
-      "sha256": "5ad7b127fb390f2e437ead6567add579480f47271dde8035c96c13db69192fb3"
+      "sha256": "d5ab556ba8d9af6dd16a7716cf8fd73e5a713b117f8f996d8f07429b771ebfd8"
     },
     {
       "path": "NOTICE",
@@ -35,9 +35,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "2026-11-04 文案复核：保留组件版本、许可、版权声明和源码获取方式，删除主题迁移过程及重复说明；未修改上游许可文件。",
       "reviewed_on": "2026-11-04",
-      "sha256": "0743c6c8864f54f2c352b94f85ef9d5947a99070c378a15c6ac3fb808b49e83f"
+      "sha256": "bfbb4610cb473862bf3e558ec211f72e6f5301b0fb3f0291f8ffd5af400ba864"
     },
     {
       "path": "archive/README.md",
@@ -116,9 +116,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "bf7ea0dbba58d52fe1989dc0b91c61c0d76ebbb9e77b609261a27e1cf4829052"
+      "sha256": "0f4bdcee8b33dcec9def7b9a94455782a246477a18b166571a36109d9f6888ae"
     },
     {
       "path": "docs/assets/javascripts/labs/loader.mjs",
@@ -134,9 +134,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "8e069e5aad6faca7308d8200fc276f240670fc4cf0c017432d7d5b4be502aa89"
+      "sha256": "2679d48d68f77234ecf116c2aa8099b3fd453c5ef2acfdb454660597b4b1f470"
     },
     {
       "path": "docs/assets/javascripts/labs/scheduler.mjs",
@@ -554,117 +554,117 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "356d77faa8bc52fff6735de3930f08e491f94cb2dce33ffb40a2e7e16ff2f411"
+      "sha256": "c5a901feee9a436616620cd8333c946cb7f28bb87f61562c1822461f483fe76c"
     },
     {
       "path": "docs/courses/computer-organization/chapter-02.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：本轮仅补充本项目实验回查链接；既有独立讲解、练习和稳定锚点未重写。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：本轮仅补充本项目实验回查链接；既有独立讲解、练习和稳定锚点未重写。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "2ce528af1779f9ffc1d737cff1f2edbb173f703c229637c2769ffa2f08baa7d2"
+      "sha256": "828600aca129e3d5577e7e9ad9c89f2c9ccab7130bcb1884e3cd528264f429ae"
     },
     {
       "path": "docs/courses/computer-organization/chapter-03.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "146e1bf4a65b55adb73664c8dad333b76b61a7774b6e3dfb310104fce82f63c3"
+      "sha256": "3c37e2a5c98ef6b50d788033c715d3b02965f254234fc186a2bfbaec64bbe493"
     },
     {
       "path": "docs/courses/computer-organization/chapter-04.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "75c5c4b7bb2085df8bcb9f854aa020e7e63078438b882507e57f2a2ea05971d6"
+      "sha256": "d11cd22216c79539bbc2314160e8564b61828f2479c4ad55e6c7bbb5d70da9b5"
     },
     {
       "path": "docs/courses/computer-organization/chapter-05.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：本轮仅补充本项目实验回查链接；既有独立讲解、练习和稳定锚点未重写。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：本轮仅补充本项目实验回查链接；既有独立讲解、练习和稳定锚点未重写。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "dc8d2d8908ac9c9affbe16d7f20f74a8d74e271f41d10f4fa009b9461a9a8730"
+      "sha256": "adebd36b4ad32071c3cb23a191c32dd43b13f13d4c053077512118e905c36638"
     },
     {
       "path": "docs/courses/computer-organization/chapter-06.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "0774722407c9155747c6abd8e033e8821bac1b91e04d58413428087718e263ce"
+      "sha256": "e87b342a3a36ae80a44c7a3d9a872a1ee1fa687ab6abce4094111acbd690cb41"
     },
     {
       "path": "docs/courses/computer-organization/index.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "1154a6be79e207dd63042bf09da54b003fbcc0a3b7654daea74679867d94856a"
+      "sha256": "2f32c80b5efd3572b193d876db2544a0868ff74de30d4e9932025b45c7736d93"
     },
     {
       "path": "docs/courses/operating-systems/chapter-01.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "105f6b61ae121d475653ba2741e96abbd5a939ad000d545134a67b07638846a1"
+      "sha256": "c516276b00ac2b82e9e164c3475a5b43d1ffb99395d685e0f04cfa7f5325856f"
     },
     {
       "path": "docs/courses/operating-systems/chapter-02.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "01895c766974a10db7e12d645b1013c94f06ab48c4857f704bf3d2085bd03c36"
+      "sha256": "2323d0a5404069bb2ebf6d70a6bb06b0160b1b249c211a0e438058dda8686de6"
     },
     {
       "path": "docs/courses/operating-systems/chapter-03.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：本轮仅补充本项目实验回查链接；既有独立讲解、练习和稳定锚点未重写。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：本轮仅补充本项目实验回查链接；既有独立讲解、练习和稳定锚点未重写。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "6d30f346c100333cf182f451595c6bd617119222bc01d3fb4aa03772ec671d64"
+      "sha256": "250efec3432e38d2dffbdf5a068c95acc3afbf165236a5d725d4c93c33ee0eb1"
     },
     {
       "path": "docs/courses/operating-systems/chapter-04.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：本轮仅补充本项目实验回查链接；既有独立讲解、练习和稳定锚点未重写。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：本轮仅补充本项目实验回查链接；既有独立讲解、练习和稳定锚点未重写。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "0b81baa7f657129d5ef44a32dee4b92be08ccc2329041130f56cb2e8e0e1b2d3"
+      "sha256": "ee80b899cb382cb64f8523a6cbdf1357222342625d2613d8456080a36403375d"
     },
     {
       "path": "docs/courses/operating-systems/chapter-05.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "bf387f608769574399afde26a37faedf72c346206dec6f2f738534377755a018"
+      "sha256": "cb6beec06e4c96050105707808a23e8b87d77435491106339756653a1b692353"
     },
     {
       "path": "docs/courses/operating-systems/chapter-06.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "b7ab6f3dd90d4581aca7665d152b4d5c11d0d1c25f9b464e8e716394de9ea8f4"
+      "sha256": "155b1f0cd9276992647bb262f66837d298bbe4a6d086c1853761b87003bb07ce"
     },
     {
       "path": "docs/courses/operating-systems/figures/address-walk.svg",
@@ -725,108 +725,108 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "e4f31a8d7d71cfa68beaf5e9f83101372925c1689a0c62fc3be91ad9191c9d2c"
+      "sha256": "484d4bb4deada86a53078d71d3ae194aa4eaec6e66b448eba27e28e9b8a5b5e4"
     },
     {
       "path": "docs/index.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "按维护者要求移除首页联系按钮；联系方式仅保留在全站页脚，课程及许可说明未变。 2026-11-04 SEO/GEO 修订：仅更新首页学习主题标题，保留既有独立内容、许可说明与课程入口。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "按维护者要求移除首页联系按钮；联系方式仅保留在全站页脚，课程及许可说明未变。 2026-11-04 SEO/GEO 修订：仅更新首页学习主题标题，保留既有独立内容、许可说明与课程入口。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 按维护者要求移除首页联系按钮；联系方式仅保留在全站页脚，课程及许可说明未变。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "0f3ccbdc3a5d6988f2a2bc676dffa336f142dc610a5c44116963f76974619b03"
+      "sha256": "2b7838fb507022b1557279cd77ae8a2921d917ff0ff49c80d1c6f8a738b92342"
     },
     {
       "path": "docs/labs/address.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：沿用本项目既有自编模型与默认输入，独立补写静态过程；tests/unit/lab-examples.test.mjs 核验计算表与结论，未引入教材题目、答案或插图。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：沿用本项目既有自编模型与默认输入，独立补写静态过程；tests/unit/lab-examples.test.mjs 核验计算表与结论，未引入教材题目、答案或插图。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "8980017a097c4598f31bc8a6324e84495d8718515c8f54b08e972bc2a7d364db"
+      "sha256": "2548e149ad0d384d67bac3776c3f0141faffd97020ac06aa172259a8fc4f310c"
     },
     {
       "path": "docs/labs/banker.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：沿用本项目既有自编模型与默认输入，独立补写静态过程；tests/unit/lab-examples.test.mjs 核验计算表与结论，未引入教材题目、答案或插图。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：沿用本项目既有自编模型与默认输入，独立补写静态过程；tests/unit/lab-examples.test.mjs 核验计算表与结论，未引入教材题目、答案或插图。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "fdbb4c5eed1d5bb48b70febe00409c09bb92fa31c3faf2a2a04d9284ff9b7c3a"
+      "sha256": "1bdcb47dc719912254aa414036d790ee45b00252646180512571e00ade8f2274"
     },
     {
       "path": "docs/labs/cache.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：沿用本项目既有自编模型与默认输入，独立补写静态过程；tests/unit/lab-examples.test.mjs 核验计算表与结论，未引入教材题目、答案或插图。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：沿用本项目既有自编模型与默认输入，独立补写静态过程；tests/unit/lab-examples.test.mjs 核验计算表与结论，未引入教材题目、答案或插图。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "c9ad31e5a87e9aad34ed82cfbfdad908806978554c70bcc0f4bd0f1b31cb26dc"
+      "sha256": "17903acc49ce47dbc9710952a11cf38c9dbe6954d0ea5082dccd16150b95b4d1"
     },
     {
       "path": "docs/labs/complement.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：沿用本项目既有自编模型与默认输入，独立补写静态过程；tests/unit/lab-examples.test.mjs 核验计算表与结论，未引入教材题目、答案或插图。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：沿用本项目既有自编模型与默认输入，独立补写静态过程；tests/unit/lab-examples.test.mjs 核验计算表与结论，未引入教材题目、答案或插图。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "a95b876baa91f88de506d86b3fd5ffff34109bcda6e1aa6e676c2f5dea86490f"
+      "sha256": "5401e18dbe5b3e4766e387e2601455cfce84f4c2d240e69d727247212f0bc8cb"
     },
     {
       "path": "docs/labs/index.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 SEO/GEO 修订：仅校正交互区与无脚本阅读说明，并为初始表单添加第一方样式类；题库内容未改。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 SEO/GEO 修订：仅校正交互区与无脚本阅读说明，并为初始表单添加第一方样式类；题库内容未改。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "a15e8f3118a0a97e224bfb93a178b60b99c88f46cb621bcd5b8caaf660b7be3e"
+      "sha256": "7574ac178250f6b7b3af964ced9abd33183730ea06449406252b71acdaea1e23"
     },
     {
       "path": "docs/labs/paging.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：沿用本项目既有自编模型与默认输入，独立补写静态过程；tests/unit/lab-examples.test.mjs 核验计算表与结论，未引入教材题目、答案或插图。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：沿用本项目既有自编模型与默认输入，独立补写静态过程；tests/unit/lab-examples.test.mjs 核验计算表与结论，未引入教材题目、答案或插图。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "1adafe8890f88122a0d12f1182369e11326ad94c09c26dd4486a9d7668e92c23"
+      "sha256": "dc6fc9511ca0ae007da9b4f352bc491cc00a2d2cf9bcfa66b6bc1ed88fdf55f1"
     },
     {
       "path": "docs/labs/quiz.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 SEO/GEO 修订：仅校正交互区与无脚本阅读说明，并为初始表单添加第一方样式类；题库内容未改。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 SEO/GEO 修订：仅校正交互区与无脚本阅读说明，并为初始表单添加第一方样式类；题库内容未改。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "add69e3d31db7cabea117ddb556b4966856a6592fcb6031bc88236c81e2f18ac"
+      "sha256": "1ab5143c44a405a4747aac90f13a02aefd66314b7011fa8ccffee93494d92c18"
     },
     {
       "path": "docs/labs/scheduling.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：沿用本项目既有自编模型与默认输入，独立补写静态过程；tests/unit/lab-examples.test.mjs 核验计算表与结论，未引入教材题目、答案或插图。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。 2026-11-04 SEO/GEO 修订：沿用本项目既有自编模型与默认输入，独立补写静态过程；tests/unit/lab-examples.test.mjs 核验计算表与结论，未引入教材题目、答案或插图。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "0d6611b8543f507f0052ae891e717147d059b244d389a1c9e92cc230e65c0810"
+      "sha256": "a981d73f8769d2320afbd41f87aac84cbc034c26dcaabe01c19d57a77d5447a7"
     },
     {
       "path": "docs/reference/glossary.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 SEO/GEO 修订：依据本站既有章节概念增加分页、进位与有符号溢出的短定义及实验回查；未新增教材引文。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 SEO/GEO 修订：依据本站既有章节概念增加分页、进位与有符号溢出的短定义及实验回查；未新增教材引文。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
       "reviewed_on": "2026-11-04",
-      "sha256": "7b1c1f6ea35fa419cc35af60cb29e4ff32b1fc3cc5f6c9c9455ac3320a2864eb"
+      "sha256": "9ae6396a2e77622d9a294c8ba202e81de9162692957cd3e6182e9b77833467be"
     },
     {
       "path": "docs/reference/pitfalls.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
       "reviewed_on": "2026-11-04",
-      "sha256": "55d1c53403a30a05d4a9e3333c693737ddd8bed88c0d0ec2938bbe09086315cb"
+      "sha256": "48616b0699ff2f7d317a224a4fcfb4278b8a4cf9ec824f5b29a68d92ebea5543"
     },
     {
       "path": "docs/robots.txt",

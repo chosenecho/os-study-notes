@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import path from 'node:path';
+import {readFileSync} from 'node:fs';
+const courses=JSON.parse(readFileSync(new URL('../../config/courses.json',import.meta.url),'utf8'));
 
 export async function runThemeChecks(page, {base, out, report}) {
   const open = async url => {
@@ -20,14 +22,14 @@ export async function runThemeChecks(page, {base, out, report}) {
   await open('/');
   assert.match(await page.title(), /studynote/);
   assert.match(await page.locator('article').innerText(), /版权与引用说明/);
-  assert.equal(await page.locator('.md-tabs__item').count(), 5);
-  assert.equal(await page.locator('.grid.cards > ul > li').count(), 2);
+  assert.equal(await page.locator('.md-tabs__item').count(), courses.length+3);
+  assert.equal(await page.locator('.grid.cards > ul > li').count(), courses.length);
   await page.evaluate(() => {
-    localStorage.setItem('studynote:completed:v1', '["os-1","co-1"]');
+    localStorage.setItem('studynote:completed:v1', '["os-1","co-1","cn-1"]');
     localStorage.setItem('studynote:font-size:v1', '18');
   });
   await page.reload({waitUntil: 'networkidle'});
-  for (const course of ['os', 'co']) {
+  for (const {id: course} of courses) {
     assert.equal(await page.locator('[data-progress-count="' + course + '"]').innerText(), '1');
     const next = page.locator('[data-next-chapter="' + (course + '-') + '"]');
     assert.match(await next.getAttribute('href'), /chapter-02[/]$/);
@@ -136,10 +138,37 @@ export async function runThemeChecks(page, {base, out, report}) {
   assert.equal(await page.locator('details.exercise-answer[open]').count(), 0);
   report.checks.push('Course boundary footer, course progress, local math and print answer expansion');
 
+  await open('/courses/computer-organization/chapter-06/');
+  assert.equal(await footerPath('next'), '/courses/computer-networks/');
+  await open('/courses/computer-networks/');
+  assert.equal(await page.locator('[data-progress-chapter]').count(), 9);
+  await page.evaluate(() => localStorage.setItem('studynote:completed:v1', JSON.stringify(Array.from({length:8}, (_,i)=>'cn-'+(i+1)))));
+  await open('/');
+  assert.equal(await page.locator('[data-progress-count="cn"]').innerText(), '8');
+  assert.match(await page.locator('[data-next-chapter="cn-"]').getAttribute('href'), /chapter-09[/]$/);
+  await open('/courses/computer-networks/chapter-09/');
+  await page.locator('[data-complete]').check();
+  assert.equal(await footerPath('next'), '/reference/pitfalls/');
+  await page.reload({waitUntil:'networkidle'});
+  assert.equal(await page.locator('[data-complete]').isChecked(), true);
+  await open('/');
+  assert.equal(await page.locator('[data-progress-count="cn"]').innerText(), '9');
+  assert.equal(await page.locator('[data-study-progress="cn"]').getAttribute('max'), '9');
+  assert.match(await page.locator('[data-next-chapter="cn-"]').innerText(), /回顾第一章/);
+  await open('/courses/computer-networks/chapter-05/');
+  await page.locator('.figure-zoom').first().click();
+  assert.equal(await page.locator('.image-dialog').isVisible(), true);
+  await screenshot('network-figure-desktop.png');
+  await page.keyboard.press('Escape');
+  await page.locator('.md-search__input').fill('子网');
+  await page.waitForFunction(()=> [...document.querySelectorAll('.md-search-result__link')].some(a=>a.href.includes('/computer-networks/')));
+  await page.keyboard.press('Escape');
+  report.checks.push('Nine-chapter progress, chapter 9 persistence, course boundaries, network search and figure zoom');
+
   for (const width of [1280, 768, 390, 320]) {
     await page.setViewportSize({width, height: 900});
     for (const url of ['/', '/courses/operating-systems/', '/courses/computer-organization/', '/courses/operating-systems/chapter-02/',
-      '/courses/computer-organization/chapter-05/', '/labs/scheduling/']) {
+      '/courses/computer-organization/chapter-05/', '/courses/computer-networks/', '/courses/computer-networks/chapter-02/', '/courses/computer-networks/chapter-05/', '/courses/computer-networks/chapter-09/', '/labs/scheduling/']) {
       await open(url);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1),
         false, url + ' at ' + width + 'px');
@@ -149,6 +178,9 @@ export async function runThemeChecks(page, {base, out, report}) {
       await screenshot('home-mobile.png');
       await open('/courses/operating-systems/chapter-02/');
       await screenshot('chapter-mobile.png');
+      await open('/courses/computer-networks/chapter-05/');
+      await screenshot('network-mobile.png');
+      await open('/courses/operating-systems/chapter-02/');
       await page.locator('.md-header label[for="__drawer"]').click();
       assert.equal(await page.locator('#__drawer').isChecked(), true);
       await screenshot('navigation-mobile.png');
@@ -158,7 +190,7 @@ export async function runThemeChecks(page, {base, out, report}) {
       await page.waitForURL(base + '/courses/computer-organization/');
     }
   }
-  report.checks.push('Home, both course indexes, long chapters/tables and scheduler at 320/390/768/1280px; mobile course navigation');
+  report.checks.push('Home, all course indexes, long chapters/tables and scheduler at 320/390/768/1280px; mobile course navigation');
   await page.setViewportSize({width: 1280, height: 900});
   await page.evaluate(() => {
     localStorage.removeItem('studynote:completed:v1');

@@ -57,6 +57,17 @@ nav:
       - 第 4 章 中央处理器: courses/computer-organization/chapter-04.md
       - 第 5 章 存储器层次结构: courses/computer-organization/chapter-05.md
       - 第 6 章 互连及输入输出组织: courses/computer-organization/chapter-06.md
+  - 计算机网络技术:
+      - 课程概览: courses/computer-networks/index.md
+      - 第 1 章 计算机网络技术概论: courses/computer-networks/chapter-01.md
+      - 第 2 章 数据通信基础: courses/computer-networks/chapter-02.md
+      - 第 3 章 网络协议和体系结构: courses/computer-networks/chapter-03.md
+      - 第 4 章 局域网技术: courses/computer-networks/chapter-04.md
+      - 第 5 章 网络互联技术: courses/computer-networks/chapter-05.md
+      - 第 6 章 网络应用技术: courses/computer-networks/chapter-06.md
+      - 第 7 章 网络管理技术: courses/computer-networks/chapter-07.md
+      - 第 8 章 网络操作系统: courses/computer-networks/chapter-08.md
+      - 第 9 章 计算机网络安全: courses/computer-networks/chapter-09.md
   - 复习速查:
       - 易错点清单: reference/pitfalls.md
       - 术语与缩写表: reference/glossary.md

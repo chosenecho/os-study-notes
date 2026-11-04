@@ -1,13 +1,16 @@
 # studynote
 
-操作系统概论、计算机组成原理的章节笔记与交互练习，使用 MkDocs Material 发布。
+操作系统概论、计算机组成原理、计算机网络技术的章节笔记与交互练习，使用 MkDocs Material 发布。
 
 网站：https://studynote.chosenecho.top/ · 仓库：https://github.com/chosenecho/studynote
+
+课程资料唯一取自 OCR 仓库的“成书”，按校验过的私有快照写作，来源规则见 [内容贡献规则](handbook/content-policy.md)。
 
 公开内容以大纲为索引，提供原创讲解、自编练习和概念图；第三方资源保持原许可。当前修订版的范围与历史副本的处理边界见许可说明。
 
 - [操作系统概论](docs/courses/operating-systems/index.md)
 - [计算机组成原理](docs/courses/computer-organization/index.md)
+- [计算机网络技术](docs/courses/computer-networks/index.md)
 - [易错点](docs/reference/pitfalls.md) · [术语表](docs/reference/glossary.md)
 
 ## 本地运行

@@ -1,5 +1,6 @@
 import {integer, sequence, matrix, paging, banker, address, cache, complement} from './labs-core.mjs';
-import {questions} from './quiz-bank.mjs';
+import {questions, questionSource} from './quiz-bank.mjs';
+import {getCourses} from '../course-catalog.mjs';
 
 const esc = value => String(value).replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const vector = row => '[' + row.join(', ') + ']';
@@ -79,7 +80,8 @@ function mountLab(root,kind) {
 
 function mountQuiz(root){
  root.classList.add('study-lab');
- root.innerHTML='<label for="quiz-course">选择题组</label><select id="quiz-course"><option value="all">两门课 · 24 题</option><option value="os">操作系统概论 · 12 题</option><option value="co">计算机组成原理 · 12 题</option></select><p data-quiz-progress role="status"></p><div data-quiz-body tabindex="-1"></div>';
+ const courses=getCourses();
+ root.innerHTML='<label for="quiz-course">选择题组</label><select id="quiz-course"><option value="all">全部课程 · '+questions.length+' 题</option>'+courses.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.title)+' · '+questions.filter(q=>q.course===c.id).length+' 题</option>').join('')+'</select><p data-quiz-progress role="status"></p><div data-quiz-body tabindex="-1"></div>';
  const filter=root.querySelector('select'), body=root.querySelector('[data-quiz-body]'), progress=root.querySelector('[data-quiz-progress]');
  let queue=[], index=0, correct=0, missed=[];
  function start(list){queue=[...list];index=0;correct=0;missed=[];render();}
@@ -91,11 +93,11 @@ function mountQuiz(root){
    body.querySelector('[data-retry]').onclick=()=>{start(missed);body.focus();};body.querySelector('[data-restart]').onclick=()=>{initial();body.focus();};return;
   }
   const q=queue[index];
-  body.innerHTML='<p class="study-caption">第 '+(index+1)+' / '+queue.length+' 题 · '+(q.course==='os'?'操作系统概论':'计算机组成原理')+' · 第 '+q.chapter+' 章 · 考点：第 '+q.sections.join('、')+' 节</p><form><fieldset><legend>'+esc(q.prompt)+'</legend>'+q.options.map((option,i)=>'<label class="study-option"><input type="radio" name="answer" value="'+i+'"><span>'+String.fromCharCode(65+i)+'．'+esc(option)+'</span></label>').join('')+'</fieldset><div data-quiz-feedback aria-live="polite"></div><div class="lab-buttons"><button type="submit" class="md-button md-button--primary">提交答案</button><button class="md-button" type="button" data-next disabled>'+(index===queue.length-1?'查看本轮结果':'下一题')+'</button></div></form>';
+  body.innerHTML='<p class="study-caption">第 '+(index+1)+' / '+queue.length+' 题 · '+esc(courses.find(c=>c.id===q.course).title)+' · 第 '+q.chapter+' 章 · 考点：第 '+q.sections.join('、')+' 节</p><form><fieldset><legend>'+esc(q.prompt)+'</legend>'+q.options.map((option,i)=>'<label class="study-option"><input type="radio" name="answer" value="'+i+'"><span>'+String.fromCharCode(65+i)+'．'+esc(option)+'</span></label>').join('')+'</fieldset><div data-quiz-feedback aria-live="polite"></div><div class="lab-buttons"><button type="submit" class="md-button md-button--primary">提交答案</button><button class="md-button" type="button" data-next disabled>'+(index===queue.length-1?'查看本轮结果':'下一题')+'</button></div></form>';
   const form=body.querySelector('form'),feedback=body.querySelector('[data-quiz-feedback]'),next=body.querySelector('[data-next]');let answered=false;
   form.onsubmit=e=>{e.preventDefault();if(answered)return;const selected=form.querySelector('input:checked');if(!selected){feedback.textContent='请先选择一个答案。';form.querySelector('input').focus();return;}
    answered=true;const ok=Number(selected.value)===q.answer;if(ok)correct++;else missed.push(q);
-   feedback.innerHTML='<p><strong>'+(ok?'答对了。':'本题答错。')+'正确答案：'+String.fromCharCode(65+q.answer)+'</strong></p><p>'+esc(q.explanation)+'</p><p><a href="'+esc(q.source)+'">回看本章笔记</a></p>';
+   feedback.innerHTML='<p><strong>'+(ok?'答对了。':'本题答错。')+'正确答案：'+String.fromCharCode(65+q.answer)+'</strong></p><p>'+esc(q.explanation)+'</p><p><a href="'+esc(questionSource(q,courses))+'">回看本章笔记</a></p>';
    form.querySelector('fieldset').disabled=true;form.querySelector('[type=submit]').disabled=true;next.disabled=false;next.focus({preventScroll:true});progress.textContent='本轮已答 '+(index+1)+' / '+queue.length+'；答对 '+correct+' 题';
   };
   next.onclick=()=>{if(!answered)return;index++;render();body.focus();};

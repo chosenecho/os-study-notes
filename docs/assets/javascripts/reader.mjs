@@ -1,3 +1,5 @@
+import {getCourses} from "./course-catalog.mjs";
+
 "use strict";
 (() => {
   const storageKey = "studynote:completed:v1";
@@ -21,17 +23,20 @@
       badge.textContent = completed ? "\u5DF2\u590D\u4E60" : "\u5F85\u590D\u4E60";
       badge.dataset.completed = String(completed);
     });
-    for (const course of ["os", "co"]) {
+    for (const {id: course, chapters} of getCourses()) {
       const prefix = course + "-";
       const count = document.querySelector(`[data-progress-count="${course}"]`);
-      if (count) count.textContent = String([1, 2, 3, 4, 5, 6].filter((n) => progress.includes(`${prefix}${n}`)).length);
+      if (count) count.textContent = String(Array.from({length: chapters}, (_, i) => i + 1).filter((n) => progress.includes(`${prefix}${n}`)).length);
       const progressBar = document.querySelector(`[data-study-progress="${course}"]`);
       if (progressBar) progressBar.value = Number(count?.textContent || 0);
     }
     document.querySelectorAll("[data-next-chapter]").forEach((nextLink) => {
       const prefix = nextLink.dataset.nextChapter;
-      const next = ["1", "2", "3", "4", "5", "6"].find((id) => !progress.includes(prefix + id));
-      const done = ["1", "2", "3", "4", "5", "6"].filter((id) => progress.includes(prefix + id)).length;
+      const course = getCourses().find(c => c.id + "-" === prefix);
+      if (!course) return;
+      const ids = Array.from({length: course.chapters}, (_, i) => String(i + 1));
+      const next = ids.find((id) => !progress.includes(prefix + id));
+      const done = ids.filter((id) => progress.includes(prefix + id)).length;
       if (next) {
         nextLink.href = nextLink.href.replace(/chapter-\d+/, `chapter-${next.padStart(2, "0")}`);
         nextLink.querySelector("[data-next-label]").textContent = done ? `\u7EE7\u7EED\u590D\u4E60 \xB7 \u7B2C ${next} \u7AE0` : "\u5F00\u59CB\u7B2C 1 \u7AE0";

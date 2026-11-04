@@ -56,7 +56,7 @@ for (const file of htmlFiles) {
   const baseDir = path.dirname(file);
   const rel = path.relative(DIST, file).replace(/\\/g, '/');
 
-  for (const m of html.matchAll(/href="([^"]+)"/g)) {
+  for (const m of html.matchAll(/<(?:a|link)\b[^>]*\bhref="([^"]+)"/g)) {
     const raw = decode(m[1]);
     if (/^(https?:|mailto:|tel:|javascript:|data:)/i.test(raw)) continue;
     linkCount++;

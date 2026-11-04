@@ -43,52 +43,28 @@ def format_exercises(text):
     return EXERCISE_SECTION.sub(section, text)
 
 
-CROSS_BOOKS = {course['title']: '../' + course['slug'] + '/chapter-{n:02}.md' for course in COURSES}
+def on_config(config):
+    """Share the canonical registry with reader progress and quiz rendering."""
+    config['extra']['study_courses'] = COURSES
+    return config
 
 
-def link_chapters(text):
-    """Turn "见第 N 章" into a real cross-chapter link (the notes are plain text).
+def link_chapters(text, course):
+    """Resolve explicit references using the referenced course's bounds."""
+    def resolve(match):
+        title, number = match['title'], int(match['number'])
+        target = next((c for c in COURSES if c['title'] == title), None) if title else course
+        if target is None:
+            return match[0]
+        if not 1 <= number <= target['chapters']:
+            logging.getLogger('mkdocs').warning(
+                '[link_chapters] %s 越界章号引用: 第 %d 章', target['title'], number)
+            return match[0]
+        prefix = '../' + target['slug'] + '/' if title else ''
+        label = f'《{title}》第 {number} 章' if title else match['label']
+        return f'见[{label}]({prefix}chapter-{number:02}.md)'
 
-    The notes write both ``见第3章`` and ``见第 3 章``; the original pattern
-    only matched the tight form, so most references stayed plain text.  This
-    also links cross-book references of the form
-    ``见《计算机组成原理》第 5 章`` and warns about out-of-range chapter
-    numbers (the books only have chapters 1–6).
-    """
-
-    def repl(m):
-        n = int(m.group(2))
-        if not 1 <= n <= 6:
-            return m.group(0)
-        return '见[' + m.group(1) + f'](chapter-{n:02}.md)'
-
-    text = re.sub(r'见(第\s*([1-6])\s*章)', repl, text)
-
-    for book, target in CROSS_BOOKS.items():
-        pattern = r'见《' + re.escape(book) + r'》\s*第\s*([1-6])\s*章'
-
-        def cross(match, book=book, target=target):
-            n = int(match.group(1))
-            return f'见[《{book}》第 {n} 章]({target.format(n=n)})'
-
-        text = re.sub(pattern, cross, text)
-
-    # Never let a dangling chapter number reach the built page (CO2 used to
-    # point at a non-existent "第 7 章" while the site only has 1–6).
-    # 用 logging 而不是 print：mkdocs --strict 会把 warning 升级成构建失败，
-    # print 只会打在控制台（Windows 控制台还是 GBK，中文直接变乱码）。
-    log = logging.getLogger('mkdocs')
-    for match in re.finditer(r'第\s*(\d+)\s*章', text):
-        n = int(match.group(1))
-        if n > 6:
-            before = text[max(0, match.start() - 2):match.start()]
-            if before not in ('教材', '本章'):
-                log.warning(
-                    '[link_chapters] 越界章号引用 "第 %d 章"，附近：...%s...',
-                    n,
-                    text[max(0, match.start() - 24):match.end() + 24],
-                )
-    return text
+    return re.sub(r'见(?:《(?P<title>[^》]+)》\s*)?(?P<label>第\s*(?P<number>[0-9]+)\s*章)', resolve, text)
 
 
 def course_index(markdown, course):
@@ -111,7 +87,9 @@ def chapter_images(markdown, page):
     source = Path(page.file.abs_src_path).parent.resolve()
 
     def image(match):
-        relative = match.group(2) or match.group(3)
+        if match['code'] is not None:
+            return match[0]
+        relative = match['path'] or match['htmlpath']
         asset = (source / relative).resolve()
         if not asset.is_relative_to(source) or asset.suffix != '.svg' or not asset.is_file():
             raise ValueError(f'Expected an existing course-local SVG: {relative}')
@@ -121,10 +99,11 @@ def chapter_images(markdown, page):
         size = f' width="{width[1]}" height="{height[1]}"' if width and height else ''
         uri = (Path(page.file.src_uri).parent / relative).as_posix()
         url = get_relative_url(uri, page.url)
-        alt = escape(match.group(1) or asset.stem, quote=True)
+        alt = escape(match['alt'] or asset.stem, quote=True)
         return f'<img src="{escape(url, quote=True)}" alt="{alt}"{size} loading="lazy">'
 
-    return re.sub(r'!\[([^\]]*)\]\(([^)]+)\)|<img\s+src="([^"]+)"[^>]*>', image, markdown)
+    pattern = r'(?P<code>^(`{3,}|~{3,})[^\n]*\n[\s\S]*?^\2[ \t]*$)|!\[(?P<alt>[^\]]*)\]\((?P<path>[^)]+)\)|<img\s+src="(?P<htmlpath>[^"]+)"[^>]*>'
+    return re.sub(pattern, image, markdown, flags=re.M)
 
 
 def on_page_markdown(markdown, page, config, files):
@@ -144,12 +123,12 @@ def on_page_markdown(markdown, page, config, files):
                 f'{course["title"]}复习笔记：{title.lstrip("# ")}。'
                 '含大纲索引、独立讲解与附解析的自编练习。'
             )
-            body = chapter_images(link_chapters(format_exercises(body.strip())), page)
+            body = chapter_images(link_chapters(format_exercises(body.strip()), course), page)
             toolbar = TOOLBAR.format(id=f'{course["id"]}-{number}')
             # Python-Markdown needs a block wrapper around the dialog element.
             dialog = '<div class="image-dialog-holder">\n\n' + DIALOG + '\n\n</div>\n'
             return title + '\n\n' + toolbar + '\n\n' + body + ('\n\n' + dialog if '<img' in body else '')
     if uri.parent.as_posix() == 'reference':
         title = markdown.split('\n', 1)[0].lstrip('# ').strip()
-        page.meta['description'] = f'两门课程的{title}，含概念辨析、计算条件与章节回查链接。'
+        page.meta['description'] = f'各门课程的{title}，含概念辨析、计算条件与章节回查链接。'
     return markdown

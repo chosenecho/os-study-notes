@@ -36,6 +36,26 @@ class BuildTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             content.format_exercises(source.split('**答案：**')[0])
 
+    def test_references_use_each_course_bounds_and_ignore_unrelated_numbers(self):
+        cn = next(c for c in content.COURSES if c['id'] == 'cn')
+        os = next(c for c in content.COURSES if c['id'] == 'os')
+        self.assertIn('](chapter-09.md)', content.link_chapters('见第 9 章', cn))
+        self.assertIn('](../computer-networks/chapter-09.md)',
+                      content.link_chapters('见《计算机网络技术》第 9 章', os))
+        with self.assertLogs('mkdocs', level='WARNING') as logs:
+            self.assertEqual(content.link_chapters('见第 7 章', os), '见第 7 章')
+            self.assertEqual(content.link_chapters('见《操作系统概论》第 9 章', cn), '见《操作系统概论》第 9 章')
+            self.assertEqual(content.link_chapters('见第 10 章', cn), '见第 10 章')
+            self.assertEqual(content.link_chapters('见第 0 章', cn), '见第 0 章')
+        self.assertEqual(len(logs.output), 4)
+        self.assertEqual(content.link_chapters('教材第 20 章', cn), '教材第 20 章')
+
+    def test_html_teaching_examples_are_not_treated_as_live_images(self):
+        page = SimpleNamespace(file=SimpleNamespace(abs_src_path=str(ROOT / 'docs/courses/computer-networks/chapter-06.md')))
+        fence = chr(96)*3
+        source = fence+'html'+chr(10)+'<img src="example.png">'+chr(10)+fence
+        self.assertEqual(content.chapter_images(source, page), source)
+
     def test_license_snapshots_and_virtual_downloads_preserve_bytes(self):
         snapshots = json.loads((ROOT / 'LICENSES/third-party/SOURCES.json').read_text(encoding='utf-8'))
         with TemporaryDirectory() as tmp:

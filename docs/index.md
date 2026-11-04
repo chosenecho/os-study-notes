@@ -1,10 +1,10 @@
 ---
-description: 操作系统概论与计算机组成原理的课程目录、复习进度、速查与交互练习。
+description: 操作系统概论、计算机组成原理与计算机网络技术的课程目录、复习进度、速查与交互练习。
 ---
 
 # studynote
 
-围绕考试大纲的知识点学习原创笔记，用自编练习与交互实验核对理解。两门课共十二章，章节题注明考点、条件与解析。
+围绕考试大纲的知识点学习原创笔记，用自编练习与交互实验核对理解。三门课共二十一章，章节题注明考点、条件与解析。
 
 !!! info "版权与引用说明"
 
@@ -42,6 +42,20 @@ description: 操作系统概论与计算机组成原理的课程目录、复习�
 
     <a class="md-button md-button--primary" data-next-chapter="co-" href="courses/computer-organization/chapter-01/"><span data-next-label>开始第 1 章</span></a>
 
+- **计算机网络技术**
+
+    通信基础、协议分层、局域网与互联、应用、管理、网络操作系统及安全。
+
+    ---
+
+    已复习 **<span data-progress-count="cn">0</span> / 9** 章
+
+    <progress data-study-progress="cn" value="0" max="9" aria-label="计算机网络技术已复习章节"></progress>
+
+    [课程概览 →](courses/computer-networks/index.md)
+
+    <a class="md-button md-button--primary" data-next-chapter="cn-" href="courses/computer-networks/chapter-01/"><span data-next-label>开始第 1 章</span></a>
+
 </div>
 
 复习进度与字号仅保存在当前浏览器。在章节页勾选“本章已复习”即可记录。
@@ -53,6 +67,6 @@ description: 操作系统概论与计算机组成原理的课程目录、复习�
 
 ## 交互练习
 
-七类练习覆盖进程调度、页面置换、银行家算法、地址转换、Cache 映射、补码运算，以及两门课十二章的 24 道自测题。先预测，再逐步核对过程。
+七类练习覆盖进程调度、页面置换、银行家算法、地址转换、Cache 映射、补码运算，以及三门课二十一章的 42 道自测题。先预测，再逐步核对过程。
 
 [进入交互练习 →](labs/index.md){ .md-button }

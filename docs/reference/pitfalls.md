@@ -1,39 +1,42 @@
 # 易错点清单
 
-用本表回查解题条件。条目按本项目的讲解与自编练习整理，不是教材勘误表，也不预测考试频率。
-
 ## 操作系统概论
 
-| 章节 | 容易混淆的判断 | 回查方式 |
+| 章节 | 易混概念 | 区别 |
 | --- | --- | --- |
-| [简介](../courses/operating-systems/chapter-01.md) | 并发不要求同时执行；地址数不必等于字节数 | 写出处理器数量、编址单位与字长 |
-| [进程](../courses/operating-systems/chapter-02.md) | 就绪还未获得 CPU；阻塞还缺事件条件 | 逐步写状态转换，不把唤醒直接画成运行 |
-| [同步](../courses/operating-systems/chapter-02.md#s10) | 互斥锁不能代替数据可用条件 | 先列 empty/full 等资源约束，再安排 P/V 次序 |
-| [调度与死锁](../courses/operating-systems/chapter-03.md) | 响应、等待、周转分别统计不同区间；不安全不等于已死锁 | 画到达与完成时间线；安全检查逐分量比较 |
-| [内存](../courses/operating-systems/chapter-04.md) | TLB 未命中不等于缺页；FIFO 命中不更新装入次序 | 将地址缓存、驻留状态和置换队列分开记录 |
-| [文件](../courses/operating-systems/chapter-05.md) | 链式文件未必连续；索引块不是文件内容 | 先画定位路径，再按缓存条件计算读盘次数 |
-| [I/O](../courses/operating-systems/chapter-06.md) | 进程阻塞不等于 CPU 停机；DMA 也有准备与完成开销 | 分清调度状态、数据搬运与共享总线竞争 |
+| [简介](../courses/operating-systems/chapter-01.md#s3) | 并发 / 并行 | 同一时段内推进 / 同一时刻执行 |
+| [简介](../courses/operating-systems/chapter-01.md#s6) | 地址数 / 字节数 | 字节数 = 地址数 × 编址单位字节数 |
+| [进程](../courses/operating-systems/chapter-02.md#s3) | 就绪 / 阻塞 | 等 CPU / 等事件或资源；唤醒后先就绪 |
+| [同步](../courses/operating-systems/chapter-02.md#s10) | 互斥 / 条件等待 | mutex 保护访问；empty、full 记录空位与成品 |
+| [调度](../courses/operating-systems/chapter-03.md#s3) | 周转 / 等待时间 | 无 I/O 时：等待 = 周转 − 服务时间 |
+| [死锁](../courses/operating-systems/chapter-03.md#s9) | 不安全 / 已死锁 | 无完成保证 / 已形成无法推进的相互等待 |
+| [内存](../courses/operating-systems/chapter-04.md#s5) | TLB 未命中 / 缺页 | 无缓存转换 / 合法页未驻留 |
+| [置换](../courses/operating-systems/chapter-04.md#s10) | FIFO / LRU 命中 | 保留装入次序 / 更新最近使用次序 |
+| [文件](../courses/operating-systems/chapter-05.md#s4) | 链查找 / 读盘次数 | 链指针可能已缓存；索引块另计 |
+| [I/O](../courses/operating-systems/chapter-06.md#s2) | 进程阻塞 / DMA 争用 | 调度状态 / 硬件传输资源竞争 |
 
 ## 计算机组成原理
 
-| 章节 | 容易混淆的判断 | 回查方式 |
+| 章节 | 易混概念 | 区别 |
 | --- | --- | --- |
-| [系统](../courses/computer-organization/chapter-01.md) | 主频高不保证同任务更快 | 同时比较指令数、平均 CPI 与主频 |
-| [数据](../courses/computer-organization/chapter-02.md) | 进位不等于有符号溢出；位型顺序不等于字节端序 | 固定位宽，分别解释无符号与补码值 |
-| [指令](../courses/computer-organization/chapter-03.md) | 字节偏移不等于数组下标；PC 相对分支有规定基准 | 先求有效地址，再追踪分支目标与延迟槽模型 |
-| [处理器](../courses/computer-organization/chapter-04.md) | 流水稳态吞吐不等于单条延迟；转发不能提前生成数据 | 画阶段时间线，标出结果产生和使用的时刻 |
-| [存储](../courses/computer-organization/chapter-05.md) | Cache 组号不等于主存块号；额外未命中惩罚不同于完整时间 | 按容量、块大小和路数拆位，先确认 AMAT 定义 |
-| [互连与 I/O](../courses/computer-organization/chapter-06.md) | 总线节拍峰值不等于事务有效带宽 | 统计每事务实际交付字节与总耗时 |
+| [性能](../courses/computer-organization/chapter-01.md#s5) | 主频 / CPU 时间 | CPU 时间 = 动态指令数 × 平均 CPI ÷ 主频 |
+| [运算](../courses/computer-organization/chapter-02.md#s7) | 加法进位 / 有符号溢出 | 无符号和越界 / 补码和越界 |
+| [端序](../courses/computer-organization/chapter-02.md#s5) | 编码位序 / 字节端序 | 位串的解释 / 多字节值的存放次序 |
+| [指令](../courses/computer-organization/chapter-03.md#s4) | 数组下标 / 字节偏移 | 字节偏移 = 下标 × 元素字节数 |
+| [流水线](../courses/computer-organization/chapter-04.md#s4) | 吞吐率 / 单条延迟 | 单位时间完成量 / 一条指令用时 |
+| [冒险](../courses/computer-organization/chapter-04.md#s6) | 转发 / 提前产生结果 | 转发仅传递已生成的数据 |
+| [Cache](../courses/computer-organization/chapter-05.md#s5) | 主存块号 / 组号 | 组号 = 主存块号 mod 组数 |
+| [总线](../courses/computer-organization/chapter-06.md#s3) | 峰值带宽 | 每次传输字节数 × 每秒传输次数 |
+| [总线](../courses/computer-organization/chapter-06.md#s3) | 有效带宽 | 交付字节数 ÷ 事务总耗时 |
 
-## 计算前的检查
+## 访存时间
 
-1. 抄下题设的单位、编号起点、位宽、编址单位与初始状态。
-2. 写清算法变体：是否抢占、如何处理同一时刻事件、扫描方向及边界。
-3. 把时间统一到同一量级，把位与字节分开，KiB 与 kB 不混用。
-4. 用可复核条件验算：页内偏移小于页大小、余数在合法范围、安全向量逐分量满足、文件索引只统计内容块。
-5. 对模型未规定的行为写出假设，不把某个教学模型推广到全部现代硬件。
+完整未命中时间包含本次访问的全部耗时；额外惩罚只计算超出命中时间的部分。两种写法见[Cache 性能](../courses/computer-organization/chapter-05.md#s5)：
 
-可在[交互练习](../labs/index.md)中更换输入，观察初始条件改变后结论是否仍成立。
+- 给额外惩罚 $P$：$AMAT=T_h+mP$。
+- 给完整未命中时间 $T_m$：$AMAT=(1-m)T_h+mT_m$。
+
+$m$ 为未命中率，$T_h$ 为命中时间，各时间量使用同一单位。[缺页平均耗时](../courses/operating-systems/chapter-04.md#s11)也按同样方式加权。
 
 ## 计算机网络技术
 

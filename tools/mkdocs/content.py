@@ -22,12 +22,6 @@ DIALOG = (
     '<button type="button" class="md-button close-dialog" autofocus>关闭 · Esc</button>'
     '<img alt=""><p></p></dialog>'
 )
-TEXTBOOK_NOTICE = (
-    '!!! info "教材题目引用声明"\n\n'
-    '    本章引用的教材原题、附录答案及插图不纳入项目开放许可，传播授权尚待核验。'
-    '如有侵权，收到能定位内容的通知后立即下架并核查。'
-    '[引用声明与权利人反馈](../../licensing.md#textbook-quotation)。\n'
-)
 
 EXERCISE_SECTION = re.compile(r'(^## .*(?:教材.*习题|自测题|自编客观题)[^\n]*\n)([\s\S]*?)(?=^## |\Z)', re.M)
 
@@ -231,7 +225,7 @@ def on_page_markdown(markdown, page, config, files):
             toolbar = TOOLBAR.format(id=f'{course["id"]}-{number}')
             # Python-Markdown needs a block wrapper around the dialog element.
             dialog = '<div class="image-dialog-holder">\n\n' + DIALOG + '\n\n</div>\n'
-            return title + '\n\n' + toolbar + '\n\n' + TEXTBOOK_NOTICE + '\n' + body + ('\n\n' + dialog if '<img' in body else '')
+            return title + '\n\n' + toolbar + '\n\n' + body + ('\n\n' + dialog if '<img' in body else '')
     if uri.parent.as_posix() == 'reference':
         title = markdown.split('\n', 1)[0].lstrip('# ').strip()
         page.meta['description'] = f'两门课程的{title}，含概念辨析、计算条件与章节回查链接。'

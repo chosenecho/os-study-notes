@@ -1,0 +1,7 @@
+{
+  "region": "cn-beijing",
+  "hosts": ["studynote.chosenecho.top"],
+  "redirectHosts": ["chosenecho.top"],
+  "root": "/var/www/studynote",
+  "uploadRoot": "/root/studynote-upload"
+}

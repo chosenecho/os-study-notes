@@ -1,23 +1,27 @@
-# 公开历史清理待办
+# 公开历史清理记录
 
-## 已完成的准备
+## 已完成的操作
 
-2026-11-04 已在独立工作树整理当前公开内容，并将旧正文、插图和公开归档保存为忽略提交的本地对照副本。完整 Git bundle 已创建并通过完整性校验，位置为 local/content-review/pre-cleanup-20261104.bundle。备份含旧材料，只能私下保管，不能作为公开发行附件。
+2026-11-04，[PR #4](https://github.com/chosenecho/studynote/pull/4) 检查通过并合并后，维护者明确确认改写 main 和删除旧远端分支。以合并后的同一文件树制作无父提交的新根，核对文件树完全相同，再使用逐引用的 force-with-lease 校验和原子推送更新远端。
 
-该备份保留改写前可达历史；它不包含尚未提交的新内容。执行远端改写前应再次备份最新引用，并核对可恢复性。
+干净根提交为 2dcfc856a94fef36b6db0233907f2b48d1005f6b。改写完成时，远端只剩 main，main 的可达提交数为一。后续修改应从此干净根的后代开始，不能合并或推送仍含旧祖先的本地分支。
 
-## 核查快照
+已删除四个远端分支：codex/material-native、codex/textbook-attribution、codex/homepage-copyright-only，以及本轮已合并的 codex/open-original-notes。其他本地工作树、分支及未提交修改未重置。
 
-仓库为公开的 chosenecho/studynote。此次核查发现 main 之外还有 codex/material-native、codex/textbook-attribution、codex/homepage-copyright-only 三个远端分支。旧正文能从这些分支、main 的早期提交及已合并 PR 查到，普通删除或合并不会撤回它们。
+## 私有备份
 
-GitHub API 本次返回没有发行版附件、没有仓库 fork、没有 Actions 附件；这是 2026-11-04 的查询快照，不是永久保证，也不代表没有克隆或缓存。新 PR 的删除差异也可能保留旧材料。
+旧正文、插图及原公开归档保存为忽略提交的本地对照副本。远端改写前再次生成完整 Git bundle，并通过完整性校验：local/content-review/ready-for-history-cleanup-20261104.bundle。SHA-256 为 F95990956C73FE93DF9E5B671687965E98C60863BD30DFB123A419F969DDDAE3。
 
-## 建议执行方案
+该备份包含旧引用、已合并内容和干净根。备份及旧材料只能私下保管，不能发布为仓库附件或重新推送。较早的 pre-cleanup-20261104.bundle 保留改写前的引用，不包含后来制作的干净根。
 
-在本轮 PR 检查并合并后，以清理后的树制作不含旧祖先的新根提交；再次生成并校验私有备份，再用明确的旧提交校验值强制更新 main，删除已核对的三个旧分支。当前任务分支也应删除，避免它继续暴露旧祖先。保护规则若阻止改写，应按仓库管理流程处理，不能绕开。
+## 已有克隆与后续同步
 
-此操作会改变 main 的历史与提交标识。其他工作树和已有克隆需要重新同步或重新克隆；旧提交链接、比较基准及 PR 关联可能失效。不能对其他本地工作树执行重置，尤其不能丢弃未提交修改。
+main 已改变历史和提交标识。已有克隆优先重新克隆；如有未提交修改，先私下备份，再把需要保留且可以公开的修改移到干净历史上。不要直接合并旧 main、其他旧分支或 bundle 中的引用。旧提交链接、比较基准和 PR 关联可能失效。
 
-GitHub 的 PR 引用和缓存、既有外部克隆、搜索引擎缓存及站点历史部署要分别处理；重写 main 无法保证这些副本消失。必要时按平台流程联系 GitHub Support 或相关持有人。官方说明见 [Removing sensitive data from a repository](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)。
+## 尚未清除的副本
 
-远端历史改写与删除分支需要用户对上述具体影响确认。当前内容整理不自动执行强推、删除其他工作树或删除云端项目。
+GitHub 的已合并 PR 引用和缓存、已有外部克隆、搜索引擎缓存及云端历史部署不随 main 改写消失。不能把当前远端分支检查通过表述为所有副本已撤回，也不能保证零版权风险。
+
+仓库 API 在 2026-11-04 的改写前快照中没有返回 fork、发行版附件或 Actions 附件；该快照不代表没有外部克隆或后续副本。已合并 PR 的差异仍可能保留旧材料，必要时按平台流程联系 GitHub Support，另行申请清除关联引用与缓存。官方流程见 [Removing sensitive data from a repository](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)。
+
+生产部署沿用 ESA 加速与 ECS 静态托管，不把现有域名迁回 Pages。旧服务器发布目录和云端项目没有自动删除；旧材料不得作为回退版本再次公开。

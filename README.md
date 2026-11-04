@@ -2,7 +2,7 @@
 
 操作系统概论、计算机组成原理的章节笔记与交互练习，使用 MkDocs Material 发布。
 
-网站：https://chosenecho.top/ · 仓库：https://github.com/chosenecho/studynote
+网站：https://studynote.chosenecho.top/ · 仓库：https://github.com/chosenecho/studynote
 
 公开内容以大纲为索引，提供原创讲解、自编练习和概念图；第三方资源保持原许可。当前修订版的范围与历史副本的处理边界见许可说明。
 
@@ -39,7 +39,7 @@ theme/                   Material 模板覆盖
 tools/
   mkdocs/                内容处理、许可分发与产物处理钩子
   checks/                结构、笔记、修订、权利与链接检查
-  deploy/                ESA 配置同步工具
+  deploy/                ECS 发布、Nginx 配置与 ESA 规则同步
 tests/                   单元测试与浏览器测试
 handbook/                开发、部署与第三方资源维护说明
 archive/                 可公开的内容整理与发布记录
@@ -48,7 +48,7 @@ LICENSES/                第三方声明、许可原文与对应源码
 
 首页为 `docs/index.md`，课程入口为各课程的 `index.md`。源码文件名与网址一致，例如 `docs/courses/operating-systems/chapter-01.md` 对应 `/courses/operating-systems/chapter-01/`。构建直接处理源页面，许可下载通过 MkDocs 虚拟文件提供。
 
-根目录保留 `mkdocs.yml`、`esa.jsonc`、依赖清单与许可入口。`local/` 用于私有教材和独立归档，`artifacts/` 用于报告与截图；它们和 `dist/` 均不提交。
+根目录保留 `mkdocs.yml`、依赖清单与许可入口。生产使用 ESA 加速与 ECS 静态托管，配置位于 `config/ecs-site.json` 和 `config/esa-site.json`。`local/` 用于私有教材和独立归档，`artifacts/` 用于报告与截图；它们和 `dist/` 均不提交。
 
 ## 检查与维护
 

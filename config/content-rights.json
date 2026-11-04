@@ -26,9 +26,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "独立维护文档与站点元数据；本轮核对 Git 改写结果、备份校验和现有 ESA/ECS 部署文件后更新记录，未引入教材表达。",
       "reviewed_on": "2026-11-04",
-      "sha256": "30d2f5f35296da544daaeb827bd6e9194672e9315b42ecefdb5fa60a3bb5fd87"
+      "sha256": "9f85e41d556179cd5f3b36822047b995f12b3933d09615b77547cd84921a9c51"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -53,9 +53,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "独立维护文档与站点元数据；本轮核对 Git 改写结果、备份校验和现有 ESA/ECS 部署文件后更新记录，未引入教材表达。",
       "reviewed_on": "2026-11-04",
-      "sha256": "648d88efefb3fdd3db7fc9e469e6af1ddcaa628fc7b99fc7e7f991b4afa92910"
+      "sha256": "12e65d01b2a964dff10be4fc68e46bf5eb03cf48625be96123e0a8c70b13c45f"
     },
     {
       "path": "config/quotations.json",
@@ -698,9 +698,9 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-04 编辑审阅：学习内容按既有大纲知识点独立组织；章节、课程索引、速查与概念图已独立重写，实验说明不含题目复刻。详见 archive/releases/2026-11-04-open-content.md；不是法律认定。",
+      "basis": "本轮仅核对并更新 Sitemap 正式域名，沿用既有许可。",
       "reviewed_on": "2026-11-04",
-      "sha256": "56d409b9733c140c0cece335c3b4908fe1aebec9580f1564986e7d796cc1fca5"
+      "sha256": "62cb0d74b2dc449999526c58f2f37999d2bea9add1870bb473d2a59d665e12d7"
     },
     {
       "path": "handbook/content-policy.md",
@@ -716,27 +716,27 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "独立维护文档与站点元数据；本轮核对 Git 改写结果、备份校验和现有 ESA/ECS 部署文件后更新记录，未引入教材表达。",
       "reviewed_on": "2026-11-04",
-      "sha256": "d2a960fe2dfd5bb4d1c6449460f2780e3d70bedd351e55bc00f892a20026193d"
+      "sha256": "5fb82f6bf1de8ad57c524ea598fef3972f14686cf29a082454678bd77505b8e6"
     },
     {
       "path": "handbook/development.md",
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "独立维护文档与站点元数据；本轮核对 Git 改写结果、备份校验和现有 ESA/ECS 部署文件后更新记录，未引入教材表达。",
       "reviewed_on": "2026-11-04",
-      "sha256": "d1dedef76557a6e9c22ba61cb3883c81e36f571f2c2f31889dfffc085d4ecd91"
+      "sha256": "24fd8caa6a39cfa66f37566cf88329f7f700b7c5dcee1351b68e1d4a08b16382"
     },
     {
       "path": "handbook/history-cleanup.md",
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
+      "basis": "独立维护文档与站点元数据；本轮核对 Git 改写结果、备份校验和现有 ESA/ECS 部署文件后更新记录，未引入教材表达。",
       "reviewed_on": "2026-11-04",
-      "sha256": "f2249a3db8c2df1a7bc7971a15a059f5830304aedeccbb23fb7fddd60c49cc3b"
+      "sha256": "03bd6b4ea8f1e0c7f9e4fee7a76504db01266e1805972eae298203358e8b43fe"
     },
     {
       "path": "handbook/vendor/katex.md",

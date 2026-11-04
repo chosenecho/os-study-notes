@@ -14,8 +14,7 @@
   "scripts": {
     "dev": "python -m mkdocs serve",
     "build": "python -m mkdocs build --strict",
-    "deploy": "npm run check:rights && npm run check && npm run test:browser && esa deploy --environment production --no-preview --skip-update-check",
-    "deploy:staging": "npm run check:rights && npm run check && esa deploy --environment staging --no-preview --skip-update-check",
+    "deploy": "node tools/deploy/ecs.mjs",
     "esa:configure": "node tools/deploy/esa.mjs",
     "check:structure": "python -X utf8 tools/checks/structure.py",
     "check:rights": "python -X utf8 tools/checks/rights.py",

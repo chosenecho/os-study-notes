@@ -3,49 +3,98 @@
   "siteName": "chosenecho.top",
   "planName": "basic",
   "instanceId": "esa-site-bwp14nqt0bnk",
+  "performanceDataCollection": "off",
   "responseRules": [
     {
       "RuleName": "study-security",
-      "Rule": "(http.host eq \"chosenecho.top\")",
+      "Rule": "(http.host eq \"chosenecho.top\" or http.host eq \"studynote.chosenecho.top\")",
       "Sequence": 1,
       "headers": {
         "X-Content-Type-Options": "nosniff",
         "X-Frame-Options": "DENY",
         "Referrer-Policy": "strict-origin-when-cross-origin",
         "Permissions-Policy": "geolocation=(), microphone=(), camera=()",
-        "Content-Security-Policy": "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; font-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+        "Content-Security-Policy": "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.github.com; font-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests",
+        "Strict-Transport-Security": "max-age=2592000",
+        "Cross-Origin-Resource-Policy": "same-origin"
       }
     },
     {
-      "RuleName": "study-cache-short",
-      "Rule": "(http.host eq \"chosenecho.top\" and not (starts_with(http.request.uri.path, \"/assets/stylesheets/main.\") or starts_with(http.request.uri.path, \"/assets/stylesheets/palette.\") or starts_with(http.request.uri.path, \"/assets/javascripts/bundle.\") or starts_with(http.request.uri.path, \"/assets/javascripts/workers/search.\")) and not (starts_with(http.request.uri.path, \"/assets/vendor/\") or starts_with(http.request.uri.path, \"/assets/images/\") or starts_with(http.request.uri.path, \"/courses/operating-systems/figures/\") or starts_with(http.request.uri.path, \"/courses/computer-organization/figures/\")))",
+      "RuleName": "study-hotlink-no-store",
+      "Rule": "((http.host eq \"chosenecho.top\" or http.host eq \"studynote.chosenecho.top\") and (starts_with(http.request.uri.path, \"/assets/\") or starts_with(http.request.uri.path, \"/courses/operating-systems/figures/\") or starts_with(http.request.uri.path, \"/courses/computer-organization/figures/\")) and http.referer contains \"://\" and not (http.referer contains \"://chosenecho.top/\") and not (http.referer contains \"://studynote.chosenecho.top/\"))",
       "Sequence": 2,
       "headers": {
-        "Cache-Control": "public, max-age=300, must-revalidate"
+        "Cache-Control": "no-store"
       }
     },
     {
-      "RuleName": "study-cache-hashed",
-      "Rule": "(http.host eq \"chosenecho.top\" and (starts_with(http.request.uri.path, \"/assets/stylesheets/main.\") or starts_with(http.request.uri.path, \"/assets/stylesheets/palette.\") or starts_with(http.request.uri.path, \"/assets/javascripts/bundle.\") or starts_with(http.request.uri.path, \"/assets/javascripts/workers/search.\")))",
+      "RuleName": "study-scanner-no-store",
+      "Rule": "((http.host eq \"chosenecho.top\" or http.host eq \"studynote.chosenecho.top\") and (starts_with(http.request.uri.path, \"/.env\") or starts_with(http.request.uri.path, \"/.git\") or starts_with(http.request.uri.path, \"/wp-admin\") or starts_with(http.request.uri.path, \"/wp-login.php\") or starts_with(http.request.uri.path, \"/xmlrpc.php\") or starts_with(http.request.uri.path, \"/phpmyadmin\") or starts_with(http.request.uri.path, \"/vendor/phpunit/\")))",
       "Sequence": 3,
       "headers": {
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
-    },
-    {
-      "RuleName": "study-cache-vendor",
-      "Rule": "(http.host eq \"chosenecho.top\" and (starts_with(http.request.uri.path, \"/assets/vendor/\") or starts_with(http.request.uri.path, \"/assets/images/\") or starts_with(http.request.uri.path, \"/courses/operating-systems/figures/\") or starts_with(http.request.uri.path, \"/courses/computer-organization/figures/\")))",
-      "Sequence": 4,
-      "headers": {
-        "Cache-Control": "public, max-age=86400"
+        "Cache-Control": "no-store"
       }
     }
   ],
   "httpsRule": {
     "RuleName": "study-force-https",
-    "Rule": "(http.host eq \"chosenecho.top\")",
+    "Rule": "(http.host eq \"chosenecho.top\" or http.host eq \"studynote.chosenecho.top\")",
     "Sequence": 1,
     "HttpsForce": "on",
     "HttpsForceCode": "301"
-  }
+  },
+  "retiredResponseRules": [
+    "study-cache-short",
+    "study-cache-hashed",
+    "study-cache-vendor"
+  ],
+  "cacheRules": [
+    {
+      "RuleName": "study-verification-bypass",
+      "Rule": "((http.host eq \"chosenecho.top\" or http.host eq \"studynote.chosenecho.top\") and (starts_with(http.request.uri.path, \"/.well-known/acme-challenge/\") or http.request.uri.path eq \"/__release.json\"))",
+      "Sequence": 1,
+      "BypassCache": "bypass_all",
+      "BrowserCacheMode": "no_cache",
+      "EdgeCacheMode": "no_cache",
+      "PostCache": "off"
+    },
+    {
+      "RuleName": "study-edge-static",
+      "Rule": "(http.host eq \"chosenecho.top\" or http.host eq \"studynote.chosenecho.top\")",
+      "Sequence": 2,
+      "BypassCache": "cache_all",
+      "EdgeCacheMode": "follow_origin_bypass",
+      "EdgeStatusCodeCacheTtl": "4xx=0,5xx=0",
+      "BrowserCacheMode": "follow_origin",
+      "QueryStringMode": "ignore_all",
+      "PostCache": "off",
+      "ServeStale": "off"
+    }
+  ],
+  "originRules": [
+    {
+      "RuleName": "study-origin-root",
+      "Rule": "(http.host eq \"chosenecho.top\")",
+      "Sequence": 1,
+      "OriginScheme": "https",
+      "OriginHost": "chosenecho.top",
+      "OriginSni": "chosenecho.top",
+      "OriginHttpsPort": "443",
+      "OriginHttpPort": "80",
+      "OriginVerify": "on",
+      "OriginReadTimeout": "15"
+    },
+    {
+      "RuleName": "study-origin-notes",
+      "Rule": "(http.host eq \"studynote.chosenecho.top\")",
+      "Sequence": 2,
+      "OriginScheme": "https",
+      "OriginHost": "studynote.chosenecho.top",
+      "OriginSni": "studynote.chosenecho.top",
+      "OriginHttpsPort": "443",
+      "OriginHttpPort": "80",
+      "OriginVerify": "on",
+      "OriginReadTimeout": "15"
+    }
+  ]
 }

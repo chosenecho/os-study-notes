@@ -3,8 +3,8 @@ repo_name: chosenecho/studynote
 repo_url: https://github.com/chosenecho/studynote
 site_description: 以大纲为索引的原创课程笔记、自编练习与交互实验
 copyright: >-
-  <strong><a href="mailto:chosenecho@163.com">联系我：chosenecho@163.com</a></strong><br>
-  <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">苏ICP备2026085504号-1</a>
+  <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">苏ICP备2026085504号-1</a><br>
+  <a href="mailto:chosenecho@163.com">联系方式：chosenecho@163.com</a>
 site_url: https://studynote.chosenecho.top/
 site_dir: dist
 docs_dir: docs

@@ -734,9 +734,9 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "按维护者提供的邮箱新增首页联系按钮；复核公开邮箱和 mailto 目标一致，课程及许可说明未变。",
+      "basis": "按维护者要求移除首页联系按钮；联系方式仅保留在全站页脚，课程及许可说明未变。",
       "reviewed_on": "2026-11-04",
-      "sha256": "02ba2705a719b896bd7631b5e23e6a5c7046e4cf75ad4cdc0027f29728902ea2"
+      "sha256": "04661b9b155f9d161c463e934e6345c77485afa9f50a411cd06b3ccff9f33d99"
     },
     {
       "path": "docs/labs/address.md",

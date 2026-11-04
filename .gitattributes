@@ -7,3 +7,7 @@
 *.yml text eol=lf
 *.svg text eol=lf
 *.woff2 binary
+# Preserve the upstream license/source snapshots and their recorded digests.
+LICENSE -text -whitespace
+LICENSES/** -text -whitespace
+docs/assets/vendor/** -text -whitespace

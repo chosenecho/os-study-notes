@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { schedule } from '../../website/src/assets/scheduling.mjs';
+import { schedule } from '../../docs/assets/javascripts/labs/scheduling.mjs';
 
 // 教材笔记的 FCFS 核算例。
 const sample = schedule([{ arrival: 0, burst: 3 }, { arrival: 1, burst: 2 }]);

@@ -1,0 +1,249 @@
+{
+  "version": 1,
+  "reviewed_on": "2026-11-04",
+  "files": [
+    {
+      "path": "docs/courses/computer-organization/index.md",
+      "status": "pending",
+      "basis": "整理资料尚待逐项核验来源与传播依据；未纳入原创文字许可。"
+    },
+    {
+      "path": "docs/courses/computer-organization/chapter-01.md",
+      "status": "pending",
+      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+    },
+    {
+      "path": "docs/courses/computer-organization/chapter-02.md",
+      "status": "pending",
+      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+    },
+    {
+      "path": "docs/courses/computer-organization/chapter-03.md",
+      "status": "pending",
+      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+    },
+    {
+      "path": "docs/courses/computer-organization/chapter-04.md",
+      "status": "pending",
+      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+    },
+    {
+      "path": "docs/courses/computer-organization/chapter-05.md",
+      "status": "pending",
+      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+    },
+    {
+      "path": "docs/courses/computer-organization/chapter-06.md",
+      "status": "pending",
+      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+    },
+    {
+      "path": "docs/courses/operating-systems/index.md",
+      "status": "pending",
+      "basis": "整理资料尚待逐项核验来源与传播依据；未纳入原创文字许可。"
+    },
+    {
+      "path": "docs/courses/operating-systems/chapter-01.md",
+      "status": "pending",
+      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+    },
+    {
+      "path": "docs/courses/operating-systems/chapter-02.md",
+      "status": "pending",
+      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+    },
+    {
+      "path": "docs/courses/operating-systems/chapter-03.md",
+      "status": "pending",
+      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+    },
+    {
+      "path": "docs/courses/operating-systems/chapter-04.md",
+      "status": "pending",
+      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+    },
+    {
+      "path": "docs/courses/operating-systems/chapter-05.md",
+      "status": "pending",
+      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+    },
+    {
+      "path": "docs/courses/operating-systems/chapter-06.md",
+      "status": "pending",
+      "basis": "章节混有教材原题、附录答案或教材材料；维护者确认未取得或尚未核验公开传播与再许可授权。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/PIT逻辑结构.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/单重中断流程.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/图1-10_模型机指令格式.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/图1-11_程序执行过程的实例.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/图1-1_操作系统在计算机系统中的位置.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/图1-3_内存中的多道作业.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/图1-6_单体结构模型.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/图1-7_层次结构模型.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/图1-8_客户服务器与微内核结构.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/图1-9_指令周期.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/死锁资源环.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/生产者消费者.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/轮转调度时间轴.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/进程三态.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/courses/operating-systems/figures/银行家安全性检查.svg",
+      "status": "pending",
+      "basis": "插图来源及传播授权尚未逐项核验。"
+    },
+    {
+      "path": "docs/reference/glossary.md",
+      "status": "pending",
+      "basis": "整理资料尚待逐项核验来源与传播依据；未纳入原创文字许可。"
+    },
+    {
+      "path": "docs/reference/pitfalls.md",
+      "status": "pending",
+      "basis": "整理资料尚待逐项核验来源与传播依据；未纳入原创文字许可。"
+    },
+    {
+      "path": "docs/assets/images/favicon.svg",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "60946c69755f9620bec218bcb1dd08aac3e7ed982c98482bfbf94bfed0fce4fc"
+    },
+    {
+      "path": "docs/index.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "d8ddf104471555ae687c1731f9438de754346e9eba38f7ffb6b75b34a42f237c"
+    },
+    {
+      "path": "docs/labs/address.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "2f146da672f6651dcabf8d6d68c749e1f568825a5651d613644c150c5e5eddc7"
+    },
+    {
+      "path": "docs/labs/banker.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "d5c181099fe2630c9d267cf6f1977d083d7433ff6d7569412112d2d153ceb1b4"
+    },
+    {
+      "path": "docs/labs/cache.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "3928a5ea17a12a1b1479fbb258394161c084d98867df9ed7860433015838e232"
+    },
+    {
+      "path": "docs/labs/complement.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "9e625ee6ca76bf0ae1165b53bb2a9d90e46abfce49be298cb415c72208d5de79"
+    },
+    {
+      "path": "docs/labs/index.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "743ccce018fc8113ba68173fd204ec96a95d3de29ae7a72400090e5c5191bc56"
+    },
+    {
+      "path": "docs/labs/paging.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "f9494b4ff6ef28a63a7211d2e4ac39c42bb959863a37f81a08f552660027a748"
+    },
+    {
+      "path": "docs/labs/quiz.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "8e8d5f98ca7e99c1e0a8cb8bf826bfc5847cc1a8dc9982fb979ee04ecd66184a"
+    },
+    {
+      "path": "docs/labs/scheduling.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "basis": "本项目原创首页、自编练习说明或站点图标；不包含教材原题、附录答案或教材插图。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "fb9addde399d5070487646f75254f0e2537ba1744efdbc0a35a60de762b47843"
+    },
+    {
+      "path": "docs/robots.txt",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "basis": "本项目自行编写的站点爬虫与 Sitemap 配置，不包含教材内容。",
+      "reviewed_on": "2026-11-04",
+      "sha256": "56d409b9733c140c0cece335c3b4908fe1aebec9580f1564986e7d796cc1fca5"
+    }
+  ]
+}

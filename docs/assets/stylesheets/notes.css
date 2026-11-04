@@ -1,0 +1,111 @@
+/* Material owns the page layout, typography, navigation, cards and buttons.
+   These aliases only adapt the existing study tools to its active palette. */
+[data-md-color-scheme] {
+  --note-bg: var(--md-default-bg-color);
+  --note-surface: var(--md-default-bg-color);
+  --note-muted-surface: var(--md-code-bg-color);
+  --note-border: var(--md-typeset-table-color);
+  --note-text: var(--md-default-fg-color);
+  --note-muted: var(--md-default-fg-color--light);
+  --note-accent: var(--md-typeset-a-color);
+  --note-accent-soft: var(--md-accent-fg-color--transparent);
+  --note-field-border: var(--md-default-fg-color--light);
+  --note-focus: var(--md-accent-fg-color);
+  --note-radius: .2rem;
+}
+:where(button, a, select, input, summary) { touch-action: manipulation; }
+:where(a, button, input, select, summary, [tabindex]):focus-visible { outline: 2px solid var(--note-focus); outline-offset: 2px; }
+.md-nav .md-nav__link:focus-visible { outline-offset: -2px; }
+.md-typeset.chapter-prose { font-size: var(--note-font-size, 16px); }
+.study-toolbar { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; padding-block: .5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--note-border); }
+.study-toolbar label { display: flex; align-items: center; gap: .5rem; min-height: 44px; cursor: pointer; }
+.study-toolbar input { width: 20px; height: 20px; accent-color: var(--note-accent); }
+.study-toolbar .reading-size { margin-left: auto; }
+.reading-size select { padding: .3rem .5rem; min-height: 44px; border: 1px solid var(--note-field-border); border-radius: var(--note-radius); background: var(--note-surface); color: inherit; font-size: 16px; }
+.save-status { position: absolute; top: 100%; right: 0; z-index: 3; padding: .15rem .4rem; background: var(--note-surface); color: var(--note-muted); font-size: .7rem; }
+.save-status:empty { display: none; }
+.progress-badge { display: block; font-size: .6rem; color: var(--note-muted); white-space: nowrap; }
+.progress-badge[data-completed="true"] { color: var(--note-accent); }
+progress[data-study-progress] { display: block; appearance: none; border: 0; width: 100%; height: .25rem; overflow: hidden; background: var(--note-border); color: var(--note-accent); }
+progress[data-study-progress]::-webkit-progress-bar { background: var(--note-border); }
+progress[data-study-progress]::-webkit-progress-value { background: var(--note-accent); }
+progress[data-study-progress]::-moz-progress-bar { background: var(--note-accent); }
+/* Keep options together; answer disclosure uses Material's native details style. */
+.exercise-item { margin-block: 1.5rem; }
+.md-typeset .exercise-options ul { list-style: none; padding: 0; margin-left: 0; }
+.md-typeset .exercise-options li { margin-left: 0; }
+.md-typeset details.exercise-answer > summary { min-height: 44px; }
+/* Wide tables, code and formulas retain keyboard scrolling. */
+.table-scroll-hint, .code-scroll-hint { margin: .15rem 0 .5rem; font-size: .65rem; color: var(--note-muted); }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding-block: .3rem; }
+/* Course diagrams keep their source colours, including in the zoom dialog. */
+.figure-zoom { position: relative; display: block; width: 100%; border: 1px solid var(--note-border); padding: .5rem; background: var(--note-surface); cursor: zoom-in; margin-block: 1rem; overflow: hidden; }
+.figure-zoom img { display: block; width: auto; max-width: 100%; height: auto; margin: auto; background: #fff; }
+.zoom-hint { position: absolute; right: .25rem; bottom: .25rem; padding: .1rem .3rem; background: var(--note-surface); color: var(--note-muted); font-size: .6rem; }
+.md-typeset p:has(> .figure-zoom) + p > em,
+.md-typeset p > .figure-zoom + em { display: block; font-size: .7rem; color: var(--note-muted); font-style: normal; text-align: center; }
+.image-dialog { width: min(94vw, 1400px); max-width: 96vw; max-height: 94dvh; overflow: auto; overscroll-behavior: contain; border: 1px solid var(--note-border); padding: 1rem; background: var(--note-bg); color: var(--note-text); }
+.image-dialog::backdrop { background: #000b; }
+.md-typeset .image-dialog img { display: block; width: auto; max-width: none; max-height: 72dvh; object-fit: contain; background: #fff; margin: .75rem auto 0; }
+.image-dialog p { text-align: center; font-size: .7rem; }
+.close-dialog { display: block; margin-left: auto; position: sticky; top: 0; z-index: 2; min-height: 44px; }
+[data-md-color-scheme="slate"] :is(.figure-zoom, .image-dialog) img { filter: brightness(.8) contrast(1.06); }
+html.dialog-open, html.drawer-open, html.drawer-open body { overflow: hidden; }
+/* Scheduling inputs and Gantt colours are domain controls, not theme overrides. */
+.scheduler { padding: 1rem; border: 1px solid var(--note-border); margin-block: 1.5rem; }
+.lab-controls { display: grid; grid-template-columns: minmax(0, 1fr) 8rem; gap: 1rem; }
+.lab-controls label { display: flex; flex-direction: column; gap: .4rem; min-width: 0; }
+.scheduler :is(input, select) { font: inherit; font-size: 16px; color: var(--note-text); background: var(--note-bg); border: 1px solid var(--note-field-border); padding: .5rem; min-height: 44px; width: 100%; min-width: 0; }
+.scheduler input:disabled { opacity: .55; cursor: not-allowed; }
+.scheduler .input-table { display: table; table-layout: fixed; width: 100%; }
+.scheduler .input-table th:first-child { width: 20%; }
+.scheduler .input-table input { max-width: 9rem; font-variant-numeric: tabular-nums; }
+.lab-buttons { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.lab-buttons button { min-height: 44px; }
+.lab-results { margin-top: 1.5rem; }
+.lab-results table { font-variant-numeric: tabular-nums; }
+.gantt { display: flex; overflow-x: auto; gap: 3px; padding: .5rem 0 1rem; }
+.gantt-track { display: flex; flex: 1 0 auto; gap: 3px; }
+.gantt-block { flex: 0 0 auto; min-width: 0; white-space: pre; text-align: center; padding: .7rem .25rem; background: #c6e8df; color: #123f37; font-size: .65rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.process-1 { background: #d8e6fa; color: #153665; }
+.process-2 { background: #fae7ba; color: #62440d; }
+.process-3 { background: #e8d9f4; color: #4b266a; }
+.process--1 { background: #e2e4e5; color: #343e42; }
+[data-md-color-scheme="slate"] .gantt-block { background: #2c3b3a; color: #d4ece6; }
+[data-md-color-scheme="slate"] .process-1 { background: #26364f; color: #cfe0ff; }
+[data-md-color-scheme="slate"] .process-2 { background: #43391f; color: #f3e2b8; }
+[data-md-color-scheme="slate"] .process-3 { background: #3a2c45; color: #e6d3f5; }
+[data-md-color-scheme="slate"] .process--1 { background: #2a2c30; color: #b9bec4; }
+.lab-metrics { border-left: .15rem solid var(--note-accent); padding: .8rem 1rem; background: var(--note-muted-surface); font-weight: 600; }
+.search-alias-hint { margin: .75rem 1rem; font-size: .7rem; color: var(--note-muted); }
+.search-alias-hint button { margin-left: .35rem; padding: .1rem .5rem; border: 1px solid var(--note-accent); background: transparent; color: var(--note-accent); font: inherit; cursor: pointer; }
+.md-typeset .highlight .md-clipboard { width: 2.2rem; height: 2.2rem; }
+html.no-js .study-toolbar { display: none; }
+.lab-noscript { padding: 1rem; border: 1px solid var(--note-border); }
+@media (max-width: 800px) {
+  .image-dialog { width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh; border: 0; padding: .75rem; }
+  .lab-controls { grid-template-columns: 1fr; }
+  .scheduler { padding: .75rem; }
+  .scheduler .input-table :is(th, td) { padding: .5rem .25rem; }
+  .scheduler :is(input, select) { padding-inline: .25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; animation: none !important; }
+}
+@media print {
+  .study-toolbar, .close-dialog, .image-dialog, .lab-controls, .lab-buttons, .zoom-hint { display: none !important; }
+  .figure-zoom { border: 0; }
+  [data-md-color-scheme] {
+    --md-default-fg-color: #111;
+    --md-default-fg-color--light: #333;
+    --md-typeset-a-color: #0b57d0;
+    --md-default-bg-color: #fff;
+    --md-code-bg-color: #fff;
+    --md-typeset-table-color: #999;
+  }
+  .md-typeset, .katex, .katex * { color: #111 !important; }
+  .md-typeset a { color: #0b57d0 !important; }
+  .md-typeset :is(table, th, td) { background: #fff; print-color-adjust: economy; }
+  .katex-display { font-size: .85em; }
+  :is(.figure-zoom, .image-dialog) img { filter: none !important; }
+}

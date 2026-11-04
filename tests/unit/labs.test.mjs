@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
-import {integer,sequence,matrix,paging,banker,address,cache,complement} from '../../website/src/assets/labs-core.mjs';
-import {questions} from '../../website/src/assets/quiz-bank.mjs';
+import {integer,sequence,matrix,paging,banker,address,cache,complement} from '../../docs/assets/javascripts/labs/labs-core.mjs';
+import {questions} from '../../docs/assets/javascripts/labs/quiz-bank.mjs';
 let cases=0;
 function check(fn){fn();cases++;}
 check(()=>{const r=[7,0,1,2,0,3,0,4,2,3,0,3,2];assert.equal(paging(r,3,'fifo').faults,10);assert.equal(paging(r,3,'lru').faults,9);assert.equal(paging(r,3,'opt').faults,7);});

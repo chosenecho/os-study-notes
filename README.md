@@ -1,73 +1,68 @@
-# 课程学习笔记
+# studynote
 
-操作系统概论、计算机组成原理的章节笔记与交互练习，使用 MkDocs Material 发布为文档站。
+操作系统概论、计算机组成原理的章节笔记与交互练习，使用 MkDocs Material 发布。
 
-站点地址：https://chosenecho.top/，托管于阿里云 ESA Functions & Pages。
+网站：https://chosenecho.top/ · 仓库：https://github.com/chosenecho/studynote
 
-- [操作系统概论](content/courses/operating-systems/README.md)
-- [计算机组成原理](content/courses/computer-organization/README.md)
-- [易错点清单](content/reference/pitfalls.md) · [术语与缩写表](content/reference/glossary.md)
+**版权核验中：**教材原题、附录答案和插图未取得或尚未核验公开传播与再许可授权，相关文件不在项目开放许可范围内。发布命令会停止上传；已有公开副本和历史记录仍需单独处理。
 
-## 开始使用
+- [操作系统概论](docs/courses/operating-systems/index.md)
+- [计算机组成原理](docs/courses/computer-organization/index.md)
+- [易错点](docs/reference/pitfalls.md) · [术语表](docs/reference/glossary.md)
+
+## 本地运行
 
 需要 Python 3.10+；开发与测试使用 Node.js 22+。在仓库根目录执行：
 
-~~~sh
+```sh
 python -m pip install -r requirements.txt
 npm ci
 npm run dev
-~~~
+```
 
-打开 http://127.0.0.1:8000/。只构建站点时无需 Node.js：
+打开 http://127.0.0.1:8000/。仅构建站点可直接执行 `python -m mkdocs build --strict`，产物写入 `dist/`。
 
-~~~sh
-python -m mkdocs build --strict
-~~~
+## 目录
 
-发布产物写入 dist/。
-
-## 仓库结构
-
-~~~text
-content/                 课程笔记与共用速查
-  courses/
-    operating-systems/   操作系统概论
-    computer-organization/ 计算机组成原理
-  reference/             易错点、术语表
-website/                 站点实现
-  courses.json           课程注册信息
-  hooks.py               内容转换与产物处理
-  src/                   手写页面、样式、交互与第三方资源
-  overrides/             Material 模板覆盖
-  .generated/            构建中间文件，自动重建
-scripts/                 内容、结构与站内链接检查
+```text
+docs/                    MkDocs 直接读取的站点源文件
+  courses/               课程 index.md、chapter-NN.md 与随文 figures/
+  reference/             易错点与术语表
+  labs/                  交互练习页面
+  assets/
+    javascripts/         阅读交互与 labs/ 实验模块
+    stylesheets/         阅读与实验样式
+    images/              站点图标
+    vendor/              保留原发行文件的 KaTeX
+config/                  课程注册、内容权利清单、ESA 域名规则
+theme/                   Material 模板覆盖
+tools/
+  mkdocs/                内容处理、许可分发与产物处理钩子
+  checks/                结构、笔记、修订、权利与链接检查
+  deploy/                ESA 配置同步工具
 tests/                   单元测试与浏览器测试
-docs/                    开发、部署、第三方资源说明与历史记录
-local/                   本地教材、真题与旧科目归档，不提交
-artifacts/               测试报告与截图，不提交
-dist/                    发布产物，不提交
-mkdocs.yml               站点配置
-requirements.txt         Python 依赖
-package.json             开发命令与测试依赖
-esa.jsonc                ESA 项目与静态资源路由配置
-esa/site.json            域名、响应头、缓存与 HTTPS 规则
-~~~
+handbook/                开发、部署与第三方资源维护说明
+archive/                 历史审计、发布记录与方案
+LICENSES/                第三方声明、许可原文与对应源码
+```
 
-## 检查
+首页为 `docs/index.md`，课程入口为各课程的 `index.md`。源码文件名与网址一致，例如 `docs/courses/operating-systems/chapter-01.md` 对应 `/courses/operating-systems/chapter-01/`。构建直接处理源页面，许可下载通过 MkDocs 虚拟文件提供。
 
-~~~sh
+根目录保留 `mkdocs.yml`、`esa.jsonc`、依赖清单与许可入口。`local/` 用于私有教材和独立归档，`artifacts/` 用于报告与截图；它们和 `dist/` 均不提交。
+
+## 检查与维护
+
+```sh
 npm run check
 npx playwright install chromium
 npm run test:browser
-~~~
+```
 
-check 依次检查目录与源码链接、笔记结构、修订项、构建逻辑、练习模型、严格构建和产物链接。浏览器测试自行启动本地服务器，验证练习操作、题库解析、错题重练、键盘操作和不同屏幕宽度。CI 执行同一套命令。
+CI 执行同一套检查。公开发布另须通过 `npm run check:rights`，核验记录位于 [config/content-rights.json](config/content-rights.json)。普通构建和测试不会授予内容传播权限。
 
-## 维护
-
-- [开发与内容约定](docs/development.md)：修改笔记、添加课程、运行检查。
-- [构建与部署](docs/deployment.md)：产物目录、域名设置与发布命令。
-- [KaTeX 资源](docs/vendor/katex.md)：第三方文件及更新方式。
-- [历史审计记录](docs/history/qa/README.md)：原审计轮次与报告。
-
-课程文件统一命名为 chapter-01.md 等，中文章名保留在正文标题与课程目录中。源码只维护在 content/ 和 website/；生成目录每次构建重建。教材、扫描件放 local/materials/，旧科目资料放 local/archive/。
+- [开发约定](handbook/development.md)
+- [构建与部署](handbook/deployment.md)
+- [KaTeX 维护](handbook/vendor/katex.md)
+- [许可与版权](LICENSING.md)：代码采用 Apache-2.0，已核验的原创学习文字采用 CC BY 4.0；待核验材料与第三方资源另行处理。
+- [第三方资源说明](THIRD_PARTY_NOTICES.md)
+- [历史审计](archive/qa/README.md)

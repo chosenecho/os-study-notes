@@ -1,52 +1,93 @@
-"""Check generated-source lifecycle in an isolated temporary directory."""
+"""Test native MkDocs page events and byte-preserving license distribution."""
+import hashlib
 import importlib.util
+import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
+from mkdocs.structure.files import Files
+
 ROOT = Path(__file__).resolve().parents[2]
-spec = importlib.util.spec_from_file_location('study_hooks', ROOT / 'website/hooks.py')
-hooks = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(hooks)
+
+
+def module(name):
+    spec = importlib.util.spec_from_file_location('study_' + name, ROOT / f'tools/mkdocs/{name}.py')
+    result = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(result)
+    return result
+
+
+content = module('content')
+licenses = module('licenses')
+
 
 class BuildTests(unittest.TestCase):
-    def test_missing_chapter_is_an_explicit_failure(self):
+    def test_license_snapshots_and_virtual_downloads_preserve_bytes(self):
+        snapshots = json.loads((ROOT / 'LICENSES/third-party/SOURCES.json').read_text(encoding='utf-8'))
         with TemporaryDirectory() as tmp:
-            with self.assertRaisesRegex(SystemExit, 'Missing chapter'):
-                hooks.chapter_note(Path(tmp), 1)
+            config = SimpleNamespace(site_dir=tmp, use_directory_urls=True,
+                                     plugins=SimpleNamespace(_current_plugin=None))
+            files = licenses.on_files(Files([]), config)
+            for relative, expected in snapshots['distributed_files'].items():
+                with self.subTest(file=relative):
+                    data = (ROOT / 'LICENSES' / relative).read_bytes()
+                    self.assertEqual(hashlib.sha256(data).hexdigest(), expected)
+                    self.assertEqual(files.get_file_from_path('licenses/' + relative).content_bytes, data)
+            self.assertEqual(files.get_file_from_path('licenses/Apache-2.0.txt').content_bytes,
+                             (ROOT / 'LICENSE').read_bytes())
+            self.assertEqual(files.get_file_from_path('licenses/content-rights.json').content_bytes,
+                             (ROOT / 'config/content-rights.json').read_bytes())
+            self.assertIn('](licenses/CC-BY-4.0.txt)', files.get_file_from_path('licensing.md').content_string)
+            self.assertNotIn('](LICENSES/', files.get_file_from_path('third-party-notices.md').content_string)
 
-    def test_rebuild_cleans_stale_files_and_supports_course_figures(self):
+    def test_course_indexes_keep_source_links_and_omit_private_provenance(self):
+        course = dict(id='demo', slug='demo', title='Demo', chapters=1)
+        source = ('# Demo guide\n\n[Chapter](chapter-01.md) [Section](chapter-01.md#section)\n\n'
+                  '[Reference](../../reference/glossary.md)\n\n'
+                  '## 资料依据与使用边界\n\nPrivate textbook path.\n\n'
+                  '## 建议用法\n\nRead in order.\n\n'
+                  '## 原有笔记处理\n\nPrivate backup.\n')
+        page = SimpleNamespace(file=SimpleNamespace(src_uri='courses/demo/index.md'), meta={})
+        with patch.object(content, 'COURSES', [course]):
+            result = content.on_page_markdown(source, page, {}, [])
+        self.assertIn('# Demo\n', result)
+        self.assertIn('](chapter-01.md)', result)
+        self.assertIn('](chapter-01.md#section)', result)
+        self.assertIn('data-progress-chapter="demo-1"', result)
+        self.assertIn('](../../reference/glossary.md)', result)
+        self.assertIn('Read in order.', result)
+        self.assertNotIn('Private', result)
+        self.assertEqual(page.meta['description'], 'Demo课程目录与复习指南。')
+
+    def test_chapter_enrichment_uses_source_paths_without_writing_copies(self):
         with TemporaryDirectory() as tmp:
-            tmp = Path(tmp)
-            docs, src = tmp / 'generated', tmp / 'src'
-            docs.mkdir()
-            src.mkdir()
-            (docs / '.gitkeep').touch()
-            (docs / 'stale.md').write_text('stale', encoding='utf-8')
-            (src / 'index.md').write_text('# Home', encoding='utf-8')
-            course = dict(id='demo', slug='demo', title='Demo', chapters=1, output='demo', progress_prefix='demo-')
-            notes = tmp / 'content/courses/demo'
-            (notes / 'figures').mkdir(parents=True)
-            (notes / 'figures/a.svg').write_text('<svg width="20" height="10"/>', encoding='utf-8')
-            (notes / 'chapter-01.md').write_text('# 第 1 章\n\n![A](figures/a.svg)', encoding='utf-8')
-            refs = tmp / 'content/reference'
-            refs.mkdir()
-            for slug in ('pitfalls', 'glossary'):
-                (refs / f'{slug}.md').write_text('# Reference\n\n[Chapter](../courses/demo/chapter-01.md)', encoding='utf-8')
-            with patch.multiple(hooks, DOCS=docs, SRC=src, CONTENT=tmp / 'content', COURSES=[course]):
-                hooks.on_pre_build({})
-                self.assertFalse((docs / 'stale.md').exists())
-                self.assertTrue((docs / '.gitkeep').exists())
-                page = (docs / 'demo/chapter-1.md').read_text(encoding='utf-8')
-                self.assertIn('width="20" height="10"', page)
-                self.assertNotIn('chapter-2/', page)
-                self.assertTrue((docs / 'assets/figures/demo/a.svg').is_file())
-                self.assertIn('../demo/chapter-1.md', (docs / 'reference/pitfalls.md').read_text(encoding='utf-8'))
-                before = {p.relative_to(docs): p.read_bytes() for p in docs.rglob('*') if p.is_file()}
-                hooks.on_pre_build({})
-                after = {p.relative_to(docs): p.read_bytes() for p in docs.rglob('*') if p.is_file()}
-                self.assertEqual(before, after)
+            folder = Path(tmp) / 'courses/demo'
+            (folder / 'figures').mkdir(parents=True)
+            (folder / 'figures/a.svg').write_text('<svg width="20" height="10"/>', encoding='utf-8')
+            note = folder / 'chapter-01.md'
+            source = '# 第 1 章\n\n![A](figures/a.svg)\n\n见第 2 章\n'
+            note.write_text(source, encoding='utf-8')
+            page = SimpleNamespace(file=SimpleNamespace(src_uri='courses/demo/chapter-01.md',
+                                                       abs_src_path=str(note)),
+                                   url='courses/demo/chapter-01/', meta={})
+            course = dict(id='demo', slug='demo', title='Demo', chapters=2)
+            with patch.object(content, 'COURSES', [course]):
+                rendered = content.on_page_markdown(source, page, {}, [])
+                self.assertEqual(rendered, content.on_page_markdown(source, page, {}, []))
+            self.assertIn('src="../figures/a.svg"', rendered)
+            self.assertIn('width="20" height="10"', rendered)
+            self.assertIn('data-chapter="demo-1"', rendered)
+            self.assertIn('](chapter-02.md)', rendered)
+            self.assertIn('image-dialog-holder', rendered)
+            self.assertEqual(note.read_text(encoding='utf-8'), source)
+            self.assertEqual(len(list(Path(tmp).rglob('*.md'))), 1)
+            for invalid in ('../outside.svg', 'figures/a.png', 'figures/missing.svg'):
+                with self.subTest(path=invalid), self.assertRaises(ValueError):
+                    content.chapter_images(f'![Bad]({invalid})', page)
+
 
 if __name__ == '__main__':
     unittest.main()

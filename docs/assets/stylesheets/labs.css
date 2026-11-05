@@ -11,7 +11,7 @@ html.no-js:not(.study-js) [data-study-lab] { display: none; }
 .study-lab label { display: block; font-weight: 600; margin-bottom: .4rem; }
 .study-lab :is(input:not([type=radio]),select,textarea) { display: block; width: 100%; min-width: 0; min-height: 44px; padding: .6rem .7rem; font: inherit; font-size: 16px; color: var(--note-text); background: var(--note-bg); border: 1px solid var(--note-field-border); border-radius: .4rem; }
 .study-lab textarea { resize: vertical; font-family: ui-monospace,monospace; line-height: 1.7; }
-.study-lab small, .study-caption { color: var(--note-muted); font-size: .875em; }
+.study-lab small, .study-caption, .quiz-storage-hint { color: var(--note-muted); font-size: .875em; }
 .study-lab small { display: block; margin-top: .3rem; }
 .study-lab button { min-height: 44px; cursor: pointer; }
 .study-lab button:disabled { opacity: .5; cursor: default; }

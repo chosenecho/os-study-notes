@@ -125,18 +125,18 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
-      "reviewed_on": "2026-11-04",
-      "sha256": "0f4bdcee8b33dcec9def7b9a94455782a246477a18b166571a36109d9f6888ae"
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。",
+      "reviewed_on": "2026-11-05",
+      "sha256": "d7742a252ddbfffb04c16cb608d09cb266320675341777085ed1390bc61b930e"
     },
     {
       "path": "docs/assets/javascripts/labs/loader.mjs",
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
-      "reviewed_on": "2026-11-04",
-      "sha256": "1ca82aeb7097d3949d051b59c6ff7e82e2195c0143484745e273cd984c8ab17d"
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。 2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。",
+      "reviewed_on": "2026-11-05",
+      "sha256": "a425095b9de5d14a83ca024a9914f236d0f1a983972197ab64fcfa6ceafe35c3"
     },
     {
       "path": "docs/assets/javascripts/labs/quiz-bank.mjs",
@@ -152,9 +152,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
-      "reviewed_on": "2026-11-04",
-      "sha256": "adc739011292c4d03d03033826672a118564a2df8815cac7d1e13b21d8dc9914"
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。 2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。",
+      "reviewed_on": "2026-11-05",
+      "sha256": "8274798dacd87dc8e5d282e5c0d3e4018785b14dcc8c967f968c61dc259ededa"
     },
     {
       "path": "docs/assets/javascripts/labs/scheduling.mjs",
@@ -179,27 +179,27 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
-      "reviewed_on": "2026-11-04",
-      "sha256": "d2d7bd35beb435555544119b92c0d14481c20026d95ee21985f1640ac8bc9cb8"
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。",
+      "reviewed_on": "2026-11-05",
+      "sha256": "294a656327495dfc158f806ea3eebf4dbdc6b1bb6d4b9fbf8809f6901b713b07"
     },
     {
       "path": "docs/assets/stylesheets/labs.css",
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。 2026-11-04 SEO/GEO 修订：第一方样式修订，补充面包屑和动态练习区域的初始空间；不含第三方素材。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
-      "reviewed_on": "2026-11-04",
-      "sha256": "d149249fff5f209bb5fbadf7dcab076db66f6f4523b7efefca40b5fda1d1aadf"
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。 2026-11-04 SEO/GEO 修订：第一方样式修订，补充面包屑和动态练习区域的初始空间；不含第三方素材。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。",
+      "reviewed_on": "2026-11-05",
+      "sha256": "1f2eeadf38cc7e24fa971d56411ea534db7a80738f132b422658474d0ed8ea8d"
     },
     {
       "path": "docs/assets/stylesheets/notes.css",
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。 2026-11-04 SEO/GEO 修订：第一方样式修订，补充面包屑和动态练习区域的初始空间；不含第三方素材。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。",
-      "reviewed_on": "2026-11-04",
-      "sha256": "7c4f5e1e3bcbf3f41508fa4b28830ac826201ce3eae29377d29fd21030de97c9"
+      "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。 2026-11-04 SEO/GEO 修订：第一方样式修订，补充面包屑和动态练习区域的初始空间；不含第三方素材。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。 本轮续审：基于现有索引原文实现中文检索降级，清理摘要标记，并保留查询链接复制及 44px 控件。",
+      "reviewed_on": "2026-11-05",
+      "sha256": "17a4d47d18496078bdfa5cbce2bb1b9ec00a261ecc416450f20044241adffb31"
     },
     {
       "path": "docs/assets/vendor/katex/LICENSE",
@@ -806,9 +806,9 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 SEO/GEO 修订：仅校正交互区与无脚本阅读说明，并为初始表单添加第一方样式类；题库内容未改。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
-      "reviewed_on": "2026-11-04",
-      "sha256": "1ab5143c44a405a4747aac90f13a02aefd66314b7011fa8ccffee93494d92c18"
+      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 SEO/GEO 修订：仅校正交互区与无脚本阅读说明，并为初始表单添加第一方样式类；题库内容未改。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。 2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。",
+      "reviewed_on": "2026-11-05",
+      "sha256": "dc4891a3ca89fd21ab04d2e4c4f6fb084f30f0f06ac0047049650aba8a928ed6"
     },
     {
       "path": "docs/labs/scheduling.md",
@@ -935,6 +935,24 @@
       "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
       "reviewed_on": "2026-11-04",
       "sha256": "ecc2d03c975ac0c05ee6cc280a0b6394dae51149b01ea5e373d65dbf6139d4e4"
+    },
+    {
+      "path": "docs/assets/javascripts/search.mjs",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。 本轮续审：基于现有索引原文实现中文检索降级，清理摘要标记，并保留查询链接复制及 44px 控件。",
+      "reviewed_on": "2026-11-05",
+      "sha256": "d15adea6c61cdf34b6d4c9b45cf527626b7f0a396820e4effa962cc8ae71315a"
+    },
+    {
+      "path": "docs/assets/javascripts/labs/quiz-state.mjs",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。",
+      "reviewed_on": "2026-11-05",
+      "sha256": "36e4c4065facbd74abd9309b6dc0133d84b8b346eafaaa1205fcd5951aae90e4"
     }
   ]
 }

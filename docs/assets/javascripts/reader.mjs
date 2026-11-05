@@ -137,45 +137,6 @@ import {getCourses} from "./course-catalog.mjs";
     }
   }
 
-  /**
-   * Material 的搜索只在 keyup 时读取输入框的值。中文输入法的候选词提交、
-   * 粘贴、语音输入都只发 input 事件，于是结果面板会停在旧查询上。
-   * 这里补一次合成的 keyup，让所有输入路径都能触发检索。
-   */
-  function initSearchInputFallback() {
-    const input = document.querySelector(".md-search__input");
-    if (!input || input.dataset.keyupFallback) return;
-    input.dataset.keyupFallback = "true";
-    let timer = 0;
-    input.addEventListener("input", () => {
-      window.clearTimeout(timer);
-      timer = window.setTimeout(() => {
-        input.dispatchEvent(new KeyboardEvent("keyup", { key: "Process", bubbles: true }));
-      }, 220);
-    });
-  }
-
-  function initSearchShareCopy() {
-    // Material 9.7.7 writes the previous href into data-clipboard-text before
-    // updating the link. Refresh it before its delegated ClipboardJS handler.
-    const share = document.querySelector('[data-md-component="search-share"]');
-    share?.addEventListener('click', () => {
-      share.setAttribute('data-clipboard-text', share.href);
-    }, {capture: true});
-  }
-
-  /** 搜索面板收起时，结果滚动容器仍是一个 0 高度的 Tab 停靠点——移出 Tab 序列。 */
-  function initSearchTabStop() {
-    const toggle = document.getElementById("__search");
-    const wrap = document.querySelector(".md-search__scrollwrap");
-    if (!wrap) return;
-    const sync = () => {
-      wrap.tabIndex = toggle && toggle.checked ? 0 : -1;
-    };
-    if (toggle) toggle.addEventListener("change", sync);
-    sync();
-  }
-
   /** Wide tables get a keyboard entry point and a visible "you can scroll" hint. */
   function initTableScrollHints() {
     let timer = 0;
@@ -298,156 +259,73 @@ import {getCourses} from "./course-catalog.mjs";
     });
   }
 
-  /** Search panel: focus, clear button, per-result highlight param, acronym fallback. */
-  function initSearchA11y() {
-    const toggle = document.getElementById("__search");
-    const input = document.querySelector(".md-search__input");
-    const headerToggle = document.querySelector('.md-header label[for="__search"]');
-    const output = document.querySelector(".md-search__output");
-    if (!input || !output) return;
-
-    if (toggle) {
-      toggle.addEventListener("change", () => {
-        if (toggle.checked) {
-          window.setTimeout(() => input.focus(), 60);
-          return;
-        }
-        // Closing: focus must land on a visible control that does not reopen the
-        // panel (focusing the search input does). Prefer the header search toggle,
-        // then the logo, then the skip link.
-        window.setTimeout(() => {
-          const logo = document.querySelector(".md-header__button.md-logo");
-          const skip = document.querySelector(".md-skip");
-          const candidates = [headerToggle, logo, skip, ...document.querySelectorAll(".md-header__button")];
-          const target = candidates.find((el) => el && el.offsetParent !== null && el.getClientRects().length);
-          if (target) target.focus();
-        }, 50);
-      });
-    }
-
-    // The clear button empties the field but the result list still shows the last query.
-    document.querySelectorAll(".md-search__options button").forEach((button) => {
-      button.addEventListener("click", () => {
-        window.setTimeout(() => {
-          input.dispatchEvent(new Event("input", { bubbles: true }));
-          input.dispatchEvent(new KeyboardEvent("keyup", { key: "Process", bubbles: true }));
-        }, 0);
-      });
-    });
-
-    // The page-level result link has an empty ?h=; reuse the current query so the
-    // landing page highlights the term just like the section links do.
-    output.addEventListener("click", (event) => {
-      const link = event.target.closest("a");
-      const query = input.value.trim();
-      if (!link || !query) return;
-      try {
-        const url = new URL(link.href, location.href);
-        if (!url.searchParams.get("h")) {
-          url.searchParams.set("h", query);
-          link.href = url.href;
-        }
-      } catch {
-      }
-    }, true);
-
-    // Acronyms such as FCFS are tokenised away by the zh search pipeline; offer the
-    // Chinese term instead of a dead end.
-    const aliases = {
-      FCFS: "先来先服务", SPF: "短进程优先", SJF: "短进程优先", RR: "时间片轮转",
-      CPU: "处理器", DRAM: "动态随机存储器", ISA: "指令系统", DOS: "操作系统",
-      PCB: "进程控制块", TLB: "快表", DMA: "直接存储器存取",
-    };
-    const meta = output.querySelector(".md-search-result__meta");
-    if (!meta) return;
-    const observer = new MutationObserver(() => {
-      const query = input.value.trim().toUpperCase();
-      const empty = /没有找到|No results/.test(meta.textContent || "");
-      const existing = output.querySelector(".search-alias-hint");
-      if (!empty || !aliases[query]) {
-        if (existing) existing.remove();
-        return;
-      }
-      if (existing && existing.dataset.query === query) return;
-      if (existing) existing.remove();
-      const hint = document.createElement("p");
-      hint.className = "search-alias-hint";
-      hint.dataset.query = query;
-      hint.textContent = `没有找到「${input.value.trim()}」，试试「${aliases[query]}」`;
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = aliases[query];
-      button.addEventListener("click", () => {
-        input.value = aliases[query];
-        input.dispatchEvent(new Event("input", { bubbles: true }));
-        input.dispatchEvent(new KeyboardEvent("keyup", { key: "Process", bubbles: true }));
-      });
-      hint.append(" ", button);
-      meta.after(hint);
-    });
-    observer.observe(output, { childList: true, subtree: true, characterData: true });
-  }
-
   /** Drawer: keyboard toggle, Esc, focus containment, background scroll lock. */
   function initDrawerA11y() {
     const sidebar = document.querySelector(".md-sidebar--primary");
     const label = document.querySelector('.md-header label[for="__drawer"]');
-    if (!sidebar) return;
+    if (!sidebar || !label) return;
+    const trigger = document.createElement("button");
+    trigger.type = "button";
+    trigger.className = label.className;
+    trigger.dataset.drawerToggle = "";
+    sidebar.id ||= "study-navigation";
+    trigger.setAttribute("aria-controls", sidebar.id);
+    trigger.append(...label.childNodes);
+    label.replaceWith(trigger);
     const box = () => document.getElementById("__drawer");
     const wide = window.matchMedia("(min-width: 76.25em)");
+    const background = [...document.querySelectorAll(".md-content, .md-sidebar--secondary, .md-footer, .md-tabs")];
+    const originalInert = new Map(background.map(el => [el, el.hasAttribute("inert")]));
     function sync() {
       const toggle = box();
       if (!toggle) return;
       const drawer = !wide.matches;
-      const open = toggle.checked;
-      document.documentElement.classList.toggle("drawer-open", drawer && open);
-      if (!drawer) {
-        sidebar.removeAttribute("inert");
-        sidebar.removeAttribute("aria-hidden");
-        return;
-      }
-      if (open) {
-        sidebar.removeAttribute("inert");
-        sidebar.removeAttribute("aria-hidden");
-      } else {
-        sidebar.setAttribute("inert", "");
-        sidebar.setAttribute("aria-hidden", "true");
-      }
+      if (!drawer) toggle.checked = false;
+      const open = drawer && toggle.checked;
+      const restoreFocus = drawer && !open && trigger.getAttribute("aria-expanded") === "true";
+      trigger.setAttribute("aria-expanded", String(open));
+      trigger.setAttribute("aria-label", open ? "关闭导航" : "打开导航");
+      document.documentElement.classList.toggle("drawer-open", open);
+      sidebar.toggleAttribute("inert", drawer && !open);
+      if (drawer && !open) sidebar.setAttribute("aria-hidden", "true");
+      else sidebar.removeAttribute("aria-hidden");
+      for (const el of background) el.toggleAttribute("inert", open || originalInert.get(el));
+      if (restoreFocus) trigger.focus({preventScroll: true});
     }
     document.addEventListener("change", (event) => {
       if (event.target && event.target.id === "__drawer") sync();
     });
     if (typeof wide.addEventListener === "function") wide.addEventListener("change", sync);
     sync();
-    if (label) {
-      label.setAttribute("tabindex", "0");
-      label.setAttribute("role", "button");
-      label.setAttribute("aria-label", "打开导航");
-      label.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter" && event.key !== " ") return;
-        event.preventDefault();
-        const before = box()?.checked ?? false;
-        // The focused <label> also gets the browser's own activation on Enter in
-        // Chromium; deferring our write guarantees the intended final state.
-        window.setTimeout(() => {
-          const toggle = box();
-          if (!toggle) return;
-          toggle.checked = !before;
-          toggle.dispatchEvent(new Event("change", { bubbles: true }));
-        }, 0);
-      });
-    }
-    label?.addEventListener("click", () => {
-      // Native label activation toggles the checkbox exactly once; keep the
-      // drawer lock/aria state in sync with it.
-      window.setTimeout(sync, 0);
+    trigger.addEventListener("click", () => {
+      const toggle = box();
+      if (!toggle) return;
+      const search = document.getElementById("__search");
+      if (!toggle.checked && search?.checked) {
+        search.checked = false;
+        search.dispatchEvent(new Event("change", {bubbles: true}));
+      }
+      toggle.checked = !toggle.checked;
+      toggle.dispatchEvent(new Event("change", { bubbles: true }));
+      if (toggle.checked) sidebar.querySelector("a[href]")?.focus();
     });
     document.addEventListener("keydown", (event) => {
       const toggle = box();
-      if (event.key !== "Escape" || !toggle || !toggle.checked) return;
-      toggle.checked = false;
-      toggle.dispatchEvent(new Event("change", { bubbles: true }));
-      if (label) label.focus();
+      if (!toggle?.checked || wide.matches) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        toggle.checked = false;
+        toggle.dispatchEvent(new Event("change", { bubbles: true }));
+        trigger.focus();
+      } else if (event.key === "Tab") {
+        const controls = [trigger, ...sidebar.querySelectorAll('a[href], button, input, select, [tabindex="0"]')]
+          .filter(el => el.getClientRects().length && !el.closest("[inert]"));
+        const index = controls.indexOf(document.activeElement);
+        if (index < 0 || (event.shiftKey && index === 0) || (!event.shiftKey && index === controls.length - 1)) {
+          event.preventDefault();
+          controls[event.shiftKey ? controls.length - 1 : 0]?.focus();
+        }
+      }
     });
   }
 
@@ -513,14 +391,10 @@ import {getCourses} from "./course-catalog.mjs";
   }
 
   initNotes();
-  initSearchInputFallback();
-  initSearchShareCopy();
-  initSearchTabStop();
   initTableScrollHints();
   initMathScrollHints();
   initPrintAnswers();
   initCrossTabProgress();
-  initSearchA11y();
   initDrawerA11y();
   initDialogFocus();
   initStorageGuard();

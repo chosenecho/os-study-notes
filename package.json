@@ -22,9 +22,9 @@
     "check:revisions": "python -X utf8 tools/checks/revisions.py",
     "check:links": "node tools/checks/links.mjs",
     "check:seo": "python -X utf8 tools/checks/seo.py",
-    "test:unit": "python -X utf8 -m unittest discover -s tests/unit -p test_*.py && node tests/unit/scheduling.test.mjs && node tests/unit/labs.test.mjs && node tests/unit/lab-examples.test.mjs",
+    "test:unit": "python -X utf8 -m unittest discover -s tests/unit -p test_*.py && node tests/unit/scheduling.test.mjs && node tests/unit/labs.test.mjs && node tests/unit/lab-examples.test.mjs && node tests/unit/quiz-state.test.mjs",
     "measure:performance": "node tests/browser/performance.mjs",
-    "test:browser": "node tests/browser/labs.test.mjs",
+    "test:browser": "node tests/browser/labs.test.mjs && node tests/browser/issues.test.mjs",
     "test": "npm run test:unit",
     "check": "npm run check:rights && npm run check:structure && npm run check:notes && npm run check:revisions && npm run test:unit && npm run build && npm run check:links && npm run check:seo"
   },

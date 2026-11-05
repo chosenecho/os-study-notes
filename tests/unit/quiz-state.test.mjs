@@ -1,0 +1,58 @@
+import assert from 'node:assert/strict';
+import {createQuizStore, QUIZ_STORAGE_KEY} from '../../docs/assets/javascripts/labs/quiz-state.mjs';
+const bank = [
+  {id: 1, course: 'os', prompt: 'one', options: ['a', 'b'], answer: 0},
+  {id: 'two', course: 'os', prompt: 'two', options: ['a', 'b'], answer: 1},
+  {id: 'three', course: 'net', prompt: 'three', options: ['a', 'b'], answer: 0},
+];
+const data = new Map();
+const storage = {getItem: k => data.get(k) ?? null, setItem: (k, v) => data.set(k, v), removeItem: k => data.delete(k)};
+let store = createQuizStore(bank, storage, () => 1000);
+store.session('os');
+assert.equal(store.next('os'), false);
+assert.equal(store.answer('os', 9), false);
+assert.equal(store.answer('os', 1), true);
+assert.equal(store.answer('os', 0), false);
+assert.equal(store.stats('os').missed, 1);
+store.session('net'); store.answer('net', 0);
+store = createQuizStore(bank, storage, () => 2000);
+assert.equal(store.course, 'net');
+assert.equal(store.session('os').answers['1'], 1);
+assert.equal(store.session('net').correct, 1);
+store.next('os'); store.answer('os', 1); store.next('os');
+assert.deepEqual(store.stats('os').last, {course: 'os', total: 2, correct: 1, at: 2000});
+store.start('os');
+assert.equal(store.stats('os').missed, 1, 'A new round preserves the notebook');
+assert.equal(store.start('os', 'missed'), true);
+assert.deepEqual(store.session('os').queue.map(q => q.id), [1]);
+store.answer('os', 0); store.next('os');
+assert.equal(store.stats('os').missed, 0);
+assert.equal(store.start('os', 'missed'), false);
+assert.equal(store.stats('os').attempted, 3);
+assert.equal(store.stats('os').correct, 2);
+const snapshot = data.get(QUIZ_STORAGE_KEY);
+let raw = JSON.parse(snapshot);
+raw.sessions.os.index = 999;
+data.set(QUIZ_STORAGE_KEY, JSON.stringify(raw));
+assert.equal(createQuizStore(bank, storage).session('os').index, 0);
+raw = JSON.parse(snapshot); raw.sessions.os.answers['1'] = '1';
+data.set(QUIZ_STORAGE_KEY, JSON.stringify(raw));
+assert.equal(createQuizStore(bank, storage).session('os').answered, 0);
+data.set(QUIZ_STORAGE_KEY, '{broken');
+assert.equal(createQuizStore(bank, storage).session().answered, 0);
+data.set(QUIZ_STORAGE_KEY, snapshot);
+const revised = createQuizStore(bank.map(q => ({...q, prompt: q.prompt + '!'})), storage);
+assert.equal(revised.stats('os').attempted, 0, 'Revised question banks invalidate old scores');
+const blocked = createQuizStore(bank, {getItem() {throw Error();}, setItem() {throw Error();}, removeItem() {throw Error();}});
+blocked.session('os'); blocked.answer('os', 0);
+assert.equal(blocked.available, false);
+assert.equal(blocked.session('os').correct, 1);
+blocked.clear(); assert.equal(blocked.session('os').answered, 0);
+store.clear(); assert.equal(store.stats('os').attempted, 0);
+assert.equal(store.stats('os').last, null);
+store.session('all'); store.answer('all', 1); store.next('all');
+store.answer('all', 1); store.next('all'); store.answer('all', 0); store.next('all');
+store.session('os'); store.answer('os', 0); store.next('os'); store.answer('os', 0);
+assert.equal(store.retryRound('all'), true);
+assert.deepEqual(store.session('all').queue.map(q => q.id), [1], 'Round retry uses that round, independently of the notebook');
+console.log('Quiz state: course restore, notebook, scores, corruption, bank revisions, blocked storage and clearing passed.');

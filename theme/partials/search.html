@@ -1,0 +1,29 @@
+{# Keep Material's worker/index format, with an explicit lazy-loading lifecycle. #}
+<div class="md-search" data-study-search aria-label="站内搜索">
+  <label class="md-search__overlay" for="__search"></label>
+  <div id="study-search-panel" class="md-search__inner" role="search" aria-label="课程笔记">
+    <form class="md-search__form" data-study-search-form>
+      <input id="study-search-query" type="search" class="md-search__input" name="query" aria-label="搜索章节或概念" aria-controls="study-search-results" placeholder="搜索章节或概念" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false">
+      <label class="md-search__icon md-icon" for="__search">
+        {% include ".icons/material/magnify.svg" %}
+        {% include ".icons/material/arrow-left.svg" %}
+      </label>
+      <nav class="md-search__options" aria-label="搜索操作">
+        <a href="?q=" class="md-search__icon md-icon" data-md-component="search-share" aria-label="复制搜索链接" title="复制搜索链接">{% include ".icons/material/share-variant.svg" %}</a>
+        <button type="reset" class="md-search__icon md-icon" aria-label="清空搜索">{% include ".icons/material/close.svg" %}</button>
+      </nav>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result">
+          <div class="md-search-result__meta" role="status" aria-live="polite" aria-atomic="true">输入章节名或概念开始搜索</div>
+          <div data-search-recovery hidden>
+            <button type="button" class="search-retry">重新加载搜索</button>
+            <p class="search-fallback"><a href="{{ 'reference/glossary/' | url }}">查看术语与缩写表</a> · <a href="{{ '' | url }}">浏览课程目录</a></p>
+          </div>
+          <ol id="study-search-results" class="md-search-result__list" aria-label="搜索结果"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

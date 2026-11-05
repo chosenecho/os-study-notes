@@ -1,6 +1,5 @@
 """Process built assets without an intermediate documentation tree."""
 from pathlib import Path
-import json
 import re
 
 
@@ -73,21 +72,3 @@ def on_post_build(config):
             )
             marker = math_script.group(0)
             html.write_text(text.replace(marker, tags + marker, 1), encoding='utf-8')
-
-    # 4) The chapter toolbar is page text, so the search index indexes its control
-    #    labels ("本章已复习 字号 标准 较大 大号") into every chapter snippet.
-    index = site / 'search' / 'search_index.json'
-    if index.exists():
-        data = json.loads(index.read_text(encoding='utf-8'))
-        changed = False
-        for doc in data.get('docs', []):
-            text = doc.get('text', '')
-            cleaned = re.sub(r'\s*本章已复习\s*字号\s*标准\s*较大\s*大号\s*', ' ', text)
-            if cleaned != text:
-                doc['text'] = cleaned.strip()
-                changed = True
-        if changed:
-            index.write_text(
-                json.dumps(data, ensure_ascii=False, separators=(',', ':')),
-                encoding='utf-8',
-            )

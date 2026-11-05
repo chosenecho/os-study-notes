@@ -184,7 +184,7 @@ export async function runThemeChecks(page, {base, out, report}) {
       await open('/courses/computer-networks/chapter-05/');
       await screenshot('network-mobile.png');
       await open('/courses/operating-systems/chapter-02/');
-      await page.locator('.md-header label[for="__drawer"]').click();
+      await page.locator('[data-drawer-toggle]').click();
       assert.equal(await page.locator('#__drawer').isChecked(), true);
       await screenshot('navigation-mobile.png');
       await page.locator('.md-nav__title[for="__nav_2"]').click();

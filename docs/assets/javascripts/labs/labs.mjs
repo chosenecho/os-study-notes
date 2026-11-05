@@ -1,6 +1,8 @@
-import {integer, sequence, matrix, paging, banker, address, cache, complement} from './labs-core.mjs';
-import {questions, questionSource} from './quiz-bank.mjs';
-import {getCourses} from '../course-catalog.mjs';
+// A retry must refresh the whole failed dependency graph, not just this entry.
+const revision = new URL(import.meta.url).search;
+const [{integer, sequence, matrix, paging, banker, address, cache, complement}, {questions, questionSource}, {createQuizStore}, {getCourses}] = await Promise.all([
+ import('./labs-core.mjs' + revision), import('./quiz-bank.mjs' + revision), import('./quiz-state.mjs' + revision), import('../course-catalog.mjs' + revision),
+]);
 
 const esc = value => String(value).replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const vector = row => '[' + row.join(', ') + ']';
@@ -80,28 +82,54 @@ function mountLab(root,kind) {
 
 function mountQuiz(root){
  root.classList.add('study-lab');
- const courses=getCourses();
- root.innerHTML='<label for="quiz-course">选择题组</label><select id="quiz-course"><option value="all">全部课程 · '+questions.length+' 题</option>'+courses.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.title)+' · '+questions.filter(q=>q.course===c.id).length+' 题</option>').join('')+'</select><p data-quiz-progress role="status"></p><div data-quiz-body tabindex="-1"></div>';
+ const catalog=getCourses(), names=Object.fromEntries(catalog.map(c=>[c.id,c.title]));
+ const counts=Object.fromEntries(catalog.map(c=>[c.id,questions.filter(q=>q.course===c.id).length]));
+ const courses=catalog.map(c=>c.id).filter(id=>counts[id]);
+ let storage;
+ try{storage=localStorage;}catch{storage={getItem(){return null;},setItem(){throw Error('storage blocked');},removeItem(){}};}
+ const store=createQuizStore(questions,storage);
+ root.innerHTML='<label for="quiz-course">选择题组</label><select id="quiz-course"><option value="all">全部课程 · '+questions.length+' 题</option>'+courses.map(course=>'<option value="'+esc(course)+'">'+esc(names[course])+' · '+counts[course]+' 题</option>').join('')+'</select><p data-quiz-progress role="status"></p><p data-quiz-storage class="quiz-storage-hint"></p><p data-quiz-history></p><div class="lab-buttons"><button class="md-button" type="button" data-missed>只练错题</button><button class="md-button" type="button" data-new>重新开始所选题组</button><button class="md-button" type="button" data-clear>清除自测记录</button></div><div data-quiz-body tabindex="-1"></div>';
  const filter=root.querySelector('select'), body=root.querySelector('[data-quiz-body]'), progress=root.querySelector('[data-quiz-progress]');
- let queue=[], index=0, correct=0, missed=[];
- function start(list){queue=[...list];index=0;correct=0;missed=[];render();}
- function initial(){start(questions.filter(q=>filter.value==='all'||q.course===filter.value));}
+ const storageHint=root.querySelector('[data-quiz-storage]');
+ function renderSummary(session){
+  const stats=store.stats(filter.value);
+  progress.textContent='本轮已答 '+session.answered+' / '+session.queue.length+'；答对 '+session.correct+' 题';
+  storageHint.textContent=store.available&&!window.__storageBlocked?'成绩、错题和各课程进度仅保存在当前浏览器，可在这里清除。':'浏览器未允许保存，自测记录只在本次页面有效。';
+  root.querySelector('[data-missed]').disabled=!stats.missed;
+  root.querySelector('[data-missed]').textContent='只练错题 · '+stats.missed+' 题';
+  const last=stats.last?'上次完成：'+stats.last.correct+' / '+stats.last.total+' · '+new Date(stats.last.at).toLocaleDateString('zh-CN')+'。':'';
+  root.querySelector('[data-quiz-history]').textContent=last+(stats.attempted?'累计作答 '+stats.attempted+' 次，正确率 '+Math.round(stats.correct/stats.attempted*100)+'%。':'尚无作答记录。');
+ }
+ function renderFeedback(q,selectedIndex){
+  const ok=Number(selectedIndex)===q.answer;
+  return '<p><strong>'+(ok?'答对了。':'本题答错。')+'正确答案：'+String.fromCharCode(65+q.answer)+'</strong></p><p>'+esc(q.explanation)+'</p><p>'+'<a href="'+esc(questionSource(q,catalog))+'">回看本章笔记</a></p>';
+ }
  function render(){
-  progress.textContent='本轮已答 '+index+' / '+queue.length+'；答对 '+correct+' 题';
+  const session=store.session(filter.value),{queue,index,correct,missed,answers}=session;
+  renderSummary(session);
   if(index===queue.length){
-   body.innerHTML='<h2>本轮完成</h2><p>答对 '+correct+' / '+queue.length+' 题；错题 '+missed.length+' 道。</p><div class="lab-buttons"><button class="md-button" data-retry'+(missed.length?'':' disabled')+'>重练本轮错题</button><button class="md-button" data-restart>重新开始所选题组</button></div>';
-   body.querySelector('[data-retry]').onclick=()=>{start(missed);body.focus();};body.querySelector('[data-restart]').onclick=()=>{initial();body.focus();};return;
+   body.innerHTML='<h2>本轮完成</h2><p>答对 '+correct+' / '+queue.length+' 题；错题 '+missed.length+' 道。'+(missed.length?'可以先回看解析，再重练错题。':'可以切换题组或重新练习。')+'</p><div class="lab-buttons"><button class="md-button" type="button" data-retry'+(missed.length?'':' disabled')+'>重练本轮错题</button></div>';
+   body.querySelector('[data-retry]').onclick=()=>{store.retryRound(filter.value);render();body.focus();};
+   return;
   }
   const q=queue[index];
-  body.innerHTML='<p class="study-caption">第 '+(index+1)+' / '+queue.length+' 题 · '+esc(courses.find(c=>c.id===q.course).title)+' · 第 '+q.chapter+' 章 · 考点：第 '+q.sections.join('、')+' 节</p><form><fieldset><legend>'+esc(q.prompt)+'</legend>'+q.options.map((option,i)=>'<label class="study-option"><input type="radio" name="answer" value="'+i+'"><span>'+String.fromCharCode(65+i)+'．'+esc(option)+'</span></label>').join('')+'</fieldset><div data-quiz-feedback aria-live="polite"></div><div class="lab-buttons"><button type="submit" class="md-button md-button--primary">提交答案</button><button class="md-button" type="button" data-next disabled>'+(index===queue.length-1?'查看本轮结果':'下一题')+'</button></div></form>';
-  const form=body.querySelector('form'),feedback=body.querySelector('[data-quiz-feedback]'),next=body.querySelector('[data-next]');let answered=false;
-  form.onsubmit=e=>{e.preventDefault();if(answered)return;const selected=form.querySelector('input:checked');if(!selected){feedback.textContent='请先选择一个答案。';form.querySelector('input').focus();return;}
-   answered=true;const ok=Number(selected.value)===q.answer;if(ok)correct++;else missed.push(q);
-   feedback.innerHTML='<p><strong>'+(ok?'答对了。':'本题答错。')+'正确答案：'+String.fromCharCode(65+q.answer)+'</strong></p><p>'+esc(q.explanation)+'</p><p><a href="'+esc(questionSource(q,courses))+'">回看本章笔记</a></p>';
-   form.querySelector('fieldset').disabled=true;form.querySelector('[type=submit]').disabled=true;next.disabled=false;next.focus({preventScroll:true});progress.textContent='本轮已答 '+(index+1)+' / '+queue.length+'；答对 '+correct+' 题';
+  body.innerHTML='<p class="study-caption">第 '+(index+1)+' / '+queue.length+' 题 · '+esc(names[q.course])+' · 第 '+q.chapter+' 章 · '+'考点：第 '+q.sections.join('、')+' 节'+'</p><form><fieldset><legend>'+esc(q.prompt)+'</legend>'+q.options.map((option,i)=>'<label class="study-option"><input type="radio" name="answer" value="'+i+'"><span>'+String.fromCharCode(65+i)+'．'+esc(option)+'</span></label>').join('')+'</fieldset><div data-quiz-feedback aria-live="polite"></div><div class="lab-buttons"><button type="submit" class="md-button md-button--primary">提交答案</button><button class="md-button" type="button" data-next disabled>'+(index===queue.length-1?'查看本轮结果':'下一题')+'</button></div></form>';
+  const form=body.querySelector('form'),feedbackBox=body.querySelector('[data-quiz-feedback]'),next=body.querySelector('[data-next]');
+  const savedAnswer=Object.prototype.hasOwnProperty.call(answers,String(q.id))?answers[String(q.id)]:null;
+  let answered=savedAnswer!==null;
+  if(answered){const selected=form.querySelector('input[value="'+savedAnswer+'"]');if(selected)selected.checked=true;feedbackBox.innerHTML=renderFeedback(q,savedAnswer);form.querySelector('fieldset').disabled=true;form.querySelector('[type=submit]').disabled=true;next.disabled=false;}
+  form.onsubmit=e=>{e.preventDefault();if(answered)return;const selected=form.querySelector('input:checked');if(!selected){feedbackBox.textContent='请先选择一个答案。';form.querySelector('input').focus();return;}
+   if(!store.answer(filter.value,Number(selected.value)))return;
+   answered=true;feedbackBox.innerHTML=renderFeedback(q,selected.value);
+   form.querySelector('fieldset').disabled=true;form.querySelector('[type=submit]').disabled=true;next.disabled=false;next.focus({preventScroll:true});renderSummary(store.session(filter.value));
   };
-  next.onclick=()=>{if(!answered)return;index++;render();body.focus();};
+  next.onclick=()=>{if(!answered)return;store.next(filter.value);render();body.focus();};
  }
- filter.onchange=initial;initial();
+ filter.value=store.course;
+ filter.onchange=render;
+ root.querySelector('[data-new]').onclick=()=>{store.start(filter.value);render();body.focus();};
+ root.querySelector('[data-missed]').onclick=()=>{if(store.start(filter.value,'missed')){render();body.focus();}};
+ root.querySelector('[data-clear]').onclick=()=>{store.clear();render();body.focus();};
+ render();
 }
 document.querySelectorAll('[data-study-lab]').forEach(root=>{const kind=root.dataset.studyLab;if(kind==='quiz')mountQuiz(root);else if(configs[kind])mountLab(root,kind);});

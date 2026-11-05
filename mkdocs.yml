@@ -111,6 +111,8 @@ extra_javascript:
   - assets/javascripts/math.js
   - path: assets/javascripts/reader.mjs
     type: module
+  - path: assets/javascripts/search.mjs
+    type: module
   - path: assets/javascripts/labs/loader.mjs
     type: module
 extra:

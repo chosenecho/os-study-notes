@@ -1,4 +1,4 @@
-import { schedule } from './scheduling.mjs';
+const {schedule} = await import('./scheduling.mjs' + new URL(import.meta.url).search);
 
   /** Decimal rounding: 2.675 must print as 2.68, not 2.67. */
   function round2(value) {
@@ -25,7 +25,20 @@ import { schedule } from './scheduling.mjs';
       quantum.disabled = algorithm.value !== "rr";
       if (algorithm.value !== "rr") resetQuantumIfInvalid();
     }
-    algorithm.addEventListener("change", updateQuantum);
+    function markStale() {
+      output.replaceChildren();
+      const message = document.createElement("p");
+      message.className = "lab-metrics";
+      message.textContent = "参数已更新，请点击“运行”重新计算。";
+      output.append(message);
+    }
+    algorithm.addEventListener("change", () => {
+      updateQuantum();
+      markStale();
+    });
+    form.addEventListener("input", (event) => {
+      if (event.target !== quantum || algorithm.value === "rr") markStale();
+    });
     function run() {
       try {
         const data = new FormData(form);

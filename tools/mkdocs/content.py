@@ -9,7 +9,7 @@ from mkdocs.utils import get_relative_url
 REPO = Path(__file__).resolve().parents[2]
 COURSES = json.loads((REPO / 'config/courses.json').read_text(encoding='utf-8'))
 TOOLBAR = (
-    '<div class="study-toolbar" data-chapter="{id}">'
+    '<div class="study-toolbar" data-search-exclude data-chapter="{id}">'
     '<label><input type="checkbox" data-complete> 本章已复习</label>'
     '<label class="reading-size">字号<select data-reading-size aria-label="正文字号">'
     '<option value="16">标准</option><option value="18">较大</option><option value="20">大号</option>'
@@ -146,3 +146,15 @@ def on_page_markdown(markdown, page, config, files):
         title = markdown.split('\n', 1)[0].lstrip('# ').strip()
         page.meta['description'] = f'各门课程的{title}，含概念辨析、计算条件与章节回查链接。'
     return markdown
+
+
+def on_page_content(html, page, **kwargs):
+    # Exclude dynamic controls and no-script notices before the search plugin indexes HTML.
+    return re.sub(
+        r'<(noscript|form|div)([^>]*)>',
+        lambda m: m.group(0) if 'data-search-exclude' in m.group(2) or not (
+            m.group(1) == 'noscript' or 'data-study-lab' in m.group(2)
+            or 'data-scheduler' in m.group(2) or (m.group(1) == 'form' and page.file.src_uri.startswith('labs/'))
+        ) else '<' + m.group(1) + ' data-search-exclude' + m.group(2) + '>',
+        html,
+    )

@@ -71,9 +71,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "第一方维护记录：已逐段核对课程登记表、构建回归、内容政策、现有部署流程和 OCR issue 链接；不包含教材题目、答案或扫描内容。",
+      "basis": "第一方维护记录：已逐段核对课程登记表、上游 OCR 修复提交 95077eb、四个 issue 链接及本站内容政策；仅记录同步状态，不包含教材题目、答案或扫描内容。",
       "reviewed_on": "2026-11-05",
-      "sha256": "720914c57e21900bd748d2f821a59ea736efd27626b1ff4176aa8f4bbeafa250"
+      "sha256": "50aa75a61832cc5c515f0b18fa0458a5cf1cb7e21dfd595f79c0acc37c3733c3"
     },
     {
       "path": "config/quotations.json",

@@ -14,15 +14,19 @@
 
 ## 题源问题跟踪
 
-问题详情和核对证据保存在 OCR 项目的 issue 中，本站不复刻原题：
+问题详情和核对证据保存在 OCR 项目的 issue 中，本站不复刻原题。上游 `ocr-textbooks` 的 `95077ebdac6eafb9d2d41393b02496b369aa2947` 已完成四项修复，并通过其题库回归、全库验收和重复回放检查；GitHub issue 当前仍保持 OPEN，表示后续仍可继续补充来源证据，不代表修复未落地。
 
-- [矩阵标识符被误识别为选项标记](https://github.com/chosenecho/ocr-textbooks/issues/1)。
-- [填空线漏识别](https://github.com/chosenecho/ocr-textbooks/issues/2)。
-- [原卷地址线题的选项疑点](https://github.com/chosenecho/ocr-textbooks/issues/3)。
-- [原卷时钟频率题的条件冲突](https://github.com/chosenecho/ocr-textbooks/issues/4)。
+- [矩阵标识符被误识别为选项标记](https://github.com/chosenecho/ocr-textbooks/issues/1)：已同步单页、合卷和课程派生稿的程序块校订。
+- [填空线漏识别](https://github.com/chosenecho/ocr-textbooks/issues/2)：已同步单页、合卷和课程派生稿的待填位置。
+- [原卷地址线题的选项疑点](https://github.com/chosenecho/ocr-textbooks/issues/3)：上游已入库本地编辑版，改为 17 条地址线；原卷仍保留，编辑版不是官方勘误。
+- [原卷时钟频率题的条件冲突][issue-4]：上游已入库本地编辑版，将条件明确为执行所需时钟周期数为两倍；原卷仍保留，编辑版不是官方勘误。
+
+本次同步只更新公开维护记录。三课站点没有收录题库原文、答案、扫描页或 SQLite 派生数据，因此没有把上游题库文件复制到本站。后续引用 #3、#4 时应区分“上游本地编辑版已可用”和“原转载来源仍待独立勘误”这两个状态。
 
 ## 发布验收
 
 发布流程采用 [ECS 部署说明](../../handbook/deployment.md)。合并前执行许可登记、目录结构、大纲映射、修订、单元测试、严格构建、站内链接和 SEO 检查，以及全站浏览器回归。浏览器回归覆盖全部登记章节、课程进度、公式、折叠答案、交互实验和移动端布局，检查定义见 [浏览器验收入口](../../tests/browser/labs.test.mjs)。
 
 合并后从主分支提交执行部署，保留构建摘要、上传包校验、激活记录和缓存刷新回执。线上版本通过公开的版本元数据与合并提交核对；具体发布标识和执行结果保存在本地发布证据中。
+
+[issue-4]: https://github.com/chosenecho/ocr-textbooks/issues/4

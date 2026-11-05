@@ -78,7 +78,7 @@ EDF 选择绝对截止时间最近的就绪任务。LLF 比较松弛度 $L=截�
 
 ## 10 银行家算法 {#s10}
 
-先计算 $Need=Max-Allocation$。对请求向量 Request，逐分量检查 Request 不超过 Need 和 Available；再试分配，更新可用量、分配量与剩余需求，最后做安全性检查。试分配不安全就撤销，不能仅因为资源当前足够便批准。
+先计算 $Need=Max-Allocation$。处理一个请求时按固定顺序检查：若 `Request > Need`，说明进程超过了自己的最大声明；若 `Request > Available`，只能等待，不能试分配。两个条件都满足时，暂时执行 `Available -= Request`、`Allocation += Request`、`Need -= Request`，再用新的 `Work=Available` 运行安全性检查。只有所有进程都能找到完成顺序才正式批准；检验失败时恢复这三个向量，不能仅因为资源当前足够便批准。
 
 自编安全性检查过程表：设 Available=(1,1)，P 的 Allocation=(1,0)、Need=(0,1)，Q 的 Allocation=(0,1)、Need=(2,0)。初始 Work=(1,1)，P 可完成，Work+Allocation=(2,1)；随后 Q 可完成，Work=(2,2)。序列 P、Q 说明状态安全。更新 Work 时加回 Allocation，不是 Max 或 Need。
 

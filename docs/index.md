@@ -4,7 +4,7 @@ title: 计算机课程笔记与交互练习
 
 # studynote
 
-操作系统概论、计算机组成原理与计算机网络技术的课程笔记、练习与交互实验。
+操作系统概论、计算机组成原理、计算机网络技术与多媒体技术的课程笔记、练习与交互实验。
 
 !!! info "版权与引用说明"
 
@@ -55,6 +55,20 @@ title: 计算机课程笔记与交互练习
     [课程概览 →](courses/computer-networks/index.md)
 
     <a class="md-button md-button--primary" data-next-chapter="cn-" href="courses/computer-networks/chapter-01/"><span data-next-label>开始第 1 章</span></a>
+
+- **多媒体技术及应用（第三版）**
+
+    多媒体基础、计算机系统、文本、图像、音频、视频、动画、创作平台与项目开发。学习草稿，OCR 尚未终校。
+
+    ---
+
+    已复习 **<span data-progress-count="mm">0</span> / 9** 章
+
+    <progress data-study-progress="mm" value="0" max="9" aria-label="多媒体技术及应用已复习章节"></progress>
+
+    [课程概览 →](courses/multimedia-technology/index.md)
+
+    <a class="md-button md-button--primary" data-next-chapter="mm-" href="courses/multimedia-technology/chapter-01/"><span data-next-label>开始第 1 章</span></a>
 
 </div>
 

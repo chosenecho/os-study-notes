@@ -16,5 +16,11 @@
     "slug": "computer-networks",
     "title": "计算机网络技术",
     "chapters": 9
+  },
+  {
+    "id": "mm",
+    "slug": "multimedia-technology",
+    "title": "多媒体技术及应用（第三版）",
+    "chapters": 9
   }
 ]

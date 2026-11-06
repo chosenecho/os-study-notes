@@ -26,9 +26,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
-      "reviewed_on": "2026-11-04",
-      "sha256": "37530ccafb67d98dd2f6312e315b7f35da9cba850a6ff33c46bf5d4cb1ea9273"
+      "basis": "2026-11-06 复核多媒体课程接入差异：原创课程说明、复习索引和入口文案；书目及短考点用于来源定位，不分发成书快照。保留原三门课程及既有许可边界。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "16b926472817bf6ef6e6af684a931f50706ddf9a1faca9566ad18827260e1c08"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -89,9 +89,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。",
-      "reviewed_on": "2026-11-04",
-      "sha256": "2748746ecce07b55a965023986d88d7ac7c624d635f8a7b2f25bb8ea0144a904"
+      "basis": "2026-11-06 复核多媒体课程接入差异：原创课程说明、复习索引和入口文案；书目及短考点用于来源定位，不分发成书快照。保留原三门课程及既有许可边界。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "bec45a89f8596dc2588d8cb71282ea243c9c22eb03669282dd0f71e46ec1e90b"
     },
     {
       "path": "docs/assets/images/favicon.svg",
@@ -143,9 +143,18 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。",
-      "reviewed_on": "2026-11-04",
-      "sha256": "2679d48d68f77234ecf116c2aa8099b3fd453c5ef2acfdb454660597b4b1f470"
+      "basis": "保留既有42道题，独立设计多媒体课程18道情境选择题及解析，逐题核对讲解锚点；新增题不含教材题干、答案或原书图像。新增数值题的条件、单位与算术另行复算。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "8222fc4de17fdf3fbd780c13d220044d4363738ea42c2ed4147dec888905c587"
+    },
+    {
+      "path": "docs/assets/javascripts/labs/quiz-state.mjs",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。",
+      "reviewed_on": "2026-11-05",
+      "sha256": "36e4c4065facbd74abd9309b6dc0133d84b8b346eafaaa1205fcd5951aae90e4"
     },
     {
       "path": "docs/assets/javascripts/labs/scheduler.mjs",
@@ -182,6 +191,15 @@
       "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。",
       "reviewed_on": "2026-11-05",
       "sha256": "294a656327495dfc158f806ea3eebf4dbdc6b1bb6d4b9fbf8809f6901b713b07"
+    },
+    {
+      "path": "docs/assets/javascripts/search.mjs",
+      "status": "cleared",
+      "license": "Apache-2.0",
+      "source_kind": "original-software-and-documentation",
+      "basis": "2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。 本轮续审：基于现有索引原文实现中文检索降级，清理摘要标记，并保留查询链接复制及 44px 控件。",
+      "reviewed_on": "2026-11-05",
+      "sha256": "d15adea6c61cdf34b6d4c9b45cf527626b7f0a396820e4effa962cc8ae71315a"
     },
     {
       "path": "docs/assets/stylesheets/labs.css",
@@ -622,6 +640,96 @@
       "sha256": "2f32c80b5efd3572b193d876db2544a0868ff74de30d4e9932025b45c7736d93"
     },
     {
+      "path": "docs/courses/multimedia-technology/chapter-01.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-06 逐节核对固定成书快照及2024年大纲：按学习目标独立解释，情境、约束、参数和解析重新设计；清除继承的教材习题复算，不收录原题、附录答案、扫描页及插图。未确认参数不作唯一判题依据；来源终校与旧版软件实测仍待完成。编辑核验并非法律认定。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "2da825b0025ecf32b2b270bef9daa9699108a9ff69465b8a34cc674009fe8885"
+    },
+    {
+      "path": "docs/courses/multimedia-technology/chapter-02.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-06 逐节核对固定成书快照及2024年大纲：按学习目标独立解释，情境、约束、参数和解析重新设计；清除继承的教材习题复算，不收录原题、附录答案、扫描页及插图。未确认参数不作唯一判题依据；来源终校与旧版软件实测仍待完成。编辑核验并非法律认定。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "d170cde0ba2db6082a942ce366a262facf88c6c4c7c728414713ddda033b584e"
+    },
+    {
+      "path": "docs/courses/multimedia-technology/chapter-03.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-06 逐节核对固定成书快照及2024年大纲：按学习目标独立解释，情境、约束、参数和解析重新设计；清除继承的教材习题复算，不收录原题、附录答案、扫描页及插图。未确认参数不作唯一判题依据；来源终校与旧版软件实测仍待完成。编辑核验并非法律认定。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "5b8aea428fccb4996471d27c6baf261f96ba8cfec970c02d11353720a19d7da0"
+    },
+    {
+      "path": "docs/courses/multimedia-technology/chapter-04.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-06 逐节核对固定成书快照及2024年大纲：按学习目标独立解释，情境、约束、参数和解析重新设计；清除继承的教材习题复算，不收录原题、附录答案、扫描页及插图。未确认参数不作唯一判题依据；来源终校与旧版软件实测仍待完成。编辑核验并非法律认定。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "52b247960f5529a966c3526d01ee96d5fdfd4a9a0523747fd143d6655177862d"
+    },
+    {
+      "path": "docs/courses/multimedia-technology/chapter-05.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-06 逐节核对固定成书快照及2024年大纲：按学习目标独立解释，情境、约束、参数和解析重新设计；清除继承的教材习题复算，不收录原题、附录答案、扫描页及插图。未确认参数不作唯一判题依据；来源终校与旧版软件实测仍待完成。编辑核验并非法律认定。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "0fa5fa3eeb4cf447d5bc5ca5186297e199d82a9106872c5830796f673197df44"
+    },
+    {
+      "path": "docs/courses/multimedia-technology/chapter-06.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-06 逐节核对固定成书快照及2024年大纲：按学习目标独立解释，情境、约束、参数和解析重新设计；清除继承的教材习题复算，不收录原题、附录答案、扫描页及插图。未确认参数不作唯一判题依据；来源终校与旧版软件实测仍待完成。编辑核验并非法律认定。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "13fcfd1e4f5e0c7ef63eaa061a45c3e4ba6112b980e714bfc123e994ff7f818d"
+    },
+    {
+      "path": "docs/courses/multimedia-technology/chapter-07.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-06 逐节核对固定成书快照及2024年大纲：按学习目标独立解释，情境、约束、参数和解析重新设计；清除继承的教材习题复算，不收录原题、附录答案、扫描页及插图。未确认参数不作唯一判题依据；来源终校与旧版软件实测仍待完成。编辑核验并非法律认定。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "e5dfb452c333f72edbb94e1bbb21dc164199058552fb7daddd9a118fed894767"
+    },
+    {
+      "path": "docs/courses/multimedia-technology/chapter-08.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-06 逐节核对固定成书快照及2024年大纲：按学习目标独立解释，情境、约束、参数和解析重新设计；清除继承的教材习题复算，不收录原题、附录答案、扫描页及插图。未确认参数不作唯一判题依据；来源终校与旧版软件实测仍待完成。编辑核验并非法律认定。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "ae5e492d6c81386739fc47785183feda8b7e0453b285d0f5031d75839de18f5e"
+    },
+    {
+      "path": "docs/courses/multimedia-technology/chapter-09.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-06 逐节核对固定成书快照及2024年大纲：按学习目标独立解释，情境、约束、参数和解析重新设计；清除继承的教材习题复算，不收录原题、附录答案、扫描页及插图。未确认参数不作唯一判题依据；来源终校与旧版软件实测仍待完成。编辑核验并非法律认定。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "97c56ca395d1b498d512c0779b9accaef3a50b5cdeec785a66e563335b27bad6"
+    },
+    {
+      "path": "docs/courses/multimedia-technology/index.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original",
+      "basis": "2026-11-06 复核多媒体课程接入差异：原创课程说明、复习索引和入口文案；书目及短考点用于来源定位，不分发成书快照。保留原三门课程及既有许可边界。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "dcdfe478c93c0c99935fa3de52eaddf0003e402a1b3b104c90b7b92bbf414684"
+    },
+    {
       "path": "docs/courses/operating-systems/chapter-01.md",
       "status": "cleared",
       "license": "CC-BY-4.0",
@@ -743,9 +851,9 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "按维护者要求移除首页联系按钮；联系方式仅保留在全站页脚，课程及许可说明未变。 2026-11-04 SEO/GEO 修订：仅更新首页学习主题标题，保留既有独立内容、许可说明与课程入口。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 按维护者要求移除首页联系按钮；联系方式仅保留在全站页脚，课程及许可说明未变。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。",
-      "reviewed_on": "2026-11-04",
-      "sha256": "2b7838fb507022b1557279cd77ae8a2921d917ff0ff49c80d1c6f8a738b92342"
+      "basis": "2026-11-06 复核多媒体课程接入差异：原创课程说明、复习索引和入口文案；书目及短考点用于来源定位，不分发成书快照。保留原三门课程及既有许可边界。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "422a00b95dbdf51cc2afc25906093ef6d84c0f3b84b8431546ba1998917fcf1e"
     },
     {
       "path": "docs/labs/address.md",
@@ -806,9 +914,9 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 SEO/GEO 修订：仅校正交互区与无脚本阅读说明，并为初始表单添加第一方样式类；题库内容未改。 记录见 handbook/plans/2026-11-04-seo-geo-results.md。 本轮按已核验成书快照独立组织计算机网络讲解、任务与图示，审阅新内容及站点接入差异；未收录教材题目、附录答案或插图。见 archive/releases/2026-11-04-computer-networks.md。编辑核验不构成法律认定。 2026-11-04 文案复核：依据原文件的知识点、例题和算法删去重复声明与泛泛提示，保留大纲定位、技术条件和解析；速查以原章节为依据整理，未引入第三方引文。 2026-11-04 合并复核：保留 main 的精简文案及 SEO 分支的静态算例、练习容器和回查链接；未新增第三方内容。 2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。",
-      "reviewed_on": "2026-11-05",
-      "sha256": "dc4891a3ca89fd21ab04d2e4c4f6fb084f30f0f06ac0047049650aba8a928ed6"
+      "basis": "2026-11-06 复核多媒体课程接入差异：原创课程说明、复习索引和入口文案；书目及短考点用于来源定位，不分发成书快照。保留原三门课程及既有许可边界。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "cb48ab5a8c805e2d191a41ba068e656bc5c136ab701fec4f46c68ca1ce5b3342"
     },
     {
       "path": "docs/labs/scheduling.md",
@@ -935,24 +1043,6 @@
       "basis": "第一方软件、独立编写的随堂题库及维护文档；已审阅正文和默认案例，未保留教材题目或答案表达。编辑过程见 archive/releases/2026-11-04-open-content.md。",
       "reviewed_on": "2026-11-04",
       "sha256": "ecc2d03c975ac0c05ee6cc280a0b6394dae51149b01ea5e373d65dbf6139d4e4"
-    },
-    {
-      "path": "docs/assets/javascripts/search.mjs",
-      "status": "cleared",
-      "license": "Apache-2.0",
-      "source_kind": "original-software-and-documentation",
-      "basis": "2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。 本轮续审：基于现有索引原文实现中文检索降级，清理摘要标记，并保留查询链接复制及 44px 控件。",
-      "reviewed_on": "2026-11-05",
-      "sha256": "d15adea6c61cdf34b6d4c9b45cf527626b7f0a396820e4effa962cc8ae71315a"
-    },
-    {
-      "path": "docs/assets/javascripts/labs/quiz-state.mjs",
-      "status": "cleared",
-      "license": "Apache-2.0",
-      "source_kind": "original-software-and-documentation",
-      "basis": "2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。",
-      "reviewed_on": "2026-11-05",
-      "sha256": "36e4c4065facbd74abd9309b6dc0133d84b8b346eafaaa1205fcd5951aae90e4"
     }
   ]
 }

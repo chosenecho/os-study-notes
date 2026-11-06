@@ -27,10 +27,10 @@ export async function runThemeChecks(page, {base, out, report}) {
   assert.match(await page.locator('article').innerText(), /版权与引用说明/);
   assert.equal(await page.locator('.md-tabs__item').count(), courses.length+3);
   assert.equal(await page.locator('.grid.cards > ul > li').count(), courses.length);
-  await page.evaluate(() => {
-    localStorage.setItem('studynote:completed:v1', '["os-1","co-1","cn-1"]');
+  await page.evaluate(ids => {
+    localStorage.setItem('studynote:completed:v1', JSON.stringify(ids.map(id => id+'-1')));
     localStorage.setItem('studynote:font-size:v1', '18');
-  });
+  }, courses.map(course => course.id));
   await page.reload({waitUntil: 'networkidle'});
   for (const {id: course} of courses) {
     assert.equal(await page.locator('[data-progress-count="' + course + '"]').innerText(), '1');
@@ -151,7 +151,7 @@ export async function runThemeChecks(page, {base, out, report}) {
   assert.match(await page.locator('[data-next-chapter="cn-"]').getAttribute('href'), /chapter-09[/]$/);
   await open('/courses/computer-networks/chapter-09/');
   await page.locator('[data-complete]').check();
-  assert.equal(await footerPath('next'), '/reference/pitfalls/');
+  assert.equal(await footerPath('next'), '/courses/multimedia-technology/');
   await page.reload({waitUntil:'networkidle'});
   assert.equal(await page.locator('[data-complete]').isChecked(), true);
   await open('/');
@@ -168,10 +168,26 @@ export async function runThemeChecks(page, {base, out, report}) {
   await page.keyboard.press('Escape');
   report.checks.push('Nine-chapter progress, chapter 9 persistence, course boundaries, network search and figure zoom');
 
+  await open('/courses/multimedia-technology/');
+  assert.equal(await page.locator('[data-progress-chapter]').count(), 9);
+  assert.match(await page.locator('article').innerText(), /OCR 尚未终校/);
+  await open('/courses/multimedia-technology/chapter-04/');
+  assert.equal(await page.locator('.exercise-answer').count(), 4);
+  assert.match(await page.locator('article').innerText(), /OCR 尚未终校/);
+  await screenshot('multimedia-desktop.png');
+  await open('/courses/multimedia-technology/chapter-09/');
+  assert.equal(await footerPath('next'), '/reference/pitfalls/');
+  await page.locator('[data-complete]').check();
+  await page.reload({waitUntil: 'networkidle'});
+  assert.equal(await page.locator('[data-complete]').isChecked(), true);
+  await open('/');
+  assert.equal(await page.locator('[data-progress-count="mm"]').innerText(), '1');
+  report.checks.push('Multimedia draft warning, nine-chapter index, progress persistence and footer');
+
   for (const width of [1280, 768, 390, 320]) {
     await page.setViewportSize({width, height: 900});
     for (const url of ['/', '/courses/operating-systems/', '/courses/computer-organization/', '/courses/operating-systems/chapter-02/',
-      '/courses/computer-organization/chapter-05/', '/courses/computer-networks/', '/courses/computer-networks/chapter-02/', '/courses/computer-networks/chapter-05/', '/courses/computer-networks/chapter-09/', '/labs/scheduling/']) {
+      '/courses/computer-organization/chapter-05/', '/courses/computer-networks/', '/courses/computer-networks/chapter-02/', '/courses/computer-networks/chapter-05/', '/courses/computer-networks/chapter-09/', '/courses/multimedia-technology/', '/courses/multimedia-technology/chapter-04/', '/courses/multimedia-technology/chapter-08/', '/labs/scheduling/']) {
       await open(url);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1),
         false, url + ' at ' + width + 'px');
@@ -183,6 +199,8 @@ export async function runThemeChecks(page, {base, out, report}) {
       await screenshot('chapter-mobile.png');
       await open('/courses/computer-networks/chapter-05/');
       await screenshot('network-mobile.png');
+      await open('/courses/multimedia-technology/chapter-08/');
+      await screenshot('multimedia-mobile.png');
       await open('/courses/operating-systems/chapter-02/');
       await page.locator('[data-drawer-toggle]').click();
       assert.equal(await page.locator('#__drawer').isChecked(), true);

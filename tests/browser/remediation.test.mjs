@@ -87,6 +87,7 @@ try{
     await page.locator('.image-fit').click();
     await page.screenshot({path:path.join(out,'figure-'+size.width+'.png'),animations:'disabled'});
     await page.keyboard.press('Escape');
+    await page.waitForFunction(()=>!document.documentElement.classList.contains('dialog-open'));
     assert.equal(await page.locator('.image-dialog').isVisible(),false);
     assert.equal(await page.locator('.figure-zoom').first().evaluate(el=>el===document.activeElement),true);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);

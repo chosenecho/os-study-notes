@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="385" viewBox="0 0 900 385" role="img" aria-labelledby="title desc">
+<title id="title">扫描输入：页图与文本是不同对象</title><desc id="desc">扫描形成页图，纠偏翻转后识别文字，最后对照页图人工校对和保存。</desc>
+<rect width="900" height="385" rx="12" fill="#fff"/>
+<defs><marker id="arrow" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#315ba8"/></marker></defs>
+<g font-family="Microsoft YaHei,Arial,sans-serif" fill="#17243b">
+<text x="35" y="40" font-size="24" font-weight="600">扫描输入：页图与文本是不同对象</text>
+<path d="M405 129L461 129" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M650.0 176L650.0 220" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M465 271L409 271" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<rect x="35" y="82" width="370" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="220.0" y="117" text-anchor="middle" font-size="21" font-weight="600">扫描</text>
+<text x="220.0" y="147" text-anchor="middle" font-size="18">纸面内容成为页图</text>
+<rect x="465" y="82" width="370" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="650.0" y="117" text-anchor="middle" font-size="21" font-weight="600">纠偏与翻转</text>
+<text x="650.0" y="147" text-anchor="middle" font-size="18">调整识别前的页图</text>
+<rect x="465" y="224" width="370" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="650.0" y="259" text-anchor="middle" font-size="21" font-weight="600">识别</text>
+<text x="650.0" y="289" text-anchor="middle" font-size="18">区域内图像转为字符</text>
+<rect x="35" y="224" width="370" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="220.0" y="259" text-anchor="middle" font-size="21" font-weight="600">校对并保存</text>
+<text x="220.0" y="289" text-anchor="middle" font-size="18">对照原页检查文本</text>
+<text x="35" y="360" font-size="17">OCR 输出能编辑不等于内容准确；校对仍需回到原页。</text>
+</g></svg>

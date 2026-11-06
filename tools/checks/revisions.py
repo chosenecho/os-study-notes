@@ -1,6 +1,7 @@
 """Protect technical distinctions while allowing wholly new teaching examples."""
 from pathlib import Path
 import sys
+from multimedia import audit as audit_multimedia
 
 ROOT = Path(__file__).resolve().parents[2]
 OS = ROOT / 'docs/courses/operating-systems'
@@ -34,7 +35,9 @@ for row in shared:
     checks += 1
     if row not in co6:
         errors.append('OS/CO I/O comparison tables disagree: ' + row)
-print(f'Technical regressions: {checks} distinctions across {len(required)} chapters')
+mm_checks, mm_errors = audit_multimedia(ROOT)
+errors.extend(mm_errors)
+print(f'Technical regressions: {checks} distinctions across {len(required)} chapters; {mm_checks} multimedia arithmetic, path and coverage checks')
 if errors:
     print(chr(10).join(errors))
     sys.exit(1)

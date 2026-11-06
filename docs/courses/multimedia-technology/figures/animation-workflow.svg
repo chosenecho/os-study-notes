@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="385" viewBox="0 0 900 385" role="img" aria-labelledby="title desc">
+<title id="title">动画制作中的对象与时间组织</title><desc id="desc">先确定文档和图层，再按帧安排关键状态，选择对象及相应动画方式，最后测试和保存发布。</desc>
+<rect width="900" height="385" rx="12" fill="#fff"/>
+<defs><marker id="arrow" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#315ba8"/></marker></defs>
+<g font-family="Microsoft YaHei,Arial,sans-serif" fill="#17243b">
+<text x="35" y="40" font-size="24" font-weight="600">动画制作中的对象与时间组织</text>
+<path d="M285 129L321 129" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M575 129L611 129" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M740.0 176L740.0 220" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M615 271L579 271" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M325 271L289 271" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<rect x="35" y="82" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="160.0" y="117" text-anchor="middle" font-size="21" font-weight="600">文档</text>
+<text x="160.0" y="147" text-anchor="middle" font-size="18">舞台尺寸、帧率与类型</text>
+<rect x="325" y="82" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="450.0" y="117" text-anchor="middle" font-size="21" font-weight="600">图层</text>
+<text x="450.0" y="147" text-anchor="middle" font-size="18">背景、对象、声音分工</text>
+<rect x="615" y="82" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="740.0" y="117" text-anchor="middle" font-size="21" font-weight="600">帧与关键帧</text>
+<text x="740.0" y="147" text-anchor="middle" font-size="18">确定出现和变化位置</text>
+<rect x="615" y="224" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="740.0" y="259" text-anchor="middle" font-size="21" font-weight="600">对象与实例</text>
+<text x="740.0" y="289" text-anchor="middle" font-size="18">核对所选动画方式</text>
+<rect x="325" y="224" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="450.0" y="259" text-anchor="middle" font-size="21" font-weight="600">测试播放</text>
+<text x="450.0" y="289" text-anchor="middle" font-size="18">中间过程、声音与交互</text>
+<rect x="35" y="224" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="160.0" y="259" text-anchor="middle" font-size="21" font-weight="600">保存与发布</text>
+<text x="160.0" y="289" text-anchor="middle" font-size="18">工程和播放结果分开</text>
+<text x="35" y="360" font-size="17">按 Animate 2020 教材功能组织；关键帧设定与完整帧时长计算分别说明。</text>
+</g></svg>

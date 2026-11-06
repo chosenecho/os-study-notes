@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="385" viewBox="0 0 900 385" role="img" aria-labelledby="title desc">
+<title id="title">PCM：数字化步骤与数据量条件</title>
+<desc id="desc">模拟声音经采样、量化和编码形成数字表示。未压缩采样数据量另由采样率、位数、声道数和时长共同计算；声道与时长不是后续处理步骤。</desc>
+<rect width="900" height="385" rx="12" fill="#fff"/>
+<defs><marker id="arrow" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#315ba8"/></marker></defs>
+<g font-family="Microsoft YaHei,Arial,sans-serif" fill="#17243b">
+<text x="35" y="35" font-size="24" font-weight="600">PCM：数字化步骤与数据量条件</text>
+<text x="35" y="65" font-size="17">输入模拟声音，按本章数字化模型组织下列步骤。</text>
+<path d="M285 129L321 129M575 129L611 129" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<rect x="35" y="82" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="160" y="117" text-anchor="middle" font-size="21" font-weight="600">采样</text>
+<text x="160" y="147" text-anchor="middle" font-size="18">每秒取样次数 f_s</text>
+<rect x="325" y="82" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="450" y="117" text-anchor="middle" font-size="21" font-weight="600">量化</text>
+<text x="450" y="147" text-anchor="middle" font-size="18">每样本位数 b</text>
+<rect x="615" y="82" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="740" y="117" text-anchor="middle" font-size="21" font-weight="600">编码</text>
+<text x="740" y="147" text-anchor="middle" font-size="18">形成数字表示</text>
+<rect x="35" y="224" width="830" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="450" y="260" text-anchor="middle" font-size="23" font-weight="600">未压缩字节数 B = f_s×b×s×t÷8</text>
+<text x="450" y="290" text-anchor="middle" font-size="18">声道数 s、时长 t 是计量条件，不是后续处理步骤。</text>
+<text x="35" y="360" font-size="17">采样率用次/秒、位数用 bit、时长用秒；文件开销与压缩后的大小另行检查。</text>
+</g></svg>

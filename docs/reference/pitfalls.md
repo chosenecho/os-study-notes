@@ -51,3 +51,19 @@ $m$ 为未命中率，$T_h$ 为命中时间，各时间量使用同一单位。[
 | [网络管理](../courses/computer-networks/chapter-07.md) | Trap 由代理主动报告，不能当作 Get 轮询本身 | 区分操作发起者、对象名与请求编号 |
 | [网络操作系统](../courses/computer-networks/chapter-08.md) | 装角色不等于完成域配置；域不等于站点 | 查名称解析、账户与目录状态，并标明旧版环境 |
 | [网络安全](../courses/computer-networks/chapter-09.md) | 加密、摘要、签名与访问控制职责不同；NAT 不等于保密 | 写保护目标、密钥归属、验证和授权条件 |
+
+## 多媒体技术及应用 {#multimedia}
+
+| 章节 | 易混概念 | 回查方式 |
+| --- | --- | --- |
+| [基础知识](../courses/multimedia-technology/chapter-01.md#s8) | 媒体角色、系统特征与应用领域 | 先确定对象与分类维度 |
+| [计算机系统](../courses/multimedia-technology/chapter-02.md#s1) | 接线成功、设备可用与作品可用 | 沿采集到演播逐层检查 |
+| [文本](../courses/multimedia-technology/chapter-03.md#s6) | 页图、OCR 字符与校对结果 | 对照原页检查文字和结构 |
+| [图像](../courses/multimedia-technology/chapter-04.md#s5) | 像素数、物理尺寸与文件字节数 | 写 ppi、位深和开销条件 |
+| [音频](../courses/multimedia-technology/chapter-05.md#s3) | bit/s、B/s 与 PCM 总量 | 单位先统一，压缩文件另判 |
+| [视频](../courses/multimedia-technology/chapter-06.md#s3) | 帧与场、制式与编码、工程与影片 | 分类后分别核对输入与交付 |
+| [动画](../courses/multimedia-technology/chapter-07.md#s10) | 完整帧数与首末时间戳间隔 | 明确计数、恒定帧率及导出范围 |
+| [制作工具](../courses/multimedia-technology/chapter-08.md#s4) | 文档参照、映像生成与目标端运行 | 逐级算路径，逐环节登记验证 |
+| [项目开发](../courses/multimedia-technology/chapter-09.md#s6) | 制作端预览与交付验收 | 保留版本、环境、预期和实际 |
+
+旧软件任务按教材版本学习，缺少运行条件时保留待实测状态。已登记的 OCR 错误和原书疑点见对应正文，不据存疑数值编制唯一答案。

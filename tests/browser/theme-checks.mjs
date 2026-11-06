@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 import {readFileSync} from 'node:fs';
 const courses=JSON.parse(readFileSync(new URL('../../config/courses.json',import.meta.url),'utf8'));
+const syllabus=JSON.parse(readFileSync(new URL('../../config/syllabus.json',import.meta.url),'utf8'));
 
 export async function runThemeChecks(page, {base, out, report}) {
   const open = async url => {
@@ -172,7 +173,7 @@ export async function runThemeChecks(page, {base, out, report}) {
   assert.equal(await page.locator('[data-progress-chapter]').count(), 9);
   assert.match(await page.locator('article').innerText(), /OCR 尚未终校/);
   await open('/courses/multimedia-technology/chapter-04/');
-  assert.equal(await page.locator('.exercise-answer').count(), 4);
+  assert.equal(await page.locator('.exercise-answer').count(), syllabus.chapters.find(c=>c.id==='mm-4').practice.length);
   assert.match(await page.locator('article').innerText(), /OCR 尚未终校/);
   await screenshot('multimedia-desktop.png');
   await open('/courses/multimedia-technology/chapter-09/');

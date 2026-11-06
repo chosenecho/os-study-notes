@@ -1,6 +1,6 @@
 # 术语与缩写表
 
-OS：操作系统概论；CO：计算机组成原理；CN：计算机网络技术。
+OS：操作系统概论；CO：计算机组成原理；CN：计算机网络技术；MM：多媒体技术及应用。
 
 | 术语 | 含义 | 章节 |
 | --- | --- | --- |
@@ -65,3 +65,23 @@ OS：操作系统概论；CO：计算机组成原理；CN：计算机网络技�
 | AD / OU / LDAP | 活动目录、域内组织单元与目录访问协议 | [CN 8](../courses/computer-networks/chapter-08.md#s6) |
 | IPsec / AH / ESP | 网络层安全体系及其中不同保护机制 | [CN 9](../courses/computer-networks/chapter-09.md#s6) |
 | CA / KDC | 证书身份绑定与密钥分配中心，信任职责不同 | [CN 9](../courses/computer-networks/chapter-09.md#s4) |
+
+## 多媒体技术及应用 {#multimedia}
+
+| 术语 | 含义 | 章节 |
+| --- | --- | --- |
+| 表示媒体 / 存储媒体 | 信息的表达形式 / 保存信息的实体 | [MM 1](../courses/multimedia-technology/chapter-01.md#s1) |
+| 实时 / 顺序流式传输 | 本版按现场传输与顺序下载播放区分的方法 | [MM 1](../courses/multimedia-technology/chapter-01.md#s5) |
+| 输入码 / 内部编码 / 字形 | 输入、计算机表示及显示输出的不同环节 | [MM 3](../courses/multimedia-technology/chapter-03.md#s2) |
+| OCR | 从页图识别字符；仍需对照原页校对 | [MM 3](../courses/multimedia-technology/chapter-03.md#s6) |
+| 像素尺寸 / ppi / dpi | 像素数量 / 每英寸像素数 / 设备每英寸点数 | [MM 4](../courses/multimedia-technology/chapter-04.md#s2) |
+| 位深 / 像素数据量 | 每像素存储位数 / 指定条件下的像素总字节数 | [MM 4](../courses/multimedia-technology/chapter-04.md#s5) |
+| 采样 / 量化 / 编码 | 时间取样 / 幅值离散化 / 数字表示 | [MM 5](../courses/multimedia-technology/chapter-05.md#s2) |
+| PCM 数据量 | 未压缩采样数据；须给采样率、位数、声道和时长 | [MM 5](../courses/multimedia-technology/chapter-05.md#s3) |
+| MIDI | 演奏相关消息，不直接等同波形采样 | [MM 5](../courses/multimedia-technology/chapter-05.md#s4) |
+| 制式 / 编码 / 文件格式 | 信号组织 / 编码方法 / 文件组织 | [MM 6](../courses/multimedia-technology/chapter-06.md#s3) |
+| 工程 / 输出 | 继续编辑的组织关系 / 面向使用端的交付结果 | [MM 6](../courses/multimedia-technology/chapter-06.md#s4) |
+| 普通帧 / 关键帧 / 空白关键帧 | 延续内容 / 定义内容或变化 / 不继承左侧内容 | [MM 7](../courses/multimedia-technology/chapter-07.md#s5) |
+| 动作补间 / 形状补间 | 实例等对象的属性变化 / 形状轮廓变化 | [MM 7](../courses/multimedia-technology/chapter-07.md#s6) |
+| 文档相对路径 | 从当前文档目录解释的资源位置 | [MM 8](../courses/multimedia-technology/chapter-08.md#s4) |
+| 导航图 / 屏幕脚本 | 内容关系和跳转 / 各屏内容、媒体及操作 | [MM 9](../courses/multimedia-technology/chapter-09.md#s5) |

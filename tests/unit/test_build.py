@@ -22,9 +22,36 @@ def module(name):
 
 content = module('content')
 licenses = module('licenses')
+assets = module('assets')
 
 
 class BuildTests(unittest.TestCase):
+    def test_math_is_readable_without_browser_scripts_and_bad_tex_fails(self):
+        with TemporaryDirectory() as tmp:
+            site = Path(tmp)
+            page = site / 'index.html'
+            page.write_text('<span class="arithmatex">\\(2^3=8\\)</span>', encoding='utf-8')
+            assets.render_math(site)
+            rendered = page.read_text(encoding='utf-8')
+            self.assertIn('katex-mathml', rendered)
+            self.assertIn('<math ', rendered)
+            self.assertNotIn('\\(2^3', rendered)
+            page.write_text('<div class="arithmatex">\\[\\badUnknownCommand{\\]</div>', encoding='utf-8')
+            with self.assertRaisesRegex(ValueError, 'KaTeX build failed'):
+                assets.render_math(site)
+
+    def test_svg_geometry_uses_root_viewbox_not_nested_rectangle(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / 'figure.svg').write_text(
+                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -20 900 500">'
+                '<rect width="20" height="30"/></svg>', encoding='utf-8')
+            page = SimpleNamespace(file=SimpleNamespace(abs_src_path=str(root / 'page.md'),
+                src_uri='courses/demo/page.md'), url='courses/demo/page/')
+            result = content.chapter_images('![Example](figure.svg)', page)
+            self.assertIn('width="900" height="500"', result)
+            self.assertIn('aspect-ratio:900/500', result)
+
     def test_independent_practice_has_visible_scope_and_folded_answer(self):
         source = '## 自编练习' + chr(10)*2 + '**1. Explain a mechanism.**' + chr(10)*2
         source += '考点：第 1 节；层次：领会。' + chr(10)*2 + '**答案：** A reasoned explanation.'

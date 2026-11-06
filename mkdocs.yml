@@ -83,12 +83,17 @@ nav:
   - 复习速查:
       - 易错点清单: reference/pitfalls.md
       - 术语与缩写表: reference/glossary.md
+      - 课程目录: courses/index.md
+      - 学习指南: guide.md
+      - 版本与勘误: errata.md
       - 许可与版权: licensing.md
   - 交互练习:
       - 练习入口: labs/index.md
       - 进程调度实验: labs/scheduling.md
       - 页面置换: labs/paging.md
       - 银行家算法: labs/banker.md
+      - PV 与信号量: labs/semaphore.md
+      - CIDR 地址块: labs/cidr.md
       - 分页地址转换: labs/address.md
       - Cache 映射: labs/cache.md
       - 补码加减: labs/complement.md
@@ -119,7 +124,6 @@ extra_css:
   - assets/stylesheets/labs.css
   - assets/vendor/katex/katex.min.css
 extra_javascript:
-  - assets/javascripts/math.js
   - path: assets/javascripts/reader.mjs
     type: module
   - path: assets/javascripts/search.mjs

@@ -13,6 +13,8 @@
 | [Material Design Icons](https://github.com/Templarian/MaterialDesign-SVG/tree/v7.4.47) | @mdi/svg 7.4.47 | [Apache-2.0 及原版权声明](LICENSES/third-party/mdi-svg-LICENSE.txt) |
 | [Font Awesome Free](https://github.com/FortAwesome/Font-Awesome/tree/7.1.0) | 7.1.0 | [原许可与署名，Fonticons, Inc.](LICENSES/third-party/fontawesome-LICENSE.txt)；主题中的 GitHub SVG 图标按 CC BY 4.0 使用 |
 
+KaTeX 使用上表同一份 0.16.11 发行文件在构建期生成 HTML 与 MathML；浏览器只加载公式样式和字体，不再执行公式渲染器。原始发行文件及许可继续保留。仓库链接采用本地静态模板，不读取 GitHub API 的星标或发行信息。
+
 ## 主题分发的浏览器依赖
 
 版本以 Material 9.7.7 的上游锁文件和本机安装包的浏览器 bundle source map 为核对依据。以下许可文件随源码和站点产物一同保留。

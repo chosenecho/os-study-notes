@@ -1,6 +1,40 @@
 """Process built assets without an intermediate documentation tree."""
 from pathlib import Path
+from html import unescape
+import json
 import re
+import subprocess
+
+
+def render_math(site):
+    """Ship readable HTML/MathML, with parse failures blocking the build."""
+    pattern = re.compile(r'<(span|div) class="arithmatex">(.*?)</\1>', re.S)
+    pages, expressions = [], []
+    for path in sorted(site.rglob('*.html')):
+        text = path.read_text(encoding='utf-8')
+        matches = list(pattern.finditer(text))
+        if not matches:
+            text = re.sub(r'<link[^>]+href="[^"]*assets/vendor/katex/katex.min.css"[^>]*>\s*', '', text)
+            path.write_text(text, encoding='utf-8')
+            continue
+        pages.append((path,text,len(matches)))
+        for match in matches:
+            tex = unescape(match[2]).strip()
+            if not ((tex.startswith(r'\(') and tex.endswith(r'\)'))
+                    or (tex.startswith(r'\[') and tex.endswith(r'\]'))):
+                raise ValueError(f'Unexpected math delimiters: {path}')
+            expressions.append({'tex':tex[2:-2], 'display':match[1] == 'div'})
+    if not expressions:
+        return
+    result = subprocess.run(['node',str(Path(__file__).with_name('render-math.cjs'))],
+                            input=json.dumps(expressions),text=True,encoding='utf-8',
+                            capture_output=True)
+    if result.returncode:
+        raise ValueError(result.stderr.strip())
+    rendered = iter(json.loads(result.stdout))
+    for path,text,_count in pages:
+        text = pattern.sub(lambda m: '<'+m[1]+' class="arithmatex">'+next(rendered)+'</'+m[1]+'>',text)
+        path.write_text(text,encoding='utf-8')
 
 
 def on_post_build(config):
@@ -15,6 +49,7 @@ def on_post_build(config):
     css = (Path(config['docs_dir']) / 'assets/stylesheets/notes.css').read_text(encoding='utf-8')
     style = '<style>\n' + css + '\n</style>'
     site = Path(config['site_dir'])
+    render_math(site)
     for html in site.rglob('*.html'):
         text = html.read_text(encoding='utf-8')
         if 'assets/stylesheets/notes.css' not in text:
@@ -53,22 +88,9 @@ def on_post_build(config):
     for leftover in (site / 'assets/images').glob('favicon.png'):
         leftover.unlink()
 
-    # 3c) KaTeX 的 JS 只在真的含公式的页面注入：判据是渲染后的
-    #     ``class="arithmatex"`` 标记，不是目录名，所以哪门课先把公式迁过来，
-    #     哪门课就自动生效。注意这只是 JS 按需：katex.min.css 走 mkdocs.yml 的
-    #     extra_css，CSS 与 assets/vendor/katex/fonts/ 下的 20 个 woff2 仍然全站加载，
-    #     但字体只有用到对应字形时浏览器才真正下载。
-    #     扫描全部页面，章节与共用速查页都可按需加载。
-    for html in sorted(site.rglob('*.html')):
-        text = html.read_text(encoding='utf-8')
-        if 'class="arithmatex"' not in text:
-            continue
-        math_script = re.search(r'<script src="([^"]*assets/)javascripts/math\.js"></script>', text)
-        if math_script and 'assets/vendor/katex/katex.min.js' not in text:
-            asset_prefix = math_script.group(1)
-            tags = (
-                f'<script src="{asset_prefix}vendor/katex/katex.min.js"></script>'
-                f'<script src="{asset_prefix}vendor/katex/contrib/auto-render.min.js"></script>'
-            )
-            marker = math_script.group(0)
-            html.write_text(text.replace(marker, tags + marker, 1), encoding='utf-8')
+    # Brand origin 403s while retaining their HTTP status in nginx.
+    missing = site / '404.html'
+    if missing.exists():
+        text = missing.read_text(encoding='utf-8')
+        text = text.replace('页面未找到', '无法访问').replace('页面没有找到', '此请求无法访问')
+        (site / '403.html').write_text(text,encoding='utf-8')

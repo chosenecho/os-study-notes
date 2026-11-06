@@ -4,6 +4,7 @@ import json
 import logging
 import re
 from html import escape
+from xml.etree import ElementTree
 from mkdocs.utils import get_relative_url
 
 REPO = Path(__file__).resolve().parents[2]
@@ -17,8 +18,11 @@ TOOLBAR = (
 )
 DIALOG = (
     '<dialog class="image-dialog" aria-label="插图预览">'
+    '<div class="image-dialog-tools">'
+    '<button type="button" class="md-button image-fit" aria-pressed="false">查看原图</button>'
     '<button type="button" class="md-button close-dialog" autofocus>关闭 · Esc</button>'
-    '<img alt=""><p></p></dialog>'
+    '</div><div class="image-viewport" tabindex="0" role="region" aria-label="插图，可在原图模式下滚动">'
+    '<img alt=""></div><p></p></dialog>'
 )
 EXERCISE_SECTION = re.compile(r'(^## 自编练习[^\n]*\n)([\s\S]*?)(?=^## |\Z)', re.M)
 
@@ -29,7 +33,8 @@ def exercise(match):
     if not marker or not answer.strip():
         raise ValueError('Every independent exercise requires an authored answer: ' + question)
     return (
-        '<section class="exercise-item" markdown="1">\n\n' + question + '\n\n' + prompt.strip()
+        '<section class="exercise-item" id="exercise-' + re.search(r'[0-9]+', question)[0]
+        + '" markdown="1">\n\n' + question + '\n\n' + prompt.strip()
         + '\n\n<details class="exercise-answer" markdown="1">\n<summary>答案与解析</summary>\n\n'
         + '**参考答案：** ' + answer.strip()
         + '\n\n</details>\n\n</section>\n\n'
@@ -41,6 +46,17 @@ def format_exercises(text):
         body = re.sub(r'(^\*\*[0-9]+\.[^\n]*)([\s\S]*?)(?=^\*\*[0-9]+\.|\Z)', exercise, match.group(2), flags=re.M)
         return match.group(1) + body
     return EXERCISE_SECTION.sub(section, text)
+
+
+def exercise_navigation(text):
+    """Resolve question-number cells without mistaking syllabus numbers for exercises."""
+    def links(match):
+        numbers = re.findall(r'\d+', match[2])
+        return match[1] + '、'.join(f'[{n}](#exercise-{n})' for n in numbers) + ' |'
+    head, separator, body = text.partition('\n## 1 ')
+    head = head.replace('| 自编练习 |', '| 自编题号 |')
+    head = re.sub(r'(\|\s*\[第 \d+ 节\]\(#s\d+\)\s*\|)\s*([\d、，, ]+)\s*\|', links, head)
+    return head + separator + body
 
 
 def on_config(config):
@@ -98,13 +114,24 @@ def chapter_images(markdown, page):
         if not asset.is_relative_to(source) or asset.suffix != '.svg' or not asset.is_file():
             raise ValueError(f'Expected an existing course-local SVG: {relative}')
         svg = asset.read_text(encoding='utf-8-sig')
-        width = re.search(r'\bwidth="([\d.]+)"', svg)
-        height = re.search(r'\bheight="([\d.]+)"', svg)
-        size = f' width="{width[1]}" height="{height[1]}"' if width and height else ''
+        root = ElementTree.fromstring(svg)
+        width, height = root.get('width', ''), root.get('height', '')
+        if not re.fullmatch(r'[\d.]+', width) or not re.fullmatch(r'[\d.]+', height):
+            viewbox = root.get('viewBox', '').replace(',', ' ').split()
+            if len(viewbox) != 4:
+                raise ValueError(f'SVG requires positive dimensions or viewBox: {relative}')
+            width, height = viewbox[2:]
+        if float(width) <= 0 or float(height) <= 0:
+            raise ValueError(f'SVG requires positive dimensions: {relative}')
+        size = (f' width="{width}" height="{height}"'
+                f' style="aspect-ratio:{width}/{height};max-width:{width}px"')
         uri = (Path(page.file.src_uri).parent / relative).as_posix()
         url = get_relative_url(uri, page.url)
         alt = escape(match['alt'] or asset.stem, quote=True)
-        return f'<img src="{escape(url, quote=True)}" alt="{alt}"{size} loading="lazy">'
+        url = escape(url, quote=True)
+        return (f'<a class="figure-zoom" href="{url}" aria-label="放大插图：{alt}">'
+                f'<img src="{url}" alt="{alt}"{size} loading="lazy">'
+                '<span class="zoom-hint" aria-hidden="true">放大插图</span></a>')
 
     # Preserve complete code samples before resolving real course images.
     pattern = (
@@ -121,6 +148,9 @@ def on_page_markdown(markdown, page, config, files):
     uri = Path(page.file.src_uri)
     if uri.as_posix() == 'index.md':
         page.meta['description'] = config['site_description'] + '按大纲查章节，记录复习进度并回查术语。'
+    if uri.as_posix() == 'courses/index.md':
+        links = '\n'.join(f'- [{c["title"]}]({c["slug"]}/index.md)：{c["chapters"]} 章。' for c in COURSES)
+        return markdown.replace('<!-- course-catalog -->', links)
     course = next((course for course in COURSES
                    if uri.parent.as_posix() == f'courses/{course["slug"]}'), None)
     if course:
@@ -137,7 +167,7 @@ def on_page_markdown(markdown, page, config, files):
                 f'{course["title"]}复习笔记：{title.lstrip("# ")}。'
                 '含大纲索引、独立讲解与附解析的自编练习。'
             )
-            body = chapter_images(link_chapters(format_exercises(body.strip()), course), page)
+            body = chapter_images(link_chapters(format_exercises(exercise_navigation(body.strip())), course), page)
             toolbar = TOOLBAR.format(id=f'{course["id"]}-{number}')
             # Python-Markdown needs a block wrapper around the dialog element.
             dialog = '<div class="image-dialog-holder">\n\n' + DIALOG + '\n\n</div>\n'

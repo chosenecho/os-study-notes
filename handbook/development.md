@@ -12,13 +12,15 @@ MkDocs 直接读取 `docs/`。课程位于 `docs/courses/<slug>/`，入口为 `i
 
 - `tools/mkdocs/content.py`：通过 `on_page_markdown` 添加复习工具栏、进度标记、折叠答案和图片尺寸。课程入口的“资料与核对规则”“资料依据与使用边界”“原有笔记处理”章节仅保留在源码中。
 - `tools/mkdocs/licenses.py`：通过 `on_files` 将根目录许可说明、`LICENSE`、`NOTICE`、`LICENSES/` 和权利清单作为虚拟文件提供给站点。
-- `tools/mkdocs/assets.py`：处理构建产物，内联阅读样式、按公式标记注入 KaTeX，清理未使用的搜索语言包与 source map。
+- `tools/mkdocs/assets.py`：处理构建产物，内联阅读样式、调用 `render-math.cjs` 将公式构建为 KaTeX HTML/MathML，清理未使用的搜索语言包与 source map。
 
 钩子不写入 `docs/`。课程之间的链接保留原生 Markdown 路径，不再另设输出目录或改写章节文件名。
 
 ## 前端与主题
 
 `docs/assets/javascripts/reader.mjs` 负责复习记录、字号、图片预览、搜索和无障碍适配。`labs/loader.mjs` 按页面加载实验；调度页面使用 `labs/scheduler.mjs`，其模型为 `labs/scheduling.mjs`。其他实验与题库分别使用 `labs/labs.mjs`、`labs/labs-core.mjs` 和 `labs/quiz-bank.mjs`。单元测试直接导入页面使用的模型。
+
+自测问题与选项的 ID 是永久标识，不能从数组位置重新生成。修正文案或增加干扰项保持原身份；改变题意或正确答案须增加单题 `revision`，并移除不再适用的 `legacyRevision`。版本 3 存储用选项身份保存答案，恢复时按单题版本核验；未知格式先另存备份，再启动新会话。
 
 阅读和实验样式位于 `docs/assets/stylesheets/`；KaTeX 原发行文件位于 `docs/assets/vendor/katex/`，保留其 LICENSE。模板覆盖位于 `theme/`。
 
@@ -62,3 +64,9 @@ Playwright 为仓库锁定的开发依赖。浏览器证据默认写入 `artifac
 `archive/` 只保留当前可公开的维护记录。含旧题面、答案及截图的历史审计已移到本地对照副本。main 已改写为干净历史；GitHub PR 引用、缓存和外部副本的后续边界见 [历史清理记录](history-cleanup.md)。当前检查统一从 `package.json` 启动。
 
 `local/` 整体忽略提交，其中的独立 Git 仓库保留内部结构。构建不读取私有教材、扫描件或历史审计记录。
+
+## 公式与分享图片
+
+构建需要 Node.js（与本仓库模型测试使用同一运行环境）；公式解析失败会终止构建，浏览器不再临时渲染 TeX。无需新增 KaTeX npm 依赖，使用已锁定许可的本地发行文件。
+
+首页与课程分享 PNG 是已提交的 1200×630 原创图片。维护者需要重绘时安装 Pillow 并显式指定本机中文字体，例如 `python tools/seo/social.py --font C:/Windows/Fonts/msyh.ttc`；常规构建不依赖 Pillow 或系统字体。预览站图片 URL 随 `site_url` 生成，不能固定引用生产域名。

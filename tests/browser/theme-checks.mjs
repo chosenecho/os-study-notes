@@ -24,7 +24,7 @@ export async function runThemeChecks(page, {base, out, report}) {
   await open('/');
   assert.match(await page.title(), /studynote/);
   assert.equal(await page.locator('article a[href="mailto:chosenecho@163.com"]').count(), 0);
-  assert.match(await page.locator('article').innerText(), /版权与引用说明/);
+  assert.match(await page.locator('article').innerText(), /许可与版权/);
   assert.equal(await page.locator('.md-tabs__item').count(), courses.length+3);
   assert.equal(await page.locator('.grid.cards > ul > li').count(), courses.length);
   await page.evaluate(ids => {

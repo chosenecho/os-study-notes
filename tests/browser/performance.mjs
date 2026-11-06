@@ -39,7 +39,22 @@ try {
       downloadThroughput: device.download, uploadThroughput: 750_000 / 8});
     await cdp.send('Emulation.setCPUThrottlingRate', {rate: device.cpu});
     await page.addInitScript(() => {
-      window.labVitals = {lcp: null, cls: 0, shifts: []};
+      window.labVitals = {lcp: null, cls: 0, shifts: [], long_tasks: [], math_ready: null, raw_math_window: 0};
+      new PerformanceObserver(list => {
+        for (const e of list.getEntries()) window.labVitals.long_tasks.push({start: e.startTime, duration: e.duration});
+      }).observe({type: 'longtask', buffered: true});
+      document.addEventListener('DOMContentLoaded', () => {
+        const start = performance.now();
+        const ready = () => [...document.querySelectorAll('.arithmatex')].every(el => el.querySelector('.katex'));
+        if (ready()) { window.labVitals.math_ready = start; return; }
+        const observer = new MutationObserver(() => {
+          if (!ready()) return;
+          window.labVitals.math_ready = performance.now();
+          window.labVitals.raw_math_window = performance.now() - start;
+          observer.disconnect();
+        });
+        observer.observe(document.body, {childList: true, subtree: true});
+      }, {once: true});
       let sessionStart = 0, lastShift = 0, sessionValue = 0;
       new PerformanceObserver(list => {
         for (const entry of list.getEntries()) window.labVitals.lcp = entry.startTime;
@@ -62,6 +77,7 @@ try {
     await page.waitForFunction(() => !document.querySelector('.arithmatex') ||
       [...document.querySelectorAll('.arithmatex')].every(el => el.querySelector('.katex')));
     const sample = await page.evaluate(() => ({...window.labVitals,
+      fcp: performance.getEntriesByName('first-contentful-paint')[0]?.startTime ?? null,
       transfer_bytes: performance.getEntriesByType('resource').reduce((sum, r) => sum + r.transferSize, 0),
       jsonld_count: document.querySelectorAll('script[type="application/ld+json"]').length,
       overflow: document.documentElement.scrollWidth > innerWidth + 1}));

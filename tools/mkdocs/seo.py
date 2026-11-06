@@ -9,6 +9,11 @@ def on_page_context(context, page, config, **kwargs):
     context['seo_title'] = (title + ' - ' + config['site_name']
                             if page.meta.get('title') or not page.is_homepage
                             else config['site_name'])
+    uri = PurePosixPath(page.file.src_uri)
+    course = next((c for c in config['extra']['study_courses']
+                   if uri.parent.as_posix() == 'courses/' + c['slug']), None)
+    image = course['slug'] if course else 'home'
+    context['study_social_image'] = urljoin(config['site_url'], 'assets/images/social/' + image + '.png')
     if page.is_homepage:
         context['study_schema'] = {
             '@context': 'https://schema.org',

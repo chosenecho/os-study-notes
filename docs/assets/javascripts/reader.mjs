@@ -1,8 +1,23 @@
 import {getCourses} from "./course-catalog.mjs";
+import {createReadingStore, READING_KEY} from "./reading-state.mjs";
 
 "use strict";
 (() => {
   const storageKey = "studynote:completed:v1";
+  let reading;
+  try { reading = createReadingStore(getCourses(), localStorage); } catch {}
+  function renderRecent() {
+    document.querySelectorAll("[data-recent-chapter]").forEach(link => {
+      const course = getCourses().find(c => c.id === link.dataset.recentChapter);
+      const recent = reading?.get(course?.id);
+      link.hidden = !recent;
+      if (!recent) { link.removeAttribute("href"); return; }
+      const base = new URL(document.querySelector('[data-next-chapter="' + course.id + '-"]').href);
+      base.pathname = base.pathname.replace(/chapter-\d+/, 'chapter-' + String(recent.chapter).padStart(2, '0'));
+      link.href = base.href;
+      link.textContent = '返回最近阅读 · 第 ' + recent.chapter + ' 章';
+    });
+  }
   function readPreference(key) {
     try { return localStorage.getItem(key); } catch { return null; }
   }
@@ -81,6 +96,7 @@ import {getCourses} from "./course-catalog.mjs";
         }
       });
       const id = toolbar.dataset.chapter;
+      if (!reading?.visit(id) || window.__storageBlocked) status.textContent = "浏览器未允许保存，最近阅读位置仅在本次会话有效";
       const checkbox = toolbar.querySelector("[data-complete]");
       checkbox.checked = readProgress().includes(id);
       checkbox.addEventListener("change", () => {
@@ -97,10 +113,20 @@ import {getCourses} from "./course-catalog.mjs";
       });
     }
     renderProgress();
+    renderRecent();
     const dialog = document.querySelector(".image-dialog");
     if (dialog && !dialog.dataset.ready) {
       dialog.dataset.ready = "true";
-      dialog.querySelector("button").addEventListener("click", () => dialog.close());
+      dialog.querySelector(".close-dialog").addEventListener("click", () => dialog.close());
+      const viewport = dialog.querySelector(".image-viewport");
+      const fit = dialog.querySelector(".image-fit");
+      function fitImage(original = false) {
+        dialog.dataset.original = String(original);
+        fit.setAttribute("aria-pressed", String(original));
+        fit.textContent = original ? "适应屏幕" : "查看原图";
+        viewport.scrollTo(0, 0);
+      }
+      fit.addEventListener("click", () => fitImage(dialog.dataset.original !== "true"));
       // Only a click on the backdrop (outside the dialog box) closes it; a click
       // on the dialog's own padding used to close the preview by accident.
       dialog.addEventListener("click", (event) => {
@@ -110,25 +136,17 @@ import {getCourses} from "./course-catalog.mjs";
         if (outside) dialog.close();
       });
       dialog.addEventListener("close", () => document.documentElement.classList.remove("dialog-open"));
-      document.querySelectorAll(".md-content__inner img").forEach((img) => {
-        if (img.closest("dialog")) return;
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "figure-zoom";
-        button.setAttribute("aria-label", `\u67E5\u770B\u539F\u56FE\uFF1A${img.alt}`);
-        img.replaceWith(button);
-        button.append(img);
-        const hint = document.createElement("span");
-        hint.className = "zoom-hint";
-        hint.textContent = "\u67E5\u770B\u539F\u56FE";
-        hint.setAttribute("aria-hidden", "true");
-        button.append(hint);
-        button.addEventListener("click", () => {
+      document.querySelectorAll(".figure-zoom").forEach((button) => {
+        const img = button.querySelector("img");
+        button.setAttribute("aria-haspopup", "dialog");
+        button.addEventListener("click", (event) => {
+          event.preventDefault();
           const preview = dialog.querySelector("img");
           preview.src = img.currentSrc || img.src;
           preview.alt = img.alt;
           dialog.querySelector("p").textContent = img.alt;
           dialog.showModal();
+          fitImage();
           dialog.scrollTop = 0;
           dialog.scrollLeft = 0;
           document.documentElement.classList.add("dialog-open");
@@ -143,6 +161,7 @@ import {getCourses} from "./course-catalog.mjs";
     function update() {
       document.querySelectorAll(".md-typeset__scrollwrap").forEach((wrap) => {
         const scrollable = wrap.scrollWidth > wrap.clientWidth + 2;
+        wrap.classList.toggle("is-long-table", (wrap.querySelector("table")?.rows.length || 0) > 10);
         wrap.classList.toggle("is-scrollable", scrollable);
         if (!scrollable) {
           const stale = wrap.previousElementSibling;
@@ -251,7 +270,8 @@ import {getCourses} from "./course-catalog.mjs";
   /** Keep a second tab in sync after the review checkbox changes elsewhere. */
   function initCrossTabProgress() {
     window.addEventListener("storage", (event) => {
-      if (event.key !== storageKey) return;
+      if (event.key === READING_KEY || event.key === null) renderRecent();
+      if (event.key !== storageKey && event.key !== null) return;
       renderProgress();
       const toolbar = document.querySelector(".study-toolbar");
       const checkbox = toolbar?.querySelector("[data-complete]");
@@ -329,7 +349,7 @@ import {getCourses} from "./course-catalog.mjs";
     });
   }
 
-  /** The modal dialog has a single focusable child; keep Tab inside it. */
+  /** Keep keyboard navigation inside the native modal, including the scroll region. */
   function initDialogFocus() {
     const dialog = document.querySelector(".image-dialog");
     if (!dialog) return;
@@ -399,4 +419,14 @@ import {getCourses} from "./course-catalog.mjs";
   initDialogFocus();
   initStorageGuard();
   initPaletteKeys();
+  document.querySelectorAll(".headerlink").forEach(link => {
+    link.setAttribute("aria-label", "链接到：" + link.parentElement.textContent.replace(/¶$/, "").trim());
+  });
+  const searchEntry = document.querySelector("[data-study-search-entry]");
+  if (searchEntry) {
+    const target = new URL(searchEntry.href);
+    target.search = location.search;
+    target.hash = location.hash;
+    location.replace(target.href);
+  }
 })();

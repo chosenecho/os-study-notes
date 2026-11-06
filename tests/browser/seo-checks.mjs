@@ -23,7 +23,8 @@ export async function runSeoChecks(page, {base, out, report}) {
         copy.querySelectorAll('.headerlink').forEach(anchor => anchor.remove());
         return copy.textContent.trim();
       });
-      assert.equal(schema[0].name, heading);
+      assert.equal(schema[0].name, 'studynote');
+      assert.match(heading, /自考计算机/);
     } else {
       assert.equal(schema[0]['@type'], 'BreadcrumbList');
       const visible = await page.locator('.study-breadcrumbs li').evaluateAll(els =>

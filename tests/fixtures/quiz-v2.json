@@ -1,0 +1,154 @@
+{
+  "version": 2,
+  "bank": "429383842",
+  "course": "mm",
+  "sessions": {
+    "os": {
+      "ids": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "index": 12,
+      "answers": {
+        "1": 2,
+        "2": 1,
+        "3": 2,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 0,
+        "8": 1,
+        "9": 0,
+        "10": 0,
+        "11": 1,
+        "12": 1
+      },
+      "mode": "all"
+    },
+    "mm": {
+      "ids": [
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60"
+      ],
+      "index": 0,
+      "answers": {
+        "43": 1
+      },
+      "mode": "all"
+    }
+  },
+  "records": {
+    "1": {
+      "lastAnswer": 2,
+      "attempts": 1,
+      "correctCount": 0,
+      "updatedAt": 1793937600000
+    },
+    "2": {
+      "lastAnswer": 1,
+      "attempts": 1,
+      "correctCount": 1,
+      "updatedAt": 1793937600000
+    },
+    "3": {
+      "lastAnswer": 2,
+      "attempts": 1,
+      "correctCount": 1,
+      "updatedAt": 1793937600000
+    },
+    "4": {
+      "lastAnswer": 1,
+      "attempts": 1,
+      "correctCount": 1,
+      "updatedAt": 1793937600000
+    },
+    "5": {
+      "lastAnswer": 1,
+      "attempts": 1,
+      "correctCount": 1,
+      "updatedAt": 1793937600000
+    },
+    "6": {
+      "lastAnswer": 1,
+      "attempts": 1,
+      "correctCount": 1,
+      "updatedAt": 1793937600000
+    },
+    "7": {
+      "lastAnswer": 0,
+      "attempts": 1,
+      "correctCount": 1,
+      "updatedAt": 1793937600000
+    },
+    "8": {
+      "lastAnswer": 1,
+      "attempts": 1,
+      "correctCount": 1,
+      "updatedAt": 1793937600000
+    },
+    "9": {
+      "lastAnswer": 0,
+      "attempts": 1,
+      "correctCount": 1,
+      "updatedAt": 1793937600000
+    },
+    "10": {
+      "lastAnswer": 0,
+      "attempts": 1,
+      "correctCount": 1,
+      "updatedAt": 1793937600000
+    },
+    "11": {
+      "lastAnswer": 1,
+      "attempts": 1,
+      "correctCount": 1,
+      "updatedAt": 1793937600000
+    },
+    "12": {
+      "lastAnswer": 1,
+      "attempts": 1,
+      "correctCount": 1,
+      "updatedAt": 1793937600000
+    },
+    "43": {
+      "lastAnswer": 1,
+      "attempts": 1,
+      "correctCount": 0,
+      "updatedAt": 1793937600000
+    }
+  },
+  "history": [
+    {
+      "course": "os",
+      "total": 12,
+      "correct": 11,
+      "at": 1793937600000
+    }
+  ]
+}

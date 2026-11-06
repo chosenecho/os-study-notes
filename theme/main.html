@@ -21,6 +21,9 @@
   <script>
     // Reserve exercise space before first paint without changing Material's boot state.
     document.documentElement.classList.add('study-js');
+    // Material starts in no-js mode; remove it immediately so the reading
+    // toolbar has its final height before the deferred bundle can run.
+    document.documentElement.classList.remove('no-js');
     (function () {
       try {
         void window.localStorage;
@@ -48,12 +51,22 @@
   <meta property="og:title" content="{{ og_title | striptags }}">
   <meta property="og:description" content="{{ og_desc }}">
   <meta property="og:url" content="{{ page.canonical_url if page and page.canonical_url else config.site_url }}">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ og_title | striptags }}">
   <meta name="twitter:description" content="{{ og_desc }}">
+  <meta property="og:image" content="{{ study_social_image | default(config.site_url ~ 'assets/images/social/home.png') }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ og_title | striptags }}">
+  <meta name="twitter:image" content="{{ study_social_image | default(config.site_url ~ 'assets/images/social/home.png') }}">
+  {% if page and page.meta.robots %}<meta name="robots" content="{{ page.meta.robots }}">{% endif %}
   {% if study_schema %}
     <script type="application/ld+json">{{ study_schema | tojson }}</script>
   {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() | replace('<script src=', '<script defer src=') }}
 {% endblock %}
 
 {% block content %}

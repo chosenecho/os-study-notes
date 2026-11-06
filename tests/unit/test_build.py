@@ -2,6 +2,7 @@
 import hashlib
 import importlib.util
 import json
+import subprocess
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
@@ -39,6 +40,33 @@ class BuildTests(unittest.TestCase):
             page.write_text('<div class="arithmatex">\\[\\badUnknownCommand{\\]</div>', encoding='utf-8')
             with self.assertRaisesRegex(ValueError, 'KaTeX build failed'):
                 assets.render_math(site)
+
+    def test_math_rejects_literal_dollar_around_rendered_expression(self):
+        with TemporaryDirectory() as tmp:
+            site = Path(tmp)
+            page = site / 'index.html'
+            page.write_text('<p>$<span class="arithmatex">\\(2^3=8\\)</span>$</p>', encoding='utf-8')
+            with self.assertRaisesRegex(ValueError, 'Literal dollar adjacent'):
+                assets.render_math(site)
+
+    def test_browser_chinese_tokenizer_uses_a_browser_safe_segmenter(self):
+        with TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'assets/javascripts/lunr/min/lunr.zh.min.js'
+            path.parent.mkdir(parents=True)
+            path.write_text(
+                '!function(e,r){r()(e.lunr)}(this,function(segmenter){return function(lunr){'
+                'lunr.tokenize=function(text){const words=[];segmenter.cut(text).forEach('
+                'word=>words.push(word));return words;};}});', encoding='utf-8')
+            assets.patch_browser_lunr_zh(Path(tmp))
+            assets.patch_browser_lunr_zh(Path(tmp))
+            result = subprocess.run(['node', '-e',
+                'const vm=require("node:vm"),fs=require("node:fs"),ctx={lunr:{}};'
+                'vm.runInNewContext(fs.readFileSync(process.argv[1],"utf8"),ctx);'
+                'console.log(JSON.stringify(ctx.lunr.tokenize("死锁 Cache")));', str(path)],
+                text=True, encoding='utf-8', capture_output=True, check=True)
+            words = json.loads(result.stdout)
+            self.assertEqual(''.join(words), '死锁 Cache')
+            self.assertIn('Cache', words)
 
     def test_svg_geometry_uses_root_viewbox_not_nested_rectangle(self):
         with TemporaryDirectory() as tmp:

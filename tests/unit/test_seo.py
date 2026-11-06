@@ -106,16 +106,35 @@ class SeoTests(unittest.TestCase):
 
     def test_breadcrumbs_follow_registered_course_and_labs(self):
         config = {'site_name': 'studynote', 'site_url': SITE,
+                  'nav': [{'演示课程': [{'课程概览': 'courses/demo/index.md'},
+                                       {'第 1 章': 'courses/demo/chapter-01.md'}]},
+                          {'交互练习': [{'练习入口': 'labs/index.md'},
+                                       {'Cache': 'labs/cache.md'}]},
+                          {'复习速查': [{'速查首页': 'reference/index.md'},
+                                       {'易错点清单': 'reference/pitfalls.md'}]}],
                   'extra': {'study_courses': [{'slug': 'demo', 'title': '演示课程'}]}}
-        for uri, parent in [('courses/demo/chapter-01.md', '演示课程'), ('labs/cache.md', '交互练习')]:
+        for uri, parent in [('courses/demo/chapter-01.md', '演示课程'), ('labs/cache.md', '交互练习'),
+                            ('reference/pitfalls.md', '复习速查')]:
             page = SimpleNamespace(meta={}, title='A < B & C', is_homepage=False,
                                    url=uri.removesuffix('.md') + '/',
                                    canonical_url=SITE + uri.removesuffix('.md') + '/',
                                    file=SimpleNamespace(src_uri=uri))
             context = hook.on_page_context({}, page, config)
             self.assertEqual(context['study_breadcrumbs'][1]['name'], parent)
+            self.assertEqual(context['study_breadcrumbs'][1]['url'],
+                             SITE + {'演示课程': 'courses/demo/',
+                                     '交互练习': 'labs/',
+                                     '复习速查': 'reference/'}[parent])
             self.assertEqual(context['study_schema']['itemListElement'][-1]['name'], page.title)
             self.assertEqual(context['seo_title'], 'A < B & C - studynote')
+
+        page = SimpleNamespace(meta={}, title='练习入口', is_homepage=False,
+                               url='labs/', canonical_url=SITE + 'labs/',
+                               file=SimpleNamespace(src_uri='labs/index.md'))
+        context = hook.on_page_context({}, page, config)
+        self.assertEqual([crumb['name'] for crumb in context['study_breadcrumbs']],
+                         ['首页', '交互练习', '练习入口'])
+        self.assertEqual(context['study_breadcrumbs'][1]['url'], SITE + 'labs/')
 
     def test_preview_images_use_preview_root_and_course_registry(self):
         config = {'site_name': 'studynote', 'site_url': 'https://preview.example/branch/',

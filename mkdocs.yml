@@ -81,6 +81,7 @@ nav:
       - 第 8 章 多媒体制作工具: courses/multimedia-technology/chapter-08.md
       - 第 9 章 多媒体项目的开发过程: courses/multimedia-technology/chapter-09.md
   - 复习速查:
+      - 速查首页: reference/index.md
       - 易错点清单: reference/pitfalls.md
       - 术语与缩写表: reference/glossary.md
       - 课程目录: courses/index.md

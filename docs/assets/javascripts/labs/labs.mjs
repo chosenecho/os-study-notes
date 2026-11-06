@@ -18,11 +18,16 @@ const configs = {
  }},
  banker: {fields:[text('available','Available · 当前可用','1 1','1–3 类资源，每项 0–999'),text('allocation','Allocation · 已分配（每行一个进程）','1 0\n0 1\n1 0','1–6 行，从 P0 开始，列数与 Available 一致',true),text('maximum','Max · 最大需求（每行一个进程）','2 1\n2 1\n1 2','行、列与 Allocation 对齐，Max 不小于已分配',true),number('process','请求进程编号（如 P0 填 0）',0,0,5),text('request','资源请求（可留空）','','留空检查原状态；例如 1 0，表示试分配给上面的进程')],prediction:select('prediction','预测结果（可不选）',[['','暂不预测'],['安全','安全 / 请求可批准'],['不安全','不安全 / 请求需拒绝'],['不满足前置条件','请求不满足前置条件']],'') ,run(get){
   const available=get('available',x=>sequence(x,999,3)), allocation=get('allocation',matrix), maximum=get('maximum',matrix), req=get('request').trim();
-  const request=req?{process:get('process',x=>integer(x,0,allocation.length-1,'进程编号')),resources:get('request',x=>sequence(x,999,3))}:null;
+  const process=get('process',value=>{
+   value=value.trim();
+   if(req&&!value)throw Error('请填写请求进程编号');
+   return value?integer(value,0,allocation.length-1,'进程编号'):null;
+  });
+  const request=req?{process,resources:get('request',x=>sequence(x,999,3))}:null;
   const r=get('maximum',()=>banker(available,allocation,maximum,request));
-  const needStep={title:'先算各进程 Need',body:r.need.map((row,i)=>'P'+i+' '+vector(row)).join('；')};
+  const needStep={title:request?'先算各进程原始 Need':'先算各进程 Need',body:r.need.map((row,i)=>'P'+i+' '+vector(row)).join('；')};
   if(r.blocked)return {answer:'不满足前置条件',summary:r.blocked,steps:[needStep]};
-  const steps=[needStep,{title:request?'试分配后的初始 Work':'安全性检查的初始 Work',body:vector(r.initialWork)+(request?'；试分配后 Need：'+r.checkNeed.map((row,i)=>'P'+i+' '+vector(row)).join('；'):'')} ,...r.steps.map(s=>({title:'假设 P'+s.process+' 完成',body:'Need '+vector(s.need)+' 逐项 ≤ Work '+vector(s.before)+'；归还 Allocation '+vector(s.released)+'，Work 变为 '+vector(s.after)+'。'}))];
+  const steps=[needStep,{title:request?'试分配后的初始 Work':'安全性检查的初始 Work',body:vector(r.initialWork)+(request?'；试分配后 Need：'+r.checkNeed.map((row,i)=>'P'+i+' '+vector(row)).join('；'):'')} ,...r.steps.map(s=>({title:'假设 P'+s.process+' 完成',body:'Need '+vector(s.need)+' 逐项 ≤ Work '+vector(s.before)+'；归还'+(request?'当前（含试分配）':'')+' Allocation '+vector(s.released)+'，Work 变为 '+vector(s.after)+'。'}))];
   if(!r.safe)steps.push({title:'检查停止',body:'未完成进程 '+r.unfinished.map(i=>'P'+i).join('、')+' 中，没有任何一个 Need 逐项不超过 Work '+vector(r.finalWork)+'。不安全不等于已经死锁。'});
   return {answer:r.safe?'安全':'不安全',summary:r.safe?'安全；一条安全序列为 '+r.order.map(i=>'P'+i).join(' → ')+(request?'。本次请求可批准。':'。'):'不安全；找不到覆盖全部进程的安全序列。'+(request?'本次试分配应撤销，请求需拒绝。':''),steps};
  }},
@@ -65,23 +70,35 @@ function mountLab(root,kind) {
  root.classList.add('study-lab');
  function field(f){
   const attrs='id="'+id+'-'+f.name+'" name="'+f.name+'" aria-describedby="'+id+'-'+f.name+'-help '+id+'-'+f.name+'-error"';
-  const required=f.name==='prediction'||f.name==='request'||f.name==='routes'?'':' required';
+  const required=f.name==='prediction'||f.name==='request'||f.name==='routes'||f.name==='process'?'':' required';
   const control=f.choices?'<select '+attrs+'>'+f.choices.map(([v,l])=>'<option value="'+esc(v)+'"'+(String(v)===String(f.value)?' selected':'')+'>'+esc(l)+'</option>').join('')+'</select>':f.type==='textarea'?'<textarea '+attrs+' rows="5"'+required+'>'+esc(f.value)+'</textarea>':'<input '+attrs+' type="'+(f.type||'text')+'" value="'+esc(f.value)+'"'+(f.type==='number'?' min="'+f.min+'" max="'+f.max+'" step="1"':' maxlength="600"')+required+'>';
   return '<div class="study-field"><label for="'+id+'-'+f.name+'">'+esc(f.label)+'</label>'+control+'<small id="'+id+'-'+f.name+'-help">'+esc(f.help||'')+'</small><p class="study-error" id="'+id+'-'+f.name+'-error"></p></div>';
  }
  root.innerHTML='<form novalidate><div class="study-fields">'+config.fields.map(field).join('')+'</div><div class="study-prediction">'+field(config.prediction)+'</div><div class="lab-buttons"><button type="submit" class="md-button md-button--primary">运行并核对</button><button class="md-button" type="reset">恢复示例</button></div></form><div class="study-result" aria-live="polite" aria-atomic="true" tabindex="-1"><p>先做预测，运行后在这里查看结果。</p></div>';
  const form=root.querySelector('form'), result=root.querySelector('.study-result');
  const clearError=el=>{el.removeAttribute('aria-invalid');root.querySelector('#'+el.id+'-error').textContent='';el.setCustomValidity('');};
+ const labelText=el=>el.labels?.[0]?.textContent?.trim()||el.name;
+ const validationMessage=el=>{
+  if(el.validity.valueMissing)return '请填写'+labelText(el)+'。';
+  if(el.validity.rangeUnderflow)return labelText(el)+'不能小于 '+el.min+'。';
+  if(el.validity.rangeOverflow)return labelText(el)+'不能大于 '+el.max+'。';
+  if(el.validity.stepMismatch)return labelText(el)+'必须是整数。';
+  return '请检查'+labelText(el)+'。';
+ };
  const showError=(el,message)=>{el.setAttribute('aria-invalid','true');root.querySelector('#'+el.id+'-error').textContent=message;};
  const resetResult=()=>{result.innerHTML='<p>参数已更新，请重新运行核对。</p>';};
  form.addEventListener('input',e=>{clearError(e.target);resetResult();});
  form.addEventListener('change',resetResult);
- form.addEventListener('focusout',e=>{if(e.target.willValidate&&!e.target.validity.valid)showError(e.target,e.target.validationMessage);});
+ form.addEventListener('focusout',e=>{
+  // Avoid moving the submit button between pointerdown and click.
+  if(e.relatedTarget?.matches('button[type=submit],button[type=reset]'))return;
+  if(e.target.willValidate&&!e.target.validity.valid)showError(e.target,validationMessage(e.target));
+ });
  form.addEventListener('reset',()=>{form.querySelectorAll('input,select,textarea').forEach(clearError);resetResult();});
  form.addEventListener('submit',e=>{
   e.preventDefault(); const fields=[...form.querySelectorAll('input,select,textarea')];fields.forEach(clearError);
   const invalid=fields.find(el=>!el.validity.valid);
-  if(invalid){showError(invalid,invalid.validationMessage);invalid.focus();return;}
+  if(invalid){const message=validationMessage(invalid);showError(invalid,message);result.innerHTML='<p>未运行：'+esc(message)+'</p>';invalid.focus();return;}
   const get=(name,parse=x=>x)=>{const el=form.elements.namedItem(name);try{return parse(el.value);}catch(error){showError(el,error.message);el.focus();throw error;}};
   try {
    const prediction=get('prediction').trim(), output=config.run(get);

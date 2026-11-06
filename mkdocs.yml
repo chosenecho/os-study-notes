@@ -69,6 +69,17 @@ nav:
       - 第 7 章 网络管理技术: courses/computer-networks/chapter-07.md
       - 第 8 章 网络操作系统: courses/computer-networks/chapter-08.md
       - 第 9 章 计算机网络安全: courses/computer-networks/chapter-09.md
+  - 多媒体技术及应用（第三版）:
+      - 课程概览: courses/multimedia-technology/index.md
+      - 第 1 章 多媒体技术基础知识: courses/multimedia-technology/chapter-01.md
+      - 第 2 章 多媒体计算机系统: courses/multimedia-technology/chapter-02.md
+      - 第 3 章 文本处理技术: courses/multimedia-technology/chapter-03.md
+      - 第 4 章 图形图像处理技术: courses/multimedia-technology/chapter-04.md
+      - 第 5 章 音频处理技术: courses/multimedia-technology/chapter-05.md
+      - 第 6 章 视频处理技术: courses/multimedia-technology/chapter-06.md
+      - 第 7 章 计算机动画制作技术: courses/multimedia-technology/chapter-07.md
+      - 第 8 章 多媒体制作工具: courses/multimedia-technology/chapter-08.md
+      - 第 9 章 多媒体项目的开发过程: courses/multimedia-technology/chapter-09.md
   - 复习速查:
       - 易错点清单: reference/pitfalls.md
       - 术语与缩写表: reference/glossary.md

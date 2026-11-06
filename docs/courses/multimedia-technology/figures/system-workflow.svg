@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="385" viewBox="0 0 900 385" role="img" aria-labelledby="title desc">
+<title id="title">围绕作品追踪软硬件职责</title><desc id="desc">从采集到演播，各环节依赖不同设备和软件；操作系统与驱动提供支持。</desc>
+<rect width="900" height="385" rx="12" fill="#fff"/>
+<defs><marker id="arrow" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#315ba8"/></marker></defs>
+<g font-family="Microsoft YaHei,Arial,sans-serif" fill="#17243b">
+<text x="35" y="40" font-size="24" font-weight="600">围绕作品追踪软硬件职责</text>
+<path d="M285 129L321 129" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M575 129L611 129" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M740.0 176L740.0 220" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M615 271L579 271" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M325 271L289 271" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<rect x="35" y="82" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="160.0" y="117" text-anchor="middle" font-size="21" font-weight="600">采集</text>
+<text x="160.0" y="147" text-anchor="middle" font-size="18">输入设备获取素材</text>
+<rect x="325" y="82" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="450.0" y="117" text-anchor="middle" font-size="21" font-weight="600">接口与适配</text>
+<text x="450.0" y="147" text-anchor="middle" font-size="18">信号转换及设备接入</text>
+<rect x="615" y="82" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="740.0" y="117" text-anchor="middle" font-size="21" font-weight="600">加工</text>
+<text x="740.0" y="147" text-anchor="middle" font-size="18">主机与编辑软件处理</text>
+<rect x="615" y="224" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="740.0" y="259" text-anchor="middle" font-size="21" font-weight="600">保存</text>
+<text x="740.0" y="289" text-anchor="middle" font-size="18">素材与工作稿持久保存</text>
+<rect x="325" y="224" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="450.0" y="259" text-anchor="middle" font-size="21" font-weight="600">集成</text>
+<text x="450.0" y="289" text-anchor="middle" font-size="18">媒体、顺序和交互组织</text>
+<rect x="35" y="224" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="160.0" y="259" text-anchor="middle" font-size="21" font-weight="600">演播</text>
+<text x="160.0" y="289" text-anchor="middle" font-size="18">输出设备与运行环境</text>
+<text x="35" y="360" font-size="17">操作系统和驱动贯穿设备使用；接线、软件启动和作品可用分别检查。</text>
+</g></svg>

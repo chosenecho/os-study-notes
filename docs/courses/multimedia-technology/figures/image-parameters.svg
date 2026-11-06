@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="385" viewBox="0 0 900 385" role="img" aria-labelledby="title desc">
+<title id="title">图像参数：从输出要求到像素数据</title><desc id="desc">按蛇形箭头阅读。物理尺寸结合每英寸像素数得到像素尺寸，再由像素总数和每像素存储位数求数据量。</desc>
+<rect width="900" height="385" rx="12" fill="#fff"/>
+<defs><marker id="arrow" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#315ba8"/></marker></defs>
+<g font-family="Microsoft YaHei,Arial,sans-serif" fill="#17243b">
+<text x="35" y="40" font-size="24" font-weight="600">图像参数：从输出要求到像素数据</text>
+<path d="M285 129L321 129" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M575 129L611 129" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M740.0 176L740.0 220" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M615 271L579 271" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<path d="M325 271L289 271" stroke="#315ba8" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+<rect x="35" y="82" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="160.0" y="117" text-anchor="middle" font-size="21" font-weight="600">物理尺寸</text>
+<text x="160.0" y="147" text-anchor="middle" font-size="18">宽与高，以英寸计</text>
+<rect x="325" y="82" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="450.0" y="117" text-anchor="middle" font-size="21" font-weight="600">线性采样密度</text>
+<text x="450.0" y="147" text-anchor="middle" font-size="18">图像采用 ppi</text>
+<rect x="615" y="82" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="740.0" y="117" text-anchor="middle" font-size="21" font-weight="600">像素尺寸</text>
+<text x="740.0" y="147" text-anchor="middle" font-size="18">横向与纵向像素数</text>
+<rect x="615" y="224" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="740.0" y="259" text-anchor="middle" font-size="21" font-weight="600">像素总数</text>
+<text x="740.0" y="289" text-anchor="middle" font-size="18">横向像素数×纵向像素数</text>
+<rect x="325" y="224" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="450.0" y="259" text-anchor="middle" font-size="21" font-weight="600">每像素存储量</text>
+<text x="450.0" y="289" text-anchor="middle" font-size="18">存储位数÷8，得到 B</text>
+<rect x="35" y="224" width="250" height="94" rx="8" fill="#eef3fc" stroke="#b9c9e3"/>
+<text x="160.0" y="259" text-anchor="middle" font-size="21" font-weight="600">像素数据量</text>
+<text x="160.0" y="289" text-anchor="middle" font-size="18">像素总数×每像素字节数</text>
+<text x="35" y="360" font-size="17">仅表示本章未压缩像素模型；不含头部、调色板、行填充和压缩等因素。</text>
+</g></svg>

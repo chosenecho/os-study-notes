@@ -32,6 +32,9 @@ try {
     if (injectingLanguageFailure && /importScripts.*lunr\.zh\.min\.js/.test(message)) report.expectedFaults.push(message);
     else report.errors.push(message);
   });
+  page.on('console', message => {
+    if (/Invalid query:/.test(message.text())) report.errors.push(message.text());
+  });
   let indexRequests = 0, blockIndex = true;
   await page.route('**/search/search_index.json', route => {
     indexRequests++;
@@ -55,6 +58,10 @@ try {
     await page.waitForFunction(term => [...document.querySelectorAll('.md-search-result__link')].some(a => new URL(a.href).searchParams.get('h') === term), term);
     assert.match(await page.locator('.md-search-result__meta').innerText(), /\d+ 个/);
   }
+  await query.fill('死锁');
+  await page.waitForFunction(() => [...document.querySelectorAll('.md-search-result__link')].some(a => new URL(a.href).searchParams.get('h') === '死锁'));
+  assert.match(await page.locator('.md-search-result__link').first().innerText(), /死锁与必要条件/);
+  ok('Chinese search keeps the Lunr-ranked chapter result instead of replacing it wholesale with fallback ordering');
   assert.equal((await page.locator('.md-search-result__list').innerText()).includes('<p>'), false, 'Fallback snippets omit HTML tags');
   await page.screenshot({path: path.join(out, 'search-desktop.png'), animations: 'disabled'});
   assert.equal(await page.locator('[aria-live] .md-search-result__list').count(), 0, 'Only the status message is a live region');

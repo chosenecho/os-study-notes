@@ -99,8 +99,7 @@ if (root) {
     }
     return copy(parsed.body);
   }
-  // The zh tokenizer drops some common two-character concepts. Search the same
-  // downloaded index as a fallback; no second request or external service is needed.
+  // Rescue terms absent from the worker index using the same downloaded data.
   function fallbackResults() {
     const parts = lastQuery.toLowerCase().match(/[\p{L}\p{N}]+/gu) || [];
     if (!parts.length) return [];
@@ -133,8 +132,7 @@ if (root) {
     return [...groups.values()];
   }
   function render(items) {
-    const fallback = fallbackResults();
-    if (fallback.length && (!items.length || /[\p{Script=Han}]/u.test(lastQuery))) items = fallback;
+    if (!items.length) items = fallbackResults();
     input.removeAttribute('aria-busy');
     recovery.hidden = true;
     const fragment = document.createDocumentFragment();

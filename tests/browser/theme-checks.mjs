@@ -177,7 +177,7 @@ export async function runThemeChecks(page, {base, out, report}) {
   assert.match(await page.locator('article').innerText(), /OCR 尚未终校/);
   await screenshot('multimedia-desktop.png');
   await open('/courses/multimedia-technology/chapter-09/');
-  assert.equal(await footerPath('next'), '/reference/pitfalls/');
+  assert.equal(await footerPath('next'), '/reference/');
   await page.locator('[data-complete]').check();
   await page.reload({waitUntil: 'networkidle'});
   assert.equal(await page.locator('[data-complete]').isChecked(), true);

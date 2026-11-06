@@ -34,7 +34,26 @@ def render_math(site):
     rendered = iter(json.loads(result.stdout))
     for path,text,_count in pages:
         text = pattern.sub(lambda m: '<'+m[1]+' class="arithmatex">'+next(rendered)+'</'+m[1]+'>',text)
+        if re.search(r'\$(?=<(?:span|div) class="arithmatex">)', text) or re.search(
+                r'</(?:span|div)>\$', text):
+            raise ValueError(f'Literal dollar adjacent to rendered math: {path}')
         path.write_text(text,encoding='utf-8')
+
+
+def patch_browser_lunr_zh(site):
+    """Give the browser bundle a deterministic tokenizer when jieba is unavailable."""
+    path = site / 'assets/javascripts/lunr/min/lunr.zh.min.js'
+    if not path.exists():
+        raise ValueError(f'Missing browser Chinese tokenizer: {path}')
+    text = path.read_text(encoding='utf-8')
+    broken = 'r()(e.lunr)'
+    fixed = ('r({cut:function(e){return Array.from(new Intl.Segmenter("zh",'
+             '{granularity:"word"}).segment(e),function(t){return t.segment})}})(e.lunr)')
+    if broken not in text:
+        if 'new Intl.Segmenter("zh"' in text:
+            return
+        raise ValueError(f'Unexpected browser Chinese tokenizer bundle: {path}')
+    path.write_text(text.replace(broken, fixed, 1), encoding='utf-8')
 
 
 def on_post_build(config):
@@ -78,6 +97,7 @@ def on_post_build(config):
         for pack in (lunr / 'min').glob('lunr.*.min.js'):
             if pack.name not in keep:
                 pack.unlink()
+        patch_browser_lunr_zh(site)
 
     # 3) notes.css is inlined above; the standalone copy is dead weight.
     standalone = site / 'assets/stylesheets/notes.css'

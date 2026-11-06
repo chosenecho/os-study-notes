@@ -134,9 +134,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "2026-11-06 审阅本次第一方软件、存储兼容逻辑、交互状态和界面文案；运行针对性单元及浏览器回归。",
+      "basis": "2026-11-06 复核本次原创表单校验、错误状态、银行家算法参数检查和步骤说明；无第三方内容新增。",
       "reviewed_on": "2026-11-06",
-      "sha256": "70b3a1cfaf2639ab5e2b79368096f91f181c6f058003f7394c8f3b4f604113cf"
+      "sha256": "6b7c792ee87be08a53ff3e56a409747abc80d7c25e5a22561209c709cfea6a29"
     },
     {
       "path": "docs/assets/javascripts/labs/loader.mjs",
@@ -215,9 +215,9 @@
       "status": "cleared",
       "license": "Apache-2.0",
       "source_kind": "original-software-and-documentation",
-      "basis": "2026-11-05 编辑复核：独立编写搜索加载、失败恢复和键盘交互、自测本地记录及调度结果失效提示；审阅本次代码、样式和操作说明差异，未改动题库内容或引入第三方引文、教材题目与插图。编辑记录不构成法律认定。 本轮续审：基于现有索引原文实现中文检索降级，清理摘要标记，并保留查询链接复制及 44px 控件。",
-      "reviewed_on": "2026-11-05",
-      "sha256": "d15adea6c61cdf34b6d4c9b45cf527626b7f0a396820e4effa962cc8ae71315a"
+      "basis": "2026-11-06 复核中文搜索优先保留 Lunr 排序、只在空结果时扫描原有索引的第一方实现；无第三方内容新增。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "b0da1017ef7e6673753c7c4498607b25de90f7134db92e28b4521c780a9d17c4"
     },
     {
       "path": "docs/assets/stylesheets/labs.css",
@@ -833,9 +833,9 @@
       "status": "cleared",
       "license": "CC-BY-4.0",
       "source_kind": "original",
-      "basis": "2026-11-06 按受核验成书快照逐章核对本次新增的小结、独立表述及计算中间步骤；不复制教材原句，保留公式条件、章节结构和自编题答案。",
+      "basis": "2026-11-06 本次仅调整既有 EAT 公式上下空行，使其按块级公式渲染；公式及正文内容未改写。",
       "reviewed_on": "2026-11-06",
-      "sha256": "60327f2317aae4cde3dd79044c1131c1cdcaaa68ec25699697795a7a17fdca45"
+      "sha256": "4965043fec2c62a363b78ef5a715c5aff5df314c18a7179c2c718cbb1d8f9fbd"
     },
     {
       "path": "docs/courses/operating-systems/chapter-05.md",
@@ -1043,6 +1043,15 @@
       "basis": "2026-11-06 多媒体笔记实施复核：独立组织讲解、自编情境与数值，图示由本项目绘制；只公开书目、短考点及原创表达，不分发成书、教材插图或原题答案。大纲用于范围定位，保留来源疑点及未实测边界。私有对照与核算记录存于 local/reviews/multimedia-2026-11-06/。",
       "reviewed_on": "2026-11-06",
       "sha256": "fff5ceb96df95ae6ca3d101f37e66da1086b94ed536c835c1222ce66f7d152dd"
+    },
+    {
+      "path": "docs/reference/index.md",
+      "status": "cleared",
+      "license": "CC-BY-4.0",
+      "source_kind": "original-learning-content",
+      "basis": "2026-11-06 原创站内速查目录与使用说明，仅链接已有易错点、术语表、课程目录和交互练习；不含外部引文或教材表达。",
+      "reviewed_on": "2026-11-06",
+      "sha256": "bd0f9723e9c849bbb99693a41e52af844282f6096e1f669810dbd5cf04fc027b"
     },
     {
       "path": "docs/reference/pitfalls.md",

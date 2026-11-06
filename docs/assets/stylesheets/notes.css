@@ -17,6 +17,15 @@
 :where(a, button, input, select, summary, [tabindex]):focus-visible { outline: 2px solid var(--note-focus); outline-offset: 2px; }
 .md-nav .md-nav__link:focus-visible { outline-offset: -2px; }
 .md-typeset.chapter-prose { font-size: var(--note-font-size, 16px); }
+.md-typeset.chapter-prose > :is(p, ul, ol, blockquote, .exercise-item) { max-width: 42em; }
+.md-typeset.chapter-prose :is(table:not([class]), details, .admonition) { font-size: 1em; }
+.md-typeset.chapter-prose details :is(p, li, table) { font-size: 1em; }
+.md-typeset .md-button { min-height: 44px; }
+[data-md-color-scheme="slate"] .md-typeset .md-button--primary { color: #fff; background: #365fa5; border-color: #365fa5; }
+[data-md-color-scheme="slate"] .md-typeset .md-button--primary:is(:hover, :focus-visible) { color: #fff; background: #294c88; border-color: #294c88; }
+.md-typeset .headerlink { display: inline-flex; min-width: 24px; min-height: 24px; align-items: center; justify-content: center; }
+.recent-study { display: block; margin-block: .7rem; }
+.recent-study[hidden] { display: none; }
 .study-toolbar { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; padding-block: .5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--note-border); }
 .study-toolbar label { display: flex; align-items: center; gap: .5rem; min-height: 44px; cursor: pointer; }
 .study-toolbar input { width: 20px; height: 20px; accent-color: var(--note-accent); }
@@ -26,8 +35,8 @@
 .save-status:empty { display: none; }
 .progress-badge { display: block; font-size: .6rem; color: var(--note-muted); white-space: nowrap; }
 .progress-badge[data-completed="true"] { color: var(--note-accent); }
-progress[data-study-progress] { display: block; appearance: none; border: 0; width: 100%; height: .25rem; overflow: hidden; background: var(--note-border); color: var(--note-accent); }
-progress[data-study-progress]::-webkit-progress-bar { background: var(--note-border); }
+progress[data-study-progress] { display: block; appearance: none; border: 1px solid var(--note-muted); border-radius: .15rem; width: 100%; height: .4rem; overflow: hidden; background: var(--note-muted-surface); color: var(--note-accent); }
+progress[data-study-progress]::-webkit-progress-bar { background: var(--note-muted-surface); }
 progress[data-study-progress]::-webkit-progress-value { background: var(--note-accent); }
 progress[data-study-progress]::-moz-progress-bar { background: var(--note-accent); }
 /* Keep options together; answer disclosure uses Material's native details style. */
@@ -41,18 +50,23 @@ progress[data-study-progress]::-moz-progress-bar { background: var(--note-accent
 .md-typeset details.exercise-answer > summary { min-height: 44px; }
 /* Wide tables, code and formulas retain keyboard scrolling. */
 .table-scroll-hint, .code-scroll-hint { margin: .15rem 0 .5rem; font-size: .65rem; color: var(--note-muted); }
+.md-typeset__scrollwrap.is-long-table { max-height: 70dvh; overflow: auto; }
+.md-typeset__scrollwrap.is-long-table th { position: sticky; top: 0; z-index: 1; background: var(--note-muted-surface); }
 .katex-display { overflow-x: auto; overflow-y: hidden; padding-block: .3rem; }
 /* Course diagrams keep their source colours, including in the zoom dialog. */
 .figure-zoom { position: relative; display: block; width: 100%; border: 1px solid var(--note-border); padding: .5rem; background: var(--note-surface); cursor: zoom-in; margin-block: 1rem; overflow: hidden; }
-.figure-zoom img { display: block; width: auto; max-width: 100%; height: auto; margin: auto; background: #fff; }
+.figure-zoom img { display: block; width: 100%; max-width: 100%; height: auto; margin: auto; background: #fff; }
 .zoom-hint { position: absolute; right: .25rem; bottom: .25rem; padding: .1rem .3rem; background: var(--note-surface); color: var(--note-muted); font-size: .6rem; }
 .md-typeset p:has(> .figure-zoom) + p > em,
 .md-typeset p > .figure-zoom + em { display: block; font-size: .7rem; color: var(--note-muted); font-style: normal; text-align: center; }
 .image-dialog { width: min(94vw, 1400px); max-width: 96vw; max-height: 94dvh; overflow: auto; overscroll-behavior: contain; border: 1px solid var(--note-border); padding: 1rem; background: var(--note-bg); color: var(--note-text); }
 .image-dialog::backdrop { background: #000b; }
-.md-typeset .image-dialog img { display: block; width: auto; max-width: none; max-height: 72dvh; object-fit: contain; background: #fff; margin: .75rem auto 0; }
+.image-dialog-tools { display: flex; justify-content: space-between; gap: .5rem; margin-bottom: .5rem; }
+.image-viewport { height: 68dvh; overflow: auto; overscroll-behavior: contain; }
+.md-typeset .image-dialog img { display: block; width: auto; max-width: 100%; max-height: 100%; object-fit: contain; background: #fff; margin: auto; }
+.md-typeset .image-dialog[data-original="true"] img { max-width: none; max-height: none; margin: 0; }
 .image-dialog p { text-align: center; font-size: .7rem; }
-.close-dialog { display: block; margin-left: auto; position: sticky; top: 0; z-index: 2; min-height: 44px; }
+.close-dialog { display: block; margin-left: auto; min-height: 44px; }
 [data-md-color-scheme="slate"] :is(.figure-zoom, .image-dialog) img { filter: brightness(.8) contrast(1.06); }
 html.dialog-open, html.drawer-open, html.drawer-open body { overflow: hidden; }
 /* Scheduling inputs and Gantt colours are domain controls, not theme overrides. */
@@ -85,6 +99,7 @@ html.dialog-open, html.drawer-open, html.drawer-open body { overflow: hidden; }
 html.no-js .study-toolbar { display: none; }
 .lab-noscript { padding: 1rem; border: 1px solid var(--note-border); }
 @media (max-width: 800px) {
+  .md-sidebar--primary .md-nav__link { min-height: 44px; align-items: center; }
   .image-dialog { width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh; border: 0; padding: .75rem; }
   .lab-controls { grid-template-columns: 1fr; }
   .scheduler { padding: .75rem; }
@@ -95,6 +110,8 @@ html.no-js .study-toolbar { display: none; }
   *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; animation: none !important; }
 }
 @media print {
+  .md-typeset__scrollwrap.is-long-table { max-height: none; overflow: visible; }
+  .md-typeset__scrollwrap.is-long-table th { position: static; }
   .study-toolbar, .close-dialog, .image-dialog, .lab-controls, .lab-buttons, .zoom-hint { display: none !important; }
   .figure-zoom { border: 0; }
   [data-md-color-scheme] {

@@ -109,3 +109,57 @@ export function complement(a, b, width, operation) {
   const real = operation === 'add' ? a + b : a - b, raw = encode(real);
   return {a: bits(a), b: bits(b), effectiveB: bits(operation === 'add' ? b : -b), bits: bits(real), real, signed: raw >= mod / 2 ? raw - mod : raw, overflow: real < min || real > max, min, max};
 }
+/** Recorded semaphore: decrement-before-wait, increment-before-wake, FIFO queue.
+ * Events describe atomic P/V calls; a blocked process cannot issue another call.
+ * General counting semaphore: V is not restricted to the process that called P.
+ */
+export function semaphore(initial, events) {
+  if (!Number.isInteger(initial) || initial < 0 || initial > 8) throw Error('初始许可须为 0–8 的整数');
+  if (!Array.isArray(events) || !events.length || events.length > 40) throw Error('需要 1–40 个 P/V 事件');
+  let value = initial;
+  const queue = [], steps = [];
+  for (const [i,event] of events.entries()) {
+    const match = /^(P[0-5]):([PV])$/.exec(String(event).toUpperCase());
+    if (!match) throw Error('事件 '+(i+1)+' 应为 P0:P 或 P0:V，进程编号 0–5');
+    const [,process,operation] = match;
+    if (queue.includes(process)) throw Error('事件 '+(i+1)+'：'+process+' 仍阻塞，不能继续执行');
+    const before = value;
+    let wake = null;
+    if (operation === 'P') {
+      value--;
+      if (value < 0) queue.push(process);
+    } else {
+      value++;
+      if (value <= 0) wake = queue.shift();
+    }
+    steps.push({process,operation,before,value,queue:[...queue],wake});
+  }
+  return {value,queue:[...queue],steps};
+}
+
+/** IPv4 CIDR arithmetic. /31 and /32 do not use the traditional host-count rule. */
+export function cidr(input, routes = []) {
+  const format = value => [24,16,8,0].map(shift => Math.floor(value/2**shift)%256).join('.');
+  function parse(text) {
+    const match = /^(\d{1,3}(?:\.\d{1,3}){3})\/(\d{1,2})$/.exec(String(text).trim());
+    if (!match) throw Error('使用十进制 IPv4/前缀，例如 10.23.45.67/20');
+    const octets = match[1].split('.').map(Number), prefix = Number(match[2]);
+    if (octets.some(v=>v>255) || prefix>32) throw Error('IPv4 每段须为 0–255，前缀须为 0–32');
+    const value = octets.reduce((n,part)=>n*256+part,0), count=2**(32-prefix);
+    const network=Math.floor(value/count)*count, last=network+count-1;
+    return {value,prefix,count,network,last,mask:format(2**32-count)};
+  }
+  const block = parse(input);
+  if (!Array.isArray(routes) || routes.length > 20) throw Error('路由前缀最多 20 项');
+  const candidates = routes.map(route=>{
+    const parsed=parse(route);
+    if (parsed.value!==parsed.network) throw Error('路由前缀需填写地址块起点：'+route);
+    return {...parsed,text:format(parsed.network)+'/'+parsed.prefix};
+  }).filter(route=>block.value>=route.network&&block.value<=route.last)
+    .sort((a,b)=>b.prefix-a.prefix);
+  return {...block,network:format(block.network),last:format(block.last),
+    usable:block.prefix<=30?block.count-2:null,
+    firstHost:block.prefix<=30?format(block.network+1):null,
+    lastHost:block.prefix<=30?format(block.last-1):null,
+    matches:candidates.map(r=>r.text),route:candidates[0]?.text||null};
+}

@@ -2,7 +2,7 @@
 {# MkDocs' default update_date is the build date, not an editorial revision date. #}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- for file in pages -%}
-    {% if not file.page.is_link and (file.page.abs_url or file.page.canonical_url) %}
+    {% if not file.page.is_link and 'noindex' not in (file.page.meta.robots | default('')) and (file.page.abs_url or file.page.canonical_url) %}
     <url>
         <loc>{{ (file.page.canonical_url or file.page.abs_url)|e }}</loc>
     </url>

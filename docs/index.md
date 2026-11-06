@@ -1,20 +1,18 @@
 ---
-title: 计算机课程笔记与交互练习
+title: 自考计算机课程复习笔记
 ---
 
-# studynote
+# 自考计算机课程复习笔记
 
 操作系统概论、计算机组成原理、计算机网络技术与多媒体技术的课程笔记、练习与交互实验。
 
-!!! info "版权与引用说明"
+按课程大纲选章阅读，再完成自编练习；勾选“本章已复习”保存完成度。进度、自测和最近阅读位置仅保存在当前浏览器。多媒体课程仍为学习草稿，OCR 尚未终校。
 
-    原创学习内容采用 CC BY 4.0，代码采用 Apache-2.0，第三方作品沿用原许可。[许可与版权](licensing.md)。
-
-    **如有侵权，立即下架。** 请通过 [GitHub Issues](https://github.com/chosenecho/studynote/issues/new) 提供内容链接与权利主张。
+[学习指南](guide.md) · [版本与勘误](errata.md) · [全部课程](courses/index.md)
 
 <div class="grid cards" markdown="1">
 
-- **操作系统概论**
+- ## 操作系统概论
 
     操作系统功能、进程管理、调度与死锁、内存管理、文件系统、I/O 设备管理。
 
@@ -26,9 +24,11 @@ title: 计算机课程笔记与交互练习
 
     [课程概览 →](courses/operating-systems/index.md)
 
+    <a class="recent-study" data-recent-chapter="os" hidden>返回最近阅读</a>
+
     <a class="md-button md-button--primary" data-next-chapter="os-" href="courses/operating-systems/chapter-01/"><span data-next-label>开始第 1 章</span></a>
 
-- **计算机组成原理**
+- ## 计算机组成原理
 
     计算机系统、数据表示与运算、指令系统、处理器、存储器及输入输出组织。
 
@@ -40,9 +40,11 @@ title: 计算机课程笔记与交互练习
 
     [课程概览 →](courses/computer-organization/index.md)
 
+    <a class="recent-study" data-recent-chapter="co" hidden>返回最近阅读</a>
+
     <a class="md-button md-button--primary" data-next-chapter="co-" href="courses/computer-organization/chapter-01/"><span data-next-label>开始第 1 章</span></a>
 
-- **计算机网络技术**
+- ## 计算机网络技术
 
     通信基础、协议分层、局域网与互联、应用、管理、网络操作系统及安全。
 
@@ -54,9 +56,11 @@ title: 计算机课程笔记与交互练习
 
     [课程概览 →](courses/computer-networks/index.md)
 
+    <a class="recent-study" data-recent-chapter="cn" hidden>返回最近阅读</a>
+
     <a class="md-button md-button--primary" data-next-chapter="cn-" href="courses/computer-networks/chapter-01/"><span data-next-label>开始第 1 章</span></a>
 
-- **多媒体技术及应用（第三版）**
+- ## 多媒体技术及应用（第三版）
 
     多媒体基础、计算机系统、文本、图像、音频、视频、动画、创作平台与项目开发。学习草稿，OCR 尚未终校。
 
@@ -68,11 +72,13 @@ title: 计算机课程笔记与交互练习
 
     [课程概览 →](courses/multimedia-technology/index.md)
 
+    <a class="recent-study" data-recent-chapter="mm" hidden>返回最近阅读</a>
+
     <a class="md-button md-button--primary" data-next-chapter="mm-" href="courses/multimedia-technology/chapter-01/"><span data-next-label>开始第 1 章</span></a>
 
 </div>
 
-在章节页勾选“本章已复习”记录进度；进度与字号仅保存在当前浏览器。
+学习内容采用 CC BY 4.0，代码采用 Apache-2.0。详见[许可与版权](licensing.md)，权利反馈按页面说明处理。
 
 ## 复习速查
 

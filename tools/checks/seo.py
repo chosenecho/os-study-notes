@@ -105,6 +105,27 @@ def audit(folder, site_url):
             if page.meta[key] != [expected]:
                 errors.append(f'{url}: {key} differs from page metadata')
         try:
+            images = page.meta['og:image']
+            if len(images) != 1 or page.meta['twitter:image'] != images:
+                raise ValueError('expected one matching OG/Twitter image')
+            image, site = urlsplit(images[0]), urlsplit(site_url)
+            if (image.scheme != 'https' or image.netloc != site.netloc or image.query
+                    or image.fragment or not image.path.startswith(site.path)):
+                raise ValueError('image must use this build\'s canonical HTTPS root')
+            relative = unquote(image.path[len(site.path):])
+            asset = (folder / relative).resolve()
+            if not asset.is_relative_to(folder.resolve()) or asset.suffix != '.png':
+                raise ValueError('invalid share image path')
+            png = asset.read_bytes()
+            if (png[:16] != b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR'
+                    or int.from_bytes(png[16:20], 'big') != 1200
+                    or int.from_bytes(png[20:24], 'big') != 630):
+                raise ValueError('share image must be a 1200 by 630 PNG')
+            if page.meta['twitter:card'] != ['summary_large_image']:
+                raise ValueError('large image card is missing')
+        except (OSError, ValueError) as exc:
+            errors.append(f'{url}: invalid share image: {exc}')
+        try:
             if len(page.schemas) != 1:
                 raise ValueError('expected one JSON-LD object')
             schema = json.loads(page.schemas[0])
@@ -137,7 +158,10 @@ def audit(folder, site_url):
         if description and len(locations) > 1:
             warnings.append(f'duplicate description {description!r}: {locations}')
     for path in folder.rglob('*.html'):
-        if path.resolve() not in expected_files and path != folder / '404.html':
+        excluded = path in (folder / '404.html', folder / '403.html', folder / 'search/index.html')
+        if excluded and not noindex(PageHTML(path.read_text(encoding='utf-8'))):
+            errors.append(f'{path.relative_to(folder)}: excluded page requires noindex')
+        if path.resolve() not in expected_files and not excluded:
             errors.append(f'{path.relative_to(folder)}: HTML page missing from sitemap')
     error_file = folder / '404.html'
     if not error_file.is_file() or not noindex(PageHTML(error_file.read_text(encoding='utf-8'))):

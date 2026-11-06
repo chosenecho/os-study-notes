@@ -1,6 +1,6 @@
 // A retry must refresh the whole failed dependency graph, not just this entry.
 const revision = new URL(import.meta.url).search;
-const [{integer, sequence, matrix, paging, banker, address, cache, complement}, {questions, questionSource}, {createQuizStore}, {getCourses}] = await Promise.all([
+const [{integer, sequence, matrix, paging, banker, address, cache, complement, semaphore, cidr}, {questions, questionSource}, {createQuizStore}, {getCourses}] = await Promise.all([
  import('./labs-core.mjs' + revision), import('./quiz-bank.mjs' + revision), import('./quiz-state.mjs' + revision), import('../course-catalog.mjs' + revision),
 ]);
 
@@ -38,6 +38,21 @@ const configs = {
   const refs=get('refs',x=>sequence(x,16777215)),r=cache(refs,Number(get('lines')),Number(get('size')));
   return {answer:String(r.misses),summary:'不命中 '+r.misses+' 次；命中 '+r.hits+' 次；命中率 '+pct(r.rate),steps:r.steps.map((s,i)=>({title:'读取 '+(i+1)+'：地址 '+s.value+' · '+(s.hit?'命中':'不命中'),body:'块号 '+s.block+'，行号 '+s.line+'，标记 '+s.tag+'，块内偏移 '+s.offset+'。'+(s.hit?'该行有效且标记相同。':s.before===null?'该行原先无效，装入该块。':'原标记 '+s.before+' 不同，替换该行。')+'当前各行标记：'+state(s.tags,'行')+'。'}))};
  }},
+ semaphore: {fields:[number('initial','信号量初值',1,0,8),text('events','事件（空格分隔）','P0:P P1:P P0:V P1:V','写作 P0:P、P1:V；一个事件表示一次原子调用')],prediction:text('prediction','预测终值（可留空）','','整数，可留空'),run(get){
+  const events=get('events',x=>x.trim().split(/\s+/));
+  const r=get('events',()=>semaphore(get('initial',x=>integer(x,0,8,'信号量初值')),events));
+  const steps=r.steps.map((s,i)=>({title:(i+1)+'. '+s.process+' 执行 '+s.operation,body:'S：'+s.before+' → '+s.value+'；等待队列：'+(s.queue.join('、')||'空')+(s.wake?'；唤醒 '+s.wake+'，其 P 调用返回':'')}));
+  return {answer:String(r.value),summary:'最终 S='+r.value+'；阻塞队列：'+(r.queue.join('、')||'空'),steps};
+ }},
+ cidr: {fields:[text('address','IPv4 地址/前缀','10.23.45.67/20','例如 10.23.45.67/20；支持 /0–/32'),text('routes','可选路由前缀（每行一项）','0.0.0.0/0\n10.0.0.0/8\n10.23.32.0/20','最多 20 项；每行一个 CIDR 块起点',true)],prediction:text('prediction','预测块起点（可留空）','','例如 10.23.32.0'),run(get){
+  const routes=get('routes',x=>x.trim()?x.trim().split(/\s+/):[]);
+  const input=get('address',x=>{cidr(x);return x.trim();});
+  const r=get('routes',()=>cidr(input,routes));
+  const steps=[{title:'拆分网络前缀与主机部分',body:'前缀 /'+r.prefix+'，主机部分 '+(32-r.prefix)+' 位；块大小 2^'+(32-r.prefix)+' = '+r.count+' 个地址。'},
+   {title:'确定地址块边界',body:'网络地址 '+r.network+'；末地址 '+r.last+'；子网掩码 '+r.mask+'。'+(r.usable===null?'本模型不套用传统首尾预留地址数。':'传统模型可用主机地址 '+r.firstHost+'–'+r.lastHost+'，共 '+r.usable+' 个。')}];
+  if(routes.length)steps.push({title:'最长前缀匹配',body:r.matches.length?'匹配项：'+r.matches.join('、')+'；选择 '+r.route+'。':'没有匹配路由。'});
+  return {answer:r.network,summary:'地址块 '+r.network+'/'+r.prefix+'；范围 '+r.network+'–'+r.last+(r.route?'；路由 '+r.route:''),steps};
+ }},
  complement: {fields:[select('width','补码位宽',[[4,'4 位'],[8,'8 位'],[16,'16 位']],'8'),select('operation','运算',[['add','A + B'],['sub','A − B']],'add'),number('a','操作数 A（十进制）',100,-32768,32767),number('b','操作数 B（十进制）',40,-32768,32767)],prediction:select('prediction','预测有符号溢出（可不选）',[['','暂不预测'],['溢出','溢出'],['未溢出','未溢出']],'') ,run(get){
   const width=Number(get('width')), min=-(2**(width-1)),max=2**(width-1)-1;
   const a=get('a',x=>integer(x,min,max,'操作数 A')),b=get('b',x=>integer(x,min,max,'操作数 B')),op=get('operation'),r=complement(a,b,width,op);
@@ -50,7 +65,7 @@ function mountLab(root,kind) {
  root.classList.add('study-lab');
  function field(f){
   const attrs='id="'+id+'-'+f.name+'" name="'+f.name+'" aria-describedby="'+id+'-'+f.name+'-help '+id+'-'+f.name+'-error"';
-  const required=f.name==='prediction'||f.name==='request'?'':' required';
+  const required=f.name==='prediction'||f.name==='request'||f.name==='routes'?'':' required';
   const control=f.choices?'<select '+attrs+'>'+f.choices.map(([v,l])=>'<option value="'+esc(v)+'"'+(String(v)===String(f.value)?' selected':'')+'>'+esc(l)+'</option>').join('')+'</select>':f.type==='textarea'?'<textarea '+attrs+' rows="5"'+required+'>'+esc(f.value)+'</textarea>':'<input '+attrs+' type="'+(f.type||'text')+'" value="'+esc(f.value)+'"'+(f.type==='number'?' min="'+f.min+'" max="'+f.max+'" step="1"':' maxlength="600"')+required+'>';
   return '<div class="study-field"><label for="'+id+'-'+f.name+'">'+esc(f.label)+'</label>'+control+'<small id="'+id+'-'+f.name+'-help">'+esc(f.help||'')+'</small><p class="study-error" id="'+id+'-'+f.name+'-error"></p></div>';
  }
@@ -88,47 +103,58 @@ function mountQuiz(root){
  let storage;
  try{storage=localStorage;}catch{storage={getItem(){return null;},setItem(){throw Error('storage blocked');},removeItem(){}};}
  const store=createQuizStore(questions,storage);
- root.innerHTML='<label for="quiz-course">选择题组</label><select id="quiz-course"><option value="all">全部课程 · '+questions.length+' 题</option>'+courses.map(course=>'<option value="'+esc(course)+'">'+esc(names[course])+' · '+counts[course]+' 题</option>').join('')+'</select><p data-quiz-progress role="status"></p><p data-quiz-storage class="quiz-storage-hint"></p><p data-quiz-history></p><div class="lab-buttons"><button class="md-button" type="button" data-missed>只练错题</button><button class="md-button" type="button" data-new>重新开始所选题组</button><button class="md-button" type="button" data-clear>清除自测记录</button></div><div data-quiz-body tabindex="-1"></div>';
+ root.innerHTML='<label for="quiz-course">选择题组</label><select id="quiz-course"><option value="all">全部课程 · '+questions.length+' 题</option>'+courses.map(course=>'<option value="'+esc(course)+'">'+esc(names[course])+' · '+counts[course]+' 题</option>').join('')+ '</select><div class="quiz-filters"><label for="quiz-chapter">章节</label><select id="quiz-chapter"></select><label for="quiz-count">题量</label><select id="quiz-count"><option value="all">全部题目</option><option value="10">短题组 · 最多 10 题</option></select><label><input type="checkbox" id="quiz-shuffle"> 随机题序</label></div><p data-quiz-progress role="status"></p><p data-quiz-storage class="quiz-storage-hint"></p><p data-quiz-history></p><div class="lab-buttons"><button class="md-button" type="button" data-missed>只练错题</button><button class="md-button" type="button" data-new>重新开始所选题组</button><button class="md-button" type="button" data-clear>清除自测记录</button></div><div data-quiz-body tabindex="-1"></div>';
  const filter=root.querySelector('select'), body=root.querySelector('[data-quiz-body]'), progress=root.querySelector('[data-quiz-progress]');
  const storageHint=root.querySelector('[data-quiz-storage]');
+ const chapterFilter=root.querySelector('#quiz-chapter'), countFilter=root.querySelector('#quiz-count'), shuffleFilter=root.querySelector('#quiz-shuffle');
+ function chapters(){
+  const numbers=[...new Set(questions.filter(q=>filter.value==='all'||q.course===filter.value).map(q=>q.chapter))].sort((a,b)=>a-b);
+  chapterFilter.innerHTML='<option value="all">全部章节</option>'+numbers.map(n=>'<option value="'+n+'">'+(filter.value==='all'?'各课程':'')+'第 '+n+' 章</option>').join('');
+ }
+ const settings=()=>({chapter:chapterFilter.value==='all'?'all':Number(chapterFilter.value),count:countFilter.value==='10'?10:'all',shuffle:shuffleFilter.checked});
+
  function renderSummary(session){
   const stats=store.stats(filter.value);
   progress.textContent='本轮已答 '+session.answered+' / '+session.queue.length+'；答对 '+session.correct+' 题';
   storageHint.textContent=store.available&&!window.__storageBlocked?'成绩、错题和各课程进度仅保存在当前浏览器，可在这里清除。':'浏览器未允许保存，自测记录只在本次页面有效。';
+  if(store.notice)storageHint.textContent+=' '+store.notice;
   root.querySelector('[data-missed]').disabled=!stats.missed;
   root.querySelector('[data-missed]').textContent='只练错题 · '+stats.missed+' 题';
   const last=stats.last?'上次完成：'+stats.last.correct+' / '+stats.last.total+' · '+new Date(stats.last.at).toLocaleDateString('zh-CN')+'。':'';
   root.querySelector('[data-quiz-history]').textContent=last+(stats.attempted?'累计作答 '+stats.attempted+' 次，正确率 '+Math.round(stats.correct/stats.attempted*100)+'%。':'尚无作答记录。');
  }
- function renderFeedback(q,selectedIndex){
+ function renderFeedback(q,selectedIndex,order){
   const ok=Number(selectedIndex)===q.answer;
-  return '<p><strong>'+(ok?'答对了。':'本题答错。')+'正确答案：'+String.fromCharCode(65+q.answer)+'</strong></p><p>'+esc(q.explanation)+'</p><p>'+'<a href="'+esc(questionSource(q,catalog))+'">回看本章笔记</a></p>';
+  return '<p><strong>'+(ok?'答对了。':'本题答错。')+'正确答案：'+String.fromCharCode(65+order.indexOf(q.answer))+'</strong></p><p>'+esc(q.explanation)+'</p><p>'+'<a href="'+esc(questionSource(q,catalog))+'">回看本章笔记</a></p>';
  }
  function render(){
   const session=store.session(filter.value),{queue,index,correct,missed,answers}=session;
+  chapterFilter.value=String(session.settings.chapter);countFilter.value=String(session.settings.count);shuffleFilter.checked=session.settings.shuffle;
   renderSummary(session);
   if(index===queue.length){
    body.innerHTML='<h2>本轮完成</h2><p>答对 '+correct+' / '+queue.length+' 题；错题 '+missed.length+' 道。'+(missed.length?'可以先回看解析，再重练错题。':'可以切换题组或重新练习。')+'</p><div class="lab-buttons"><button class="md-button" type="button" data-retry'+(missed.length?'':' disabled')+'>重练本轮错题</button></div>';
    body.querySelector('[data-retry]').onclick=()=>{store.retryRound(filter.value);render();body.focus();};
    return;
   }
-  const q=queue[index];
-  body.innerHTML='<p class="study-caption">第 '+(index+1)+' / '+queue.length+' 题 · '+esc(names[q.course])+' · 第 '+q.chapter+' 章 · '+'考点：第 '+q.sections.join('、')+' 节'+'</p><form><fieldset><legend>'+esc(q.prompt)+'</legend>'+q.options.map((option,i)=>'<label class="study-option"><input type="radio" name="answer" value="'+i+'"><span>'+String.fromCharCode(65+i)+'．'+esc(option)+'</span></label>').join('')+'</fieldset><div data-quiz-feedback aria-live="polite"></div><div class="lab-buttons"><button type="submit" class="md-button md-button--primary">提交答案</button><button class="md-button" type="button" data-next disabled>'+(index===queue.length-1?'查看本轮结果':'下一题')+'</button></div></form>';
+  const q=queue[index], order=session.orders[q.id];
+  body.innerHTML='<p class="study-caption">第 '+(index+1)+' / '+queue.length+' 题 · '+esc(names[q.course])+' · 第 '+q.chapter+' 章 · '+'考点：第 '+q.sections.join('、')+' 节'+'</p><form><fieldset><legend>'+esc(q.prompt)+'</legend>'+order.map((i,displayIndex)=>'<label class="study-option"><input type="radio" name="answer" value="'+i+'"><span>'+String.fromCharCode(65+displayIndex)+'．'+esc(q.options[i])+'</span></label>').join('')+'</fieldset><div data-quiz-feedback aria-live="polite"></div><div class="lab-buttons"><button type="submit" class="md-button md-button--primary">提交答案</button><button class="md-button" type="button" data-next disabled>'+(index===queue.length-1?'查看本轮结果':'下一题')+'</button></div></form>';
   const form=body.querySelector('form'),feedbackBox=body.querySelector('[data-quiz-feedback]'),next=body.querySelector('[data-next]');
   const savedAnswer=Object.prototype.hasOwnProperty.call(answers,String(q.id))?answers[String(q.id)]:null;
   let answered=savedAnswer!==null;
-  if(answered){const selected=form.querySelector('input[value="'+savedAnswer+'"]');if(selected)selected.checked=true;feedbackBox.innerHTML=renderFeedback(q,savedAnswer);form.querySelector('fieldset').disabled=true;form.querySelector('[type=submit]').disabled=true;next.disabled=false;}
+  if(answered){const selected=form.querySelector('input[value="'+savedAnswer+'"]');if(selected)selected.checked=true;feedbackBox.innerHTML=renderFeedback(q,savedAnswer,order);form.querySelector('fieldset').disabled=true;form.querySelector('[type=submit]').disabled=true;next.disabled=false;}
   form.onsubmit=e=>{e.preventDefault();if(answered)return;const selected=form.querySelector('input:checked');if(!selected){feedbackBox.textContent='请先选择一个答案。';form.querySelector('input').focus();return;}
    if(!store.answer(filter.value,Number(selected.value)))return;
-   answered=true;feedbackBox.innerHTML=renderFeedback(q,selected.value);
+   answered=true;feedbackBox.innerHTML=renderFeedback(q,selected.value,order);
    form.querySelector('fieldset').disabled=true;form.querySelector('[type=submit]').disabled=true;next.disabled=false;next.focus({preventScroll:true});renderSummary(store.session(filter.value));
   };
   next.onclick=()=>{if(!answered)return;store.next(filter.value);render();body.focus();};
  }
  filter.value=store.course;
- filter.onchange=render;
- root.querySelector('[data-new]').onclick=()=>{store.start(filter.value);render();body.focus();};
- root.querySelector('[data-missed]').onclick=()=>{if(store.start(filter.value,'missed')){render();body.focus();}};
+ filter.onchange=()=>{chapters();render();};
+ chapters();
+ for(const control of [chapterFilter,countFilter,shuffleFilter])control.onchange=()=>{store.start(filter.value,'all',settings());render();};
+ root.querySelector('[data-new]').onclick=()=>{store.start(filter.value,'all',settings());render();body.focus();};
+ root.querySelector('[data-missed]').onclick=()=>{if(store.start(filter.value,'missed',settings())){render();body.focus();}else progress.textContent='当前章节没有累计错题，可切换章节后重试。';};
  root.querySelector('[data-clear]').onclick=()=>{store.clear();render();body.focus();};
  render();
 }

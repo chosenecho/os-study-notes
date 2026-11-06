@@ -33,12 +33,18 @@ def html(url, title, description):
             f'<meta property="og:description" content="{description}">'
             f'<meta name="twitter:description" content="{description}">'
             f'<meta property="og:url" content="{url}">'
+            f'<meta property="og:image" content="{SITE}assets/share.png">'
+            f'<meta name="twitter:image" content="{SITE}assets/share.png">'
+            '<meta name="twitter:card" content="summary_large_image">'
             f'<script type="application/ld+json">{json.dumps(schema)}</script></head>'
             '<body><h1>Heading<a class="headerlink">¶</a></h1></body></html>')
 
 
 class SeoTests(unittest.TestCase):
     def fixture(self, root, second=None):
+        (root / 'assets').mkdir()
+        (root / 'assets/share.png').write_bytes(
+            (ROOT / 'docs/assets/images/social/home.png').read_bytes())
         (root / 'guide').mkdir()
         (root / 'sitemap.xml').write_text(
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
@@ -67,6 +73,10 @@ class SeoTests(unittest.TestCase):
             'json': lambda s: s.replace('"@context":', '"@context"'),
             'duplicate title': lambda s: s.replace('Guide', 'Home'),
             'social': lambda s: s.replace('property="og:title"', 'property="wrong"'),
+            'missing image': lambda s: s.replace('property="og:image"', 'property="wrong"'),
+            'foreign image': lambda s: s.replace(SITE+'assets/share.png', 'https://other.example/share.png'),
+            'missing asset': lambda s: s.replace('assets/share.png', 'assets/missing.png'),
+            'card': lambda s: s.replace('summary_large_image', 'summary'),
         }
         for name, mutate in mutations.items():
             with self.subTest(name=name), TemporaryDirectory() as tmp:
@@ -106,6 +116,15 @@ class SeoTests(unittest.TestCase):
             self.assertEqual(context['study_breadcrumbs'][1]['name'], parent)
             self.assertEqual(context['study_schema']['itemListElement'][-1]['name'], page.title)
             self.assertEqual(context['seo_title'], 'A < B & C - studynote')
+
+    def test_preview_images_use_preview_root_and_course_registry(self):
+        config = {'site_name': 'studynote', 'site_url': 'https://preview.example/branch/',
+                  'extra': {'study_courses': [{'slug': 'demo', 'title': 'Demo'}]}}
+        page = SimpleNamespace(meta={}, title='Chapter', is_homepage=False,
+            url='courses/demo/chapter-01/', canonical_url=config['site_url']+'courses/demo/chapter-01/',
+            file=SimpleNamespace(src_uri='courses/demo/chapter-01.md'))
+        context = hook.on_page_context({}, page, config)
+        self.assertEqual(context['study_social_image'], 'https://preview.example/branch/assets/images/social/demo.png')
 
 
 if __name__ == '__main__':
